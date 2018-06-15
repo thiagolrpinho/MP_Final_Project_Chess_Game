@@ -19,13 +19,13 @@ enum StringEquivalence {Equals};
 class BoardSquare {
   private:
     //Rank are lines.
-    int _rank;
+    int rank_;
     //Files are columns.
-    int _file;
+    int file_;
 
   public:
   //Methods
-  BoardSquare( int file, int rank );
+  BoardSquare::BoardSquare( int file_coordinate, int rank_coordinate );
 
   ~BoardSquare();
 
