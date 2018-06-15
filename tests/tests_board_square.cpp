@@ -19,6 +19,19 @@ TEST_CASE( "Create", "[square]" )
     REQUIRE( a7->getRank() == 7 );
   } // SECTION( "A new created BoardSquare can have it's coordinates read" )
 
+  SECTION( "A new board square cannot have a rank above 8 or bellow 1" ) 
+  { 
+    //A board can only have 8x8 squares so a wrongly created square could 
+    //risk a bug.
+    try {
+      BoardSquare* a8 = new BoardSquare(1,-3);
+      //If this lines happens, it's surely a mistake
+      REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
+    } catch (int e) {
+      REQUIRE( "The board square cannot be created with a lower than 1 rank" );
+    }
+  } // SECTION( "A new created BoardSquare can have it's coordinates read" )
+
 }
 
 TEST_CASE( "Read", "[square]" ) 

@@ -25,7 +25,7 @@ class BoardSquare {
 
   public:
   //Methods
-  BoardSquare::BoardSquare( int file_coordinate, int rank_coordinate );
+  BoardSquare( int file_coordinate, int rank_coordinate );
 
   ~BoardSquare();
 
