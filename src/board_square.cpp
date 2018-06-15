@@ -47,3 +47,7 @@ unsigned short int BoardSquare::getFile()
 {
     return file_;
 }
+
+Piece * BoardSquare::getPiece(){
+    return piece_on_square_ ;
+}

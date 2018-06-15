@@ -63,6 +63,14 @@ TEST_CASE( "Create", "[square]" )
 
   } // SECTION( "A new created BoardSquare can have it's coordinates read" )
 
+   SECTION( "A new board square points has no piece" ) 
+  { 
+    //A board square should point to a pieace or to null. When it's
+    //created there shouldn't be a pieace over it.
+    REQUIRE( board_square_a7_coordinates->getPiece() == NULL );
+
+  } // SECTION( "A new board square points has no piece" ) 
+
 }
 
 TEST_CASE( "Read", "[square]" ) 

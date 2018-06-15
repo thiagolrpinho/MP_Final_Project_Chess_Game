@@ -5,6 +5,7 @@
 
 #ifndef BOARD_SQUARE_HPP
 #define BOARD_SQUARE_HPP
+#include "piece.hpp"
 
 //Operations can be Successful or not, every
 //method that would simply return void will instead
@@ -27,6 +28,8 @@ class BoardSquare {
     unsigned short int rank_;
     //Files are columns.
     unsigned short int file_;
+    //Squares points to pieaces null or a pieace
+    Piece * piece_on_square_ = NULL;
 
   public:
   //Methods
@@ -36,7 +39,7 @@ class BoardSquare {
 
   unsigned short int getRank();
   unsigned short int getFile();
-
+  Piece * getPiece();
 };
 
 #endif
