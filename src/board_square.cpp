@@ -16,10 +16,10 @@ BoardSquare::BoardSquare( int file_coordinate, int rank_coordinate )
 
 int BoardSquare::getRank()
 {
-    return 0;
+    return _rank;
 }
 
 int BoardSquare::getFile()
 {
-    return 0;
+    return _file;
 }
