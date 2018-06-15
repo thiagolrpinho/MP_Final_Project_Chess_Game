@@ -11,12 +11,12 @@ TEST_CASE( "Create", "[square]" )
 
   //A square can be created with a respective file(column)
   //and rank(row)
-  BoardSquare* a7 = new BoardSquare(1,7);
+  BoardSquare* board_square_a7_coordinates = new BoardSquare(1,7);
 
   SECTION( "A new created BoardSquare can have it's coordinates read" ) 
   {
-    REQUIRE( a7->getFile() == 1 );
-    REQUIRE( a7->getRank() == 7 );
+    REQUIRE( board_square_a7_coordinates->getFile() == 1 );
+    REQUIRE( board_square_a7_coordinates->getRank() == 7 );
   } // SECTION( "A new created BoardSquare can have it's coordinates read" )
 
   SECTION( "A new board square cannot have a rank above 8 or bellow 1" ) 
@@ -24,13 +24,23 @@ TEST_CASE( "Create", "[square]" )
     //A board can only have 8x8 squares so a wrongly created square could 
     //risk a bug.
     try {
-      BoardSquare* a8 = new BoardSquare(1,-3);
+      BoardSquare* board_square_wrong_rank_bellow_1 = new BoardSquare(1,-3);
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
     } catch (int e) {
       REQUIRE( "The board square cannot be created with a lower than 1 rank" );
     }
+
+     try {
+      BoardSquare* board_square_wrong_rank_above_8 = new BoardSquare(1, 10);
+      //If this lines happens, it's surely a mistake
+      REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
+    } catch (int e) {
+      REQUIRE( "The board square cannot be created with a higher than 8 rank." );
+    }
+
   } // SECTION( "A new created BoardSquare can have it's coordinates read" )
+
 
 }
 
