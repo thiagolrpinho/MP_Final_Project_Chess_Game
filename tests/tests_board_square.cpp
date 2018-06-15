@@ -24,7 +24,7 @@ TEST_CASE( "Create", "[square]" )
     //A board can only have 8x8 squares so a wrongly created square could 
     //risk a bug.
     try {
-      BoardSquare* board_square_wrong_rank_bellow_1 = new BoardSquare(1,-3);
+      BoardSquare* board_square_wrong_rank_bellow_1 = new BoardSquare( 1, 0 );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
     } catch (int e) {
@@ -32,7 +32,7 @@ TEST_CASE( "Create", "[square]" )
     }
 
      try {
-      BoardSquare* board_square_wrong_rank_above_8 = new BoardSquare(1, 10);
+      BoardSquare* board_square_wrong_rank_above_8 = new BoardSquare( 1, 10 );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
     } catch (int e) {
@@ -46,7 +46,7 @@ TEST_CASE( "Create", "[square]" )
     //A board can only have 8x8 squares so a wrongly created square could 
     //risk a bug.
     try {
-      BoardSquare* board_square_wrong_file_bellow_1 = new BoardSquare(-1, 7);
+      BoardSquare* board_square_wrong_file_bellow_1 = new BoardSquare( -1, 7 );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
     } catch (int e) {
@@ -54,7 +54,7 @@ TEST_CASE( "Create", "[square]" )
     }
 
      try {
-      BoardSquare* board_square_wrong_file_above_8 = new BoardSquare(10, 7);
+      BoardSquare* board_square_wrong_file_above_8 = new BoardSquare( 10, 7 );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
     } catch (int e) {

@@ -7,24 +7,22 @@
 //! A constructor that creates a board square.
     /*!
         \Description Creates a new board square.
-        Both rank or file cannot be lower than 1 or
-        greater than 8.
+        Both rank or file cannot be lower than one or
+        greater than the border side size.
         
-        \param Two Int between (1 - 8)
+        \param Two Int between (kMinimunAllowedCoordinate and kMaximumAllowedCoordinate)
     */
-BoardSquare::BoardSquare( int file_coordinate, int rank_coordinate )
+BoardSquare::BoardSquare( unsigned short int file_coordinate, unsigned short int rank_coordinate )
 {   
-    if ( rank_coordinate < 1 || rank_coordinate > 8)
+    if ( rank_coordinate < kMinimunAllowedCoordinate || rank_coordinate > kMaximumAllowedCoordinate)
     {
         throw (int) Error;
-    } //if ( rank_coordinate < 1 || rank_coordinate > 8)
+    } //if ( rank_coordinate < kMinimunAllowedCoordinate || rank_coordinate > kMaximumAllowedCoordinate)
 
-    if ( file_coordinate < 1 || file_coordinate > 8)
+    if ( file_coordinate < kMinimunAllowedCoordinate || file_coordinate > kMaximumAllowedCoordinate)
     {
         throw (int) Error;
-    } //if ( file_coordinate < 1 || file_coordinate > 8)
-
-    
+    } //if ( file_coordinate < kMinimunAllowedCoordinate || file_coordinate > kMaximumAllowedCoordinate)
 
     file_ = file_coordinate;
     rank_ = rank_coordinate;
@@ -35,7 +33,7 @@ BoardSquare::BoardSquare( int file_coordinate, int rank_coordinate )
         \return The horizontal coordenate of
         the board square
     */
-int BoardSquare::getRank()
+unsigned short int BoardSquare::getRank()
 {
     return rank_;
 }
@@ -45,7 +43,7 @@ int BoardSquare::getRank()
         \return The vertical coordenate of
         the board square
     */
-int BoardSquare::getFile()
+unsigned short int BoardSquare::getFile()
 {
     return file_;
 }

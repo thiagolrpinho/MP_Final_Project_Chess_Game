@@ -16,21 +16,26 @@ enum OperationStatus {Error, Success};
 //I'll call 0 as Equals.
 enum StringEquivalence {Equals};
 
+//BoardSquares cannot have bigger coordinates than 
+//the board side size or lower than 1.
+const unsigned short int kMaximumAllowedCoordinate = 8;
+const unsigned short int kMinimunAllowedCoordinate = 1;
+
 class BoardSquare {
   private:
     //Rank are lines.
-    int rank_;
+    unsigned short int rank_;
     //Files are columns.
-    int file_;
+    unsigned short int file_;
 
   public:
   //Methods
-  BoardSquare( int file_coordinate, int rank_coordinate );
+  BoardSquare( unsigned short int file_coordinate, unsigned short int rank_coordinate );
 
   ~BoardSquare();
 
-  int getRank();
-  int getFile();
+  unsigned short int getRank();
+  unsigned short int getFile();
 
 };
 
