@@ -39,6 +39,8 @@ class BoardSquare {
 
   unsigned short int getRank();
   unsigned short int getFile();
+  bool isOccupied();
+  unsigned short int setPiece(Piece *);
   Piece * getPiece();
 };
 

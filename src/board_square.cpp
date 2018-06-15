@@ -48,6 +48,23 @@ unsigned short int BoardSquare::getFile()
     return file_;
 }
 
+bool BoardSquare::isOccupied()
+{
+    if ( piece_on_square_ )
+        return true;
+    else 
+        return false;
+}
+unsigned short int BoardSquare::setPiece(Piece * piece_to_be_set )
+{
+    try {
+        piece_on_square_ = piece_to_be_set;
+    } catch (int e) {
+        return Error;
+    }
+    return Success;
+}
 Piece * BoardSquare::getPiece(){
     return piece_on_square_ ;
 }
+
