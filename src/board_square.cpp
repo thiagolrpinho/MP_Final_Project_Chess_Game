@@ -8,6 +8,6 @@
     /*!
         \Description Creates a new board square.
     */
-StringNode::StringNode(void)
+BoardSquare::BoardSquare(void)
 {
 }
