@@ -1,4 +1,4 @@
-#include "square.hpp"
+#include "board_square.hpp"
 
 //! These tests will be focused on board squares
 //! They'll be considered fully functional if they pass in
