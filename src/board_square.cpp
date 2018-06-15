@@ -19,6 +19,11 @@ BoardSquare::BoardSquare( int file_coordinate, int rank_coordinate )
         throw (int) Error;
     } //if ( rank_coordinate < 1 || rank_coordinate > 8)
 
+    if ( file_coordinate < 1 || file_coordinate > 8)
+    {
+        throw (int) Error;
+    } //if ( file_coordinate < 1 || file_coordinate > 8)
+
     
 
     file_ = file_coordinate;
