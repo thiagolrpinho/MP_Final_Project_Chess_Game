@@ -12,8 +12,13 @@ TEST_CASE( "Create", "[square]" )
   //A square can be created with a respective file(column)
   //and rank(row)
   BoardSquare* a7 = new BoardSquare(1,7);
-  REQUIRE( a7->getFile() == 1 );
-  REQUIRE( a7->getRank() == 7 );
+
+  SECTION( "A new created BoardSquare can have it's coordinates read" ) 
+  {
+    REQUIRE( a7->getFile() == 1 );
+    REQUIRE( a7->getRank() == 7 );
+  } // SECTION( "A new created BoardSquare can have it's coordinates read" )
+
 }
 
 TEST_CASE( "Read", "[square]" ) 
