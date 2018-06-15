@@ -3,6 +3,9 @@
 #include "catch.hpp"
 #endif
 
+#ifndef BOARD_SQUARE_HPP
+#define BOARD_SQUARE_HPP
+
 //Operations can be Successful or not, every
 //method that would simply return void will instead
 //return an Error ou Success.
@@ -29,6 +32,6 @@ class BoardSquare {
   int getRank();
   int getFile();
 
+};
 
-
-}
+#endif
