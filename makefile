@@ -13,7 +13,7 @@ LIBS	=-lm
 _DEPS	= board_square.hpp catch.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_TOBJ = tests_board_square.o tests_main.o
+_TOBJ = board_square.o tests_board_square.o tests_main.o
 TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
 
 _OBJ = board_square.o main.o
