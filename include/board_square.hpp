@@ -14,10 +14,21 @@ enum OperationStatus {Error, Success};
 enum StringEquivalence {Equals};
 
 class BoardSquare {
+  private:
+    //Rank are lines.
+    int _rank;
+    //Files are columns.
+    int _file;
 
   public:
   //Methods
-  BoardSquare();
+  BoardSquare( int file, int rank );
 
   ~BoardSquare();
+
+  int getRank();
+  int getFile();
+
+
+
 }
