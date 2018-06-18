@@ -1,9 +1,11 @@
 #include "board_square.hpp"
 
+typedef shared_ptr<Piece> PPiece;
+typedef shared_ptr<BoardSquare> PBoardSquare;
+
 //! These tests will be focused on board squares
 //! They'll be considered fully functional if they pass in
 //! four test cases: Create, Read, Update and Destroy
-
 
 TEST_CASE( "Create", "[square]" ) 
 { 
@@ -16,7 +18,7 @@ TEST_CASE( "Create", "[square]" )
 
   //A square can be created with a respective file(column)
   //and rank(row)
-  shared_ptr<BoardSquare> board_square_a7_coordinates(  new BoardSquare(  1, 7 ) );
+  PBoardSquare board_square_a7_coordinates(  new BoardSquare(  1, 7 ) );
 
   SECTION( "A new created BoardSquare can have it's coordinates read" ) 
   {
@@ -29,7 +31,7 @@ TEST_CASE( "Create", "[square]" )
     //A board can only have 8x8 squares so a wrongly created square could 
     //risk a bug.
     try {
-      shared_ptr<BoardSquare> board_square_wrong_rank_bellow_1(  new BoardSquare(  1, 0 ) );
+      PBoardSquare board_square_wrong_rank_bellow_1(  new BoardSquare(  1, 0 ) );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
     } catch (int e) {
@@ -37,7 +39,7 @@ TEST_CASE( "Create", "[square]" )
     }
 
      try {
-      shared_ptr<BoardSquare> board_square_wrong_rank_above_8(  new BoardSquare(  1, 10 ) );
+      PBoardSquare board_square_wrong_rank_above_8(  new BoardSquare(  1, 10 ) );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
     } catch (int e) {
@@ -51,7 +53,7 @@ TEST_CASE( "Create", "[square]" )
     //A board can only have 8x8 squares so a wrongly created square could 
     //risk a bug.
     try {
-      shared_ptr<BoardSquare> board_square_wrong_file_bellow_1(  new BoardSquare(  -1,  7 ) );
+      PBoardSquare board_square_wrong_file_bellow_1(  new BoardSquare(  -1,  7 ) );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
     } catch (int e) {
@@ -59,7 +61,7 @@ TEST_CASE( "Create", "[square]" )
     }
 
      try {
-      shared_ptr<BoardSquare> board_square_wrong_file_above_8(  new BoardSquare(  10, 7 ) );
+      PBoardSquare board_square_wrong_file_above_8(  new BoardSquare(  10, 7 ) );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
     } catch (int e) {
@@ -85,9 +87,9 @@ TEST_CASE( "Read", "[square]" )
   // unsigned short int BoardSquare::setPiece(Piece *)
   // Piece * BoardSquare::getPiece()
 
-  shared_ptr<BoardSquare> non_occupied_board_square(  new BoardSquare( 1, 1 ) );
-  shared_ptr<BoardSquare> occupied_board_square(  new BoardSquare( 1, 2 ) );
-  shared_ptr<Piece> empty_piece( new Piece() );
+  PBoardSquare non_occupied_board_square(  new BoardSquare( 1, 1 ) );
+  PBoardSquare occupied_board_square(  new BoardSquare( 1, 2 ) );
+  PPiece empty_piece( new Piece() );
 
   occupied_board_square->setPiece(empty_piece);
 
@@ -117,16 +119,16 @@ TEST_CASE( "Update", "[square]" )
   // These tests will focus on:
   // unsigned short int BoardSquare::setPiece(Piece *)
 
-  shared_ptr<BoardSquare> non_occupied_board_square(  new BoardSquare( 1, 2 ) );
+  PBoardSquare non_occupied_board_square(  new BoardSquare( 1, 2 ) );
 
   SECTION( "A board square can be set a new piece" ) 
   { 
-    shared_ptr<Piece> first_piece( new Piece() );
-    shared_ptr<Piece> second_piece( new Piece() );
+    PPiece first_piece( new Piece() );
+    PPiece second_piece( new Piece() );
     // First we test if a non occupied board square receive a piece.
     REQUIRE( non_occupied_board_square->setPiece(first_piece) == Success);
 
-    shared_ptr<BoardSquare> occupied_board_square = non_occupied_board_square;
+    PBoardSquare occupied_board_square = non_occupied_board_square;
 
     // Then we test if a an occupied board square can receive a new piece.
     REQUIRE( occupied_board_square->setPiece(second_piece) == Success );
@@ -142,8 +144,8 @@ TEST_CASE( "Destroy", "[square]" )
   // These tests will focus on:
   // BoardSquare::~BoardSquare()
 
-  shared_ptr<BoardSquare> occupied_board_square(  new BoardSquare( 5, 5 ) );
-  shared_ptr<Piece> piece_to_be_destroyed( new Piece() );
+  PBoardSquare occupied_board_square(  new BoardSquare( 5, 5 ) );
+  PPiece piece_to_be_destroyed( new Piece() );
   occupied_board_square->setPiece(piece_to_be_destroyed);
 
   SECTION( "A board square can be deleted and no piece will be left floating" ) 
