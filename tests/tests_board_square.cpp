@@ -16,7 +16,7 @@ TEST_CASE( "Create", "[square]" )
 
   //A square can be created with a respective file(column)
   //and rank(row)
-  BoardSquare* board_square_a7_coordinates = new BoardSquare(1,7);
+  shared_ptr<BoardSquare> board_square_a7_coordinates(  new BoardSquare(  1, 7 ) );
 
   SECTION( "A new created BoardSquare can have it's coordinates read" ) 
   {
@@ -29,7 +29,7 @@ TEST_CASE( "Create", "[square]" )
     //A board can only have 8x8 squares so a wrongly created square could 
     //risk a bug.
     try {
-      BoardSquare* board_square_wrong_rank_bellow_1 = new BoardSquare( 1, 0 );
+      shared_ptr<BoardSquare> board_square_wrong_rank_bellow_1(  new BoardSquare(  1, 0 ) );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
     } catch (int e) {
@@ -37,7 +37,7 @@ TEST_CASE( "Create", "[square]" )
     }
 
      try {
-      BoardSquare* board_square_wrong_rank_above_8 = new BoardSquare( 1, 10 );
+      shared_ptr<BoardSquare> board_square_wrong_rank_above_8(  new BoardSquare(  1, 10 ) );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
     } catch (int e) {
@@ -51,7 +51,7 @@ TEST_CASE( "Create", "[square]" )
     //A board can only have 8x8 squares so a wrongly created square could 
     //risk a bug.
     try {
-      BoardSquare* board_square_wrong_file_bellow_1 = new BoardSquare( -1, 7 );
+      shared_ptr<BoardSquare> board_square_wrong_file_bellow_1(  new BoardSquare(  -1,  7 ) );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
     } catch (int e) {
@@ -59,7 +59,7 @@ TEST_CASE( "Create", "[square]" )
     }
 
      try {
-      BoardSquare* board_square_wrong_file_above_8 = new BoardSquare( 10, 7 );
+      shared_ptr<BoardSquare> board_square_wrong_file_above_8(  new BoardSquare(  10, 7 ) );
       //If this lines happens, it's surely a mistake
       REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
     } catch (int e) {
@@ -85,8 +85,8 @@ TEST_CASE( "Read", "[square]" )
   // unsigned short int BoardSquare::setPiece(Piece *)
   // Piece * BoardSquare::getPiece()
 
-  BoardSquare* non_occupied_board_square = new BoardSquare( 1, 1 );
-  BoardSquare* occupied_board_square = new BoardSquare( 1, 2 );
+  shared_ptr<BoardSquare> non_occupied_board_square(  new BoardSquare( 1, 1 ) );
+  shared_ptr<BoardSquare> occupied_board_square(  new BoardSquare( 1, 2 ) );
   shared_ptr<Piece> empty_piece( new Piece() );
 
   occupied_board_square->setPiece(empty_piece);
@@ -117,7 +117,7 @@ TEST_CASE( "Update", "[square]" )
   // These tests will focus on:
   // unsigned short int BoardSquare::setPiece(Piece *)
 
-  BoardSquare* non_occupied_board_square = new BoardSquare( 1, 2 );
+  shared_ptr<BoardSquare> non_occupied_board_square(  new BoardSquare( 1, 2 ) );
 
   SECTION( "A board square can be set a new piece" ) 
   { 
@@ -126,7 +126,7 @@ TEST_CASE( "Update", "[square]" )
     // First we test if a non occupied board square receive a piece.
     REQUIRE( non_occupied_board_square->setPiece(first_piece) == Success);
 
-    BoardSquare* occupied_board_square = non_occupied_board_square;
+    shared_ptr<BoardSquare> occupied_board_square = non_occupied_board_square;
 
     // Then we test if a an occupied board square can receive a new piece.
     REQUIRE( occupied_board_square->setPiece(second_piece) == Success );
@@ -142,14 +142,14 @@ TEST_CASE( "Destroy", "[square]" )
   // These tests will focus on:
   // BoardSquare::~BoardSquare()
 
-  BoardSquare* occupied_board_square = new BoardSquare( 5, 5 );
+  shared_ptr<BoardSquare> occupied_board_square(  new BoardSquare( 5, 5 ) );
   shared_ptr<Piece> piece_to_be_destroyed( new Piece() );
   occupied_board_square->setPiece(piece_to_be_destroyed);
 
   SECTION( "A board square can be deleted and no piece will be left floating" ) 
   { 
     try {
-      delete occupied_board_square;
+      delete &occupied_board_square;
       REQUIRE( "The board square was succesfully deleted" );
       // Using smart shared pointer I can only guarantee that the reference on board square
       // was erased and if there were no other reference to it it'll be succesfully
