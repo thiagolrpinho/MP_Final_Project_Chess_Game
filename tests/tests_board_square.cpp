@@ -74,7 +74,7 @@ TEST_CASE( "Create", "[square]" )
     REQUIRE( board_square_a7_coordinates->getPiece() == NULL );
   } // SECTION( "A new board square points has no piece" ) 
 
-}
+} // TEST_CASE( "Create", "[square]" )
 
 TEST_CASE( "Read", "[square]" ) 
 { 
@@ -92,7 +92,7 @@ TEST_CASE( "Read", "[square]" )
 
   SECTION( "A board square can be read to know if it's occupied" ) 
   { 
-    // If there's no piece ver it, it's not occupied
+    // If there's no piece over it, it's not occupied
     REQUIRE( non_occupied_board_square->isOccupied() == false );
     REQUIRE( occupied_board_square->isOccupied() == true );
 
@@ -107,12 +107,30 @@ TEST_CASE( "Read", "[square]" )
 
   } // SECTION( "A board square can be read to know who is occupying it" )  
   
-
-}
+} // TEST_CASE( "Read", "[square]" )
 
 TEST_CASE( "Update", "[square]" ) 
 { 
-}
-TEST_CASE( "Destroy", "[square]" ) 
-{ 
-}
+  //! These test case will focus on methods that
+  //! updates board squares
+  // These tests will focus on:
+  // unsigned short int BoardSquare::setPiece(Piece *)
+
+  BoardSquare* non_occupied_board_square = new BoardSquare( 1, 2 );
+
+  SECTION( "A board square can be set a new piece" ) 
+  { 
+    Piece* first_piece = new Piece();
+    Piece* second_piece = new Piece();
+    // First we test if a non occupied board square receive a piece.
+    REQUIRE( non_occupied_board_square->setPiece(first_piece) == Success);
+
+    BoardSquare* occupied_board_square = non_occupied_board_square;
+
+    // Then we test if a an occupied board square can receive a new piece.
+    REQUIRE( occupied_board_square->setPiece(second_piece) == Success );
+
+  } // SECTION( "A board square can be set a new piece" ) 
+
+} // TEST_CASE( "Update", "[square]" ) 
+
