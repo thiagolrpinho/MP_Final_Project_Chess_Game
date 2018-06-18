@@ -65,8 +65,8 @@ TEST_CASE( "Create", "[square]" )
 
   SECTION( "A new board square points has no piece" ) 
   { 
-    //A board square should point to a pieace or to null. When it's
-    //created there shouldn't be a pieace over it.
+    //A board square should point to a piece or to null. When it's
+    //created there shouldn't be a piece over it.
     REQUIRE( board_square_a7_coordinates->getPiece() == NULL );
   } // SECTION( "A new board square points has no piece" ) 
 
@@ -85,12 +85,21 @@ TEST_CASE( "Read", "[square]" )
 
   SECTION( "A board square can be read to know if it's occupied" ) 
   { 
-    // If there's no pieace ver it, it's not occupied
+    // If there's no piece ver it, it's not occupied
     REQUIRE( non_occupied_board_square->isOccupied() == false );
     REQUIRE( occupied_board_square->isOccupied() == true );
 
   } // SECTION( "A board square can be read to know if it's occupied" ) 
 
+  SECTION( "A board square can be read to know who is occupying it" ) 
+  { 
+    // If there's no piece ver it, it should return NULL
+    REQUIRE( non_occupied_board_square->getPiece() == NULL );
+    //There's it should return a pointer to the piece.
+    REQUIRE( occupied_board_square->getPiece() == empty_piece );
+
+  } // SECTION( "A board square can be read to know who is occupying it" )  
+  
 
 }
 

@@ -55,6 +55,7 @@ bool BoardSquare::isOccupied()
     else 
         return false;
 }
+
 unsigned short int BoardSquare::setPiece(Piece * piece_to_be_set )
 {
     try {
@@ -64,6 +65,7 @@ unsigned short int BoardSquare::setPiece(Piece * piece_to_be_set )
     }
     return Success;
 }
+
 Piece * BoardSquare::getPiece(){
     return piece_on_square_ ;
 }
