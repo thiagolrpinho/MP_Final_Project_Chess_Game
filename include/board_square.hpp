@@ -33,8 +33,8 @@ class BoardSquare {
     unsigned short int rank_;
     //Files are columns.
     unsigned short int file_;
-    //Squares points to pieces null or a pieace
-    shared_ptr<Piece> piece_on_square_ = NULL;
+    //Squares points to pieces nullptr or a pieace
+    shared_ptr<Piece> piece_on_square_ = nullptr;
 
   public:
   //Methods

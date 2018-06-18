@@ -4,6 +4,7 @@
 //! They'll be considered fully functional if they pass in
 //! four test cases: Create, Read, Update and Destroy
 
+
 TEST_CASE( "Create", "[square]" ) 
 { 
   //! These test case will focus on methods that
@@ -71,7 +72,7 @@ TEST_CASE( "Create", "[square]" )
   { 
     //A board square should point to a piece or to null. When it's
     //created there shouldn't be a piece over it.
-    REQUIRE( board_square_a7_coordinates->getPiece() == NULL );
+    REQUIRE( board_square_a7_coordinates->getPiece() == nullptr );
   } // SECTION( "A new board square points has no piece" ) 
 
 } // TEST_CASE( "Create", "[square]" )
@@ -86,7 +87,7 @@ TEST_CASE( "Read", "[square]" )
 
   BoardSquare* non_occupied_board_square = new BoardSquare( 1, 1 );
   BoardSquare* occupied_board_square = new BoardSquare( 1, 2 );
-  shared_ptr<Piece> empty_piece = new Piece();
+  shared_ptr<Piece> empty_piece( new Piece() );
 
   occupied_board_square->setPiece(empty_piece);
 
@@ -100,8 +101,8 @@ TEST_CASE( "Read", "[square]" )
 
   SECTION( "A board square can be read to know who is occupying it" ) 
   { 
-    // If there's no piece ver it, it should return NULL
-    REQUIRE( non_occupied_board_square->getPiece() == NULL );
+    // If there's no piece ver it, it should return nullptr
+    REQUIRE( non_occupied_board_square->getPiece() == nullptr );
     //There's it should return a pointer to the piece.
     REQUIRE( occupied_board_square->getPiece() == empty_piece );
 
@@ -120,8 +121,8 @@ TEST_CASE( "Update", "[square]" )
 
   SECTION( "A board square can be set a new piece" ) 
   { 
-    shared_ptr<Piece> first_piece = new Piece();
-    shared_ptr<Piece> second_piece = new Piece();
+    shared_ptr<Piece> first_piece( new Piece() );
+    shared_ptr<Piece> second_piece( new Piece() );
     // First we test if a non occupied board square receive a piece.
     REQUIRE( non_occupied_board_square->setPiece(first_piece) == Success);
 
@@ -142,7 +143,7 @@ TEST_CASE( "Destroy", "[square]" )
   // BoardSquare::~BoardSquare()
 
   BoardSquare* occupied_board_square = new BoardSquare( 5, 5 );
-  shared_ptr<Piece> piece_to_be_destroyed = new Piece();
+  shared_ptr<Piece> piece_to_be_destroyed( new Piece() );
   occupied_board_square->setPiece(piece_to_be_destroyed);
 
   SECTION( "A board square can be deleted and no piece will be left floating" ) 
