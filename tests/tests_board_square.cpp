@@ -86,7 +86,7 @@ TEST_CASE( "Read", "[square]" )
 
   BoardSquare* non_occupied_board_square = new BoardSquare( 1, 1 );
   BoardSquare* occupied_board_square = new BoardSquare( 1, 2 );
-  Piece* empty_piece = new Piece();
+  shared_ptr<Piece> empty_piece = new Piece();
 
   occupied_board_square->setPiece(empty_piece);
 
@@ -120,8 +120,8 @@ TEST_CASE( "Update", "[square]" )
 
   SECTION( "A board square can be set a new piece" ) 
   { 
-    Piece* first_piece = new Piece();
-    Piece* second_piece = new Piece();
+    shared_ptr<Piece> first_piece = new Piece();
+    shared_ptr<Piece> second_piece = new Piece();
     // First we test if a non occupied board square receive a piece.
     REQUIRE( non_occupied_board_square->setPiece(first_piece) == Success);
 
@@ -142,7 +142,7 @@ TEST_CASE( "Destroy", "[square]" )
   // BoardSquare::~BoardSquare()
 
   BoardSquare* occupied_board_square = new BoardSquare( 5, 5 );
-  Piece* piece_to_be_destroyed = new Piece();
+  shared_ptr<Piece> piece_to_be_destroyed = new Piece();
   occupied_board_square->setPiece(piece_to_be_destroyed);
 
   SECTION( "A board square can be deleted and no piece will be left floating" ) 

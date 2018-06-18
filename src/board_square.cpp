@@ -31,7 +31,7 @@ BoardSquare::BoardSquare( unsigned short int file_coordinate, unsigned short int
 //! A destructor that cleans all pointers.
 BoardSquare::~BoardSquare()
 {
-    free (piece_on_square_);
+    piece_on_square_.reset();
 }
 
 //! A getter to board square rank
@@ -62,7 +62,7 @@ bool BoardSquare::isOccupied()
         return false;
 }
 
-unsigned short int BoardSquare::setPiece(Piece * piece_to_be_set )
+unsigned short int BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
 {
     try {
         piece_on_square_ = piece_to_be_set;
@@ -72,7 +72,7 @@ unsigned short int BoardSquare::setPiece(Piece * piece_to_be_set )
     return Success;
 }
 
-Piece * BoardSquare::getPiece(){
+shared_ptr<Piece> BoardSquare::getPiece(){
     return piece_on_square_ ;
 }
 

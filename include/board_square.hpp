@@ -7,6 +7,11 @@
 #define BOARD_SQUARE_HPP
 #include "piece.hpp"
 
+
+#include <memory>
+using std::shared_ptr; 
+// Smart pointer that deallocates when no references to it exists
+
 //Operations can be Successful or not, every
 //method that would simply return void will instead
 //return an Error ou Success.
@@ -28,8 +33,8 @@ class BoardSquare {
     unsigned short int rank_;
     //Files are columns.
     unsigned short int file_;
-    //Squares points to pieaces null or a pieace
-    Piece * piece_on_square_ = NULL;
+    //Squares points to pieces null or a pieace
+    shared_ptr<Piece> piece_on_square_ = NULL;
 
   public:
   //Methods
@@ -40,8 +45,8 @@ class BoardSquare {
   unsigned short int getRank();
   unsigned short int getFile();
   bool isOccupied();
-  unsigned short int setPiece(Piece *);
-  Piece * getPiece();
+  unsigned short int setPiece( shared_ptr<Piece> );
+  shared_ptr<Piece> getPiece();
 };
 
 #endif
