@@ -8,6 +8,10 @@ TEST_CASE( "Create", "[square]" )
 { 
   //! These test case will focus on methods that
   //! create new squares.
+  // These tests will focus on:
+  // BoardSquare::BoardSquare( unsigned short , unsigned short int))
+  // unsigned short int BoardSquare::getRank()
+  // unsigned short int BoardSquare::getFile()
 
   //A square can be created with a respective file(column)
   //and rank(row)
@@ -76,6 +80,9 @@ TEST_CASE( "Read", "[square]" )
 { 
   //! These test case will focus on methods that
   //! reads board squares
+  // These tests will focus on:
+  // unsigned short int BoardSquare::setPiece(Piece *)
+  // Piece * BoardSquare::getPiece()
 
   BoardSquare* non_occupied_board_square = new BoardSquare( 1, 1 );
   BoardSquare* occupied_board_square = new BoardSquare( 1, 2 );
