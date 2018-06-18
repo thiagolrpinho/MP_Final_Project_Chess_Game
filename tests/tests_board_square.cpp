@@ -149,7 +149,7 @@ TEST_CASE( "Destroy", "[square]" )
   SECTION( "A board square can be deleted and no piece will be left floating" ) 
   { 
     try {
-      delete &occupied_board_square;
+      occupied_board_square.reset();
       REQUIRE( "The board square was succesfully deleted" );
       // Using smart shared pointer I can only guarantee that the reference on board square
       // was erased and if there were no other reference to it it'll be succesfully
