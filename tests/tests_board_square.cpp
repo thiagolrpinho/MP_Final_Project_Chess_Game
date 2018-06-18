@@ -134,3 +134,30 @@ TEST_CASE( "Update", "[square]" )
 
 } // TEST_CASE( "Update", "[square]" ) 
 
+TEST_CASE( "Destroy", "[square]" ) 
+{
+  //! These test case will focus on methods that
+  //! updates board squares
+  // These tests will focus on:
+  // BoardSquare::~BoardSquare()
+
+  BoardSquare* occupied_board_square = new BoardSquare( 5, 5 );
+  Piece* piece_to_be_destroyed = new Piece();
+  occupied_board_square->setPiece(piece_to_be_destroyed);
+
+  SECTION( "A board square can be deleted and no piece will be left floating" ) 
+  { 
+    try {
+      delete occupied_board_square;
+      REQUIRE( "The board square was succesfully deleted" );
+      // Using smart shared pointer I can only guarantee that the reference on board square
+      // was erased and if there were no other reference to it it'll be succesfully
+      // deallocated.
+    } catch (int e) {
+      REQUIRE_FALSE( "Something wrong ocurred when board square was being deleted" );
+    }
+    
+
+  } // SECTION( "A board square can be set a new piece" ) 
+   
+} // TEST_CASE( "Destroy", "[square]" ) 

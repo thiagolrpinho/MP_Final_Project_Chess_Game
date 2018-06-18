@@ -28,6 +28,12 @@ BoardSquare::BoardSquare( unsigned short int file_coordinate, unsigned short int
     rank_ = rank_coordinate;
 }
 
+//! A destructor that cleans all pointers.
+BoardSquare::~BoardSquare()
+{
+    free (piece_on_square_);
+}
+
 //! A getter to board square rank
     /*!
         \return The horizontal coordenate of
