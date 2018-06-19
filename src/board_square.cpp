@@ -54,6 +54,12 @@ unsigned short int BoardSquare::getFile()
     return file_;
 }
 
+//! A method to test if there's any piece over the square.
+    /*!
+        \return A boolean which says wether or not
+        the piece address pointed by the board square
+        is nullptr.
+    */
 bool BoardSquare::isOccupied()
 {
     if ( piece_on_square_ )
@@ -62,6 +68,15 @@ bool BoardSquare::isOccupied()
         return false;
 }
 
+//! Changes the piece over the board square
+    /*!
+        \param The new piece shared pointer to 
+        overwrite the previous piece. The
+        new piece should be an already allocated
+        valid piece.
+        \return Return a Success(Integer 1)
+        or Error(Integer 0)
+    */
 unsigned short int BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
 {
     try {
@@ -72,11 +87,21 @@ unsigned short int BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
     return Success;
 }
 
+//! A getter to the piece over the board square
+    /*!
+        \return Return a shared pointer of 
+        the piece on the square.
+    */
 shared_ptr<Piece> BoardSquare::getPiece()
 {
     return piece_on_square_ ;
 }
 
+//! Deletes the piece over the board square
+    /*!
+        \return Return a Success(Integer 1)
+        or Error(Integer 0)
+    */
 unsigned short int BoardSquare::deletePiece()
 {
     try {
