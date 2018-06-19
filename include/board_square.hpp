@@ -39,11 +39,13 @@ class BoardSquare {
   public:
   //Methods
   BoardSquare( unsigned short int file_coordinate, unsigned short int rank_coordinate );
-
   ~BoardSquare();
 
+  //Orientation related methods
   unsigned short int getRank();
   unsigned short int getFile();
+  
+  //Piece related methods
   bool isOccupied();
   unsigned short int setPiece( shared_ptr<Piece> );
   shared_ptr<Piece> getPiece();
