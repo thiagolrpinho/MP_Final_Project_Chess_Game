@@ -72,7 +72,18 @@ unsigned short int BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
     return Success;
 }
 
-shared_ptr<Piece> BoardSquare::getPiece(){
+shared_ptr<Piece> BoardSquare::getPiece()
+{
     return piece_on_square_ ;
+}
+
+unsigned short int BoardSquare::deletePiece()
+{
+    try {
+        piece_on_square_.reset();
+    } catch (int e) {
+        return Error;
+    }
+    return Success;
 }
 

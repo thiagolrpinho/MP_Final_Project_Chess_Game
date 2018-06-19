@@ -47,6 +47,8 @@ class BoardSquare {
   bool isOccupied();
   unsigned short int setPiece( shared_ptr<Piece> );
   shared_ptr<Piece> getPiece();
+  unsigned short int deletePiece();
+
 };
 
 #endif

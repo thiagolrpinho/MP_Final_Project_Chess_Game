@@ -160,7 +160,12 @@ TEST_CASE( "Destroy", "[square]" )
       REQUIRE_FALSE( "Something wrong ocurred when board square was being deleted" );
     }
     
+  } // SECTION( "A board square can be deleted and no piece will be left floating" ) 
 
-  } // SECTION( "A board square can be set a new piece" ) 
+  SECTION( "A board square can have it's piece deleted if it need to." ) 
+  {
+    REQUIRE( occupied_board_square->deletePiece() == Success );
+    REQUIRE( occupied_board_square->getPiece() == nullptr );
+  } // SECTION( "A board square can have it's piece deleted if it need to." ) 
    
 } // TEST_CASE( "Destroy", "[square]" ) 
