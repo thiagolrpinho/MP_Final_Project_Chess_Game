@@ -1,4 +1,4 @@
-#include "board_square.hpp"
+#include "board.hpp"
 
 
 //! These tests will be focused on board class

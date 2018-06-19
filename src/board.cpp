@@ -1,6 +1,6 @@
-#include "board.h"
+#include "board.hpp"
 
-Board* Board::getBoard()
+void* Board::getBoard()
 {
     return nullptr;
 }
