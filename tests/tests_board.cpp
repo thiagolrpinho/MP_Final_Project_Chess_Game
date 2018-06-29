@@ -15,7 +15,12 @@ TEST_CASE( "Create", "[board]" )
 
 TEST_CASE( "Read", "[board]" ) 
 { 
-   SECTION( "A board can have it's address returned" ) 
+  SECTION( "A board can have it's address returned" ) 
+  {
+    REQUIRE_FALSE( Board::getBoard() == nullptr );
+  } // SECTION( "A board can have it's address returned" )
+
+  SECTION( "A board can have many board squares" ) 
   {
     REQUIRE_FALSE( Board::getBoard() == nullptr );
   } // SECTION( "A board can have it's address returned" )
