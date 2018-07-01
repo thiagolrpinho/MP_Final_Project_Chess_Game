@@ -66,8 +66,22 @@ TEST_CASE( "Read Board", "[board]" )
     {
       REQUIRE( "Error on reading wrong square" );
     }
-  } // SECTIONSECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
+  } // SECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
 
+  SECTION( "The board returns true if a given horizontal path up is free " ) 
+  {
+    try {
+      PPiece piece_on_A5( new Piece() );
+      //A5 on a matrix 0 to 7 is [0][4]
+      REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
+
+      REQUIRE( Board::getBoard()->isClearHorizontal(0, 4, 7) == true );
+
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "Error on reading one of it's squares" );
+    }
+  } // SECTION( "A board can read one of it's squares" )
 } // TEST_CASE( "Read", "[board]" )
 
 TEST_CASE( "Update Board", "[board]" ) 

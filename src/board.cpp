@@ -97,5 +97,14 @@ shared_ptr<Board> Board::getBoard(){
               
   }
 
+  bool Board::isClearHorizontal(unsigned int actual_rank_coordinate, unsigned int actual_file_coordinate, unsigned int future_file_coordinate) const
+  {
+    return false;
+  }
+
+  bool Board::isClearVertical(unsigned int actual_rank_coordinate, unsigned int actual_file_coordinate, unsigned int future_rank_coordinate) const 
+  {
+    return false;
+  }
 //Initializes _board_table with nullptr
 shared_ptr<Board> Board::_board_table = nullptr;
