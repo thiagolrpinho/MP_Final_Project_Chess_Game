@@ -7,10 +7,10 @@ class Board
 {
   private:
   static Board* _board_table;
-  static const unsigned char _size_of_table = 8;
-  BoardSquare*** _board_square_matrix;
+  static const unsigned int _size_of_table = 8;
+  BoardSquare* _board_square_matrix[_size_of_table][_size_of_table];
   Board();
-  
+
   public:
   static Board* getBoard();
 };
