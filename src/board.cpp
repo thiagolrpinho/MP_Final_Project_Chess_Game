@@ -72,14 +72,14 @@ shared_ptr<Board> Board::getBoard(){
         \return A valid board square of the given coordinates.
         \throw Error if given coordinates not valid
     */
-  PBoardSquare Board::getBoardSquareAt( uint8_t vertical_coordinate, uint8_t horizontal_coordinate  )
+  PBoardSquare Board::getBoardSquareAt( uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
   { 
     // If any given coordinate is greater of equal to the size of the table
     // then it's an Error.
     if( vertical_coordinate >= _size_of_table ) throw (int) Error;
     if( horizontal_coordinate >= _size_of_table ) throw (int) Error;
 
-    return _board_square_matrix[vertical_coordinate][horizontal_coordinate];
+    return _board_square_matrix[horizontal_coordinate][vertical_coordinate];
   }
 
 //*! Change the piece on the given board square

@@ -190,6 +190,7 @@ TEST_CASE( "Destroy Board", "[board]" )
   SECTION( "A board can be deleted and no board squares will be left floating" ) 
   { 
     try {
+      Board::getBoard().reset();
       REQUIRE_FALSE( Board::getBoard() == nullptr );
       Board::getBoard().reset();
       // Using smart shared pointer I can only guarantee that the reference on board square
