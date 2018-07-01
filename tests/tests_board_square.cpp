@@ -26,46 +26,46 @@ TEST_CASE( "Create", "[square]" )
     REQUIRE( board_square_a7_coordinates->getRank() == 7 );
   } // SECTION( "A new created BoardSquare can have it's coordinates read" )
 
-  SECTION( "A new board square cannot have a rank above 8 or bellow 1" ) 
+  SECTION( "A new board square cannot have a rank above maximum allowed or bellow 1" ) 
   { 
-    //A board can only have 8x8 squares so a wrongly created square could 
+    //A board can only have maximum allowedxmaximum allowed squares so a wrongly created square could 
     //risk a bug.
     try {
-      PBoardSquare board_square_wrong_rank_bellow_1(  new BoardSquare(  1, 0 ) );
+      PBoardSquare board_square_wrong_rank_bellow_minimum_allowed(  new BoardSquare(  1, -1 ) );
       //If this lines happens, it's surely a mistake
-      REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
+      REQUIRE_FALSE( "The Board square have a lower than minimum allowed rank." );
     } catch (int e) {
-      REQUIRE( "The board square cannot be created with a lower than 1 rank" );
+      REQUIRE( "The board square cannot be created with a lower than minimum allowed rank" );
     }
 
      try {
-      PBoardSquare board_square_wrong_rank_above_8(  new BoardSquare(  1, 10 ) );
+      PBoardSquare board_square_wrong_rank_above_maximum_allowed(  new BoardSquare(  1, 10 ) );
       //If this lines happens, it's surely a mistake
-      REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
+      REQUIRE_FALSE( "The Board square have a higher than maximum allowed rank." );
     } catch (int e) {
-      REQUIRE( "The board square cannot be created with a higher than 8 rank." );
+      REQUIRE( "The board square cannot be created with a higher than maximum allowed rank." );
     }
 
   } // SECTION( "A new created BoardSquare can have it's coordinates read" )
 
-  SECTION( "A new board square cannot have a file above 8 or bellow 1" ) 
+  SECTION( "A new board square cannot have a file above maximum allowed or bellow minimum allowed" ) 
   { 
-    //A board can only have 8x8 squares so a wrongly created square could 
+    //A board can only have maximum allowedxmaximum allowed squares so a wrongly created square could 
     //risk a bug.
     try {
-      PBoardSquare board_square_wrong_file_bellow_1(  new BoardSquare(  -1,  7 ) );
+      PBoardSquare board_square_wrong_file_bellow_minimum_allowed(  new BoardSquare(  -1,  7 ) );
       //If this lines happens, it's surely a mistake
-      REQUIRE_FALSE( "The Board square have a lower than 1 rank." );
+      REQUIRE_FALSE( "The Board square have a lower than minimum allowed rank." );
     } catch (int e) {
-      REQUIRE( "The board square cannot be created with a lower than 1 rank" );
+      REQUIRE( "The board square cannot be created with a lower than minimum allowed rank" );
     }
 
      try {
-      PBoardSquare board_square_wrong_file_above_8(  new BoardSquare(  10, 7 ) );
+      PBoardSquare board_square_wrong_file_above_maximum_allowed(  new BoardSquare(  10, 7 ) );
       //If this lines happens, it's surely a mistake
-      REQUIRE_FALSE( "The Board square have a higher than 8 rank." );
+      REQUIRE_FALSE( "The Board square have a higher than maximum allowed rank." );
     } catch (int e) {
-      REQUIRE( "The board square cannot be created with a higher than 8 rank." );
+      REQUIRE( "The board square cannot be created with a higher than maximum allowed rank." );
     }
 
   } // SECTION( "A new created BoardSquare can have it's coordinates read" )

@@ -23,9 +23,9 @@ enum OperationStatus {Error, Success};
 enum StringEquivalence {Equals};
 
 //BoardSquares cannot have bigger coordinates than 
-//the board side size or lower than 1.
-const unsigned short int kMaximumAllowedCoordinate = 8;
-const unsigned short int kMinimunAllowedCoordinate = 1;
+//the board side size or lower than 0.
+const unsigned short int kMaximumAllowedCoordinate = 7;
+const unsigned short int kMinimunAllowedCoordinate = 0;
 
 class BoardSquare {
   private:

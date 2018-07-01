@@ -3,11 +3,11 @@
 Board::Board()
 {
     // Set up board squares (_DIMENSION x _DIMENSION)
-    for(unsigned short int i = 1; i <= 8; i++)
+    for(unsigned short int i = 0; i < _size_of_table; i++)
     {
-        for(unsigned short int j = 1; j <= 8; j++)
+        for(unsigned short int j = 0; j < _size_of_table; j++)
         {
-            _board_square_matrix[i-1][j-1] = new BoardSquare( i, j );
+            _board_square_matrix[i][j] = new BoardSquare( i, j );
         }
     }
 }
