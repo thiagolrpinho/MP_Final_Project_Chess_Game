@@ -25,6 +25,18 @@ Board::Board()
     }
 }
 
+Board::~Board()
+{
+  // Reset board squares pointers and they're deallocated
+  for (uint8_t i = 0; i < _size_of_table; i++)
+  {
+    for (uint8_t j = 0; j < _size_of_table; j++)
+    {
+        _board_square_matrix[i][j].reset();
+    }
+  }
+}
+
 //! 
     /*! Initializes Board on the first call and returns a pointer to the board
         \Description Verifies if there's already one board.

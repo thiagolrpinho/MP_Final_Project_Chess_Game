@@ -24,6 +24,7 @@ class Board
 
   public:
   Board();
+  ~Board();
   
   /*! Initializes Board on the first call and returns a pointer to the board
   */
