@@ -97,7 +97,8 @@ shared_ptr<Board> Board::getBoard(){
               
   }
 
-  bool Board::isClearHorizontal(unsigned int actual_rank_coordinate, unsigned int actual_file_coordinate, unsigned int future_file_coordinate) const
+  bool Board::isClearHorizontal(unsigned int actual_rank_coordinate,
+                 unsigned int actual_file_coordinate, unsigned int future_file_coordinate) const
   {
     shared_ptr<Board> the_actual_board( getBoard() );
     for( int i = actual_file_coordinate + 1; i < actual_file_coordinate; i++ )
@@ -107,7 +108,8 @@ shared_ptr<Board> Board::getBoard(){
     return true;
   }
 
-  bool Board::isClearVertical(unsigned int actual_rank_coordinate, unsigned int actual_file_coordinate, unsigned int future_rank_coordinate) const 
+  bool Board::isClearVertical(unsigned int actual_rank_coordinate, 
+                unsigned int actual_file_coordinate, unsigned int future_rank_coordinate) const 
   {
     return false;
   }
