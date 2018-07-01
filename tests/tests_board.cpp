@@ -131,20 +131,24 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( "The board returns true if a given vertical path up is free " ) 
   {
     try {
+      Board::getBoard().reset();
+
+      PBoard valid_board = Board::getBoard();
       PPiece piece_on_A5( new Piece() );
       //A5 on a matrix 0 to 7 is [0][4]
-      REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
+      REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
 
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 0 , 4)->isOccupied() == true );
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 0 , 5)->isOccupied() == false );
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 0 , 6)->isOccupied() == false );
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 0 , 7)->isOccupied() == false );
+      REQUIRE( valid_board->getBoardSquareAt( 0 , 4)->isOccupied() == true );
+      valid_board->getBoardSquareAt( 0 , 5 )->deletePiece();
+      REQUIRE( valid_board->getBoardSquareAt( 0 , 5)->isOccupied() == false );
+      REQUIRE( valid_board->getBoardSquareAt( 0 , 6)->isOccupied() == false );
+      REQUIRE( valid_board->getBoardSquareAt( 0 , 7)->isOccupied() == false );
 
-      REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
-      REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
+      REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
+      REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
 
       //Verifying if is clear the path A5 to A8
-      REQUIRE( Board::getBoard()->isClearVertical(0, 4, 7) == true );
+      REQUIRE( valid_board->isClearVertical(0, 4, 7) == true );
 
     } catch (int throwned_error )
     {
