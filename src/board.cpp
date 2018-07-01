@@ -88,7 +88,7 @@ shared_ptr<Board> Board::getBoard(){
     try {
       PBoardSquare square_on_coordinate( 
                           Board::getBoard()->getBoardSquareAt( rank_coordinate, file_coordinate) );
-      square_on_coordinate->setPiece( piece_to_be_set );
+      if( square_on_coordinate->setPiece( piece_to_be_set ) == Error ) return Error;
     } catch (int throwned_error ) {
       return Error;
     }
