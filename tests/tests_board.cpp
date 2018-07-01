@@ -147,9 +147,9 @@ TEST_CASE( "Read Board", "[board]" )
 
     } catch (int throwned_error )
     {
-      REQUIRE_FALSE( "The board returns true if a given vertical path up is free" );
+      REQUIRE_FALSE( "The board doesn't returns true or false if a given vertical path up is free or not respectively " );
     }
-  } // SECTION( "The board returns true if a given vertical path up is free " ) 
+  } // " The board returns true or false if a given vertical path up is free or not respectively " ) 
 
   SECTION( " The board returns true or false if a given vertical path down is free or not respectively " ) 
   {
@@ -223,6 +223,20 @@ TEST_CASE( "Destroy Board", "[board]" )
       REQUIRE_FALSE( "Something wrong ocurred when board was being deleted" );
     }
   }
+
+  SECTION( "The board can be clean of one of it's pieces" ) 
+  {
+    PBoard board_to_be_clean = Board::getBoard();
+    PPiece piece_on_F4( new Piece );
+
+    board_to_be_clean->setPieceAt( 5, 3, piece_on_F4 );
+
+    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
+
+    board_to_be_clean->cleanBoard();
+    
+    REQUIRE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
+  } // SECTION( "The board can be clean of one of it's pieces" ) 
     
   SECTION( "The board can be clean of all it's pieces" ) 
   {
@@ -238,7 +252,7 @@ TEST_CASE( "Destroy Board", "[board]" )
 
     board_to_be_clean->cleanBoard();
 
-    REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+    REQUIRE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
     REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
   } // SECTION( "The board can be clean of all it's pieces" ) 
 

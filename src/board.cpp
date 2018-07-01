@@ -172,5 +172,13 @@ shared_ptr<Board> Board::getBoard(){
     }
     return Success;
   }
+
+  uint8_t Board::cleanBoardSquare(uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
+  {
+    if(Board::getBoard()->getBoardSquareAt(horizontal_coordinate, vertical_coordinate)->deletePiece() == Error )
+     return Error;
+    
+    return Success;
+  }
 //Initializes _board_table with nullptr
 shared_ptr<Board> Board::_board_table = nullptr;
