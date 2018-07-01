@@ -128,24 +128,22 @@ TEST_CASE( "Read Board", "[board]" )
   } // SECTION( " The board returns true or false if a given 
     //  horizontal path left is free or not respectively " ) 
 
-  SECTION( "The board returns true if a given vertical path up is free " ) 
+  SECTION( " The board returns true or false if a given vertical path up is free or not respectively " ) 
   {
     try {
 
       PBoard valid_board = Board::getBoard();
       PPiece piece_on_A5( new Piece() );
       //A5 on a matrix 0 to 7 is [0][4]
-
+      
       REQUIRE( valid_board->cleanBoard() == Success );
 
       REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
 
-      REQUIRE( valid_board->getBoardSquareAt( 0 , 4)->isOccupied() == true );
-      REQUIRE( valid_board->getBoardSquareAt( 0 , 5)->isOccupied() == false );
-      REQUIRE( valid_board->getBoardSquareAt( 0 , 6)->isOccupied() == false );
-      REQUIRE( valid_board->getBoardSquareAt( 0 , 7)->isOccupied() == false );
       //Verifying if is clear the path A5 to A8
       REQUIRE( valid_board->isClearVertical(0, 4, 7) == true );
+      //Verifying if is clear the path A3 to A8
+      REQUIRE( valid_board->isClearVertical(0, 2, 7) == false );
 
     } catch (int throwned_error )
     {
