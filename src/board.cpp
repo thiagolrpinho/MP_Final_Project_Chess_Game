@@ -14,9 +14,13 @@ Board::Board()
 
 Board* Board::getBoard(){
     //If there's no board, then create one.
-    if(_board_table == nullptr)
-    {
-        _board_table = new Board();
+    if( _board_table == nullptr )
+    {  
+        try {
+            _board_table = new Board();
+        } catch ( int e) {
+            return nullptr;
+        }
     }
     return _board_table;
 }
