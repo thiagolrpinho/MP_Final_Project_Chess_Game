@@ -15,9 +15,9 @@
 Board::Board()
 {
     // Set up board squares (_size_of_table x _size_of_table)
-    for(unsigned short int i = 0; i < _size_of_table; i++)
+    for(uint8_t i = 0; i < _size_of_table; i++)
     {
-        for(unsigned short int j = 0; j < _size_of_table; j++)
+        for(uint8_t j = 0; j < _size_of_table; j++)
         {
             _board_square_matrix[i][j].reset( new BoardSquare( i, j ) );
                 //Makes each _board_square_matrix to point to a new Board Square
@@ -56,11 +56,11 @@ shared_ptr<Board> Board::getBoard(){
         \Description Fix evaluates if the given coordinates
         are valid then return a valid board square.
         
-        \param Two unsigned int lower than _size_of_table.
+        \param Two uint8_t lower than _size_of_table.
         \return A valid board square of the given coordinates.
         \throw Error if given coordinates not valid
     */
-  PBoardSquare Board::getBoardSquareAt( unsigned int file_coordinate, unsigned int rank_coordinate  )
+  PBoardSquare Board::getBoardSquareAt( uint8_t file_coordinate, uint8_t rank_coordinate  )
   { 
     // If any given coordinate is greater of equal to the size of the table
     // then it's an Error.
@@ -77,13 +77,13 @@ shared_ptr<Board> Board::getBoard(){
         If it succeds return a Success(Integer 1)
         If not return an Error(integer 0)
         
-        \param Two unsigned int lower than _size_of_table and 
+        \param Two uint8_t lower than _size_of_table and 
                 shared pointer to a valid an already created 
                 Piece
         \return A Success(integer 1) or an Error(integer 0)
     */
-  unsigned int Board::setPieceAt( unsigned int rank_coordinate, 
-                          unsigned int file_coordinate , PPiece piece_to_be_set )
+  uint8_t Board::setPieceAt( uint8_t rank_coordinate, 
+                          uint8_t file_coordinate , PPiece piece_to_be_set )
   {
     try {
       PBoardSquare square_on_coordinate( 
@@ -97,8 +97,8 @@ shared_ptr<Board> Board::getBoard(){
               
   }
 
-  bool Board::isClearHorizontal(unsigned int actual_rank_coordinate,
-                 unsigned int actual_file_coordinate, unsigned int future_file_coordinate) const
+  bool Board::isClearHorizontal(uint8_t actual_rank_coordinate,
+                 uint8_t actual_file_coordinate, uint8_t future_file_coordinate) const
   {
     shared_ptr<Board> the_actual_board( getBoard() );
     for( int i = actual_file_coordinate + 1; i < actual_file_coordinate; i++ )
@@ -108,8 +108,8 @@ shared_ptr<Board> Board::getBoard(){
     return true;
   }
 
-  bool Board::isClearVertical(unsigned int actual_rank_coordinate, 
-                unsigned int actual_file_coordinate, unsigned int future_rank_coordinate) const 
+  bool Board::isClearVertical(uint8_t actual_rank_coordinate, 
+                uint8_t actual_file_coordinate, uint8_t future_rank_coordinate) const 
   {
     return false;
   }

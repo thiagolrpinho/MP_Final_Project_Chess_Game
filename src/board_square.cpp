@@ -10,16 +10,17 @@
         Both rank or file cannot be lower than one or
         greater than the border side size.
         
-        \param Two Int between (kMinimunAllowedCoordinate and kMaximumAllowedCoordinate)
+        \param Two unsigned int bellow KMaximumAllowedCoordinate
+        \throw Error if given invalid coordinates
     */
 BoardSquare::BoardSquare( uint8_t file_coordinate, uint8_t rank_coordinate )
 {   
-    if ( rank_coordinate < kMinimunAllowedCoordinate || rank_coordinate > kMaximumAllowedCoordinate)
+    if ( rank_coordinate >= kMaximumAllowedCoordinate)
     {
         throw (int) Error;
     } //if ( rank_coordinate < kMinimunAllowedCoordinate || rank_coordinate > kMaximumAllowedCoordinate)
 
-    if ( file_coordinate < kMinimunAllowedCoordinate || file_coordinate > kMaximumAllowedCoordinate)
+    if ( file_coordinate >= kMaximumAllowedCoordinate)
     {
         throw (int) Error;
     } //if ( file_coordinate < kMinimunAllowedCoordinate || file_coordinate > kMaximumAllowedCoordinate)

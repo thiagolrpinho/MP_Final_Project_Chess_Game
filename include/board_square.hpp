@@ -28,7 +28,6 @@ enum StringEquivalence {Equals};
 //BoardSquares cannot have bigger coordinates than 
 //the board side size or lower than 0.
 const uint8_t kMaximumAllowedCoordinate = 7;
-const uint8_t kMinimunAllowedCoordinate = 0;
 
 class BoardSquare {
   private:
