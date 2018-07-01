@@ -12,7 +12,7 @@
         
         \param Two Int between (kMinimunAllowedCoordinate and kMaximumAllowedCoordinate)
     */
-BoardSquare::BoardSquare( unsigned short int file_coordinate, unsigned short int rank_coordinate )
+BoardSquare::BoardSquare( uint8_t file_coordinate, uint8_t rank_coordinate )
 {   
     if ( rank_coordinate < kMinimunAllowedCoordinate || rank_coordinate > kMaximumAllowedCoordinate)
     {
@@ -39,7 +39,7 @@ BoardSquare::~BoardSquare()
         \return The horizontal coordenate of
         the board square
     */
-unsigned short int BoardSquare::getRank()
+uint8_t BoardSquare::getRank()
 {
     return rank_;
 }
@@ -49,7 +49,7 @@ unsigned short int BoardSquare::getRank()
         \return The vertical coordenate of
         the board square
     */
-unsigned short int BoardSquare::getFile()
+uint8_t BoardSquare::getFile()
 {
     return file_;
 }
@@ -77,7 +77,7 @@ bool BoardSquare::isOccupied()
         \return Return a Success(Integer 1)
         or Error(Integer 0)
     */
-unsigned short int BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
+uint8_t BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
 {
     try {
         piece_on_square_ = piece_to_be_set;
@@ -102,7 +102,7 @@ shared_ptr<Piece> BoardSquare::getPiece()
         \return Return a Success(Integer 1)
         or Error(Integer 0)
     */
-unsigned short int BoardSquare::deletePiece()
+uint8_t BoardSquare::deletePiece()
 {
     try {
         piece_on_square_.reset();
