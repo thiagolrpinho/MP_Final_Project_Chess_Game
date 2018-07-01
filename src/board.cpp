@@ -1,6 +1,6 @@
 #include "board.hpp"
 
-/*! \file board.cpp
+/*! \vertical board.cpp
     \brief Module responsible to implement encapsule board square and
     implement board behaviors
 */
@@ -60,14 +60,14 @@ shared_ptr<Board> Board::getBoard(){
         \return A valid board square of the given coordinates.
         \throw Error if given coordinates not valid
     */
-  PBoardSquare Board::getBoardSquareAt( uint8_t file_coordinate, uint8_t rank_coordinate  )
+  PBoardSquare Board::getBoardSquareAt( uint8_t vertical_coordinate, uint8_t horizontal_coordinate  )
   { 
     // If any given coordinate is greater of equal to the size of the table
     // then it's an Error.
-    if( file_coordinate >= _size_of_table ) throw (int) Error;
-    if( rank_coordinate >= _size_of_table ) throw (int) Error;
+    if( vertical_coordinate >= _size_of_table ) throw (int) Error;
+    if( horizontal_coordinate >= _size_of_table ) throw (int) Error;
 
-    return _board_square_matrix[file_coordinate][rank_coordinate];
+    return _board_square_matrix[vertical_coordinate][horizontal_coordinate];
   }
 
 //*! Change the piece on the given board square
@@ -82,12 +82,12 @@ shared_ptr<Board> Board::getBoard(){
                 Piece
         \return A Success(integer 1) or an Error(integer 0)
     */
-  uint8_t Board::setPieceAt( uint8_t rank_coordinate, 
-                          uint8_t file_coordinate , PPiece piece_to_be_set )
+  uint8_t Board::setPieceAt( uint8_t horizontal_coordinate, 
+                          uint8_t vertical_coordinate , PPiece piece_to_be_set )
   {
     try {
       PBoardSquare square_on_coordinate( 
-                          Board::getBoard()->getBoardSquareAt( rank_coordinate, file_coordinate) );
+                          Board::getBoard()->getBoardSquareAt( horizontal_coordinate, vertical_coordinate) );
       if( square_on_coordinate->setPiece( piece_to_be_set ) == Error ) return Error;
     } catch (int throwned_error ) {
       return Error;
@@ -97,19 +97,20 @@ shared_ptr<Board> Board::getBoard(){
               
   }
 
-  bool Board::isClearHorizontal(uint8_t actual_rank_coordinate,
-                 uint8_t actual_file_coordinate, uint8_t future_file_coordinate) const
+  bool Board::isClearHorizontal(uint8_t actual_horizontal_coordinate, 
+              uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const
   {
     shared_ptr<Board> the_actual_board( getBoard() );
-    for( uint8_t i = actual_file_coordinate + 1; i < actual_file_coordinate; i++ )
+
+    for( uint8_t i = actual_horizontal_coordinate + 1; i < actual_horizontal_coordinate; i++ )
     {
-      if( the_actual_board->getBoardSquareAt( actual_rank_coordinate, i)->isOccupied() == true ) return false;
+      if( the_actual_board->getBoardSquareAt( i, actual_vertical_coordinate )->isOccupied() == true ) return false;
     }
     return true;
   }
 
-  bool Board::isClearVertical(uint8_t actual_rank_coordinate, 
-                uint8_t actual_file_coordinate, uint8_t future_rank_coordinate) const 
+  bool Board::isClearVertical(uint8_t actual_horizontal_coordinate, 
+              uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const 
   {
     return false;
   }

@@ -40,8 +40,8 @@ TEST_CASE( "Read Board", "[board]" )
       REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 3 ) == nullptr );
 
       //Board read a square with given coordinates
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 2, 3 )->getRank() == 3 );
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 2, 2 )->getRank() == 2 );
+      REQUIRE( Board::getBoard()->getBoardSquareAt( 3 , 2 )->getHorizontal() == 3 );
+      REQUIRE( Board::getBoard()->getBoardSquareAt( 2 , 2 )->getHorizontal() == 2 );
 
     } catch (int throwned_error )
     {
@@ -88,10 +88,12 @@ TEST_CASE( "Read Board", "[board]" )
   {
     try {
       PPiece piece_on_A5( new Piece() );
-      PPiece piece_on_F5( new Piece() );
       //A5 on a matrix 0 to 7 is [0][4]
+      PPiece piece_on_F5( new Piece() );
+      //F5 on a matrix 0 to 7 is [4][4]
+
       REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
-      REQUIRE( Board::getBoard()->setPieceAt( 4, 4 , piece_on_A5 ) == Success );
+      REQUIRE( Board::getBoard()->setPieceAt( 4, 4 , piece_on_F5 ) == Success );
 
       //Verifying if is clear the path A5 to H5
       REQUIRE( Board::getBoard()->isClearHorizontal(0, 4, 7) == false );

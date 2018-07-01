@@ -1,32 +1,32 @@
 #include "board_square.hpp"
 
-/*! \file board_square.cpp
+/*! \vertical board_square.cpp
     \brief Module responsible to implement board square behaviors.
 */
 
 //! A constructor that creates a board square.
     /*!
         \Description Creates a new board square.
-        Both rank or file cannot be lower than one or
+        Both horizontal or vertical cannot be lower than one or
         greater than the border side size.
         
         \param Two unsigned int bellow KMaximumAllowedCoordinate
         \throw Error if given invalid coordinates
     */
-BoardSquare::BoardSquare( uint8_t file_coordinate, uint8_t rank_coordinate )
+BoardSquare::BoardSquare( uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
 {   
-    if ( rank_coordinate > kMaximumAllowedCoordinate )
+    if ( horizontal_coordinate > kMaximumAllowedCoordinate )
     {
         throw (int) Error;
-    } //if ( rank_coordinate > kMaximumAllowedCoordinate )
+    } //if ( horizontal_coordinate > kMaximumAllowedCoordinate )
 
-    if ( file_coordinate > kMaximumAllowedCoordinate )
+    if ( vertical_coordinate > kMaximumAllowedCoordinate )
     {
         throw (int) Error;
-    } //if ( file_coordinate > kMaximumAllowedCoordinate )
+    } //if ( vertical_coordinate > kMaximumAllowedCoordinate )
 
-    file_ = file_coordinate;
-    rank_ = rank_coordinate;
+    vertical_ = vertical_coordinate;
+    horizontal_ = horizontal_coordinate;
 }
 
 //! A destructor that cleans all pointers.
@@ -35,24 +35,24 @@ BoardSquare::~BoardSquare()
     piece_on_square_.reset();
 }
 
-//! A getter to board square rank
+//! A getter to board square horizontal
     /*!
         \return The horizontal coordenate of
         the board square
     */
-uint8_t BoardSquare::getRank()
+uint8_t BoardSquare::getHorizontal() const
 {
-    return rank_;
+    return horizontal_;
 }
 
-//! A getter to board square file
+//! A getter to board square vertical
     /*!
         \return The vertical coordenate of
         the board square
     */
-uint8_t BoardSquare::getFile()
+uint8_t BoardSquare::getVertical() const
 {
-    return file_;
+    return vertical_;
 }
 
 //! A method to test if there's any piece over the square.

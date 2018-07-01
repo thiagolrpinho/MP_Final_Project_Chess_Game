@@ -19,7 +19,7 @@ class Board
   private:
   static shared_ptr<Board> _board_table; //Points to itself after initialized
   static const uint8_t _size_of_table = kMaximumAllowedCoordinate + 1; 
-        // Number of rows and ranks 
+        // Number of rows and horizontals 
   PBoardSquare _board_square_matrix[_size_of_table][_size_of_table]; //Matrix to store the board squares
 
   public:
@@ -31,16 +31,16 @@ class Board
 
   /*! Returns the board square on given coordinates
   */
-  PBoardSquare getBoardSquareAt(uint8_t rank_coordinate, uint8_t file_coordinate );
+  PBoardSquare getBoardSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
 
-  uint8_t setPieceAt( uint8_t rank_coordinate, 
-                uint8_t file_coordinate , PPiece piece_to_be_set );
+  uint8_t setPieceAt( uint8_t horizontal_coordinate, 
+                uint8_t vertical_coordinate , PPiece piece_to_be_set );
 
-  bool isClearHorizontal(uint8_t actual_rank_coordinate, 
-              uint8_t actual_file_coordinate, uint8_t future_file_coordinate) const;
+  bool isClearHorizontal(uint8_t actual_horizontal_coordinate, 
+              uint8_t actual_vertical_coordinate, uint8_t future_vertical_coordinate) const;
 
-  bool isClearVertical(uint8_t actual_rank_coordinate,
-               uint8_t actual_file_coordinate, uint8_t future_rank_coordinate) const;
+  bool isClearVertical(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const;
 };
 
 #endif

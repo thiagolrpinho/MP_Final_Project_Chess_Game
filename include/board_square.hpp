@@ -31,21 +31,21 @@ const uint8_t kMaximumAllowedCoordinate = 7;
 
 class BoardSquare {
   private:
-    //Rank are lines.
-    uint8_t rank_;
-    //Files are columns.
-    uint8_t file_;
+    //horizontal are lines.
+    uint8_t horizontal_;
+    //verticals are columns.
+    uint8_t vertical_;
     //Squares points to pieces nullptr or a pieace
     shared_ptr<Piece> piece_on_square_ = nullptr;
 
   public:
   //Methods
-  BoardSquare( uint8_t file_coordinate, uint8_t rank_coordinate );
+  BoardSquare( uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
   ~BoardSquare();
 
   //Orientation related methods
-  uint8_t getRank();
-  uint8_t getFile();
+  uint8_t getHorizontal() const ;
+  uint8_t getVertical() const ;
   
   //Piece related methods
   bool isOccupied();
