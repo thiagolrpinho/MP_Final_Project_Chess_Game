@@ -36,7 +36,7 @@ class BoardSquare {
     //verticals are columns.
     uint8_t vertical_;
     //Squares points to pieces nullptr or a pieace
-    shared_ptr<Piece> piece_on_square_ = nullptr;
+    shared_ptr<Piece> piece_on_square_;
 
   public:
   //Methods

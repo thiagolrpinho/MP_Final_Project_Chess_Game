@@ -27,6 +27,7 @@ BoardSquare::BoardSquare( uint8_t horizontal_coordinate, uint8_t vertical_coordi
 
     vertical_ = vertical_coordinate;
     horizontal_ = horizontal_coordinate;
+    piece_on_square_ = nullptr;
 }
 
 //! A destructor that cleans all pointers.
@@ -63,7 +64,7 @@ uint8_t BoardSquare::getVertical() const
     */
 bool BoardSquare::isOccupied()
 {
-    if ( piece_on_square_ )
+    if ( piece_on_square_ != nullptr )
         return true;
     else 
         return false;
