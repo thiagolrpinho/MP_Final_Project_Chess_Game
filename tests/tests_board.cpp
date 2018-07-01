@@ -75,7 +75,7 @@ TEST_CASE( "Update Board", "[board]" )
   //! These test case will focus on methods that
   //! updates board
   // These tests will focus on:
-   SECTION( "A board can change of it's board squares pieces " ) 
+  SECTION( "A board can change of it's board squares pieces " ) 
   {
     try {
       PPiece piece_to_be_set_on_square( new Piece() );
@@ -87,6 +87,13 @@ TEST_CASE( "Update Board", "[board]" )
       REQUIRE_FALSE( "Error on changing one of it's squares" );
     }
   } // SECTION( "A board can change of it's board squares pieces " )
+
+  SECTION( "A board return an Error if wrong square is given " ) 
+  {
+      PPiece piece_to_be_set_on_square( new Piece() );
+
+      REQUIRE( Board::getBoard()->setPieceAt( 9, 3 , piece_to_be_set_on_square ) == Error );
+  } // SECTION( "A board return an Error if wrong square is given " )
 
 } // TEST_CASE( "Update", "[board]" ) 
 
