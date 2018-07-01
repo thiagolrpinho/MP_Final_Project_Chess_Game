@@ -1,5 +1,6 @@
 #include "board.hpp"
 
+typedef shared_ptr<Board> PBoard;
 
 //! These tests will be focused on board class
 //! They'll be considered fully functional if they pass in
@@ -12,11 +13,15 @@ TEST_CASE( "Create Board", "[board]" )
   //! creates objects within board class
   // These tests will focus on:./
 
-  SECTION( "A board can be created" ) 
+  SECTION( "A board can be successfully created" ) 
   {
-    Board* one_valid_board = new Board();
-    REQUIRE_FALSE( one_valid_board == nullptr );
-  } // SECTION( "A board can be created" )
+    try {
+      PBoard one_valid_board( new Board());
+      REQUIRE_FALSE( one_valid_board == nullptr );  
+    } catch (int e){
+      REQUIRE_FALSE( "The Board cannot be succesfully created." );
+    }
+  } // SECTION( "A board can be successfully created" )
  
 } // TEST_CASE( "Create", "[board]" )
 
@@ -25,7 +30,6 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( "A board can have it's address returned" ) 
   {
     REQUIRE_FALSE( Board::getBoard() == nullptr );
-    REQUIRE_FALSE( Board::getBoard() == (Board*)1 );
   } // SECTION( "A board can have it's address returned" )
 
 } // TEST_CASE( "Read", "[board]" )
