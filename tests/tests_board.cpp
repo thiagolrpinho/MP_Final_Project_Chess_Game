@@ -5,7 +5,7 @@
 //! They'll be considered fully functional if they pass in
 //! four test cases: Create, Read, Update and Destroy
 
-TEST_CASE( "Create", "[board]" ) 
+TEST_CASE( "Create Board", "[board]" ) 
 { 
   //! These test case will focus on methods that
   //! creates objects within board class
@@ -13,20 +13,16 @@ TEST_CASE( "Create", "[board]" )
  
 } // TEST_CASE( "Create", "[board]" )
 
-TEST_CASE( "Read", "[board]" ) 
+TEST_CASE( "Read Board", "[board]" ) 
 { 
   SECTION( "A board can have it's address returned" ) 
   {
     REQUIRE_FALSE( Board::getBoard() == nullptr );
   } // SECTION( "A board can have it's address returned" )
 
-  SECTION( "A board can have many board squares" ) 
-  {
-    REQUIRE_FALSE( Board::getBoard() == nullptr );
-  } // SECTION( "A board can have it's address returned" )
 } // TEST_CASE( "Read", "[board]" )
 
-TEST_CASE( "Update", "[board]" ) 
+TEST_CASE( "Update Board", "[board]" ) 
 { 
   //! These test case will focus on methods that
   //! updates board
@@ -34,7 +30,7 @@ TEST_CASE( "Update", "[board]" )
 
 } // TEST_CASE( "Update", "[board]" ) 
 
-TEST_CASE( "Destroy", "[board]" ) 
+TEST_CASE( "Destroy Board", "[board]" ) 
 {
   //! These test case will focus on methods that
   //! updates board

@@ -6,13 +6,13 @@
 class Board
 {
   private:
-  static Board* _board_table = nullptr;
+  static Board* _board_table;
   static const unsigned char _size_of_table = 8;
-  BoardSquare*** _board_square_matrix_;
+  BoardSquare*** _board_square_matrix;
   Board();
   
   public:
-  Board* getBoard();
+  static Board* getBoard();
 };
 
 #endif

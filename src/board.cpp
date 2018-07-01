@@ -7,16 +7,18 @@ Board::Board()
     {
         for(unsigned short int j = 0; j < 8; j++)
         {
-            board_square_matrix_[i][j] = new BoardSquare(i,j);
+            _board_square_matrix[i][j] = new BoardSquare(i,j);
         }
     }
 }
 
 Board* Board::getBoard(){
     //If there's no board, then create one.
-    if(board_)
+    if(_board_table == nullptr)
     {
         _board_table = new Board();
     }
     return _board_table;
 }
+
+Board* Board::_board_table = nullptr;
