@@ -102,7 +102,7 @@ shared_ptr<Board> Board::getBoard(){
   {
     shared_ptr<Board> the_actual_board( getBoard() );
 
-    for( uint8_t i = actual_horizontal_coordinate + 1; i < actual_horizontal_coordinate; i++ )
+    for( uint8_t i = actual_horizontal_coordinate + 1; i < future_horizontal_coordinate; i++ )
     {
       if( the_actual_board->getBoardSquareAt( i, actual_vertical_coordinate )->isOccupied() == true ) return false;
     }
