@@ -116,7 +116,7 @@ shared_ptr<Board> Board::getBoard(){
 
     }
     
-    for( uint8_t i = most_left_coordinate + 1; i < most_right_coordinate; i++ )
+    for( uint8_t i = most_left_coordinate + 1; i <= most_right_coordinate; i++ )
     {
       if( the_actual_board->getBoardSquareAt( i, actual_vertical_coordinate )->isOccupied() == true ) return false;
     }
@@ -124,9 +124,29 @@ shared_ptr<Board> Board::getBoard(){
   }
 
   bool Board::isClearVertical(uint8_t actual_horizontal_coordinate, 
-              uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const 
+              uint8_t actual_vertical_coordinate, uint8_t future_vertical_coordinate) const 
   {
-    return false;
+    uint8_t upper_coordinate, lower_coordinate;
+    shared_ptr<Board> the_actual_board( getBoard() );
+
+    if( actual_vertical_coordinate < future_vertical_coordinate )
+    {
+
+      upper_coordinate = future_vertical_coordinate;
+      lower_coordinate = actual_vertical_coordinate;
+
+    } else {
+
+      upper_coordinate = actual_vertical_coordinate;
+      lower_coordinate = future_vertical_coordinate;
+
+    }
+    
+    for( uint8_t i = lower_coordinate + 1; i <= upper_coordinate; i++ )
+    {
+      if( the_actual_board->getBoardSquareAt(actual_horizontal_coordinate, i )->isOccupied() == true ) return false;
+    }
+    return true;
   }
 //Initializes _board_table with nullptr
 shared_ptr<Board> Board::_board_table = nullptr;

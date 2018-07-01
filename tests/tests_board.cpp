@@ -135,6 +135,14 @@ TEST_CASE( "Read Board", "[board]" )
       //A5 on a matrix 0 to 7 is [0][4]
       REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
 
+      REQUIRE( Board::getBoard()->getBoardSquareAt( 0 , 4)->isOccupied() == true );
+      REQUIRE( Board::getBoard()->getBoardSquareAt( 0 , 5)->isOccupied() == false );
+      REQUIRE( Board::getBoard()->getBoardSquareAt( 0 , 6)->isOccupied() == false );
+      REQUIRE( Board::getBoard()->getBoardSquareAt( 0 , 7)->isOccupied() == false );
+
+      REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
+      REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
+
       //Verifying if is clear the path A5 to A8
       REQUIRE( Board::getBoard()->isClearVertical(0, 4, 7) == true );
 
@@ -178,5 +186,19 @@ TEST_CASE( "Destroy Board", "[board]" )
   //! These test case will focus on methods that
   //! updates board
   // These tests will focus on:
+
+  SECTION( "A board can be deleted and no board squares will be left floating" ) 
+  { 
+    try {
+      REQUIRE_FALSE( Board::getBoard() == nullptr );
+      Board::getBoard().reset();
+      // Using smart shared pointer I can only guarantee that the reference on board square
+      // was erased and if there were no other reference to it it'll be succesfully
+      // deallocated.
+    } catch (int e) {
+      REQUIRE_FALSE( "Something wrong ocurred when board was being deleted" );
+    }
+    
+  } // SECTION( "A board square can be deleted and no piece will be left floating" ) 
 
 } // TEST_CASE( "Destroy", "[board]" ) 
