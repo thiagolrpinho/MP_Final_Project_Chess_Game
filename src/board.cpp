@@ -86,7 +86,7 @@ shared_ptr<Board> Board::getBoard(){
     /*!
         \Description Tries to get a valid board square
         and to change it's piece
-        If it succeds return a Success(Integer 1)
+        If it succeeds return a Success(Integer 1)
         If not return an Error(integer 0)
         
         \param Two uint8_t lower than _size_of_table and 
@@ -159,6 +159,18 @@ shared_ptr<Board> Board::getBoard(){
       if( the_actual_board->getBoardSquareAt(actual_horizontal_coordinate, i )->isOccupied() == true ) return false;
     }
     return true;
+  }
+
+  uint8_t Board::cleanBoard()
+  {
+    for (uint8_t horizontal_coordinate = 0; horizontal_coordinate < _size_of_table; horizontal_coordinate++)
+    {
+      for( uint8_t vertical_coordinate = 0; vertical_coordinate < _size_of_table; vertical_coordinate++ )
+      {
+        if( _board_square_matrix[horizontal_coordinate][vertical_coordinate]->deletePiece() == Error ) return Error;
+      }
+    }
+    return Success;
   }
 //Initializes _board_table with nullptr
 shared_ptr<Board> Board::_board_table = nullptr;

@@ -30,6 +30,8 @@ class Board
   */
   static shared_ptr<Board> getBoard();
 
+  uint8_t cleanBoard();
+
   /*! Returns the board square on given coordinates
   */
   PBoardSquare getBoardSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
