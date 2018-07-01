@@ -48,9 +48,9 @@ class BoardSquare {
   uint8_t getVertical() const ;
   
   //Piece related methods
-  bool isOccupied();
+  bool isOccupied() const;
   uint8_t setPiece( shared_ptr<Piece> );
-  shared_ptr<Piece> getPiece();
+  shared_ptr<Piece> getPiece() const ;
   uint8_t deletePiece();
 
 };

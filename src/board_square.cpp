@@ -62,7 +62,7 @@ uint8_t BoardSquare::getVertical() const
         the piece address pointed by the board square
         is nullptr.
     */
-bool BoardSquare::isOccupied()
+bool BoardSquare::isOccupied()  const
 {
     if ( piece_on_square_ != nullptr )
         return true;
@@ -94,7 +94,7 @@ uint8_t BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
         \return Return a shared pointer of 
         the piece on the square.
     */
-shared_ptr<Piece> BoardSquare::getPiece()
+shared_ptr<Piece> BoardSquare::getPiece() const
 {
     return piece_on_square_ ;
 }
