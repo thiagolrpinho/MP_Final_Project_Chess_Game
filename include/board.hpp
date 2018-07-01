@@ -10,7 +10,9 @@
 #include "board_square.hpp"
 
 typedef shared_ptr<BoardSquare> PBoardSquare;
-// Smart pointer to BoardSquare
+    // Smart pointer to BoardSquare 
+typedef shared_ptr<Piece> PPiece;
+    // Smart pointer to Piece
 
 class Board
 {
@@ -29,6 +31,8 @@ class Board
   /*! Returns the board square on given coordinates
   */
   PBoardSquare getBoardSquareAt(unsigned int rank_coordinate, unsigned int file_coordinate );
+
+  unsigned int setPieceAt( unsigned int rank_coordinate, unsigned int file_coordinate , PPiece piece_to_be_set );
 };
 
 #endif

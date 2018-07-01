@@ -1,6 +1,7 @@
 #include "board.hpp"
 
 typedef shared_ptr<Board> PBoard;
+typedef shared_ptr<Piece> PPiece;
 
 //! These tests will be focused on board class
 //! They'll be considered fully functional if they pass in
@@ -39,8 +40,8 @@ TEST_CASE( "Read Board", "[board]" )
       REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 3 ) == nullptr );
 
       //Board read a square with given coordinates
-      REQUIRE(Board::getBoard()->getBoardSquareAt( 2, 3 )->getRank() == 3 );
-      REQUIRE(Board::getBoard()->getBoardSquareAt( 2, 2 )->getRank() == 2 );
+      REQUIRE( Board::getBoard()->getBoardSquareAt( 2, 3 )->getRank() == 3 );
+      REQUIRE( Board::getBoard()->getBoardSquareAt( 2, 2 )->getRank() == 2 );
 
     } catch (int throwned_error )
     {
@@ -74,6 +75,17 @@ TEST_CASE( "Update Board", "[board]" )
   //! These test case will focus on methods that
   //! updates board
   // These tests will focus on:
+   SECTION( "A board can change of it's board squares pieces " ) 
+  {
+    try {
+      PPiece piece_to_be_set_on_square( new Piece() );
+
+      REQUIRE( Board::getBoard()->setPieceAt( 2, 3 , piece_to_be_set_on_square ) == Success );
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "Error on changing one of it's squares" );
+    }
+  } // SECTION( "A board can read one of it's squares" )
 
 } // TEST_CASE( "Update", "[board]" ) 
 

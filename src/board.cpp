@@ -62,12 +62,18 @@ shared_ptr<Board> Board::getBoard(){
     */
   PBoardSquare Board::getBoardSquareAt( unsigned int file_coordinate, unsigned int rank_coordinate  )
   { 
-      // If any given coordinate is greater of equal to the size of the table
-      // then it's an Error.
-      if( file_coordinate >= _size_of_table ) throw (int) Error;
-      if( rank_coordinate >= _size_of_table ) throw (int) Error;
-      
-      return _board_square_matrix[file_coordinate][rank_coordinate];
+    // If any given coordinate is greater of equal to the size of the table
+    // then it's an Error.
+    if( file_coordinate >= _size_of_table ) throw (int) Error;
+    if( rank_coordinate >= _size_of_table ) throw (int) Error;
+
+    return _board_square_matrix[file_coordinate][rank_coordinate];
+  }
+
+  unsigned int Board::setPieceAt( unsigned int rank_coordinate, 
+                          unsigned int file_coordinate , PPiece piece_to_be_set )
+  {
+    return Error;
   }
 
 //Initializes _board_table with nullptr
