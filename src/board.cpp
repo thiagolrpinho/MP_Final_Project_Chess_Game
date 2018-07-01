@@ -19,7 +19,7 @@ Board* Board::getBoard(){
         try {
             _board_table = new Board();
         } catch ( int e) {
-            return nullptr;
+            return (Board*) 1;
         }
     }
     return _board_table;

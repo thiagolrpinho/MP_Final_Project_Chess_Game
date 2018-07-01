@@ -9,9 +9,9 @@ class Board
   static Board* _board_table;
   static const unsigned int _size_of_table = 8;
   BoardSquare* _board_square_matrix[_size_of_table][_size_of_table];
-  Board();
 
   public:
+  Board();
   static Board* getBoard();
 };
 
