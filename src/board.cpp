@@ -54,7 +54,7 @@ shared_ptr<Board> Board::getBoard(){
   */
   PBoardSquare Board::getBoardSquareAt( unsigned int i, unsigned int j  )
   {
-      return nullptr;
+      return _board_square_matrix[i][j];
   }
 
 //Initializes _board_table with nullptr
