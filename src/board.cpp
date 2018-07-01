@@ -101,7 +101,7 @@ shared_ptr<Board> Board::getBoard(){
                  uint8_t actual_file_coordinate, uint8_t future_file_coordinate) const
   {
     shared_ptr<Board> the_actual_board( getBoard() );
-    for( int i = actual_file_coordinate + 1; i < actual_file_coordinate; i++ )
+    for( uint8_t i = actual_file_coordinate + 1; i < actual_file_coordinate; i++ )
     {
       if( the_actual_board->getBoardSquareAt( actual_rank_coordinate, i)->isOccupied() == true ) return false;
     }

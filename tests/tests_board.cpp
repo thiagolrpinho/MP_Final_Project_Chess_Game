@@ -82,6 +82,24 @@ TEST_CASE( "Read Board", "[board]" )
     {
       REQUIRE_FALSE( "The board returns true if a given horizontal path up is free" );
     }
+  } // SECTION( "The board returns true if a given horizontal path up is free " ) 
+
+  SECTION( "The board returns false if a given horizontal path up is not free " ) 
+  {
+    try {
+      PPiece piece_on_A5( new Piece() );
+      PPiece piece_on_F5( new Piece() );
+      //A5 on a matrix 0 to 7 is [0][4]
+      REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
+      REQUIRE( Board::getBoard()->setPieceAt( 6, 4 , piece_on_A5 ) == Success );
+
+      //Verifying if is clear the path A5 to H5
+      REQUIRE( Board::getBoard()->isClearHorizontal(0, 4, 7) == true );
+
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "The board returns true if a given horizontal path up is free" );
+    }
   } // SECTION( "A board can read one of it's squares" )
 } // TEST_CASE( "Read", "[board]" )
 
