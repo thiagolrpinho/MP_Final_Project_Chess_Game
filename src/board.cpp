@@ -33,6 +33,7 @@ Board::Board()
         If it cannot create, throws an Error.
         Else if there is already one board it just returns _board_table.
         \return A shared pointer to the singleton board.
+        \throw Error if couldn't created board
     */
 shared_ptr<Board> Board::getBoard(){
     //If there's no board, then create one.
@@ -50,12 +51,21 @@ shared_ptr<Board> Board::getBoard(){
     return _board_table;
 }
 
-/*! Returns the board square on given coordinates
-  */
+//*! Returns the board square on given coordinates
+    /*!
+        \Description Fix evaluates if the given coordinates
+        are valid then return a valid board square.
+        
+        \param Two unsigned int lower than _size_of_table.
+        \return A valid board square of the given coordinates.
+        \throw Error if given coordinates not valid
+    */
   PBoardSquare Board::getBoardSquareAt( unsigned int file_coordinate, unsigned int rank_coordinate  )
-  {
-      if( file_coordinate < 0 || file_coordinate >= 8 ) throw (int) Error;
-      if( rank_coordinate < 0 || rank_coordinate >= 8 ) throw (int) Error;
+  { 
+      // If any given coordinate is greater of equal to the size of the table
+      // then it's an Error.
+      if( file_coordinate >= _size_of_table ) throw (int) Error;
+      if( rank_coordinate >= _size_of_table ) throw (int) Error;
       return _board_square_matrix[file_coordinate][rank_coordinate];
   }
 
