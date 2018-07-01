@@ -137,7 +137,7 @@ TEST_CASE( "Read Board", "[board]" )
       //A5 on a matrix 0 to 7 is [0][4]
 
       REQUIRE( valid_board->cleanBoard() == Success );
-      
+
       REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
 
       REQUIRE( valid_board->getBoardSquareAt( 0 , 4)->isOccupied() == true );
@@ -200,7 +200,25 @@ TEST_CASE( "Destroy Board", "[board]" )
     } catch (int e) {
       REQUIRE_FALSE( "Something wrong ocurred when board was being deleted" );
     }
+  }
     
+    SECTION( " The board can be clean of all it's pieces " ) 
+    {
+      PBoard board_to_be_clean = Board::getBoard();
+      PPiece piece_on_F4( new Piece );
+      PPiece piece_on_B7(new Piece );
+
+      board_to_be_clean->setPieceAt( 5, 3, piece_on_F4 );
+      board_to_be_clean->setPieceAt( 1, 6, piece_on_B7 );
+
+      REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
+      REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+
+      board_to_be_clean->cleanBoard();
+
+      REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+      REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+
   } // SECTION( "A board square can be deleted and no piece will be left floating" ) 
 
 } // TEST_CASE( "Destroy", "[board]" ) 
