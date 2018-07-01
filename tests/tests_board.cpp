@@ -233,8 +233,8 @@ TEST_CASE( "Destroy Board", "[board]" )
 
     REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
 
-    board_to_be_clean->cleanBoard();
-    
+    board_to_be_clean->cleanBoardSquareAt( 5, 3 );
+
     REQUIRE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
   } // SECTION( "The board can be clean of one of it's pieces" ) 
     
