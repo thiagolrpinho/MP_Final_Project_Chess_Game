@@ -80,7 +80,7 @@ TEST_CASE( "Read Board", "[board]" )
 
     } catch (int throwned_error )
     {
-      REQUIRE_FALSE( "Error on reading one of it's squares" );
+      REQUIRE_FALSE( "The board returns true if a given horizontal path up is free" );
     }
   } // SECTION( "A board can read one of it's squares" )
 } // TEST_CASE( "Read", "[board]" )

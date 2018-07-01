@@ -32,10 +32,14 @@ class Board
   */
   PBoardSquare getBoardSquareAt(unsigned int rank_coordinate, unsigned int file_coordinate );
 
-  unsigned int setPieceAt( unsigned int rank_coordinate, unsigned int file_coordinate , PPiece piece_to_be_set );
+  unsigned int setPieceAt( unsigned int rank_coordinate, 
+                unsigned int file_coordinate , PPiece piece_to_be_set );
 
-  bool isClearHorizontal(unsigned int actual_rank_coordinate, unsigned int actual_file_coordinate, unsigned int future_file_coordinate) const;
-  bool isClearVertical(unsigned int actual_rank_coordinate, unsigned int actual_file_coordinate, unsigned int future_rank_coordinate) const;
+  bool isClearHorizontal(unsigned int actual_rank_coordinate, 
+              unsigned int actual_file_coordinate, unsigned int future_file_coordinate) const;
+              
+  bool isClearVertical(unsigned int actual_rank_coordinate,
+               unsigned int actual_file_coordinate, unsigned int future_rank_coordinate) const;
 };
 
 #endif
