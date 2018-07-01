@@ -87,16 +87,16 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( " The board returns false if a given horizontal path right is not free " ) 
   {
     try {
-      PPiece piece_on_A5( new Piece() );
-      //A5 on a matrix 0 to 7 is [0][4]
-      PPiece piece_on_F5( new Piece() );
-      //E5 on a matrix 0 to 7 is [4][4]
+      PPiece piece_on_A6( new Piece() );
+      //A6 on a matrix 0 to 7 is [0][5]
+      PPiece piece_on_E6( new Piece() );
+      //E6 on a matrix 0 to 7 is [4][5]
 
-      REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
-      REQUIRE( Board::getBoard()->setPieceAt( 4, 4 , piece_on_F5 ) == Success );
+      REQUIRE( Board::getBoard()->setPieceAt( 0, 5 , piece_on_A6 ) == Success );
+      REQUIRE( Board::getBoard()->setPieceAt( 4, 5 , piece_on_E6 ) == Success );
 
-      //Verifying if is clear the path A5 to H5
-      REQUIRE( Board::getBoard()->isClearHorizontal(0, 4, 7) == false );
+      //Verifying if is clear the path A6 to H6
+      REQUIRE( Board::getBoard()->isClearHorizontal(0, 5, 7) == false );
 
     } catch (int throwned_error )
     {

@@ -100,9 +100,23 @@ shared_ptr<Board> Board::getBoard(){
   bool Board::isClearHorizontal(uint8_t actual_horizontal_coordinate, 
               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const
   {
+    uint8_t most_right_coordinate, most_left_coordinate;
     shared_ptr<Board> the_actual_board( getBoard() );
 
-    for( uint8_t i = actual_horizontal_coordinate + 1; i < future_horizontal_coordinate; i++ )
+    if( actual_horizontal_coordinate < future_horizontal_coordinate )
+    {
+
+      most_right_coordinate = future_horizontal_coordinate;
+      most_left_coordinate = actual_horizontal_coordinate;
+
+    } else {
+
+      most_right_coordinate = actual_horizontal_coordinate;
+      most_left_coordinate = future_horizontal_coordinate;
+
+    }
+    
+    for( uint8_t i = most_left_coordinate + 1; i < most_right_coordinate; i++ )
     {
       if( the_actual_board->getBoardSquareAt( i, actual_vertical_coordinate )->isOccupied() == true ) return false;
     }
