@@ -51,6 +51,14 @@ TEST_CASE( "Read Board", "[board]" )
     {
       REQUIRE( "Error on reading wrong square" );
     }
+
+    try {
+      PBoardSquare wrong_board_square( Board::getBoard()->getBoardSquareAt( -1, 2 ) );
+      REQUIRE_FALSE( "No error on reading wrong square" );
+    } catch (int throwned_error )
+    {
+      REQUIRE( "Error on reading wrong square" );
+    }
   } // SECTIONSECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
 
 } // TEST_CASE( "Read", "[board]" )

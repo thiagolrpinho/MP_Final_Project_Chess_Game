@@ -66,6 +66,7 @@ shared_ptr<Board> Board::getBoard(){
       // then it's an Error.
       if( file_coordinate >= _size_of_table ) throw (int) Error;
       if( rank_coordinate >= _size_of_table ) throw (int) Error;
+      
       return _board_square_matrix[file_coordinate][rank_coordinate];
   }
 
