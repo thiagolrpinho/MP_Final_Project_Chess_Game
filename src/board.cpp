@@ -70,6 +70,18 @@ shared_ptr<Board> Board::getBoard(){
     return _board_square_matrix[file_coordinate][rank_coordinate];
   }
 
+//*! Change the piece on the given board square
+    /*!
+        \Description Tries to get a valid board square
+        and to change it's piece
+        If it succeds return a Success(Integer 1)
+        If not return an Error(integer 0)
+        
+        \param Two unsigned int lower than _size_of_table and 
+                shared pointer to a valid an already created 
+                Piece
+        \return A Success(integer 1) or an Error(integer 0)
+    */
   unsigned int Board::setPieceAt( unsigned int rank_coordinate, 
                           unsigned int file_coordinate , PPiece piece_to_be_set )
   {

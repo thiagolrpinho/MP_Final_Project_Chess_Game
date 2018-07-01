@@ -86,7 +86,7 @@ TEST_CASE( "Update Board", "[board]" )
     {
       REQUIRE_FALSE( "Error on changing one of it's squares" );
     }
-  } // SECTION( "A board can read one of it's squares" )
+  } // SECTION( "A board can change of it's board squares pieces " )
 
 } // TEST_CASE( "Update", "[board]" ) 
 
