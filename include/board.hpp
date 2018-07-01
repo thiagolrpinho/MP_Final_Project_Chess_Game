@@ -25,6 +25,10 @@ class Board
   /*! Initializes Board on the first call and returns a pointer to the board
   */
   static shared_ptr<Board> getBoard();
+
+  /*! Returns the board square on given coordinates
+  */
+  PBoardSquare getBoardSquareAt(unsigned int i, unsigned int j );
 };
 
 #endif

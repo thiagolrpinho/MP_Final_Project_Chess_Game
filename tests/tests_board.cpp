@@ -18,7 +18,7 @@ TEST_CASE( "Create Board", "[board]" )
     try {
       PBoard one_valid_board( new Board());
       REQUIRE_FALSE( one_valid_board == nullptr );  
-    } catch (int e){
+    } catch (int e) {
       REQUIRE_FALSE( "The Board cannot be succesfully created." );
     }
   } // SECTION( "A board can be successfully created" )
@@ -31,6 +31,11 @@ TEST_CASE( "Read Board", "[board]" )
   {
     REQUIRE_FALSE( Board::getBoard() == nullptr );
   } // SECTION( "A board can have it's address returned" )
+
+  SECTION( "A board can read one of it's squares " ) 
+  {
+    REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 2 ) == nullptr );
+  } // SECTION( "A board can read one of it's squares" )
 
 } // TEST_CASE( "Read", "[board]" )
 

@@ -50,5 +50,12 @@ shared_ptr<Board> Board::getBoard(){
     return _board_table;
 }
 
+/*! Returns the board square on given coordinates
+  */
+  PBoardSquare Board::getBoardSquareAt( unsigned int i, unsigned int j  )
+  {
+      return nullptr;
+  }
+
 //Initializes _board_table with nullptr
 shared_ptr<Board> Board::_board_table = nullptr;
