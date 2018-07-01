@@ -35,7 +35,13 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( "A board can read one of it's squares " ) 
   {
     try {
-      REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 2 ) == nullptr );
+      //Board can read a valid square
+      REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 3 ) == nullptr );
+
+      //Board read a square with given coordinates
+      REQUIRE(Board::getBoard()->getBoardSquareAt( 2, 3 )->getRank() == 3 );
+      REQUIRE(Board::getBoard()->getBoardSquareAt( 2, 2 )->getRank() == 2 );
+
     } catch (int throwned_error )
     {
       REQUIRE_FALSE( "Error on reading one of it's squares" );
