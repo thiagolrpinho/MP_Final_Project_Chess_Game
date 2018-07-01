@@ -54,6 +54,8 @@ shared_ptr<Board> Board::getBoard(){
   */
   PBoardSquare Board::getBoardSquareAt( unsigned int i, unsigned int j  )
   {
+      if( i < 0 || i >= 8 ) return nullptr;
+      if( j < 0 || j >= 8 ) return nullptr;
       return _board_square_matrix[i][j];
   }
 

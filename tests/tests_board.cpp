@@ -45,10 +45,11 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
   {
     try {
-      REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 9, 2 ) == nullptr );
+      PBoardSquare wrong_board_square( Board::getBoard()->getBoardSquareAt( 9, 2 ) );
+      REQUIRE_FALSE( "No error on reading wrong square" );
     } catch (int throwned_error )
     {
-      REQUIRE( "Error on reading one of it's squares" );
+      REQUIRE( "Error on reading wrong square" );
     }
   } // SECTIONSECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
 
