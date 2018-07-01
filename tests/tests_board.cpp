@@ -202,23 +202,22 @@ TEST_CASE( "Destroy Board", "[board]" )
     }
   }
     
-    SECTION( " The board can be clean of all it's pieces " ) 
-    {
-      PBoard board_to_be_clean = Board::getBoard();
-      PPiece piece_on_F4( new Piece );
-      PPiece piece_on_B7(new Piece );
+  SECTION( "The board can be clean of all it's pieces" ) 
+  {
+    PBoard board_to_be_clean = Board::getBoard();
+    PPiece piece_on_F4( new Piece );
+    PPiece piece_on_B7(new Piece );
 
-      board_to_be_clean->setPieceAt( 5, 3, piece_on_F4 );
-      board_to_be_clean->setPieceAt( 1, 6, piece_on_B7 );
+    board_to_be_clean->setPieceAt( 5, 3, piece_on_F4 );
+    board_to_be_clean->setPieceAt( 1, 6, piece_on_B7 );
 
-      REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
-      REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
 
-      board_to_be_clean->cleanBoard();
+    board_to_be_clean->cleanBoard();
 
-      REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
-      REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
-
-  } // SECTION( "A board square can be deleted and no piece will be left floating" ) 
+    REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+    REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+  } // SECTION( "The board can be clean of all it's pieces" ) 
 
 } // TEST_CASE( "Destroy", "[board]" ) 
