@@ -81,6 +81,7 @@ TEST_CASE( "Update Board", "[board]" )
       PPiece piece_to_be_set_on_square( new Piece() );
 
       REQUIRE( Board::getBoard()->setPieceAt( 2, 3 , piece_to_be_set_on_square ) == Success );
+      
     } catch (int throwned_error )
     {
       REQUIRE_FALSE( "Error on changing one of it's squares" );

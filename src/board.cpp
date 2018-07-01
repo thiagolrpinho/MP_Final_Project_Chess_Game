@@ -73,7 +73,16 @@ shared_ptr<Board> Board::getBoard(){
   unsigned int Board::setPieceAt( unsigned int rank_coordinate, 
                           unsigned int file_coordinate , PPiece piece_to_be_set )
   {
-    return Error;
+    try {
+      PBoardSquare square_on_coordinate( 
+                          Board::getBoard()->getBoardSquareAt( rank_coordinate, file_coordinate) );
+      square_on_coordinate->setPiece( piece_to_be_set );
+    } catch (int throwned_error ) {
+      return Error;
+    }
+
+    return Success;
+              
   }
 
 //Initializes _board_table with nullptr
