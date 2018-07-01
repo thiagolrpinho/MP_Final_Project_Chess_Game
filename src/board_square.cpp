@@ -15,15 +15,15 @@
     */
 BoardSquare::BoardSquare( uint8_t file_coordinate, uint8_t rank_coordinate )
 {   
-    if ( rank_coordinate >= kMaximumAllowedCoordinate)
+    if ( rank_coordinate > kMaximumAllowedCoordinate )
     {
         throw (int) Error;
-    } //if ( rank_coordinate < kMinimunAllowedCoordinate || rank_coordinate > kMaximumAllowedCoordinate)
+    } //if ( rank_coordinate > kMaximumAllowedCoordinate )
 
-    if ( file_coordinate >= kMaximumAllowedCoordinate)
+    if ( file_coordinate > kMaximumAllowedCoordinate )
     {
         throw (int) Error;
-    } //if ( file_coordinate < kMinimunAllowedCoordinate || file_coordinate > kMaximumAllowedCoordinate)
+    } //if ( file_coordinate > kMaximumAllowedCoordinate )
 
     file_ = file_coordinate;
     rank_ = rank_coordinate;

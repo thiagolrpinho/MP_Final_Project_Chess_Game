@@ -18,7 +18,8 @@ class Board
 {
   private:
   static shared_ptr<Board> _board_table; //Points to itself after initialized
-  static const uint8_t _size_of_table = 8; //Number of rows and ranks
+  static const uint8_t _size_of_table = kMaximumAllowedCoordinate + 1; 
+        // Number of rows and ranks 
   PBoardSquare _board_square_matrix[_size_of_table][_size_of_table]; //Matrix to store the board squares
 
   public:
