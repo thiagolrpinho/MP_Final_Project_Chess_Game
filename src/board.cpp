@@ -3,11 +3,11 @@
 Board::Board()
 {
     // Set up board squares (_DIMENSION x _DIMENSION)
-    for(unsigned short int i = 0; i < 8; i++)
+    for(unsigned short int i = 1; i <= 8; i++)
     {
-        for(unsigned short int j = 0; j < 8; j++)
+        for(unsigned short int j = 1; j <= 8; j++)
         {
-            _board_square_matrix[i][j] = new BoardSquare(i,j);
+            _board_square_matrix[i-1][j-1] = new BoardSquare( i, j );
         }
     }
 }
@@ -18,7 +18,8 @@ Board* Board::getBoard(){
     {  
         try {
             _board_table = new Board();
-        } catch ( int e) {
+        } catch ( int throwned_error) {
+            if ( throwned_error == Error) throw Error;
             return (Board*) 1;
         }
     }
