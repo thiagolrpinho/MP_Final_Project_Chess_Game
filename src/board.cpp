@@ -52,11 +52,11 @@ shared_ptr<Board> Board::getBoard(){
 
 /*! Returns the board square on given coordinates
   */
-  PBoardSquare Board::getBoardSquareAt( unsigned int i, unsigned int j  )
+  PBoardSquare Board::getBoardSquareAt( unsigned int file_coordinate, unsigned int rank_coordinate  )
   {
-      if( i < 0 || i >= 8 ) throw (int) Error;
-      if( j < 0 || j >= 8 ) throw (int) Error;
-      return _board_square_matrix[i][j];
+      if( file_coordinate < 0 || file_coordinate >= 8 ) throw (int) Error;
+      if( rank_coordinate < 0 || rank_coordinate >= 8 ) throw (int) Error;
+      return _board_square_matrix[file_coordinate][rank_coordinate];
   }
 
 //Initializes _board_table with nullptr

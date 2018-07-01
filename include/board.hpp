@@ -28,7 +28,7 @@ class Board
 
   /*! Returns the board square on given coordinates
   */
-  PBoardSquare getBoardSquareAt(unsigned int i, unsigned int j );
+  PBoardSquare getBoardSquareAt(unsigned int rank_coordinate, unsigned int file_coordinate );
 };
 
 #endif
