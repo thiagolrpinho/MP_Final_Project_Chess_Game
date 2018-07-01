@@ -34,8 +34,23 @@ TEST_CASE( "Read Board", "[board]" )
 
   SECTION( "A board can read one of it's squares " ) 
   {
-    REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 2 ) == nullptr );
+    try {
+      REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 2 ) == nullptr );
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "Error on reading one of it's squares" );
+    }
   } // SECTION( "A board can read one of it's squares" )
+
+  SECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
+  {
+    try {
+      REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 9, 2 ) == nullptr );
+    } catch (int throwned_error )
+    {
+      REQUIRE( "Error on reading one of it's squares" );
+    }
+  } // SECTIONSECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
 
 } // TEST_CASE( "Read", "[board]" )
 
