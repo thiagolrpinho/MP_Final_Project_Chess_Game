@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "D:\\UnB\\MP\\TrabalhoFinal"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ostream": "cpp",
+			"iostream": "cpp"
+		}
+	}
+}
