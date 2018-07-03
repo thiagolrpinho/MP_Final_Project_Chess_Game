@@ -181,21 +181,80 @@ TEST_CASE( "Read Board", "[board]" )
 
     PPiece piece_on_F7( new Piece() );
       //F7 on a matrix 0 to 7 is [5][6]
-      
-    // First we make sure the board is clean
-    REQUIRE( valid_board->cleanBoard() == Success );
+    try {
+      // First we make sure the board is clean
+      REQUIRE( valid_board->cleanBoard() == Success );
 
-    // Then we check if even if there are no pieces over F7 it should still return Error.
-    REQUIRE( valid_board->isClearHorizontal( 5, 6, 5) == false );
+      // Then we check if even if there are no pieces over F7 it should still return Error.
+      REQUIRE( valid_board->isClearHorizontal( 5, 6, 5) == false );
 
-    REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_F7 ) == Success );
+      REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_F7 ) == Success );
 
-    // After that we check if with a piece over F7 would return Error
-    REQUIRE( valid_board->isClearHorizontal( 5, 6, 5) == false );
-
-  } // SECTION( " The board returns false if a horizontal movement starts and ends on the same spot
+      // After that we check if with a piece over F7 would return Error
+      REQUIRE( valid_board->isClearHorizontal( 5, 6, 5) == false );
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "The board doesn't return false if a horizontal movement starts and ends on the same spot" );
+    }
+  } // SECTION( " The board returns false if a horizontal movement starts and ends on the same spot ")
 
   SECTION( " The board returns false if a vertical movement starts and ends on the same spot " ) 
+  {
+    PBoard valid_board = Board::getBoard();
+
+    PPiece piece_on_F7( new Piece() );
+      //F7 on a matrix 0 to 7 is [5][6]
+
+    try {
+      // First we make sure the board is clean
+      REQUIRE( valid_board->cleanBoard() == Success );
+
+      // Then we check if even if there are no pieces over F7 it should still return Error.
+      REQUIRE( valid_board->isClearVertical( 5, 6, 6) == false );
+
+      REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_F7 ) == Success );
+
+      // After that we check if with a piece over F7 would return Error
+      REQUIRE( valid_board->isClearVertical( 5, 6, 6) == false );
+
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "The board doesn't return false if a vertical movement starts and ends on the same spot" );
+    }
+  } // SECTION( " The board returns false if a vertical movement starts and ends on the same spot
+
+  
+  SECTION( " The board returns true or false if a given diagonal path right up is free or not respectively " ) 
+  {
+    try {
+      PPiece piece_on_A6( new Piece() );
+      //A6 on a matrix 0 to 7 is [0][5]
+      PPiece piece_on_B7( new Piece() );
+      //B7 on a matrix 0 to 7 is [1][6]
+
+      PBoard clean_board = clean_board;
+
+      clean_board->cleanBoard();
+
+      REQUIRE( clean_board->setPieceAt( 0, 5 , piece_on_A6 ) == Success );
+
+      //Verifying if is clear the path A6 to B7 with just one piece over the board
+      REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 7 ) == true );
+
+      REQUIRE( clean_board->setPieceAt( 1, 7 , piece_on_B7 ) == Success );
+
+      //Verifying if is clear the path A6 to B7
+      REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 7 ) == false );
+      
+
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "The board doesn't return true or false if a given diagonal path right up is free or not respectively" );
+    }
+  } //SECTION( " The board returns true or false if a given diagonal path right up is free or not respectively" )
+
+
+  SECTION( " The board throws an error if a vertical movement starts on invalid coordinates " ) 
   {
     PBoard valid_board = Board::getBoard();
 
@@ -204,7 +263,7 @@ TEST_CASE( "Read Board", "[board]" )
       
     // First we make sure the board is clean
     REQUIRE( valid_board->cleanBoard() == Success );
-
+  
     // Then we check if even if there are no pieces over F7 it should still return Error.
     REQUIRE( valid_board->isClearVertical( 5, 6, 6) == false );
 

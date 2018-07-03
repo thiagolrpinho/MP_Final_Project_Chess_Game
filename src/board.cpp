@@ -181,6 +181,13 @@ shared_ptr<Board> Board::getBoard(){
     return true;
   }
 
+    bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate ) const
+    {
+      return false;
+    }
+
   uint8_t Board::cleanBoard()
   {
     for (uint8_t horizontal_coordinate = 0; horizontal_coordinate < _size_of_table; horizontal_coordinate++)
