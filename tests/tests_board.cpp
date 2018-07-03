@@ -238,13 +238,15 @@ TEST_CASE( "Read Board", "[board]" )
 
       REQUIRE( clean_board->setPieceAt( 0, 5 , piece_on_A6 ) == Success );
 
-      //Verifying if is clear the path A6 to B7 with just one piece over the board
-      REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 7 ) == true );
+      //Verifying if is clear the path A6 to B8 with just one piece over the board
+      REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 6 ) == true );
 
-      REQUIRE( clean_board->setPieceAt( 1, 7 , piece_on_B7 ) == Success );
+      REQUIRE( clean_board->setPieceAt( 1, 6 , piece_on_B7 ) == Success );
 
-      //Verifying if is clear the path A6 to B7
-      REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 7 ) == false );
+      REQUIRE( clean_board->getBoardSquareAt( 1, 6 )->isOccupied() == true );
+
+      //Verifying if is clear the path A6 to B8
+      REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 6 ) == false );
       
 
     } catch (int throwned_error )
