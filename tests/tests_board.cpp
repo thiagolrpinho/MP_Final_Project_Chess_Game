@@ -328,24 +328,19 @@ TEST_CASE( "Read Board", "[board]" )
 
   SECTION( " The board throws an error if a vertical movement starts on invalid coordinates " ) 
   {
-    PBoard valid_board = Board::getBoard();
+  } // SECTION( " The board throws an error if a vertical movement starts on invalid coordinates " )
 
-    PPiece piece_on_F7( new Piece() );
-      //F7 on a matrix 0 to 7 is [5][6]
-      
-    // First we make sure the board is clean
-    REQUIRE( valid_board->cleanBoard() == Success );
-  
-    // Then we check if even if there are no pieces over F7 it should still return Error.
-    REQUIRE( valid_board->isClearVertical( 5, 6, 6) == false );
+  SECTION( " The board return true or false if a given coordinate is on End Row or not respectively " ) 
+  {
+      PBoard board = Board::getBoard();
 
-    REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_F7 ) == Success );
+      REQUIRE( board->isEndRow( 3, 0 ) == true );
+      REQUIRE( board->isEndRow( 3, 2 ) == false );
 
-    // After that we check if with a piece over F7 would return Error
-    REQUIRE( valid_board->isClearVertical( 5, 6, 6) == false );
+      REQUIRE( board->isEndRow( 5, 7) == true );
+      REQUIRE( board->isEndRow( 5, 6) == false );
 
-  } // SECTION( " The board returns false if a horizontal movement starts and ends on the same spot
-
+  } // SECTION( " The board return true or false if a given coordinate is on End Row or not respectively ) 
 } // TEST_CASE( "Read", "[board]" )
 
 TEST_CASE( "Update Board", "[board]" ) 
