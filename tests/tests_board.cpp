@@ -247,7 +247,6 @@ TEST_CASE( "Read Board", "[board]" )
 
       //Verifying if is clear the path A6 to B8
       REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 6 ) == false );
-      
 
     } catch (int throwned_error )
     {
@@ -255,7 +254,8 @@ TEST_CASE( "Read Board", "[board]" )
     }
   } //SECTION( " The board returns true or false if a given diagonal path right up is free or not respectively" )
 
-  SECTION( " The board returns true or false if a given diagonal path left down is free or not respectively " ) 
+
+  SECTION( " The board return true or false if a given diagonal path left down is free or not respectively " ) 
   {
     try {
       PPiece piece_on_D3( new Piece() );
@@ -270,16 +270,44 @@ TEST_CASE( "Read Board", "[board]" )
       //Verifying if is clear the path D3 to B1 with just one piece over the board
       REQUIRE( clean_board->isClearDiagonal( 3, 2, 1, 0 ) == true );
 
-
       //Verifying if is clear the path F5 to B1
       REQUIRE( clean_board->isClearDiagonal( 5, 4, 2, 1 ) == false );
       
-
     } catch (int throwned_error )
     {
-      REQUIRE_FALSE( "The board doesn't return true or false if a given diagonal path right up is free or not respectively" );
+      REQUIRE_FALSE( "The board doesn't return true or false if a given diagonal path left down is free or not respectively " );
     }
-  } //SECTION( " The board returns true or false if a given diagonal path right up is free or not respectively" )
+  } //SECTION( " The board return true or false if a given diagonal path left down is free or not respectively " )
+
+  SECTION( " The board return true or false if a given diagonal path left up or right down is free or not respectively " ) 
+  {
+    try {
+      PPiece piece_on_D6( new Piece() );
+      //D6 on a matrix 0 to 7 is [3][5]
+
+      PBoard clean_board = Board::getBoard();
+
+      clean_board->cleanBoard();
+
+      //Verifying if is clear the path H2 to C7
+      REQUIRE( clean_board->isClearDiagonal( 7, 1, 2, 6 ) == true );
+
+      //Verifying if is clear the path B8 to G3
+      REQUIRE( clean_board->isClearDiagonal( 1, 7, 6, 2 ) == true );
+
+      REQUIRE( clean_board->setPieceAt( 3, 5 , piece_on_D6 ) == Success );
+
+            //Verifying if is clear the path H2 to C7
+      REQUIRE( clean_board->isClearDiagonal( 7, 1, 2, 6 ) == false );
+
+      //Verifying if is clear the path B8 to G3
+      REQUIRE( clean_board->isClearDiagonal( 1, 7, 6, 2 ) == false );
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "The board doesn't return true or false if a given diagonal path left up or right down is free or not respectively " );
+    }
+  } //SECTION( " The board return true or false if a given diagonal path left up or right down is free or not respectively )
+
 
 
   SECTION( " The board throws an error if a vertical movement starts on invalid coordinates " ) 
