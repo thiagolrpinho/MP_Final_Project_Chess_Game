@@ -161,8 +161,8 @@ bool Board::isClearVertical(uint8_t actual_horizontal_coordinate,
   if( future_vertical_coordinate >= size_of_table_ ) return false;
 
   // Starting outside the board is not valid.
-  if( actual_horizontal_coordinate >= size_of_table_ ) return false;
-  if( actual_vertical_coordinate >= size_of_table_ ) return false;
+  if( actual_horizontal_coordinate >= size_of_table_ ) throw (int) Error;
+  if( actual_vertical_coordinate >= size_of_table_ ) throw (int) Error;
 
   if( actual_vertical_coordinate < future_vertical_coordinate )
   {
@@ -203,8 +203,8 @@ bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
   if( future_vertical_coordinate >= size_of_table_ ) return false;
 
   // Starting outside the board is not valid.
-  if( actual_horizontal_coordinate >= size_of_table_ ) return false;
-  if( actual_vertical_coordinate >= size_of_table_ ) return false;
+  if( actual_horizontal_coordinate >= size_of_table_ ) throw (int) Error;
+  if( actual_vertical_coordinate >= size_of_table_ ) throw (int) Error;
 
   // The diagonal path must be 
   // | x1 - x2 | = | y1 - y2 |
