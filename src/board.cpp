@@ -151,6 +151,16 @@ shared_ptr<Board> Board::getBoard(){
     uint8_t upper_coordinate, lower_coordinate;
     shared_ptr<Board> the_actual_board( getBoard() );
 
+
+    // Moving to the same square is not a valid move.
+    if( actual_vertical_coordinate == future_vertical_coordinate ) return false;
+    // Moving outside the board is not valid.
+    if( future_vertical_coordinate >= _size_of_table ) return false;
+
+    // Starting outside the board is not valid.
+    if( actual_horizontal_coordinate >= _size_of_table ) return false;
+    if( actual_vertical_coordinate >= _size_of_table ) return false;
+
     if( actual_vertical_coordinate < future_vertical_coordinate )
     {
 

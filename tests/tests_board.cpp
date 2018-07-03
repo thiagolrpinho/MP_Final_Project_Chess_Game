@@ -206,12 +206,12 @@ TEST_CASE( "Read Board", "[board]" )
     REQUIRE( valid_board->cleanBoard() == Success );
 
     // Then we check if even if there are no pieces over F7 it should still return Error.
-    REQUIRE( valid_board->isClearVertical( 5, 6, 5) == false );
+    REQUIRE( valid_board->isClearVertical( 5, 6, 6) == false );
 
     REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_F7 ) == Success );
 
     // After that we check if with a piece over F7 would return Error
-    REQUIRE( valid_board->isClearVertical( 5, 6, 5) == false );
+    REQUIRE( valid_board->isClearVertical( 5, 6, 6) == false );
 
   } // SECTION( " The board returns false if a horizontal movement starts and ends on the same spot
 
