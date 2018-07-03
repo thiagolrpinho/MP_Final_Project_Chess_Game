@@ -255,7 +255,7 @@ bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
 bool Board::isEndRow(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate) const
 {
-  return false;
+  return (actual_vertical_coordinate == 0 || actual_vertical_coordinate == _size_of_table - 1);
 }
 
 uint8_t Board::cleanBoard()
