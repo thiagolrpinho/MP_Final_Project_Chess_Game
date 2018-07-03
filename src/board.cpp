@@ -187,10 +187,8 @@ shared_ptr<Board> Board::getBoard(){
               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
               uint8_t future_vertical_coordinate ) const
   {
-    uint8_t upper_coordinate, lower_coordinate;
-    uint8_t most_right_coordinate, most_left_coordinate;
-    uint8_t vertical_iterator, horizontal_iterator;
     uint8_t diagonal_iterator;
+    uint8_t horizontal_absolute_translation, vertical_absolute_translation;
     int8_t vertical_direction, horizontal_direction;
     bool vertical_direction_positive, horizontal_direction_positive;
 
@@ -210,45 +208,16 @@ shared_ptr<Board> Board::getBoard(){
 
     // The diagonal path must be 
     // | x1 - x2 | = | y1 - y2 |
-    if( abs( actual_horizontal_coordinate - future_horizontal_coordinate ) != 
-    abs( actual_vertical_coordinate - future_vertical_coordinate ) ) return false;
+    horizontal_absolute_translation = abs( actual_horizontal_coordinate - future_horizontal_coordinate );
+    vertical_absolute_translation = abs( actual_vertical_coordinate - future_vertical_coordinate );
 
-    if( actual_vertical_coordinate < future_vertical_coordinate )
-    {
-      // Start one square ahead of the actual position and ends
-      // over the last square
-      upper_coordinate = future_vertical_coordinate + 1;
-      lower_coordinate = actual_vertical_coordinate + 1;
-      vertical_direction_positive = true;
-    } else {
+    if(  horizontal_absolute_translation != vertical_absolute_translation ) return false;
 
-      upper_coordinate = actual_vertical_coordinate;
-      lower_coordinate = future_vertical_coordinate;
-      vertical_direction_positive = false;
 
-    }
-    
-
-    if( actual_horizontal_coordinate < future_horizontal_coordinate )
-    {
-      // Start one square ahead of the actual position and ends
-      // over the last square
-      most_right_coordinate = future_horizontal_coordinate + 1;
-      most_left_coordinate = actual_horizontal_coordinate + 1;
-      horizontal_direction_positive = true;
-    } else {
-
-      most_right_coordinate = actual_horizontal_coordinate;
-      most_left_coordinate = future_horizontal_coordinate;
-      horizontal_direction_positive = false;
-    }
-
-    if( vertical_direction_positive )
-    {
-      vertical_direction = 1;
-    } else {
-      vertical_direction = -1;
-    }
+    // Here we are sure that we have a valid diagonal
+    // Then we must now which will be the direction of translation.
+    horizontal_direction_positive = actual_horizontal_coordinate < future_horizontal_coordinate;
+    vertical_direction_positive = actual_vertical_coordinate < future_vertical_coordinate;
 
     if( horizontal_direction_positive )
     {
@@ -257,15 +226,23 @@ shared_ptr<Board> Board::getBoard(){
       horizontal_direction = -1;
     }
 
+    if( vertical_direction_positive )
+    {
+      vertical_direction = 1;
+    } else {
+      vertical_direction = -1;
+    }
     
-    //If the diagonal is left-right down-up or right-left up-down then it's treated as 
     for ( diagonal_iterator = 1; diagonal_iterator <= abs(actual_horizontal_coordinate - future_horizontal_coordinate); 
     diagonal_iterator++ )
-    {
+    { //Each iteration will be a new diagonal neighbour
       try {
-        if( the_actual_board->getBoardSquareAt( actual_horizontal_coordinate + (diagonal_iterator * horizontal_direction ),
-          actual_vertical_coordinate + (diagonal_iterator * vertical_direction) )->isOccupied() == true )
+        uint8_t horizontal_axis_movement = actual_horizontal_coordinate + (diagonal_iterator * horizontal_direction);
+        uint8_t vertical_axis_movement = actual_vertical_coordinate + (diagonal_iterator * vertical_direction);
+
+        if( the_actual_board->getBoardSquareAt( horizontal_axis_movement, vertical_axis_movement )->isOccupied() == true )
           return false;
+
       } catch (int throwned_error )
       {
         throw (int) Error;
