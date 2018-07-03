@@ -21,10 +21,10 @@ typedef shared_ptr<Piece> PPiece;
 class Board
 {
   private:
-  static shared_ptr<Board> _board_table; //Points to itself after initialized
-  static const uint8_t _size_of_table = kMaximumAllowedCoordinate + 1; 
+  static shared_ptr<Board> board_table_; //Points to itself after initialized
+  static const uint8_t size_of_table_ = kMaximumAllowedCoordinate + 1; 
         // Number of rows and horizontals 
-  PBoardSquare _board_square_matrix[_size_of_table][_size_of_table]; //Matrix to store the board squares
+  PBoardSquare squares_[size_of_table_][size_of_table_]; //Matrix to store the board squares
 
   public:
   Board();
@@ -54,6 +54,7 @@ class Board
   bool isClearDiagonal(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
                uint8_t future_vertical_coordinate ) const;
+               
   bool isEndRow(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate) const;
 };

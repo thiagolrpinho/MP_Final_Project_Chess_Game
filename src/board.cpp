@@ -8,19 +8,19 @@
 //! A constructor that creates a board
     /*!
         \Description Creates a new board
-        with a _size_of_table x _size_of_table
+        with a size_of_table_ x size_of_table_
         matrix of board squares each one with
         it's unique and respective coordinate.
     */
 Board::Board()
 {
-    // Set up board squares (_size_of_table x _size_of_table)
-    for(uint8_t i = 0; i < _size_of_table; i++)
+    // Set up board squares (size_of_table_ x size_of_table_)
+    for(uint8_t i = 0; i < size_of_table_; i++)
     {
-        for(uint8_t j = 0; j < _size_of_table; j++)
+        for(uint8_t j = 0; j < size_of_table_; j++)
         {
-            _board_square_matrix[i][j].reset( new BoardSquare( i, j ) );
-                //Makes each _board_square_matrix to point to a new Board Square
+            squares_[i][j].reset( new BoardSquare( i, j ) );
+                //Makes each squares_ to point to a new Board Square
         }
     }
 }
@@ -28,11 +28,11 @@ Board::Board()
 Board::~Board()
 {
   // Reset board squares pointers and they're deallocated
-  for (uint8_t i = 0; i < _size_of_table; i++)
+  for (uint8_t i = 0; i < size_of_table_; i++)
   {
-    for (uint8_t j = 0; j < _size_of_table; j++)
+    for (uint8_t j = 0; j < size_of_table_; j++)
     {
-        _board_square_matrix[i][j].reset();
+        squares_[i][j].reset();
     }
   }
 }
@@ -41,18 +41,18 @@ Board::~Board()
     /*! Initializes Board on the first call and returns a pointer to the board
         \Description Verifies if there's already one board.
         If there no board it tries to create one and return it's value 
-        stored on _board_table.
+        stored on board_table_.
         If it cannot create, throws an Error.
-        Else if there is already one board it just returns _board_table.
+        Else if there is already one board it just returns board_table_.
         \return A shared pointer to the singleton board.
         \throw Error if couldn't created board
     */
 shared_ptr<Board> Board::getBoard(){
     //If there's no board, then create one.
-    if( _board_table == nullptr )
+    if( board_table_ == nullptr )
     {  
         try {
-            _board_table.reset( new Board() );
+            board_table_.reset( new Board() );
             //Reset board table to new board
         } catch ( int throwned_error) {
             // If there was a failure creating board
@@ -60,7 +60,7 @@ shared_ptr<Board> Board::getBoard(){
         }
     }
 
-    return _board_table;
+    return board_table_;
 }
 
 //*! Returns the board square on given coordinates
@@ -68,7 +68,7 @@ shared_ptr<Board> Board::getBoard(){
         \Description Fix evaluates if the given coordinates
         are valid then return a valid board square.
         
-        \param Two uint8_t lower than _size_of_table.
+        \param Two uint8_t lower than size_of_table_.
         \return A valid board square of the given coordinates.
         \throw Error if given coordinates not valid
     */
@@ -76,10 +76,10 @@ PBoardSquare Board::getBoardSquareAt( uint8_t horizontal_coordinate, uint8_t ver
 { 
   // If any given coordinate is greater of equal to the size of the table
   // then it's an Error.
-  if( vertical_coordinate >= _size_of_table ) throw (int) Error;
-  if( horizontal_coordinate >= _size_of_table ) throw (int) Error;
+  if( vertical_coordinate >= size_of_table_ ) throw (int) Error;
+  if( horizontal_coordinate >= size_of_table_ ) throw (int) Error;
 
-  return _board_square_matrix[horizontal_coordinate][vertical_coordinate];
+  return squares_[horizontal_coordinate][vertical_coordinate];
 }
 
 //*! Change the piece on the given board square
@@ -89,7 +89,7 @@ PBoardSquare Board::getBoardSquareAt( uint8_t horizontal_coordinate, uint8_t ver
         If it succeeds return a Success(Integer 1)
         If not return an Error(integer 0)
         
-        \param Two uint8_t lower than _size_of_table and 
+        \param Two uint8_t lower than size_of_table_ and 
                 shared pointer to a valid an already created 
                 Piece
         \return A Success(integer 1) or an Error(integer 0)
@@ -119,11 +119,11 @@ bool Board::isClearHorizontal(uint8_t actual_horizontal_coordinate,
   // Moving to the same square is not a valid move.
   if( actual_horizontal_coordinate == future_horizontal_coordinate ) return false;
   // Moving outside the board is not valid.
-  if( future_horizontal_coordinate >= _size_of_table ) return false;
+  if( future_horizontal_coordinate >= size_of_table_ ) return false;
 
   // Starting outside the board is not valid.
-  if( actual_horizontal_coordinate >= _size_of_table ) return false;
-  if( actual_vertical_coordinate >= _size_of_table ) return false;
+  if( actual_horizontal_coordinate >= size_of_table_ ) return false;
+  if( actual_vertical_coordinate >= size_of_table_ ) return false;
 
   if( actual_horizontal_coordinate < future_horizontal_coordinate )
   {
@@ -158,11 +158,11 @@ bool Board::isClearVertical(uint8_t actual_horizontal_coordinate,
   // Moving to the same square is not a valid move.
   if( actual_vertical_coordinate == future_vertical_coordinate ) return false;
   // Moving outside the board is not valid.
-  if( future_vertical_coordinate >= _size_of_table ) return false;
+  if( future_vertical_coordinate >= size_of_table_ ) return false;
 
   // Starting outside the board is not valid.
-  if( actual_horizontal_coordinate >= _size_of_table ) return false;
-  if( actual_vertical_coordinate >= _size_of_table ) return false;
+  if( actual_horizontal_coordinate >= size_of_table_ ) return false;
+  if( actual_vertical_coordinate >= size_of_table_ ) return false;
 
   if( actual_vertical_coordinate < future_vertical_coordinate )
   {
@@ -199,12 +199,12 @@ bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
   if( actual_vertical_coordinate == future_vertical_coordinate ) return false;
 
   // Moving outside the board is not valid.
-  if( future_horizontal_coordinate >= _size_of_table ) return false;
-  if( future_vertical_coordinate >= _size_of_table ) return false;
+  if( future_horizontal_coordinate >= size_of_table_ ) return false;
+  if( future_vertical_coordinate >= size_of_table_ ) return false;
 
   // Starting outside the board is not valid.
-  if( actual_horizontal_coordinate >= _size_of_table ) return false;
-  if( actual_vertical_coordinate >= _size_of_table ) return false;
+  if( actual_horizontal_coordinate >= size_of_table_ ) return false;
+  if( actual_vertical_coordinate >= size_of_table_ ) return false;
 
   // The diagonal path must be 
   // | x1 - x2 | = | y1 - y2 |
@@ -255,16 +255,16 @@ bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
 bool Board::isEndRow(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate) const
 {
-  return (actual_vertical_coordinate == 0 || actual_vertical_coordinate == _size_of_table - 1);
+  return (actual_vertical_coordinate == 0 || actual_vertical_coordinate == size_of_table_ - 1);
 }
 
 uint8_t Board::cleanBoard()
 {
-  for (uint8_t horizontal_coordinate = 0; horizontal_coordinate < _size_of_table; horizontal_coordinate++)
+  for (uint8_t horizontal_coordinate = 0; horizontal_coordinate < size_of_table_; horizontal_coordinate++)
   {
-    for( uint8_t vertical_coordinate = 0; vertical_coordinate < _size_of_table; vertical_coordinate++ )
+    for( uint8_t vertical_coordinate = 0; vertical_coordinate < size_of_table_; vertical_coordinate++ )
     {
-      if( _board_square_matrix[horizontal_coordinate][vertical_coordinate]->deletePiece() == Error ) return Error;
+      if( squares_[horizontal_coordinate][vertical_coordinate]->deletePiece() == Error ) return Error;
     }
   }
   return Success;
@@ -277,5 +277,5 @@ uint8_t Board::cleanBoardSquareAt(uint8_t horizontal_coordinate, uint8_t vertica
   
   return Success;
 }
-//Initializes _board_table with nullptr
-shared_ptr<Board> Board::_board_table = nullptr;
+//Initializes board_table_ with nullptr
+shared_ptr<Board> Board::board_table_ = nullptr;
