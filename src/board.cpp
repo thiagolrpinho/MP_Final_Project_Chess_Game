@@ -243,7 +243,7 @@ shared_ptr<Board> Board::getBoard(){
       horizontal_direction_positive = false;
     }
 
-    if(vertical_direction_positive)
+    if( vertical_direction_positive )
     {
       vertical_direction = 1;
     } else {
@@ -259,53 +259,16 @@ shared_ptr<Board> Board::getBoard(){
 
     
     //If the diagonal is left-right down-up or right-left up-down then it's treated as 
-    if( horizontal_direction_positive == vertical_direction_positive ) 
-    { 
-      for ( diagonal_iterator = 1; diagonal_iterator < abs(actual_horizontal_coordinate - future_horizontal_coordinate); 
-      diagonal_iterator++ )
+    for ( diagonal_iterator = 1; diagonal_iterator <= abs(actual_horizontal_coordinate - future_horizontal_coordinate); 
+    diagonal_iterator++ )
+    {
+      try {
+        if( the_actual_board->getBoardSquareAt( actual_horizontal_coordinate + (diagonal_iterator * horizontal_direction ),
+          actual_vertical_coordinate + (diagonal_iterator * vertical_direction) )->isOccupied() == true )
+          return false;
+      } catch (int throwned_error )
       {
-        try {
-          if( the_actual_board->getBoardSquareAt( actual_horizontal_coordinate + (diagonal_iterator * horizontal_direction ),
-           actual_vertical_coordinate + (diagonal_iterator * vertical_direction) )->isOccupied() == true )
-            return false;
-        } catch (int throwned_error )
-        {
-          throw (int) Error;
-        }
-      }
-      
-      
-      for( vertical_iterator = lower_coordinate, horizontal_iterator = most_left_coordinate;
-          horizontal_iterator < most_right_coordinate && vertical_iterator < upper_coordinate;
-          vertical_iterator++, horizontal_iterator++)
-      { 
-        try {
-          if( the_actual_board->getBoardSquareAt( horizontal_iterator, vertical_iterator )->isOccupied() == true ) return false;
-        } catch (int throwned_error )
-        {
-          throw (int) Error;
-        }
-      }
-    } else {
-      //If horizontal is positive then the movement must be Left-Right Up-Down
-      if( horizontal_direction_positive )
-      {
-        for( horizontal_iterator = most_left_coordinate, vertical_iterator = upper_coordinate - 1; 
-            horizontal_iterator < most_right_coordinate && vertical_iterator >= lower_coordinate;
-             horizontal_iterator++, vertical_iterator-- )
-        {
-          if( the_actual_board->getBoardSquareAt( horizontal_iterator, vertical_iterator )->isOccupied() == true )
-           return false;
-        }
-      } else {
-        // Else then it's a movement Right-Left Down-Up
-        for( horizontal_iterator = most_right_coordinate - 1, vertical_iterator = lower_coordinate; 
-            horizontal_iterator >= most_left_coordinate && vertical_iterator < upper_coordinate;
-             horizontal_iterator--, vertical_iterator++ )
-        {
-          if( the_actual_board->getBoardSquareAt( horizontal_iterator, vertical_iterator )->isOccupied() == true )
-           return false;
-        }
+        throw (int) Error;
       }
     }
     return true;
