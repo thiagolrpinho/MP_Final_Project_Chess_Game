@@ -190,6 +190,8 @@ shared_ptr<Board> Board::getBoard(){
     uint8_t upper_coordinate, lower_coordinate;
     uint8_t most_right_coordinate, most_left_coordinate;
     uint8_t vertical_iterator, horizontal_iterator;
+    uint8_t diagonal_iterator;
+    int8_t vertical_direction, horizontal_direction;
     bool vertical_direction_positive, horizontal_direction_positive;
 
     shared_ptr<Board> the_actual_board( getBoard() );
@@ -225,6 +227,7 @@ shared_ptr<Board> Board::getBoard(){
       vertical_direction_positive = false;
 
     }
+    
 
     if( actual_horizontal_coordinate < future_horizontal_coordinate )
     {
@@ -239,10 +242,39 @@ shared_ptr<Board> Board::getBoard(){
       most_left_coordinate = future_horizontal_coordinate;
       horizontal_direction_positive = false;
     }
+
+    if(vertical_direction_positive)
+    {
+      vertical_direction = 1;
+    } else {
+      vertical_direction = -1;
+    }
+
+    if( horizontal_direction_positive )
+    {
+      horizontal_direction = 1;
+    } else {
+      horizontal_direction = -1;
+    }
+
     
     //If the diagonal is left-right down-up or right-left up-down then it's treated as 
     if( horizontal_direction_positive == vertical_direction_positive ) 
     { 
+      for ( diagonal_iterator = 1; diagonal_iterator < abs(actual_horizontal_coordinate - future_horizontal_coordinate); 
+      diagonal_iterator++ )
+      {
+        try {
+          if( the_actual_board->getBoardSquareAt( actual_horizontal_coordinate + (diagonal_iterator * horizontal_direction ),
+           actual_vertical_coordinate + (diagonal_iterator * vertical_direction) )->isOccupied() == true )
+            return false;
+        } catch (int throwned_error )
+        {
+          throw (int) Error;
+        }
+      }
+      
+      
       for( vertical_iterator = lower_coordinate, horizontal_iterator = most_left_coordinate;
           horizontal_iterator < most_right_coordinate && vertical_iterator < upper_coordinate;
           vertical_iterator++, horizontal_iterator++)
