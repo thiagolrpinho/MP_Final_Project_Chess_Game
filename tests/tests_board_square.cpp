@@ -91,7 +91,7 @@ TEST_CASE( "Read", "[square]" )
   PBoardSquare occupied_board_square(  new BoardSquare( 1, 2 ) );
   PPiece empty_piece( new Piece() );
 
-  occupied_board_square->setPiece(empty_piece);
+  occupied_board_square->setPiece( empty_piece );
 
   SECTION( "A board square can be read to know if it's occupied" ) 
   { 

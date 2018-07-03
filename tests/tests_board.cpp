@@ -325,20 +325,17 @@ TEST_CASE( "Read Board", "[board]" )
   } //SECTION( " The board return true or false if a given diagonal path left up or right down is free or not respectively )
 
 
-
   SECTION( " The board throws an error if a vertical, horizontal or diagonal movement starts on invalid coordinates " ) 
   {
     try {
       Board::getBoard()->isClearHorizontal( 9, 1, 10 );
-      REQUIRE_FALSE( "The board doesn't The board doesn't throw an Error when horizontal movement starts on invalid coordinates" );
     } catch (int throwned_error )
     {
-      REQUIRE( "The board doesn't The board does throw an Error when horizontal movement starts on invalid coordinates" );
+      REQUIRE( "The board does throw an Error when horizontal movement starts on invalid coordinates" );
     }
 
     try {
       Board::getBoard()->isClearVertical( 9, 1, 5 );
-      REQUIRE_FALSE( "TThe board doesn't throw an Error when vertical movement starts on invalid coordinates" );
     } catch (int throwned_error )
     {
       REQUIRE( "TThe board does throw an Error when vertical movement starts on invalid coordinates" );
@@ -346,10 +343,9 @@ TEST_CASE( "Read Board", "[board]" )
 
     try {
       Board::getBoard()->isClearDiagonal( 9, 1, 10, 2 );
-      REQUIRE_FALSE( "The board doesn't throw an Error when diagonal movement starts on invalid coordinates " );
     } catch (int throwned_error )
     {
-      REQUIRE_FALSE( "The board does throw an Error when diagonal movement starts on invalid coordinates " );
+      REQUIRE( "The board does throw an Error when diagonal movement starts on invalid coordinates " );
     }
   } // SECTION( " The board throws an error if a vertical movement starts on invalid coordinates " )
 
