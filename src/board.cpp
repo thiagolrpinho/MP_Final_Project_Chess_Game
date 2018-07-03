@@ -113,6 +113,7 @@ shared_ptr<Board> Board::getBoard(){
               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const
   {
     uint8_t most_right_coordinate, most_left_coordinate;
+    uint8_t horizontal_iterator;
     shared_ptr<Board> the_actual_board( getBoard() );
 
     // Moving to the same square is not a valid move.
@@ -138,9 +139,9 @@ shared_ptr<Board> Board::getBoard(){
 
     }
     
-    for( uint8_t i = most_left_coordinate; i < most_right_coordinate; i++ )
+    for( horizontal_iterator= most_left_coordinate; horizontal_iterator< most_right_coordinate; horizontal_iterator++ )
     {
-      if( the_actual_board->getBoardSquareAt( i, actual_vertical_coordinate )->isOccupied() == true ) return false;
+      if( the_actual_board->getBoardSquareAt( horizontal_iterator, actual_vertical_coordinate )->isOccupied() == true ) return false;
     }
     return true;
   }
@@ -149,6 +150,7 @@ shared_ptr<Board> Board::getBoard(){
               uint8_t actual_vertical_coordinate, uint8_t future_vertical_coordinate) const 
   {
     uint8_t upper_coordinate, lower_coordinate;
+    uint8_t vertical_iterator;
     shared_ptr<Board> the_actual_board( getBoard() );
 
 
@@ -167,17 +169,14 @@ shared_ptr<Board> Board::getBoard(){
       // over the last square
       upper_coordinate = future_vertical_coordinate + 1;
       lower_coordinate = actual_vertical_coordinate + 1;
-
     } else {
-
       upper_coordinate = actual_vertical_coordinate;
       lower_coordinate = future_vertical_coordinate;
-
     }
     
-    for( uint8_t i = lower_coordinate; i < upper_coordinate; i++ )
+    for( vertical_iterator= lower_coordinate; vertical_iterator< upper_coordinate; vertical_iterator++ )
     {
-      if( the_actual_board->getBoardSquareAt(actual_horizontal_coordinate, i )->isOccupied() == true ) return false;
+      if( the_actual_board->getBoardSquareAt(actual_horizontal_coordinate, vertical_iterator)->isOccupied() == true ) return false;
     }
     
     return true;
