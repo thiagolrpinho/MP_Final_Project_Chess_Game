@@ -32,7 +32,7 @@ class Board
 
   uint8_t cleanBoard();
 
-  uint8_t cleanBoardSquare(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
+  uint8_t cleanBoardSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
 
   /*! Returns the board square on given coordinates
   */

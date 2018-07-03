@@ -175,6 +175,26 @@ TEST_CASE( "Read Board", "[board]" )
   } // SECTION( " The board returns true or false if a given 
     //  vertical path down is free or not respectively " ) 
 
+  SECTION( " The board returns false if a horizontal movement starts and ends on the same spot " ) 
+  {
+    PBoard valid_board = Board::getBoard();
+
+    PPiece piece_on_F7( new Piece() );
+      //F7 on a matrix 0 to 7 is [5][6]
+      
+    // First we make sure the board is clean
+    REQUIRE( valid_board->cleanBoard() == Success );
+
+    // Then we check if even if there are no pieces over F7 it should still return Error.
+    REQUIRE( valid_board->isClearHorizontal( 5, 6, 5) == Error );
+
+    REQUIRE( valid_board->setPieceAt( 0, 4 , piece_on_F7 ) == Success );
+
+    // After that we check if with a piece over F7 would return Error
+    REQUIRE( valid_board->isClearHorizontal( 5, 6, 5) == Error );
+
+  } // SECTION( " The board returns false if a horizontal movement starts and ends on the same spot
+
 } // TEST_CASE( "Read", "[board]" )
 
 TEST_CASE( "Update Board", "[board]" ) 

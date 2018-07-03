@@ -115,11 +115,21 @@ shared_ptr<Board> Board::getBoard(){
     uint8_t most_right_coordinate, most_left_coordinate;
     shared_ptr<Board> the_actual_board( getBoard() );
 
+    // Moving to the same square is not a valid move.
+    if( actual_horizontal_coordinate == future_horizontal_coordinate ) return false;
+    // Moving outside the board is not valid.
+    if( future_horizontal_coordinate >= _size_of_table ) return false;
+
+    // Starting outside the board is not valid.
+    if( actual_horizontal_coordinate >= _size_of_table ) return false;
+    if( actual_vertical_coordinate >= _size_of_table ) return false;
+
     if( actual_horizontal_coordinate < future_horizontal_coordinate )
     {
-
-      most_right_coordinate = future_horizontal_coordinate;
-      most_left_coordinate = actual_horizontal_coordinate;
+      // Start one square ahead of the actual position and ends
+      // over the last square
+      most_right_coordinate = future_horizontal_coordinate + 1;
+      most_left_coordinate = actual_horizontal_coordinate + 1;
 
     } else {
 
@@ -128,7 +138,7 @@ shared_ptr<Board> Board::getBoard(){
 
     }
     
-    for( uint8_t i = most_left_coordinate + 1; i <= most_right_coordinate; i++ )
+    for( uint8_t i = most_left_coordinate; i < most_right_coordinate; i++ )
     {
       if( the_actual_board->getBoardSquareAt( i, actual_vertical_coordinate )->isOccupied() == true ) return false;
     }
@@ -173,7 +183,7 @@ shared_ptr<Board> Board::getBoard(){
     return Success;
   }
 
-  uint8_t Board::cleanBoardSquare(uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
+  uint8_t Board::cleanBoardSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
   {
     if(Board::getBoard()->getBoardSquareAt(horizontal_coordinate, vertical_coordinate)->deletePiece() == Error )
      return Error;
