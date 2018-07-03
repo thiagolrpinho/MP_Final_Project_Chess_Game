@@ -202,6 +202,10 @@ shared_ptr<Board> Board::getBoard(){
     if( actual_horizontal_coordinate >= _size_of_table ) return false;
     if( actual_vertical_coordinate >= _size_of_table ) return false;
 
+    // The diagonal path must be 
+    // | x1 - x2 | = | y1 - y2 |
+    if( abs( actual_horizontal_coordinate - future_horizontal_coordinate ) != 
+    abs( actual_vertical_coordinate - future_vertical_coordinate ) ) return false;
 
     if( actual_vertical_coordinate < future_vertical_coordinate )
     {
