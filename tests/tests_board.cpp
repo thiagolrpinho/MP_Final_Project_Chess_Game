@@ -254,6 +254,22 @@ TEST_CASE( "Read Board", "[board]" )
     }
   } //SECTION( " The board returns true or false if a given diagonal path right up is free or not respectively" )
 
+  SECTION( " The board return false if a given coordinate pair is not a diagonal " ) 
+  {
+    try {
+      PBoard clean_board = Board::getBoard();
+
+      clean_board->cleanBoard();
+
+      //Verifying if is clear the path D3 to B1 with just one piece over the board
+      REQUIRE( clean_board->isClearDiagonal( 5, 4, 2, 5 ) == false );
+      
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "The board doesn't return false if a given coordinate pair is not a diagonal " );
+    }
+  } //SECTION( " The board return false if a given coordinate pair is not a diagonal " )
+
 
   SECTION( " The board return true or false if a given diagonal path left down is free or not respectively " ) 
   {

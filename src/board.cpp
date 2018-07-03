@@ -228,6 +228,8 @@ shared_ptr<Board> Board::getBoard(){
 
     }
     
+    // MISTAKE IS HERE, NOTHING IS GUARANTEEING THAT HORIZONTAL AND VERTICAL WILL ACT 
+    // TOGETHER TO FORM A DIAGONAL
     for( vertical_iterator = lower_coordinate, horizontal_iterator = most_left_coordinate;
          horizontal_iterator < most_right_coordinate && vertical_iterator < upper_coordinate;
          vertical_iterator++, horizontal_iterator++)
