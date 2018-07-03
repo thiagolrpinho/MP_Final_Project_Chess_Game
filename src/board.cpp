@@ -164,8 +164,8 @@ shared_ptr<Board> Board::getBoard(){
     if( actual_vertical_coordinate < future_vertical_coordinate )
     {
 
-      upper_coordinate = future_vertical_coordinate;
-      lower_coordinate = actual_vertical_coordinate;
+      upper_coordinate = future_vertical_coordinate + 1;
+      lower_coordinate = actual_vertical_coordinate + 1;
 
     } else {
 
@@ -174,19 +174,68 @@ shared_ptr<Board> Board::getBoard(){
 
     }
     
-    for( uint8_t i = lower_coordinate + 1; i <= upper_coordinate; i++ )
+    for( uint8_t i = lower_coordinate + 1; i < upper_coordinate; i++ )
     {
       if( the_actual_board->getBoardSquareAt(actual_horizontal_coordinate, i )->isOccupied() == true ) return false;
     }
     return true;
   }
 
-    bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
-               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
-               uint8_t future_vertical_coordinate ) const
+  bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
+              uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+              uint8_t future_vertical_coordinate ) const
+  {
+    uint8_t upper_coordinate, lower_coordinate;
+    uint8_t most_right_coordinate, most_left_coordinate;
+    uint8_t vertical_iterator, horizontal_iterator;
+    shared_ptr<Board> the_actual_board( getBoard() );
+
+    // Moving to the same square is not a valid move.
+    if( actual_horizontal_coordinate == future_horizontal_coordinate ) return false;
+    if( actual_vertical_coordinate == future_vertical_coordinate ) return false;
+
+    // Moving outside the board is not valid.
+    if( future_horizontal_coordinate >= _size_of_table ) return false;
+    if( future_vertical_coordinate >= _size_of_table ) return false;
+
+    // Starting outside the board is not valid.
+    if( actual_horizontal_coordinate >= _size_of_table ) return false;
+    if( actual_vertical_coordinate >= _size_of_table ) return false;
+
+
+    if( actual_vertical_coordinate < future_vertical_coordinate )
     {
-      return false;
+      upper_coordinate = future_vertical_coordinate + 1;
+      lower_coordinate = actual_vertical_coordinate + 1;
+    } else {
+
+      upper_coordinate = actual_vertical_coordinate;
+      lower_coordinate = future_vertical_coordinate;
+
     }
+
+    if( actual_horizontal_coordinate < future_horizontal_coordinate )
+    {
+      // Start one square ahead of the actual position and ends
+      // over the last square
+      most_right_coordinate = future_horizontal_coordinate + 1;
+      most_left_coordinate = actual_horizontal_coordinate + 1;
+
+    } else {
+
+      most_right_coordinate = actual_horizontal_coordinate;
+      most_left_coordinate = future_horizontal_coordinate;
+
+    }
+    
+    for( vertical_iterator = lower_coordinate, horizontal_iterator = most_left_coordinate;
+         horizontal_iterator < most_right_coordinate && vertical_iterator < upper_coordinate;
+         vertical_iterator++, horizontal_iterator++)
+    {
+      if( the_actual_board->getBoardSquareAt(horizontal_iterator, vertical_iterator )->isOccupied() == true ) return false;
+    }
+    return true;
+  }
 
   uint8_t Board::cleanBoard()
   {

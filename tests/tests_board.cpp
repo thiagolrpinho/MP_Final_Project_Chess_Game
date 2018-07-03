@@ -223,7 +223,7 @@ TEST_CASE( "Read Board", "[board]" )
     }
   } // SECTION( " The board returns false if a vertical movement starts and ends on the same spot
 
-  
+
   SECTION( " The board returns true or false if a given diagonal path right up is free or not respectively " ) 
   {
     try {
@@ -232,7 +232,7 @@ TEST_CASE( "Read Board", "[board]" )
       PPiece piece_on_B7( new Piece() );
       //B7 on a matrix 0 to 7 is [1][6]
 
-      PBoard clean_board = clean_board;
+      PBoard clean_board = Board::getBoard();
 
       clean_board->cleanBoard();
 
