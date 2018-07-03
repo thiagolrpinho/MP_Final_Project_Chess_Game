@@ -1,40 +1,42 @@
+#include <memory>
+using std::unique_ptr;
+ typedef unique_ptr<char*> Matrix;
 
-
-char ** movepiece(char ** board){
+Matrix movepiece(Matrix board){
 
     //calls game engine and receive new board
     return board;
 }
 
-void savegame(char ** board){
+Matrix savegame(Matrix board){
 
     //calls savegame function
 
 }
 
-char ** loadboard(){
+Matrix loadboard(){
 
     //calls load function
     return board;
 
 }
 
-char ** showboards(char ** board){
+Matrix showoptions(Matrix board){
     //calls function for the boards
     return board;
 }
 
-char ** newstandardgame(){
+Matrix newstandardgame(){
     //calls function to create new standard board
     return board;
 }
 
-char ** emptyboard(){
+Matrix newemptyboard(){
     //calls function to create empty loadboard
     return board;
 }
 
-char ** movepiecelocation(char ** board){
+Matrix movepiecelocation(Matrix board){
     //calls function to create new board with the old one
     return board;
 }
