@@ -313,7 +313,7 @@ TEST_CASE( "Read Board", "[board]" )
 
       REQUIRE( clean_board->setPieceAt( 3, 5 , piece_on_D6 ) == Success );
 
-            //Verifying if is clear the path H2 to C7
+      //Verifying if is clear the path H2 to C7
       REQUIRE( clean_board->isClearDiagonal( 7, 1, 2, 6 ) == false );
 
       //Verifying if is clear the path B8 to G3
