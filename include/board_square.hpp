@@ -7,6 +7,9 @@
 #define BOARD_SQUARE_HPP
 #include "piece.hpp"
 
+#include "stdint.h"
+using std::uint8_t;
+  //Unsigned int with range [0 to 255]
 
 #include <memory>
 using std::shared_ptr; 
@@ -23,31 +26,32 @@ enum OperationStatus {Error, Success};
 enum StringEquivalence {Equals};
 
 //BoardSquares cannot have bigger coordinates than 
-//the board side size or lower than 1.
-const unsigned short int kMaximumAllowedCoordinate = 8;
-const unsigned short int kMinimunAllowedCoordinate = 1;
+//the board side size or lower than 0.
+const uint8_t kMaximumAllowedCoordinate = 7;
 
 class BoardSquare {
   private:
-    //Rank are lines.
-    unsigned short int rank_;
-    //Files are columns.
-    unsigned short int file_;
+    //horizontal are lines.
+    uint8_t horizontal_;
+    //verticals are columns.
+    uint8_t vertical_;
     //Squares points to pieces nullptr or a pieace
-    shared_ptr<Piece> piece_on_square_ = nullptr;
+    shared_ptr<Piece> piece_on_square_;
 
   public:
   //Methods
-  BoardSquare( unsigned short int file_coordinate, unsigned short int rank_coordinate );
-
+  BoardSquare( uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
   ~BoardSquare();
 
-  unsigned short int getRank();
-  unsigned short int getFile();
-  bool isOccupied();
-  unsigned short int setPiece( shared_ptr<Piece> );
-  shared_ptr<Piece> getPiece();
-  unsigned short int deletePiece();
+  //Orientation related methods
+  uint8_t getHorizontal() const ;
+  uint8_t getVertical() const ;
+  
+  //Piece related methods
+  bool isOccupied() const;
+  uint8_t setPiece( shared_ptr<Piece> );
+  shared_ptr<Piece> getPiece() const ;
+  uint8_t deletePiece();
 
 };
 

@@ -1,31 +1,33 @@
 #include "board_square.hpp"
 
-/*! \file board_square.cpp
+/*! \vertical board_square.cpp
     \brief Module responsible to implement board square behaviors.
 */
 
 //! A constructor that creates a board square.
     /*!
         \Description Creates a new board square.
-        Both rank or file cannot be lower than one or
+        Both horizontal or vertical cannot be lower than one or
         greater than the border side size.
         
-        \param Two Int between (kMinimunAllowedCoordinate and kMaximumAllowedCoordinate)
+        \param Two unsigned int bellow KMaximumAllowedCoordinate
+        \throw Error if given invalid coordinates
     */
-BoardSquare::BoardSquare( unsigned short int file_coordinate, unsigned short int rank_coordinate )
+BoardSquare::BoardSquare( uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
 {   
-    if ( rank_coordinate < kMinimunAllowedCoordinate || rank_coordinate > kMaximumAllowedCoordinate)
+    if ( horizontal_coordinate > kMaximumAllowedCoordinate )
     {
         throw (int) Error;
-    } //if ( rank_coordinate < kMinimunAllowedCoordinate || rank_coordinate > kMaximumAllowedCoordinate)
+    } //if ( horizontal_coordinate > kMaximumAllowedCoordinate )
 
-    if ( file_coordinate < kMinimunAllowedCoordinate || file_coordinate > kMaximumAllowedCoordinate)
+    if ( vertical_coordinate > kMaximumAllowedCoordinate )
     {
         throw (int) Error;
-    } //if ( file_coordinate < kMinimunAllowedCoordinate || file_coordinate > kMaximumAllowedCoordinate)
+    } //if ( vertical_coordinate > kMaximumAllowedCoordinate )
 
-    file_ = file_coordinate;
-    rank_ = rank_coordinate;
+    vertical_ = vertical_coordinate;
+    horizontal_ = horizontal_coordinate;
+    piece_on_square_ = nullptr;
 }
 
 //! A destructor that cleans all pointers.
@@ -34,24 +36,24 @@ BoardSquare::~BoardSquare()
     piece_on_square_.reset();
 }
 
-//! A getter to board square rank
+//! A getter to board square horizontal
     /*!
         \return The horizontal coordenate of
         the board square
     */
-unsigned short int BoardSquare::getRank()
+uint8_t BoardSquare::getHorizontal() const
 {
-    return rank_;
+    return horizontal_;
 }
 
-//! A getter to board square file
+//! A getter to board square vertical
     /*!
         \return The vertical coordenate of
         the board square
     */
-unsigned short int BoardSquare::getFile()
+uint8_t BoardSquare::getVertical() const
 {
-    return file_;
+    return vertical_;
 }
 
 //! A method to test if there's any piece over the square.
@@ -60,9 +62,9 @@ unsigned short int BoardSquare::getFile()
         the piece address pointed by the board square
         is nullptr.
     */
-bool BoardSquare::isOccupied()
+bool BoardSquare::isOccupied()  const
 {
-    if ( piece_on_square_ )
+    if ( piece_on_square_ != nullptr )
         return true;
     else 
         return false;
@@ -77,7 +79,7 @@ bool BoardSquare::isOccupied()
         \return Return a Success(Integer 1)
         or Error(Integer 0)
     */
-unsigned short int BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
+uint8_t BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
 {
     try {
         piece_on_square_ = piece_to_be_set;
@@ -92,7 +94,7 @@ unsigned short int BoardSquare::setPiece( shared_ptr<Piece> piece_to_be_set )
         \return Return a shared pointer of 
         the piece on the square.
     */
-shared_ptr<Piece> BoardSquare::getPiece()
+shared_ptr<Piece> BoardSquare::getPiece() const
 {
     return piece_on_square_ ;
 }
@@ -102,7 +104,7 @@ shared_ptr<Piece> BoardSquare::getPiece()
         \return Return a Success(Integer 1)
         or Error(Integer 0)
     */
-unsigned short int BoardSquare::deletePiece()
+uint8_t BoardSquare::deletePiece()
 {
     try {
         piece_on_square_.reset();
