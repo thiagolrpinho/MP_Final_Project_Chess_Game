@@ -1,6 +1,6 @@
 #include <memory>
 using std::unique_ptr;
- typedef unique_ptr<char*> Matrix;
+typedef unique_ptr<char*> Matrix;
 
 Matrix movepiece(Matrix board){
 
@@ -8,10 +8,11 @@ Matrix movepiece(Matrix board){
     return board;
 }
 
-Matrix savegame(Matrix board){
+int  savegame(Matrix board){
 
     //calls savegame function
 
+    return 1;
 }
 
 Matrix loadboard(){
