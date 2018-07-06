@@ -20,9 +20,10 @@ SECTION( "Creating and testing matrix" )
 
     REQUIRE(movepiece(board)!=nullptr);
     REQUIRE(savegame(board)==1);
-    REQUIRE(loadboard(board!=nullptr);
+    REQUIRE(loadboard(board==nullptr);
     REQUIRE(showoptions(board)!=nullptr);
-    REQUIRE(newstandardgame(board)!=nullptr);
-    REQUIRE(newemptyboard(board)!=nullptr);
+    REQUIRE(newstandardgame(board)==nullptr);
+    REQUIRE(newemptyboard(board)==nullptr);
     REQUIRE(movepiecelocation(board)!=nullptr);
+    REQUIRE(aimove(board)!=nullptr);
 }
