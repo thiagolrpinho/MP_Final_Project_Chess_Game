@@ -3,8 +3,8 @@
 #include "catch.hpp"
 #endif
 
-#ifndef BOARD_SQUARE_HPP
-#define BOARD_SQUARE_HPP
+#ifndef SQUARE_HPP
+#define SQUARE_HPP
 #include "piece.hpp"
 
 #include "stdint.h"
@@ -25,11 +25,11 @@ enum OperationStatus {Error, Success};
 //I'll call 0 as Equals.
 enum StringEquivalence {Equals};
 
-//BoardSquares cannot have bigger coordinates than 
+//Squares cannot have bigger coordinates than 
 //the board side size or lower than 0.
 const uint8_t kMaximumAllowedCoordinate = 7;
 
-class BoardSquare {
+class Square {
   private:
     //horizontal are lines.
     uint8_t horizontal_;
@@ -40,8 +40,8 @@ class BoardSquare {
 
   public:
   //Methods
-  BoardSquare( uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
-  ~BoardSquare();
+  Square( uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
+  ~Square();
 
   //Orientation related methods
   uint8_t getHorizontal() const ;
