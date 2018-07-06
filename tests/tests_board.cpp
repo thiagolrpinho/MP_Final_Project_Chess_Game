@@ -53,7 +53,6 @@ TEST_CASE( "Read Board", "[board]" )
   {
     try {
       PBoardSquare wrong_board_square( Board::getBoard()->getBoardSquareAt( 9, 2 ) );
-      REQUIRE_FALSE( "No error on reading wrong square" );
     } catch (int throwned_error )
     {
       REQUIRE( "Error on reading wrong square" );
@@ -61,7 +60,6 @@ TEST_CASE( "Read Board", "[board]" )
 
     try {
       PBoardSquare wrong_board_square( Board::getBoard()->getBoardSquareAt( -1, 2 ) );
-      REQUIRE_FALSE( "No error on reading wrong square" );
     } catch (int throwned_error )
     {
       REQUIRE( "Error on reading wrong square" );

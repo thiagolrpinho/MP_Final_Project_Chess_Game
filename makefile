@@ -44,7 +44,13 @@ gcov_board: $(TOBJ)
 
 play_game: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+gcovr_html:
+	gcovr -r . --html --html-details -o ./tests/gcov/tests-detailts.html
+
 .PHONY: clean
 
 clean:
 	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+	rm -f $(ODIR)/*.gcno *~ core $(INCDIR)/*~
+	rm -f $(ODIR)/*.gcda *~ core $(INCDIR)/*~

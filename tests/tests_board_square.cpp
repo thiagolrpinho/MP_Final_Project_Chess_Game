@@ -32,16 +32,12 @@ TEST_CASE( "Create", "[square]" )
     //risk a bug.
     try {
       PBoardSquare board_square_wrong_horizontal_bellow_minimum_allowed(  new BoardSquare(  1, -1 ) );
-      //If this lines happens, it's surely a mistake
-      REQUIRE_FALSE( "The Board square have a lower than minimum allowed horizontal." );
     } catch (int e) {
       REQUIRE( "The board square cannot be created with a lower than minimum allowed horizontal" );
     }
 
      try {
       PBoardSquare board_square_wrong_horizontal_above_maximum_allowed(  new BoardSquare(  1, 10 ) );
-      //If this lines happens, it's surely a mistake
-      REQUIRE_FALSE( "The Board square have a higher than maximum allowed horizontal." );
     } catch (int e) {
       REQUIRE( "The board square cannot be created with a higher than maximum allowed horizontal." );
     }
@@ -54,20 +50,16 @@ TEST_CASE( "Create", "[square]" )
     //risk a bug.
     try {
       PBoardSquare board_square_wrong_vertical_bellow_minimum_allowed(  new BoardSquare(  -1,  7 ) );
-      //If this lines happens, it's surely a mistake
-      REQUIRE_FALSE( "The Board square have a lower than minimum allowed horizontal." );
     } catch (int e) {
       REQUIRE( "The board square cannot be created with a lower than minimum allowed horizontal" );
     }
 
      try {
       PBoardSquare board_square_wrong_vertical_above_maximum_allowed(  new BoardSquare(  10, 7 ) );
-      //If this lines happens, it's surely a mistake
-      REQUIRE_FALSE( "The Board square have a higher than maximum allowed horizontal." );
     } catch (int e) {
       REQUIRE( "The board square cannot be created with a higher than maximum allowed horizontal." );
     }
-
+    
   } // SECTION( "A new created BoardSquare can have it's coordinates read" )
 
   SECTION( "A new board square points has no piece" ) 
