@@ -10,13 +10,13 @@ TDIR	=./tests
 
 LIBS	=-lm
 	
-_DEPS	= board.hpp board_square.hpp catch.hpp
+_DEPS	= board.hpp square.hpp catch.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_TOBJ = board.o board_square.o tests_board_square.o tests_main.o
+_TOBJ = board.o square.o tests_square.o tests_main.o
 TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
 
-_OBJ = board.o board_square.o main.o
+_OBJ = board.o square.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)
@@ -25,10 +25,10 @@ $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)
 $(ODIR)/%.o: $(TDIR)/%.cpp $(DEPS)
 	$(CC)	-c	-o 	$@	$<	$(CFLAGS) 
 
-board_square_tester:$(TOBJ)
+square_tester:$(TOBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
-gcov_board_square: $(TOBJ)
+gcov_square: $(TOBJ)
 	$(CC) $(GCOVFLAGS) -o $@ $^ $(LIBS)
 
 

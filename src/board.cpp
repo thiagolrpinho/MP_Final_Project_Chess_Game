@@ -1,7 +1,7 @@
 #include "board.hpp"
 
 /*! \vertical board.cpp
-    \brief Module responsible to implement encapsule board square and
+    \brief Module responsible to implement encapsule square and
     implement board behaviors
 */
 
@@ -9,25 +9,25 @@
     /*!
         \Description Creates a new board
         with a size_of_table_ x size_of_table_
-        matrix of board squares each one with
+        matrix of squares each one with
         it's unique and respective coordinate.
     */
 Board::Board()
 {
-    // Set up board squares (size_of_table_ x size_of_table_)
+    // Set up squares (size_of_table_ x size_of_table_)
     for(uint8_t i = 0; i < size_of_table_; i++)
     {
         for(uint8_t j = 0; j < size_of_table_; j++)
         {
-            squares_[i][j].reset( new BoardSquare( i, j ) );
-                //Makes each squares_ to point to a new Board Square
+            squares_[i][j].reset( new Square( i, j ) );
+                //Makes each squares_ to point to a new Square
         }
     }
 }
 
 Board::~Board()
 {
-  // Reset board squares pointers and they're deallocated
+  // Reset squares pointers and they're deallocated
   for (uint8_t i = 0; i < size_of_table_; i++)
   {
     for (uint8_t j = 0; j < size_of_table_; j++)
@@ -63,16 +63,16 @@ shared_ptr<Board> Board::getBoard(){
     return board_table_;
 }
 
-//*! Returns the board square on given coordinates
+//*! Returns the square on given coordinates
     /*!
         \Description Fix evaluates if the given coordinates
-        are valid then return a valid board square.
+        are valid then return a valid square.
         
         \param Two uint8_t lower than size_of_table_.
-        \return A valid board square of the given coordinates.
+        \return A valid square of the given coordinates.
         \throw Error if given coordinates not valid
     */
-PBoardSquare Board::getBoardSquareAt( uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
+PSquare Board::getSquareAt( uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
 { 
   // If any given coordinate is greater of equal to the size of the table
   // then it's an Error.
@@ -82,9 +82,9 @@ PBoardSquare Board::getBoardSquareAt( uint8_t horizontal_coordinate, uint8_t ver
   return squares_[horizontal_coordinate][vertical_coordinate];
 }
 
-//*! Change the piece on the given board square
+//*! Change the piece on the given square
     /*!
-        \Description Tries to get a valid board square
+        \Description Tries to get a valid square
         and to change it's piece
         If it succeeds return a Success(Integer 1)
         If not return an Error(integer 0)
@@ -98,8 +98,8 @@ uint8_t Board::setPieceAt( uint8_t horizontal_coordinate,
                         uint8_t vertical_coordinate , PPiece piece_to_be_set )
 {
   try {
-    PBoardSquare square_on_coordinate( 
-                        Board::getBoard()->getBoardSquareAt( horizontal_coordinate, vertical_coordinate) );
+    PSquare square_on_coordinate( 
+                        Board::getBoard()->getSquareAt( horizontal_coordinate, vertical_coordinate) );
     if( square_on_coordinate->setPiece( piece_to_be_set ) == Error ) return Error;
   } catch (int throwned_error ) {
     return Error;
@@ -141,7 +141,7 @@ bool Board::isClearHorizontal(uint8_t actual_horizontal_coordinate,
   
   for( horizontal_iterator= most_left_coordinate; horizontal_iterator< most_right_coordinate; horizontal_iterator++ )
   {
-    if( the_actual_board->getBoardSquareAt( horizontal_iterator, actual_vertical_coordinate )->isOccupied() == true ) return false;
+    if( the_actual_board->getSquareAt( horizontal_iterator, actual_vertical_coordinate )->isOccupied() == true ) return false;
   }
   return true;
 } //Board::isClearHorizontal
@@ -177,7 +177,7 @@ bool Board::isClearVertical(uint8_t actual_horizontal_coordinate,
   
   for( vertical_iterator= lower_coordinate; vertical_iterator< upper_coordinate; vertical_iterator++ )
   {
-    if( the_actual_board->getBoardSquareAt(actual_horizontal_coordinate, vertical_iterator)->isOccupied() == true ) return false;
+    if( the_actual_board->getSquareAt(actual_horizontal_coordinate, vertical_iterator)->isOccupied() == true ) return false;
   }
   
   return true;
@@ -240,7 +240,7 @@ bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
       uint8_t horizontal_axis_movement = actual_horizontal_coordinate + (diagonal_iterator * horizontal_direction);
       uint8_t vertical_axis_movement = actual_vertical_coordinate + (diagonal_iterator * vertical_direction);
 
-      if( the_actual_board->getBoardSquareAt( horizontal_axis_movement, vertical_axis_movement )->isOccupied() == true )
+      if( the_actual_board->getSquareAt( horizontal_axis_movement, vertical_axis_movement )->isOccupied() == true )
         return false;
 
     } catch (int throwned_error )
@@ -270,9 +270,9 @@ uint8_t Board::cleanBoard()
   return Success;
 }
 
-uint8_t Board::cleanBoardSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
+uint8_t Board::cleanSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
 {
-  if(Board::getBoard()->getBoardSquareAt(horizontal_coordinate, vertical_coordinate)->deletePiece() == Error )
+  if(Board::getBoard()->getSquareAt(horizontal_coordinate, vertical_coordinate)->deletePiece() == Error )
     return Error;
   
   return Success;

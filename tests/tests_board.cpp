@@ -37,11 +37,11 @@ TEST_CASE( "Read Board", "[board]" )
   {
     try {
       //Board can read a valid square
-      REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 3 ) == nullptr );
+      REQUIRE_FALSE( Board::getBoard()->getSquareAt( 2, 3 ) == nullptr );
 
       //Board read a square with given coordinates
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 3 , 2 )->getHorizontal() == 3 );
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 2 , 2 )->getHorizontal() == 2 );
+      REQUIRE( Board::getBoard()->getSquareAt( 3 , 2 )->getHorizontal() == 3 );
+      REQUIRE( Board::getBoard()->getSquareAt( 2 , 2 )->getHorizontal() == 2 );
 
     } catch (int throwned_error )
     {
@@ -52,14 +52,14 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
   {
     try {
-      PBoardSquare wrong_board_square( Board::getBoard()->getBoardSquareAt( 9, 2 ) );
+      PSquare wrong_square( Board::getBoard()->getSquareAt( 9, 2 ) );
     } catch (int throwned_error )
     {
       REQUIRE( "Error on reading wrong square" );
     }
 
     try {
-      PBoardSquare wrong_board_square( Board::getBoard()->getBoardSquareAt( -1, 2 ) );
+      PSquare wrong_square( Board::getBoard()->getSquareAt( -1, 2 ) );
     } catch (int throwned_error )
     {
       REQUIRE( "Error on reading wrong square" );
@@ -241,7 +241,7 @@ TEST_CASE( "Read Board", "[board]" )
 
       REQUIRE( clean_board->setPieceAt( 1, 6 , piece_on_B7 ) == Success );
 
-      REQUIRE( clean_board->getBoardSquareAt( 1, 6 )->isOccupied() == true );
+      REQUIRE( clean_board->getSquareAt( 1, 6 )->isOccupied() == true );
 
       //Verifying if is clear the path A6 to B8
       REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 6 ) == false );
@@ -365,7 +365,7 @@ TEST_CASE( "Update Board", "[board]" )
   //! These test case will focus on methods that
   //! updates board
   // These tests will focus on:
-  SECTION( "A board can change of it's board squares pieces " ) 
+  SECTION( "A board can change of it's squares pieces " ) 
   {
     try {
       PPiece piece_to_be_set_on_square( new Piece() );
@@ -376,7 +376,7 @@ TEST_CASE( "Update Board", "[board]" )
     {
       REQUIRE_FALSE( "Error on changing one of it's squares" );
     }
-  } // SECTION( "A board can change of it's board squares pieces " )
+  } // SECTION( "A board can change of it's squares pieces " )
 
   SECTION( "A board return an Error if wrong square is given " ) 
   {
@@ -393,13 +393,13 @@ TEST_CASE( "Destroy Board", "[board]" )
   //! updates board
   // These tests will focus on:
 
-  SECTION( "A board can be deleted and no board squares will be left floating" ) 
+  SECTION( "A board can be deleted and no squares will be left floating" ) 
   { 
     try {
       Board::getBoard().reset();
       REQUIRE_FALSE( Board::getBoard() == nullptr );
       Board::getBoard().reset();
-      // Using smart shared pointer I can only guarantee that the reference on board square
+      // Using smart shared pointer I can only guarantee that the reference on square
       // was erased and if there were no other reference to it it'll be succesfully
       // deallocated.
     } catch (int e) {
@@ -414,11 +414,11 @@ TEST_CASE( "Destroy Board", "[board]" )
 
     board_to_be_clean->setPieceAt( 5, 3, piece_on_F4 );
 
-    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE_FALSE( board_to_be_clean->getSquareAt( 5, 3 )->getPiece() == nullptr );
 
-    board_to_be_clean->cleanBoardSquareAt( 5, 3 );
+    board_to_be_clean->cleanSquareAt( 5, 3 );
 
-    REQUIRE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE( board_to_be_clean->getSquareAt( 5, 3 )->getPiece() == nullptr );
   } // SECTION( "The board can be clean of one of it's pieces" ) 
     
   SECTION( "The board can be clean of all it's pieces" ) 
@@ -430,13 +430,13 @@ TEST_CASE( "Destroy Board", "[board]" )
     board_to_be_clean->setPieceAt( 5, 3, piece_on_F4 );
     board_to_be_clean->setPieceAt( 1, 6, piece_on_B7 );
 
-    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
-    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+    REQUIRE_FALSE( board_to_be_clean->getSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE_FALSE( board_to_be_clean->getSquareAt( 1, 6 )->getPiece() == nullptr );
 
     board_to_be_clean->cleanBoard();
 
-    REQUIRE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
-    REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+    REQUIRE( board_to_be_clean->getSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE( board_to_be_clean->getSquareAt( 1, 6 )->getPiece() == nullptr );
   } // SECTION( "The board can be clean of all it's pieces" ) 
 
 } // TEST_CASE( "Destroy", "[board]" ) 
