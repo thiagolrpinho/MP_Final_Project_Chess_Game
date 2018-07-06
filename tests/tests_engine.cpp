@@ -7,31 +7,31 @@ typedef shared_ptr<Piece> PPiece;
 //! They'll be considered fully functional if they pass in
 //! four test cases: Create, Read, Update and Destroy
 
-TEST_CASE( "Create Board", "[board]" ) 
+TEST_CASE( "Create Engine", "[Engine]" ) 
 { 
 
   //! These test case will focus on methods that
-  //! creates objects within board class
+  //! creates objects within Engine class
   // These tests will focus on:./
  
-} // TEST_CASE( "Create", "[board]" )
+} // TEST_CASE( "Create", "[Engine]" )
 
-TEST_CASE( "Read Board", "[board]" ) 
+TEST_CASE( "Read Engine", "[Engine]" ) 
 { 
 }
 
-TEST_CASE( "Update Board", "[board]" ) 
+TEST_CASE( "Update Engine", "[Engine]" ) 
 { 
   //! These test case will focus on methods that
-  //! updates board
+  //! updates Engine
   // These tests will focus on:
   
-} // TEST_CASE( "Update", "[board]" ) 
+} // TEST_CASE( "Update", "[Engine]" ) 
 
-TEST_CASE( "Destroy Board", "[board]" ) 
+TEST_CASE( "Destroy Engine", "[Engine]" ) 
 {
   //! These test case will focus on methods that
-  //! updates board
+  //! updates Engine
   // These tests will focus on:
 
-} // TEST_CASE( "Destroy", "[board]" ) 
+} // TEST_CASE( "Destroy", "[Engine]" ) 
