@@ -28,6 +28,21 @@ TEST_CASE( "Create Board", "[board]" )
 
 TEST_CASE( "Read Board", "[board]" ) 
 { 
+  //! These test case will focus on methods that
+  //! reads objects within board class
+  // These tests will focus on:
+  // static shared_ptr<Board> getBoard();
+  // PSquare getSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
+  // bool isClearHorizontal(uint8_t actual_horizontal_coordinate, 
+  //           uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const;
+  //bool isClearVertical(uint8_t actual_horizontal_coordinate,
+  //           uint8_t actual_vertical_coordinate, uint8_t future_vertical_coordinate) const;
+  //bool isClearDiagonal(uint8_t actual_horizontal_coordinate,
+  //           uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+  //           uint8_t future_vertical_coordinate ) const;
+  //bool isEndRow(uint8_t actual_horizontal_coordinate,
+  //           uint8_t actual_vertical_coordinate) const;
+
   SECTION( "A board can have it's address returned" ) 
   {
     REQUIRE_FALSE( Board::getBoard() == nullptr );
@@ -365,6 +380,9 @@ TEST_CASE( "Update Board", "[board]" )
   //! These test case will focus on methods that
   //! updates board
   // These tests will focus on:
+  //    uint8_t setPieceAt( uint8_t horizontal_coordinate, 
+  //            uint8_t vertical_coordinate , PPiece piece_to_be_set );
+
   SECTION( "A board can change of it's squares pieces " ) 
   {
     try {
@@ -392,6 +410,9 @@ TEST_CASE( "Destroy Board", "[board]" )
   //! These test case will focus on methods that
   //! updates board
   // These tests will focus on:
+  //   ~Board();
+  // uint8_t cleanBoard();
+  // uint8_t cleanSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
 
   SECTION( "A board can be deleted and no squares will be left floating" ) 
   { 

@@ -9,7 +9,6 @@ typedef shared_ptr<Piece> PPiece;
 
 TEST_CASE( "Create Engine", "[Engine]" ) 
 { 
-
   //! These test case will focus on methods that
   //! creates objects within Engine class
   // These tests will focus on:./

@@ -8,10 +8,10 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 #include "square.hpp"
-#include <cmath>
 
+#include <cmath>
 using std::abs;
-  // For absolute value of coordinates
+  // using abs from cmath for absolute value of coordinates
 
 typedef shared_ptr<Square> PSquare;
     // Smart pointer to Square 
