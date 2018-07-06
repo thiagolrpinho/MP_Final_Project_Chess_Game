@@ -8,13 +8,18 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 #include "board.hpp"
+#include <iostream>
+using std::cout;
 
-typedef shared_ptr<BoardSquare> PBoardSquare;
-    // Smart pointer to BoardSquare 
 typedef shared_ptr<Piece> PPiece;
     // Smart pointer to Piece
 
 class Engine
 {
+  private:
+  uint8_t table_row_size_;
+  
+  public:
+  uint8_t readCodeTable(char (&array)[8][8]);
 };
 #endif

@@ -1,6 +1,6 @@
 #include "engine.hpp"
 
-typedef shared_ptr<Board> PBoard;
+typedef shared_ptr<Engine> PEngine;
 typedef shared_ptr<Piece> PPiece;
 
 //! These tests will be focused on engine class
@@ -12,7 +12,15 @@ TEST_CASE( "Create Engine", "[Engine]" )
   //! These test case will focus on methods that
   //! creates objects within Engine class
   // These tests will focus on:./
- 
+  SECTION( "An engine can be successfully created" ) 
+  {
+    try {
+      PEngine valid_engine( new Engine());
+      REQUIRE_FALSE( valid_engine == nullptr );  
+    } catch (int e) {
+      REQUIRE_FALSE( "The Engine cannot be succesfully created." );
+    }
+  } // SECTION( "An engine can be successfully created" )
 } // TEST_CASE( "Create", "[Engine]" )
 
 TEST_CASE( "Read Engine", "[Engine]" ) 
