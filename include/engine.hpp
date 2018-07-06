@@ -20,6 +20,7 @@ class Engine
   uint8_t table_row_size_;
   
   public:
-  uint8_t readCodeTable(char (&array)[8][8]);
+  uint8_t readCodeTable( char (&array)[8][8] );
+  void printCodeTable( char (&array)[8][8] );
 };
 #endif
