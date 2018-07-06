@@ -6,6 +6,7 @@
 #ifndef SQUARE_HPP
 #define SQUARE_HPP
 #include "piece.hpp"
+#include "king.hpp"
 
 #include "stdint.h"
 using std::uint8_t;

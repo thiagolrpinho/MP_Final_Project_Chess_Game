@@ -1,7 +1,9 @@
 #include "engine.hpp"
+#include <typeinfo>
 
 typedef shared_ptr<Engine> PEngine;
 typedef shared_ptr<Piece> PPiece;
+typedef shared_ptr<King> PKing;
 
 //! These tests will be focused on engine class
 //! They'll be considered fully functional if they pass in
@@ -53,16 +55,44 @@ TEST_CASE( "Read Engine", "[Engine]" )
     { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
   };
 
+  char game_with_only_one_king_code_table[8][8] = 
+  {
+    { },
+    { },
+    { }, //These will be filled with 0
+    { },
+    { },
+    { },
+    { },
+    { 0,0,0,0,'z' } //Matrix[5][7] = king
+  };
+
   SECTION( "An engine can be read one char code table and return Success if correct" ) 
   {
       REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
   } // SECTION( "An engine can be read one char code table and return Error if not correct" )
 
-    SECTION( "An engine can be read one char code table and return Error if not correct" ) 
+  SECTION( "An engine can be read one char code table and return Error if not correct" ) 
   {
       REQUIRE( valid_engine->readCodeTable(wrong_game_code_table) == Error );
   } // SECTION( "An engine can be read one char code table and return Error if not correct" )
-}
+
+  SECTION( "An engine can be read one char code table and add pieces to it" ) 
+  {
+      Board::getBoard()->cleanBoard();
+      REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
+      REQUIRE( Board::getBoard()->getSquareAt(5,0)->isOccupied() == true );
+  } // SECTION( "An engine can be read one char code table and add pieces to it" )
+
+  SECTION( "An engine can be read one char code table and add a specific piece to it" ) 
+  {
+      PKing test_king_piece( new King());
+      Board::getBoard()->cleanBoard();
+      REQUIRE( valid_engine->readCodeTable( game_with_only_one_king_code_table ) == Success );
+      REQUIRE( Board::getBoard()->getSquareAt(4,0)->isOccupied() == true );
+      REQUIRE( typeid(Board::getBoard()->getSquareAt(4,0)->getPiece()).name() == typeid(test_king_piece).name() );
+  } // SECTION( "An engine can be read one char code table and return Error if not correct" )
+} //TEST_CASE( "Read Engine", "[Engine]" ) 
 
 TEST_CASE( "Update Engine", "[Engine]" ) 
 { 
