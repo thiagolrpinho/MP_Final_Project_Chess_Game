@@ -25,6 +25,30 @@ TEST_CASE( "Create Engine", "[Engine]" )
 
 TEST_CASE( "Read Engine", "[Engine]" ) 
 { 
+  //! These test case will focus on methods that
+  //! reads objects within Engine class
+  // These tests will focus on:./
+  PEngine valid_engine( new Engine());
+  char initial_game_code_table[8][8] = 
+  {
+    { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+    { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+    { }, //These will be filled with 0
+    { },
+    { },
+    { },
+    { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+    { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+  };
+
+  SECTION( "An engine can be read one char code table and return Success if correct" ) 
+  {
+    try {
+      REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
+    } catch (int e) {
+      REQUIRE_FALSE( "The Engine cannot be succesfully created." );
+    }
+  } // SECTION( "An engine can be successfully created" )
 }
 
 TEST_CASE( "Update Engine", "[Engine]" ) 

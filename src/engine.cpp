@@ -10,4 +10,5 @@ uint8_t Engine::readCodeTable(char (&array)[8][8])
             std::cout << array[i][j] << '\t';
         std::cout << std::endl;
     }
+    return Error;
 }
