@@ -41,14 +41,27 @@ TEST_CASE( "Read Engine", "[Engine]" )
     { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
   };
 
+  char wrong_game_code_table[8][8] = 
+  {
+    { 'T', 'C', 'B', 'R', 'Y', 'B', 'C', 'T'},
+    { 'P', 'X', 'P', 'P', 'P', 'P', 'P', 'P'},
+    { }, //These will be filled with 0
+    { },
+    { },
+    { },
+    { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+    { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+  };
+
   SECTION( "An engine can be read one char code table and return Success if correct" ) 
   {
-    try {
       REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
-    } catch (int e) {
-      REQUIRE_FALSE( "The Engine cannot be succesfully created." );
-    }
-  } // SECTION( "An engine can be successfully created" )
+  } // SECTION( "An engine can be read one char code table and return Error if not correct" )
+
+    SECTION( "An engine can be read one char code table and return Error if not correct" ) 
+  {
+      REQUIRE( valid_engine->readCodeTable(wrong_game_code_table) == Error );
+  } // SECTION( "An engine can be read one char code table and return Error if not correct" )
 }
 
 TEST_CASE( "Update Engine", "[Engine]" ) 
