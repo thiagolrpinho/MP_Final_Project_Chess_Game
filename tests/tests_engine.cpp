@@ -57,7 +57,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
   char game_with_only_one_king_code_table[8][8] = 
   {
-    { },
+    { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, // Columns coordinates
     { },
     { }, //These will be filled with 0
     { },
@@ -93,6 +93,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
       //Now we assure that the piece set was specific a king
       REQUIRE( ((King*)(Board::getBoard()->getSquareAt(7,4)->getPiece().get()))->isKing );
+      valid_engine->printCodeTable( game_with_only_one_king_code_table );
       
   } // SECTION( "An engine can be read one char code table and add a specific piece to it" )
   
