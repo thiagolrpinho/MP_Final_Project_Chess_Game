@@ -130,7 +130,68 @@ uint8_t Engine::isValidCodeSymbol( char code_symbol )
 uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , char code_symbol )
 {
-  return Error;
+  PKing   white_king( new King() );
+  PQueen  white_queen( new Queen() );
+  PBishop white_bishop( new Bishop() );
+  PKnight white_knight( new Knight() );
+  PRook   white_rook( new Rook() );
+  PPawn   white_pawn( new Pawn() );
+
+  switch( code_symbol )
+      {
+        case 0:
+        break;
+        case 'p':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_pawn ) == Error )
+          return Error;
+        break;
+        case 'P':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_pawn ) == Error )
+          return Error;
+        break;
+        case 't':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_rook ) == Error )
+          return Error;
+        break;
+        case 'T':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_rook ) == Error )
+          return Error;
+        break;
+        case 'c':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_knight ) == Error )
+          return Error;
+        break;
+        case 'C':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_knight ) == Error )
+          return Error;
+        break;
+        case 'b':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_bishop ) == Error )
+          return Error;
+        break;
+        case 'B':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_bishop ) == Error )
+          return Error;
+        break;
+        case 'r':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_queen ) == Error )
+          return Error;
+        break;
+        case 'R':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_queen ) == Error )
+          return Error;
+        break;
+        case 'z':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_king ) == Error )
+          return Error;
+        break;
+        case 'Z':
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_king ) == Error )
+          return Error;
+        break;
+      }
+
+  return Success;
 }
 
 void Engine::printCodeTable( char (&array)[8][8] )

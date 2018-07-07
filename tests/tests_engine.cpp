@@ -32,13 +32,7 @@ TEST_CASE( "Create Engine", "[Engine]" )
 
 
    SECTION( "An engine can be read one code symbol and create a piece on the board " ) 
-{     PKing   test_king_piece( new King() );
-      PQueen  test_queen_piece( new Queen() );
-      PBishop test_bishop_piece( new Bishop() );
-      PKnight test_knight_piece( new Knight() );
-      PRook   test_rook_piece( new Rook() );
-      PPawn   test_pawn_piece( new Pawn() );
-
+{     
       char game_with_one_kind_of_piece_and_color_code_table[8][8] = 
       {
         { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, 
