@@ -11,7 +11,7 @@ CFLAGS  = -I$(IDIR)
 #LIBS	=-lm
 
 #OBJS specifies which files to compile as part of the project
-OBJS = ./src/display.cpp
+OBJS = ./src/main.cpp ./src/display.cpp 
 
 #CC specifies which compiler we're using
 CC = g++
