@@ -11,7 +11,7 @@ CFLAGS  = -I$(IDIR)
 #LIBS	=-lm
 
 #OBJS specifies which files to compile as part of the project
-OBJS = ./src/main.cpp ./src/display.cpp 
+OBJS = ./src/main.cpp ./src/display.cpp ./src/LTexture.cpp
 
 #CC specifies which compiler we're using
 CC = g++
@@ -28,7 +28,7 @@ LIBRARY_PATHS = -L"D:/UnB/MP/TrabalhoFinal/MP_Final_Project_Chess_Game/i686-w64-
 COMPILER_FLAGS = -w -Wl,-subsystem,windows
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2
+LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image -lSDL2_ttf
 
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = game
