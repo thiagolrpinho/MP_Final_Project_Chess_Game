@@ -81,7 +81,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
   {
       Board::getBoard()->cleanBoard();
       REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
-      REQUIRE( Board::getBoard()->getSquareAt(5,0)->isOccupied() == true );
+      REQUIRE( Board::getBoard()->getSquareAt(1,0)->isOccupied() == true );
   } // SECTION( "An engine can be read one char code table and add pieces to it" )
 
   SECTION( "An engine can be read one char code table and add a specific piece to it" ) 
@@ -89,9 +89,13 @@ TEST_CASE( "Read Engine", "[Engine]" )
       PKing test_king_piece( new King());
       Board::getBoard()->cleanBoard();
       REQUIRE( valid_engine->readCodeTable( game_with_only_one_king_code_table ) == Success );
-      REQUIRE( Board::getBoard()->getSquareAt(4,0)->isOccupied() == true );
-      REQUIRE( typeid(Board::getBoard()->getSquareAt(4,0)->getPiece()).name() == typeid(test_king_piece).name() );
-  } // SECTION( "An engine can be read one char code table and return Error if not correct" )
+      REQUIRE( Board::getBoard()->getSquareAt(7,4)->isOccupied() == true );
+
+      //Now we assure that the piece set was specific a king
+      REQUIRE( ((King*)(Board::getBoard()->getSquareAt(7,4)->getPiece().get()))->isKing );
+      
+  } // SECTION( "An engine can be read one char code table and add a specific piece to it" )
+  
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
 TEST_CASE( "Update Engine", "[Engine]" ) 

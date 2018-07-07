@@ -10,6 +10,7 @@
 uint8_t Engine::readCodeTable( char (&array)[8][8] )
 {   
   PPiece a_piece( new Piece() );
+  PKing white_king( new King());
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
@@ -51,12 +52,63 @@ uint8_t Engine::readCodeTable( char (&array)[8][8] )
     }
   }
 
-  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  for( size_t horizontal = 0; horizontal < 8; horizontal++ )
   {
-    for( size_t vertical = 0; vertical < 8; ++vertical )
+    for( size_t vertical = 0; vertical < 8; vertical++ )
     {
-      if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
-      return Error;
+      switch( array[horizontal][vertical] )
+      {
+        case 0:
+        break;
+        case 'p':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'P':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 't':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'T':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'c':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'C':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'b':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'B':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'r':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'R':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, a_piece ) == Error )
+          return Error;
+        break;
+        case 'z':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_king ) == Error )
+          return Error;
+        break;
+        case 'Z':
+          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_king ) == Error )
+          return Error;
+        break;
+      }
     }
   }
   return Success;

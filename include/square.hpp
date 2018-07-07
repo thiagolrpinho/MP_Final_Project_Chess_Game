@@ -16,6 +16,10 @@ using std::uint8_t;
 using std::shared_ptr; 
 // Smart pointer that deallocates when no references to it exists
 
+typedef shared_ptr<Piece> PPiece;
+typedef shared_ptr<King> PKing;
+
+
 //Operations can be Successful or not, every
 //method that would simply return void will instead
 //return an Error ou Success.
