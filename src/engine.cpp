@@ -30,59 +30,8 @@ uint8_t Engine::readCodeTable( char (&array)[8][8] )
   {
     for( size_t vertical = 0; vertical < 8; vertical++ )
     {
-      switch( array[horizontal][vertical] )
-      {
-        case 0:
-        break;
-        case 'p':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_pawn ) == Error )
-          return Error;
-        break;
-        case 'P':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_pawn ) == Error )
-          return Error;
-        break;
-        case 't':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_rook ) == Error )
-          return Error;
-        break;
-        case 'T':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_rook ) == Error )
-          return Error;
-        break;
-        case 'c':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_knight ) == Error )
-          return Error;
-        break;
-        case 'C':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_knight ) == Error )
-          return Error;
-        break;
-        case 'b':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_bishop ) == Error )
-          return Error;
-        break;
-        case 'B':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_bishop ) == Error )
-          return Error;
-        break;
-        case 'r':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_queen ) == Error )
-          return Error;
-        break;
-        case 'R':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_queen ) == Error )
-          return Error;
-        break;
-        case 'z':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_king ) == Error )
-          return Error;
-        break;
-        case 'Z':
-          if( Board::getBoard()->setPieceAt( horizontal, vertical, white_king ) == Error )
-          return Error;
-        break;
-      }
+      if( createPieceAt( horizontal, vertical, array[horizontal][vertical] ) == Error )
+        return Error;
     }
   }
   return Success;
@@ -126,6 +75,7 @@ uint8_t Engine::isValidCodeSymbol( char code_symbol )
 
   return Success;
 }
+
 
 uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , char code_symbol )
@@ -193,6 +143,8 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
 
   return Success;
 }
+
+
 
 void Engine::printCodeTable( char (&array)[8][8] )
 {

@@ -131,6 +131,7 @@ uint8_t Board::setPieceAt( uint8_t horizontal_coordinate,
             
 }
 
+
 bool Board::isClearHorizontal(uint8_t actual_horizontal_coordinate, 
             uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const
 {
