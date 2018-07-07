@@ -66,13 +66,25 @@ SECTION( "An engine can be read one code symbol and create a piece on the board 
       REQUIRE( ( (Bishop*)( Board::getBoard()->getPieceAt( 4, 0 ).get() ) )->isBishop == true );
 
 
-  } // SECTION( "An engine can be read one table code and know if its code is valid " )
+  } // SECTION( An engine can be read one code symbol and create a piece on the board " )
 
-SECTION( "An engine can be read one code symbol and create a piece on the board with the right color " ) 
-{     
-      char game_with_one_kind_of_piece_and_color_code_table[8][8] = 
-      {
-        { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, 
+  SECTION( "An engine can be read one code symbol and create a piece on the board with the right color " ) 
+  {     
+    char game_with_one_kind_of_piece_and_color_code_table[8][8] = 
+    {
+      { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, 
+      { 'C' },
+      { 'R' }, 
+      { 'T' },
+      { 'B' },
+      { 'Z' },
+      { 'z' },
+      { 'P' } 
+    };
+    Board::getBoard()->cleanBoard();
+
+    /*   //game_with_one_kind_of_piece_and_color_code_table
+        { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' },
         { 'C' },
         { 'R' }, 
         { 'T' },
@@ -80,31 +92,18 @@ SECTION( "An engine can be read one code symbol and create a piece on the board 
         { 'Z' },
         { 'z' },
         { 'P' } 
-      };
-      Board::getBoard()->cleanBoard();
+    */
 
-     /*   //game_with_one_kind_of_piece_and_color_code_table
-          { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' },
-          { 'C' },
-          { 'R' }, 
-          { 'T' },
-          { 'B' },
-          { 'Z' },
-          { 'z' },
-          { 'P' } 
-      */
+    
+    // 'p' is a valid code table, so it should create a pawn on A7 and return Success
+    REQUIRE( valid_engine->createPieceAt( 0, 0, 'p' ) == Success );
+    REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isPawn == true );
+    REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isWhite == true );
 
-     
-      // 'p' is a valid code table, so it should create a pawn on A7 and return Success
-      REQUIRE( valid_engine->createPieceAt( 0, 0, 'p' ) == Success );
-      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isPawn == true );
-      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isWhite == true );
-
-      // 'P' is a valid code table, so it should create a black pawn on A0 
-      REQUIRE( valid_engine->createPieceAt( 7, 0, 'P' ) == Success );
-      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 7, 0 ).get() ) )->isPawn == true );
-      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 7, 0 ).get() ) )->isWhite == false );
-
+    // 'P' is a valid code table, so it should create a black pawn on A0 
+    REQUIRE( valid_engine->createPieceAt( 7, 0, 'P' ) == Success );
+    REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 7, 0 ).get() ) )->isPawn == true );
+    REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 7, 0 ).get() ) )->isWhite == false );
 
   } // SECTION( "An engine can be read one code symbol and create a piece on the board with the right color "  )
 
@@ -176,7 +175,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       PBishop test_bishop_piece( new Bishop() );
       PKnight test_knight_piece( new Knight() );
       PRook   test_rook_piece( new Rook() );
-      PPawn   test_pawn_piece( new Pawn( true ) );
+      PPawn   test_pawn_piece( new Pawn() );
 
       Board::getBoard()->cleanBoard();
       REQUIRE( valid_engine->readCodeTable( game_with_one_kind_of_piece_code_table ) == Success );
@@ -196,29 +195,37 @@ TEST_CASE( "Read Engine", "[Engine]" )
       REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 7, 4 ).get()))->isKing == true );
       valid_engine->printCodeTable( game_with_one_kind_of_piece_code_table );
 
-      //Now we assure that the piece on A1 set was specific a Pawn
+      //Now we assure that the piece on A1 set was specific a White Pawn
       REQUIRE( ((Pawn*)(Board::getBoard()->getPieceAt( 0, 0 ).get()))->isPawn == true );
+      REQUIRE( ((Pawn*)(Board::getBoard()->getPieceAt( 0, 0 ).get()))->isWhite == true );
 
-      //Now we assure that the piece on B1 set was specific a Knight
+      //Now we assure that the piece on B1 set was specific a White Knight
       REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 1 ).get()))->isKnight == true );
+      REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 1 ).get()))->isWhite == true );
 
-      //Now we assure that the piece on C1 set was specific a Queen
+      //Now we assure that the piece on C1 set was specific a White Queen
       REQUIRE( ((Queen*)(Board::getBoard()->getPieceAt( 0, 2 ).get()))->isQueen == true );
+      REQUIRE( ((Queen*)(Board::getBoard()->getPieceAt( 0, 2 ).get()))->isWhite == true );
 
-      //Now we assure that the piece set on D1 was specific a Rook
+      //Now we assure that the piece set on D1 was specific a White Rook
       REQUIRE( ((Rook*)(Board::getBoard()->getPieceAt( 0, 3 ).get()))->isRook == true );
+      REQUIRE( ((Rook*)(Board::getBoard()->getPieceAt( 0, 3 ).get()))->isWhite == true );
 
-      //Now we assure that the piece set on E1 was specific a Bishop
+      //Now we assure that the piece set on E1 was specific a White Bishop
       REQUIRE( ((Bishop*)(Board::getBoard()->getPieceAt( 0, 4 ).get()))->isBishop == true );
+      REQUIRE( ((Bishop*)(Board::getBoard()->getPieceAt( 0, 4 ).get()))->isWhite == true );
 
-      //Now we assure that the piece set on F1 was specific a King
+      //Now we assure that the piece set on F1 was specific a White King
       REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 5 ).get()))->isKing == true );
+      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 5 ).get()))->isWhite == true );
 
-      //Now we assure that the piece set on G1 was specific a King
-      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 6 ).get()))->isKing == true );
+      //Now we assure that the piece set on G1 was specific a Black King
+      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 6 ).get()))->isWhite == true );
+      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 6 ).get()))->isWhite == false );
 
-      //Now we assure that the piece set on H1 was specific a Knight
+      //Now we assure that the piece set on H1 was specific a Black Knight
       REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 7 ).get()))->isKnight == true );
+      REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 7 ).get()))->isKnight == false );
       
       
   } // SECTION( "An engine can be read one char code table and add a specific piece to it" )

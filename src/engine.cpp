@@ -15,7 +15,7 @@ uint8_t Engine::readCodeTable( char (&array)[8][8] )
   PBishop white_bishop( new Bishop() );
   PKnight white_knight( new Knight() );
   PRook   white_rook( new Rook() );
-  PPawn   white_pawn( new Pawn( true ) );
+  PPawn   white_pawn( new Pawn() );
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
@@ -85,9 +85,11 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   PBishop white_bishop( new Bishop() );
   PKnight white_knight( new Knight() );
   PRook   white_rook( new Rook() );
-  PPawn   white_pawn( new Pawn( true ) );
+  PPawn   white_pawn( new Pawn() );
 
-  PPawn   black_pawn( new Pawn( false ) );
+  PPawn   black_pawn( new Pawn() );
+
+  black_pawn->setColor( false );
 
   switch( code_symbol )
       {
