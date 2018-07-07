@@ -127,6 +127,12 @@ uint8_t Engine::isValidCodeSymbol( char code_symbol )
   return Success;
 }
 
+uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate, 
+                uint8_t vertical_coordinate , char code_symbol )
+{
+  return Error;
+}
+
 void Engine::printCodeTable( char (&array)[8][8] )
 {
     std::cout << __func__ << std::endl;

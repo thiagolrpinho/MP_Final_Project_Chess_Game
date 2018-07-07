@@ -19,15 +19,57 @@ TEST_CASE( "Create Engine", "[Engine]" )
   //! These test case will focus on methods that
   //! creates objects within Engine class
   // These tests will focus on:./
+  PEngine valid_engine( new Engine());
+
   SECTION( "An engine can be successfully created" ) 
   {
     try {
-      PEngine valid_engine( new Engine());
       REQUIRE_FALSE( valid_engine == nullptr );  
     } catch (int e) {
       REQUIRE_FALSE( "The Engine cannot be succesfully created." );
     }
   } // SECTION( "An engine can be successfully created" )
+
+
+   SECTION( "An engine can be read one code symbol and create a piece on the board " ) 
+{     PKing   test_king_piece( new King() );
+      PQueen  test_queen_piece( new Queen() );
+      PBishop test_bishop_piece( new Bishop() );
+      PKnight test_knight_piece( new Knight() );
+      PRook   test_rook_piece( new Rook() );
+      PPawn   test_pawn_piece( new Pawn() );
+
+      char game_with_one_kind_of_piece_and_color_code_table[8][8] = 
+      {
+        { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, 
+        { 'C' },
+        { 'R' }, 
+        { 'T' },
+        { 'B' },
+        { 'Z' },
+        { 'z' },
+        { 'c' } 
+      };
+      Board::getBoard()->cleanBoard();
+
+     /*   //game_with_one_kind_of_piece_and_color_code_table
+          { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' },
+          { 'C' },
+          { 'R' }, 
+          { 'T' },
+          { 'B' },
+          { 'Z' },
+          { 'z' },
+          { 'c' } 
+      */
+
+     
+      // 'p' is a valid code table, so it should create a pawn on A0 and return Success
+      REQUIRE( valid_engine->createPieceAt( 0, 0, 'p' ) == Success );
+      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isPawn == true );
+
+  } // SECTION( "An engine can be read one table code and know if its code is valid " )
+
 } // TEST_CASE( "Create", "[Engine]" )
 
 TEST_CASE( "Read Engine", "[Engine]" ) 
@@ -165,6 +207,8 @@ TEST_CASE( "Read Engine", "[Engine]" )
       REQUIRE( valid_engine->isValidCodeSymbol('X') == Error );
 
   } // SECTION( "An engine can be read one table code and know if its code is valid " )
+
+ 
 
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
