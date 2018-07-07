@@ -7,6 +7,11 @@
 #define SQUARE_HPP
 #include "piece.hpp"
 #include "king.hpp"
+#include "queen.hpp"
+#include "bishop.hpp"
+#include "knight.hpp"
+#include "rook.hpp"
+#include "pawn.hpp"
 
 #include "stdint.h"
 using std::uint8_t;
@@ -16,8 +21,13 @@ using std::uint8_t;
 using std::shared_ptr; 
 // Smart pointer that deallocates when no references to it exists
 
-typedef shared_ptr<Piece> PPiece;
-typedef shared_ptr<King> PKing;
+typedef shared_ptr<Piece>   PPiece;
+typedef shared_ptr<King>    PKing;
+typedef shared_ptr<Queen>   PQueen;
+typedef shared_ptr<Bishop>  PBishop;
+typedef shared_ptr<Knight>  PKnight;
+typedef shared_ptr<Rook>    PRook;
+typedef shared_ptr<Pawn>    PPawn;
 
 
 //Operations can be Successful or not, every

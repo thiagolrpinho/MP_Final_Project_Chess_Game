@@ -1,9 +1,14 @@
 #include "engine.hpp"
 #include <typeinfo>
 
-typedef shared_ptr<Engine> PEngine;
-typedef shared_ptr<Piece> PPiece;
-typedef shared_ptr<King> PKing;
+typedef shared_ptr<Engine>  PEngine;
+typedef shared_ptr<Piece>   PPiece;
+typedef shared_ptr<King>    PKing;
+typedef shared_ptr<Queen>   PQueen;
+typedef shared_ptr<Bishop>  PBishop;
+typedef shared_ptr<Knight>  PKnight;
+typedef shared_ptr<Rook>    PRook;
+typedef shared_ptr<Pawn>    PPawn;
 
 //! These tests will be focused on engine class
 //! They'll be considered fully functional if they pass in
@@ -55,7 +60,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
     { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
   };
 
-  char game_with_only_one_king_code_table[8][8] = 
+  char game_with_one_kind_of_piece_code_table[8][8] = 
   {
     { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, // Columns coordinates
     { },
@@ -86,14 +91,20 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
   SECTION( "An engine can be read one char code table and add a specific piece to it" ) 
   {
-      PKing test_king_piece( new King());
+      PKing   test_king_piece( new King() );
+      PQueen  test_queen_piece( new Queen() );
+      PBishop test_bishop_piece( new Bishop() );
+      PKnight test_knight_piece( new Knight() );
+      PRook   test_rook_piece( new Rook() );
+      PPawn   test_pawn_piece( new Pawn() );
+
       Board::getBoard()->cleanBoard();
-      REQUIRE( valid_engine->readCodeTable( game_with_only_one_king_code_table ) == Success );
+      REQUIRE( valid_engine->readCodeTable( game_with_one_kind_of_piece_code_table ) == Success );
       REQUIRE( Board::getBoard()->getSquareAt(7,4)->isOccupied() == true );
 
       //Now we assure that the piece set was specific a king
       REQUIRE( ((King*)(Board::getBoard()->getSquareAt(7,4)->getPiece().get()))->isKing );
-      valid_engine->printCodeTable( game_with_only_one_king_code_table );
+      valid_engine->printCodeTable( game_with_one_kind_of_piece_code_table );
       
   } // SECTION( "An engine can be read one char code table and add a specific piece to it" )
   
