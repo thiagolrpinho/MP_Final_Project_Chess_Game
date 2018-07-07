@@ -62,7 +62,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
   char game_with_one_kind_of_piece_code_table[8][8] = 
   {
-    { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, // Columns coordinates
+    { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, 
     { },
     { }, //These will be filled with 0
     { },
@@ -102,9 +102,44 @@ TEST_CASE( "Read Engine", "[Engine]" )
       REQUIRE( valid_engine->readCodeTable( game_with_one_kind_of_piece_code_table ) == Success );
       REQUIRE( Board::getBoard()->getSquareAt(7,4)->isOccupied() == true );
 
+      /*
+          { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' },
+          { },
+          { }, 
+          { },
+          { },
+          { },
+          { },
+          { 0,0,0,0,'z' }
+      */
       //Now we assure that the piece set was specific a king
-      REQUIRE( ((King*)(Board::getBoard()->getSquareAt(7,4)->getPiece().get()))->isKing );
+      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 7, 4 ).get()))->isKing == true );
       valid_engine->printCodeTable( game_with_one_kind_of_piece_code_table );
+
+      //Now we assure that the piece on A1 set was specific a Pawn
+      REQUIRE( ((Pawn*)(Board::getBoard()->getPieceAt( 0, 0 ).get()))->isPawn == true );
+
+      //Now we assure that the piece on B1 set was specific a Knight
+      REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 1 ).get()))->isKnight == true );
+
+      //Now we assure that the piece on C1 set was specific a Queen
+      REQUIRE( ((Queen*)(Board::getBoard()->getPieceAt( 0, 2 ).get()))->isQueen == true );
+
+      //Now we assure that the piece set on D1 was specific a Rook
+      REQUIRE( ((Rook*)(Board::getBoard()->getPieceAt( 0, 3 ).get()))->isRook == true );
+
+      //Now we assure that the piece set on E1 was specific a Bishop
+      REQUIRE( ((Bishop*)(Board::getBoard()->getPieceAt( 0, 4 ).get()))->isBishop == true );
+
+      //Now we assure that the piece set on F1 was specific a King
+      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 5 ).get()))->isKing == true );
+
+      //Now we assure that the piece set on G1 was specific a King
+      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 6 ).get()))->isKing == true );
+
+      //Now we assure that the piece set on H1 was specific a Knight
+      REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 7 ).get()))->isKnight == true );
+      
       
   } // SECTION( "An engine can be read one char code table and add a specific piece to it" )
   

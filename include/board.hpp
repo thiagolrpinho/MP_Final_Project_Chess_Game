@@ -42,6 +42,8 @@ class Board
   */
   PSquare getSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
 
+  PPiece getPieceAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
+  
   uint8_t setPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , PPiece piece_to_be_set );
 

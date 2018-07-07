@@ -82,6 +82,28 @@ PSquare Board::getSquareAt( uint8_t horizontal_coordinate, uint8_t vertical_coor
   return squares_[horizontal_coordinate][vertical_coordinate];
 }
 
+//*! Returns the piece on given coordinates
+    /*!
+        \Description Fix evaluates if the given coordinates
+        are valid then return a valid piece
+        
+        \param Two uint8_t lower than size_of_table_.
+        \return A valid square of the given coordinates.
+        \throw Error if given coordinates not valid
+    */
+PPiece Board::getPieceAt( uint8_t horizontal_coordinate, uint8_t vertical_coordinate )
+{ 
+  // If any given coordinate is greater of equal to the size of the table
+  // then it's an Error.
+  if( vertical_coordinate >= size_of_table_ ) throw (int) Error;
+  if( horizontal_coordinate >= size_of_table_ ) throw (int) Error;
+
+  if( squares_[horizontal_coordinate][vertical_coordinate]->getPiece() == nullptr )
+    throw (int) Error;
+
+  return squares_[horizontal_coordinate][vertical_coordinate]->getPiece();
+}
+
 //*! Change the piece on the given square
     /*!
         \Description Tries to get a valid square
