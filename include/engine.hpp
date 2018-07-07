@@ -22,5 +22,8 @@ class Engine
   public:
   uint8_t readCodeTable( char (&array)[8][8] );
   void printCodeTable( char (&array)[8][8] );
+
+  // Auxiliary functions
+  uint8_t isValidCodeSymbol( char code_symbol );
 };
 #endif

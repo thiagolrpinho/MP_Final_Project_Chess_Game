@@ -119,6 +119,11 @@ uint8_t Engine::readCodeTable( char (&array)[8][8] )
   return Success;
 }
 
+uint8_t Engine::isValidCodeSymbol( char code_symbol )
+{
+  return Success;
+}
+
 void Engine::printCodeTable( char (&array)[8][8] )
 {
     std::cout << __func__ << std::endl;

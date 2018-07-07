@@ -143,6 +143,29 @@ TEST_CASE( "Read Engine", "[Engine]" )
       
   } // SECTION( "An engine can be read one char code table and add a specific piece to it" )
   
+  SECTION( "An engine can be read one table code and know if its code is valid " ) 
+  {
+      Board::getBoard()->cleanBoard();
+
+      /*
+         // wrong_game_code_table
+          { 'T', 'C', 'B', 'R', 'Y', 'B', 'C', 'T'},
+          { 'P', 'X', 'P', 'P', 'P', 'P', 'P', 'P'},
+          { }, //These will be filled with 0
+          { },
+          { },
+          { },
+          { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+          { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+      */
+      // T is a valid code table, so it should return Success
+      REQUIRE( valid_engine->isValidCodeSymbol('T') == Success );
+      
+      // X is not a valid code table, so it should return Error
+      REQUIRE( valid_engine->isValidCodeSymbol('X') == Error );
+
+  } // SECTION( "An engine can be read one table code and know if its code is valid " )
+
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
 TEST_CASE( "Update Engine", "[Engine]" ) 
