@@ -63,12 +63,12 @@ SECTION( "An engine can be read one code symbol and create a piece on the board 
       REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isPawn == true );
 
       REQUIRE( valid_engine->createPieceAt( 4, 0, 'B' ) == Success );
-      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 7, 0 ).get() ) )->isBishop == true );
+      REQUIRE( ( (Bishop*)( Board::getBoard()->getPieceAt( 4, 0 ).get() ) )->isBishop == true );
 
 
   } // SECTION( "An engine can be read one table code and know if its code is valid " )
 
-  SECTION( "An engine can be read one code symbol and create a piece on the board with the right color " ) 
+SECTION( "An engine can be read one code symbol and create a piece on the board with the right color " ) 
 {     
       char game_with_one_kind_of_piece_and_color_code_table[8][8] = 
       {
@@ -176,7 +176,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       PBishop test_bishop_piece( new Bishop() );
       PKnight test_knight_piece( new Knight() );
       PRook   test_rook_piece( new Rook() );
-      PPawn   test_pawn_piece( new Pawn() );
+      PPawn   test_pawn_piece( new Pawn( true ) );
 
       Board::getBoard()->cleanBoard();
       REQUIRE( valid_engine->readCodeTable( game_with_one_kind_of_piece_code_table ) == Success );

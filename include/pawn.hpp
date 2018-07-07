@@ -12,8 +12,6 @@ class Pawn: public Piece
     isWhite = is_created_as_a_White_piece;
   };
 
-  Pawn();
-  
 };
 
 #endif
