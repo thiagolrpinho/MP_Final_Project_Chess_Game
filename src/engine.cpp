@@ -21,39 +21,8 @@ uint8_t Engine::readCodeTable( char (&array)[8][8] )
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
-      switch( array[horizontal][vertical] )
-      {
-        case 0:
-        break;
-        case 'p':
-        break;
-        case 'P':
-        break;
-        case 't':
-        break;
-        case 'T':
-        break;
-        case 'c':
-        break;
-        case 'C':
-        break;
-        case 'b':
-        break;
-        case 'B':
-        break;
-        case 'r':
-        break;
-        case 'R':
-        break;
-        case 'z':
-        break;
-        case 'Z':
-        break;
-
-        default:
-          return Error;
-        break;
-      }
+      if ( isValidCodeSymbol( array[horizontal][vertical] ) == Error )
+        return Error;
     }
   }
 
@@ -121,6 +90,40 @@ uint8_t Engine::readCodeTable( char (&array)[8][8] )
 
 uint8_t Engine::isValidCodeSymbol( char code_symbol )
 {
+  switch( code_symbol )
+      {
+        case 0:
+        break;
+        case 'p':
+        break;
+        case 'P':
+        break;
+        case 't':
+        break;
+        case 'T':
+        break;
+        case 'c':
+        break;
+        case 'C':
+        break;
+        case 'b':
+        break;
+        case 'B':
+        break;
+        case 'r':
+        break;
+        case 'R':
+        break;
+        case 'z':
+        break;
+        case 'Z':
+        break;
+
+        default:
+          return Error;
+        break;
+      }
+
   return Success;
 }
 
