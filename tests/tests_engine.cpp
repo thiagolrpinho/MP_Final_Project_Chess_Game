@@ -31,7 +31,7 @@ TEST_CASE( "Create Engine", "[Engine]" )
   } // SECTION( "An engine can be successfully created" )
 
 
-   SECTION( "An engine can be read one code symbol and create a piece on the board " ) 
+SECTION( "An engine can be read one code symbol and create a piece on the board " ) 
 {     
       char game_with_one_kind_of_piece_and_color_code_table[8][8] = 
       {
@@ -42,7 +42,7 @@ TEST_CASE( "Create Engine", "[Engine]" )
         { 'B' },
         { 'Z' },
         { 'z' },
-        { 'c' } 
+        { 'P' } 
       };
       Board::getBoard()->cleanBoard();
 
@@ -54,15 +54,59 @@ TEST_CASE( "Create Engine", "[Engine]" )
           { 'B' },
           { 'Z' },
           { 'z' },
-          { 'c' } 
+          { 'P' } 
       */
 
      
-      // 'p' is a valid code table, so it should create a pawn on A0 and return Success
+      // 'p' is a valid code table, so it should create a pawn on A7 and return Success
       REQUIRE( valid_engine->createPieceAt( 0, 0, 'p' ) == Success );
       REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isPawn == true );
 
+      REQUIRE( valid_engine->createPieceAt( 4, 0, 'B' ) == Success );
+      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 7, 0 ).get() ) )->isBishop == true );
+
+
   } // SECTION( "An engine can be read one table code and know if its code is valid " )
+
+  SECTION( "An engine can be read one code symbol and create a piece on the board with the right color " ) 
+{     
+      char game_with_one_kind_of_piece_and_color_code_table[8][8] = 
+      {
+        { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, 
+        { 'C' },
+        { 'R' }, 
+        { 'T' },
+        { 'B' },
+        { 'Z' },
+        { 'z' },
+        { 'P' } 
+      };
+      Board::getBoard()->cleanBoard();
+
+     /*   //game_with_one_kind_of_piece_and_color_code_table
+          { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' },
+          { 'C' },
+          { 'R' }, 
+          { 'T' },
+          { 'B' },
+          { 'Z' },
+          { 'z' },
+          { 'P' } 
+      */
+
+     
+      // 'p' is a valid code table, so it should create a pawn on A7 and return Success
+      REQUIRE( valid_engine->createPieceAt( 0, 0, 'p' ) == Success );
+      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isPawn == true );
+      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 0, 0 ).get() ) )->isWhite == true );
+
+      // 'P' is a valid code table, so it should create a black pawn on A0 
+      REQUIRE( valid_engine->createPieceAt( 7, 0, 'P' ) == Success );
+      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 7, 0 ).get() ) )->isPawn == true );
+      REQUIRE( ( (Pawn*)( Board::getBoard()->getPieceAt( 7, 0 ).get() ) )->isWhite == false );
+
+
+  } // SECTION( "An engine can be read one code symbol and create a piece on the board with the right color "  )
 
 } // TEST_CASE( "Create", "[Engine]" )
 
