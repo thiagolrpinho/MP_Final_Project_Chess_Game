@@ -1,7 +1,4 @@
-#ifndef CATCH_H
-#define CATCH_H
-#include "catch.hpp"
-#endif
+
 
 #ifndef SQUARE_HPP
 #define SQUARE_HPP

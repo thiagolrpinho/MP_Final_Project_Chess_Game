@@ -7,10 +7,11 @@ ODIR	= ./src/obj
 LDIR	=./lib
 SDIR	=./src
 TDIR	=./tests
+PIECESDIR = ./src/pieces
 
 LIBS	=-lm
 	
-_DEPS	= engine.hpp board.hpp square.hpp king.hpp queen.hpp bishop.hpp rook.hpp knight.hpp pawn.hpp piece.hpp catch.hpp
+_DEPS	= player.hpp engine.hpp board.hpp square.hpp king.hpp queen.hpp bishop.hpp rook.hpp knight.hpp pawn.hpp piece.hpp catch.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 _TOBJ = engine.o board.o square.o king.o queen.o bishop.o rook.o knight.o pawn.o piece.o tests_square.o tests_main.o
@@ -18,6 +19,9 @@ TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
 
 _OBJ = engine.o board.o square.o king.o queen.o bishop.o rook.o knight.o pawn.o piece.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
+$(ODIR)/%.o: $(PIECESDIR)/%.cpp $(DEPS)
+	$(CC)	-c	-o 	$@	$<	$(CFLAGS)
 
 $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)
 	$(CC)	-c	-o 	$@	$<	$(CFLAGS)
@@ -49,6 +53,15 @@ engine_tester:$(TOBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 gcov_engine: $(TOBJ)
+	$(CC) -o $@ $^ $(GCOVFLAGS) $(LIBS)
+
+_TOBJ += tests_player.o
+TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
+
+player_tester:$(TOBJ)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+gcov_player: $(TOBJ)
 	$(CC) -o $@ $^ $(GCOVFLAGS) $(LIBS)
 
 
