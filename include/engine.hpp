@@ -11,6 +11,9 @@
 #include <iostream>
 using std::cout;
 
+#include <vector>
+using std::vector;
+
 typedef shared_ptr<Piece> PPiece;
     // Smart pointer to Piece
 
