@@ -10,9 +10,12 @@
 #include "board.hpp"
 #include <iostream>
 using std::cout;
+using std::endl;
 
 #include <vector>
 using std::vector;
+
+
 
 typedef shared_ptr<Piece> PPiece;
     // Smart pointer to Piece
@@ -25,7 +28,7 @@ class Engine
   public:
   uint8_t readCodeTable( const char (&array)[8][8] );
   void printCodeTable( const char (&array)[8][8] );
-  char** returnCodeTable();
+  std::unique_ptr<std::unique_ptr<char[]>[]> returnCodeTable();
 
   // Auxiliary functions
   uint8_t isValidCodeSymbol( char code_symbol );

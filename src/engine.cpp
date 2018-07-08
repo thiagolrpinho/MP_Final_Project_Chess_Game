@@ -157,22 +157,42 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   return Success;
 }
 
- char** Engine::returnCodeTable()
+ unique_ptr<unique_ptr<char[]>[]> Engine::returnCodeTable()
  { 
-    char **codeTable = new char*;
+  unique_ptr<unique_ptr<char[]>[]>  code_table;
+  uint8_t size = 8;
 
-   return codeTable;
+  code_table = make_unique< unique_ptr<char[]>[] >(size);
+    {
+      for ( int i = 0; i < size; ++i)
+       {
+         code_table[i] = make_unique< char[] >(size);
+
+         for (int j = 0; j < size; ++j)
+            code_table[i][j] = j;
+       }
+    }
+
+  for( uint8_t i = 0; i < 8; i++ )
+    {
+      for( uint8_t j = 0; j < 8; j++ )
+      {
+        code_table[i][j] = 0;
+      }
+    }
+
+   return code_table;
  }
 
 
 void Engine::printCodeTable( const char (&array)[8][8] )
 {
-    std::cout << __func__ << std::endl;
+    cout << __func__ << endl;
   for (size_t i = 0; i < 8; ++i)
   {
-    std::cout << i << ": ";
+    cout << i << ": ";
     for (size_t j = 0; j < 8; ++j)
-        std::cout << array[i][j] << '\t';
-    std::cout << std::endl;
+        cout << array[i][j] << '\t';
+    cout << endl;
   }
 }

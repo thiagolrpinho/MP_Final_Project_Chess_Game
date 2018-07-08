@@ -19,6 +19,8 @@ using std::uint8_t;
 
 #include <memory>
 using std::shared_ptr; 
+using std::unique_ptr;
+using std::make_unique;
 // Smart pointer that deallocates when no references to it exists
 
 typedef shared_ptr<Piece>   PPiece;

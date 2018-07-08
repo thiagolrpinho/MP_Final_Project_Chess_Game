@@ -255,7 +255,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
   SECTION( "An engine can be return a code table" ) 
   {
-      char** returned_code_table = nullptr;
+      std::unique_ptr<std::unique_ptr<char[]>[]> returned_code_table = nullptr;
 
       Board::getBoard()->cleanBoard();
 

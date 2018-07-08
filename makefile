@@ -1,5 +1,5 @@
 IDIR	=./include
-CC      = g++ -std=c++11
+CC      = g++ -std=c++14
 CFLAGS  = -Wall -g -I$(IDIR) --coverage 
 GCOVFLAGS = $(CFLAGS) --coverage -fPIC  -O0 
 
