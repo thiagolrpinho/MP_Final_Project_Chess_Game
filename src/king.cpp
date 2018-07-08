@@ -61,12 +61,12 @@ void King::display() const
 }
 
 
-void King::setCodeSymbol()
+char King::getCodeSymbol()
 {
   if ( isWhite )
   {
-    code_symbol_= 'z';
+    return'z';
 
   } else {
-    code_symbol_ = 'Z';
+    return = 'Z';
   }

@@ -54,7 +54,7 @@ class King : public RestrictedPiece
     /**
      * Define o código da peça
      */
-    void setCodeSymbol();
+    void getCodeSymbol();
 
 }; // Rei
 

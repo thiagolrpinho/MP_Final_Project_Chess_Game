@@ -57,12 +57,12 @@ void Queen::display() const
 }
 
 
-void Queen::setCodeSymbol()
+char Queen::getCodeSymbol()
 {
   if ( isWhite )
   {
-    code_symbol_= 'r';
+    return'r';
 
   } else {
-    code_symbol_ = 'R';
+    return 'R';
   }

@@ -33,14 +33,14 @@ void Bishop::display() const
 }
 
 
-void Bishop::setCodeSymbol()
+char Bishop::getCodeSymbol()
 {
   if ( isWhite() )
   {
-    code_symbol_= 'b';
+    return 'b';
 
   } else {
-    code_symbol_ = 'B';
+    return 'B';
   }
   
 }

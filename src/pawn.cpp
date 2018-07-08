@@ -136,14 +136,14 @@ void Pawn::display() const
 }
 
 
-void Pawn::setCodeSymbol()
+char Pawn::getCodeSymbol()
 {
   if ( isWhite )
   {
-    code_symbol_= 'p';
+    return'p';
 
   } else {
-    code_symbol_ = 'P';
+    return 'P';
   }
   
 }

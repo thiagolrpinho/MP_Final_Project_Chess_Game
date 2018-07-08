@@ -50,14 +50,14 @@ void Rook::display() const
 
 
 
-void Rook::setCodeSymbol()
+char Rook::getCodeSymbol()
 {
   if ( isWhite() )
   {
-    code_symbol_= 't';
+    return't';
 
   } else {
-    code_symbol_ = 'T';
+    return 'T';
   }
   
 }

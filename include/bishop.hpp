@@ -54,7 +54,7 @@ class Bishop : public Piece
 	/**
      * Define o código da peça
      */
-    void setCodeSymbol();
+    char getCodeSymbol();
 
 }; // Bispo
 

@@ -55,7 +55,7 @@ class Queen : public Piece
     /**
      * Define o código da peça
      */
-    void setCodeSymbol();
+    void getCodeSymbol();
 
 }; // Rainha
 

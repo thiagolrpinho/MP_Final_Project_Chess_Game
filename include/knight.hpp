@@ -55,7 +55,7 @@ class Knight : public Piece
     /**
      * Define o código da peça
      */
-    void setCodeSymbol();
+    void getCodeSymbol();
     
 
 }; // Cavalo

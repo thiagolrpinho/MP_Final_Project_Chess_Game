@@ -58,7 +58,7 @@ class Pawn : public RestrictedPiece
     void display() const;
     
    
-    void setCodeSymbol();
+    void getCodeSymbol();
   
  private:
 

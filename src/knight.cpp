@@ -46,14 +46,14 @@ void Knight::display() const
 }
 
 
-void Knight::setCodeSymbol()
+char Knight::getCodeSymbol()
 {
   if ( isWhite )
   {
-    code_symbol_= 'c';
+    return 'c';
 
   } else {
-    code_symbol_ = 'C';
+    return 'C';
   }
   
 }
