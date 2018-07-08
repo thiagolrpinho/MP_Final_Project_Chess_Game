@@ -26,7 +26,7 @@ class Player
      *
      * @params x, y the location of the square on the board
      */
-    Player(string name, bool isWhite, King& myKing, set<Piece*>& myPieces);
+    Player( bool isWhite, King& myKing, set<Piece*>& myPieces);
     
     /**
      * Default destructor

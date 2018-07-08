@@ -13,11 +13,11 @@ TEST_CASE( "Create Player", "[Player]" )
   SECTION( "A valid player can be created ")
   {
     Player * valid_player = nullptr;
-    King& valid_king = new King(true);
-    set<Piece*>& set_of_pieces = new set<Piece>;
-    string name = "joseph";
+    King* valid_king = new King();
+    set<Piece*> set_of_pieces = *(new set<Piece*>);
+    set_of_pieces.insert(valid_king);
 
-    valid_player = new Player( name, true, valid_king, set_of_pieces );
+    valid_player = new Player( true, *valid_king, set_of_pieces );
 
     REQUIRE_FALSE( valid_player == nullptr );
   }
