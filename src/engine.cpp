@@ -176,7 +176,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
          code_table[i] = make_unique< char[] >(size);
 
          for (int j = 0; j < size; ++j)
-            code_table[i][j] = j;
+            code_table[i][j] = 0;
        }
     }
 
@@ -184,19 +184,9 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
     {
       for( uint8_t j = 0; j < 8; j++ )
       {
-        try {
-          unidentified_piece = Board::getBoard()->getPieceAt( i, j ).get();
-          cout << unidentified_piece->isWhite << endl;
-          cout << ((Rook*)( unidentified_piece ))->isRook  << endl;
-          if( piece_rook.reset( (Rook*)( unidentified_piece ) ) )
-          {
-            code_table[i][j] = piece_rook->getCodeSymbol();
-          } else {
-            code_table[i][j] = unidentified_piece->getCodeSymbol();
-          }
-
-        } catch (int throwned_error ){
-
+        if( Board::getBoard()->getSquareAt( i, j )->isOccupied() )
+        {
+         code_table[i][j] = Board::getBoard()->getPieceAt( i, j )->getCodeSymbol();
         }
       } // for( uint8_t j = 0; j < 8; j++ )
     } // for( uint8_t i = 0; i < 8; i++ )
