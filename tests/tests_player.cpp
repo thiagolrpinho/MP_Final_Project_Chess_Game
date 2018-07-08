@@ -13,7 +13,12 @@ TEST_CASE( "Create Player", "[Player]" )
   SECTION( "A valid player can be created ")
   {
     Player * valid_player = nullptr;
-    valid_player = new Player();
+    King& valid_king = new King(true);
+    set<Piece*>& set_of_pieces = new set<Piece>;
+    string name = "joseph";
+
+    valid_player = new Player( name, true, valid_king, set_of_pieces );
+
     REQUIRE_FALSE( valid_player == nullptr );
   }
 } // TEST_CASE( "Create", "[Player]" )
