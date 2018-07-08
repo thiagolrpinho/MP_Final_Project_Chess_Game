@@ -1,13 +1,6 @@
 #include "Salvar.hpp"
 
-/* The function abrePgn receive an file with extension .pgn that contains some iformations.
- It contains the information of place, date, players, winner,
- and the plays made in the game of chess.*/
-
-/* The function carregaTab uses the information gained in abrePgn and put it in the form of a 
-board of chess after all the movments registered in the .pgn file*/
-
-
+/*The function removepeca removes the piece to make the move registered in .pgn file */
 void removepeca(char tabuleiro[][8], char peca) {		//TEM Q PASSAR O TABULEIRO POR REFERENCIA NAO CONSEGUI AINDA
 	for(int i = 0; i < 8; i++)
     	for(int j = 0; j < 8; j++)
@@ -15,7 +8,7 @@ void removepeca(char tabuleiro[][8], char peca) {		//TEM Q PASSAR O TABULEIRO PO
     			tabuleiro[i][j] = '0';
 }
 
-
+/*The function carregarTab uses information of all the movements registered in the .pgn file and put it in the form of a board of chess */
 void carregaTab(char tabuleiro[][8]){
     char Carregar[100000];
     char letra, peca, x, y;
@@ -28,7 +21,7 @@ void carregaTab(char tabuleiro[][8]){
 
     if(!carrega.is_open( )){
         cout << "Não foi possível abrir arquivo! Programa será terminado!\n";
-        carrega.clear( ); //reseta o objeto leitura, para limpar memória do sistema}
+        carrega.clear( );
     }
 
     while(carrega.get(letra)){
@@ -48,7 +41,7 @@ void carregaTab(char tabuleiro[][8]){
     	i++;
     }
 
-    i = i + 3;	// pegar o movimento dps do numero.
+    i = i + 3;
     while(i < index - 1) {
     	if (Carregar[i] == 'T' || Carregar[i] == 'C' || Carregar[i] == 'B' || Carregar[i] == 'R' || Carregar[i] == 'Z' || Carregar[i] == 'P' ||  
     	Carregar[i] == 't' || Carregar[i] == 'c' || Carregar[i] == 'b' || Carregar[i] == 'r' || Carregar[i] == 'z' || Carregar[i] == 'p') {
@@ -71,17 +64,12 @@ void carregaTab(char tabuleiro[][8]){
     }
 
 
-    // mostrando tabuleiro
+    // mostrando tabuleiro REMOVER DEPOIS
     for(int a = 0; a < 8; a++) {
     	cout << endl;
     	for(int b = 0; b < 8; b++)
     		cout << tabuleiro[b][a];
     }
-
-
-
-
-
 }
 /* The function salvarTab saves the statement of the game and other informations of the game.*/
 void salvarTab(){
