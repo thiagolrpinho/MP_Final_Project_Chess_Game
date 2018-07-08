@@ -10,13 +10,13 @@ TDIR	=./tests
 
 LIBS	=-lm
 	
-_DEPS	= engine.hpp board.hpp square.hpp piece.hpp catch.hpp
+_DEPS	= engine.hpp board.hpp square.hpp king.hpp queen.hpp bishop.hpp rook.hpp knight.hpp pawn.hpp piece.hpp catch.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_TOBJ = engine.o board.o square.o piece.o tests_square.o tests_main.o
+_TOBJ = engine.o board.o square.o king.o queen.o bishop.o rook.o knight.o pawn.o piece.o tests_square.o tests_main.o
 TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
 
-_OBJ = engine.o board.o square.o piece.o main.o
+_OBJ = engine.o board.o square.o king.o queen.o bishop.o rook.o knight.o pawn.o piece.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)

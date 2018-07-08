@@ -6,6 +6,10 @@ class King: public Piece
   public:
   bool isKing = true;
   char getCodeSymbol() const;
+
+  King(bool isWhite);
+  King();
+  ~King();
 };
 
 #endif

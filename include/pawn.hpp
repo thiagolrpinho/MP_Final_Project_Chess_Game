@@ -8,6 +8,10 @@ class Pawn: public Piece
   bool isPawn = true;
   char getCodeSymbol() const;
 
+  Pawn(bool isWhite);
+  Pawn();
+  ~Pawn();
+
 };
 
 #endif

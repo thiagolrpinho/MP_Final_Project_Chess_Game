@@ -5,6 +5,10 @@ King::King(bool isWhite) : Piece(isWhite)
    ;
 }
 
+King::King() : Piece()
+{
+   ;
+}
 
 
 King::~King()
@@ -21,3 +25,4 @@ char  King::getCodeSymbol() const
   } else {
     return 'K';
   }
+}

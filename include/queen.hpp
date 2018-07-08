@@ -6,6 +6,10 @@ class Queen: public Piece
   public:
   bool isQueen = true;
   char getCodeSymbol() const;
+
+  Queen(bool isWhite);
+  Queen();
+  ~Queen();
 };
 
 #endif

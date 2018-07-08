@@ -5,6 +5,10 @@ Queen::Queen(bool isWhite) : Piece(isWhite)
    ;
 }
 
+Queen::Queen() : Piece()
+{
+   ;
+}
 
 
 Queen::~Queen()
@@ -22,3 +26,4 @@ char Queen::getCodeSymbol() const
   } else {
     return 'R';
   }
+}

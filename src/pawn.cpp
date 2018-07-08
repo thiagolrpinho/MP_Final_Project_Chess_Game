@@ -7,6 +7,11 @@ Pawn::Pawn(bool isWhite) : Piece(isWhite)
    ;
 }
 
+Pawn::Pawn() : Piece()
+{
+   ;
+}
+
 Pawn::~Pawn()
 {
    ;

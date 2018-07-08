@@ -5,6 +5,10 @@ Rook::Rook(bool isWhite) : Piece(isWhite)
    ;
 }
 
+Rook::Rook() : Piece()
+{
+   ;
+}
 
 Rook::~Rook()
 {

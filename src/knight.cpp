@@ -1,6 +1,11 @@
-#include "knight.h"
+#include "knight.hpp"
 
 Knight::Knight(bool isWhite) : Piece(isWhite)
+{
+   ;
+}
+
+Knight::Knight() : Piece()
 {
    ;
 }
