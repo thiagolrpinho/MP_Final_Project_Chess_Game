@@ -29,7 +29,7 @@ class Engine
   uint8_t table_row_size_;
   PPlayer player1;
   PPlayer player2;
-  static PPlayer nextPlayer;
+  PPlayer nextPlayer;
 
  public:
   uint8_t readCodeTable( const char (&array)[8][8] );
