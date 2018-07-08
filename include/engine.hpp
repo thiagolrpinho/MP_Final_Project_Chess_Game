@@ -28,7 +28,7 @@ class Engine
   public:
   uint8_t readCodeTable( const char (&array)[8][8] );
   void printCodeTable( const char (&array)[8][8] );
-  std::unique_ptr<std::unique_ptr<char[]>[]> returnCodeTable();
+  PCodeTable returnCodeTable();
 
   // Auxiliary functions
   uint8_t isValidCodeSymbol( char code_symbol );

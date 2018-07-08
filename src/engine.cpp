@@ -157,11 +157,11 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   return Success;
 }
 
- unique_ptr<unique_ptr<char[]>[]> Engine::returnCodeTable()
+ PCodeTable Engine::returnCodeTable()
  { 
-  unique_ptr<unique_ptr<char[]>[]>  code_table;
+  PCodeTable  code_table;
   uint8_t size = 8;
-  Piece*  unidentified_piece;
+
   PKing   piece_king;
   PQueen  piece_queen;
   PBishop piece_bishop;
@@ -192,7 +192,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
     } // for( uint8_t i = 0; i < 8; i++ )
 
    return code_table;
- } // unique_ptr<unique_ptr<char[]>[]> Engine::returnCodeTable()
+ } // PCodeTable Engine::returnCodeTable()
 
 
 void Engine::printCodeTable( const char (&array)[8][8] )
