@@ -77,6 +77,9 @@ uint8_t Engine::isValidCodeSymbol( char code_symbol )
 
 uint8_t Engine::new_game()
 {
+  this->player1.reset( new Player( true ) );
+  this->player2.reset( new Player( false ) );
+
   const char initial_game_code_table[8][8] = 
   {
     { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
@@ -88,6 +91,7 @@ uint8_t Engine::new_game()
     { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
     { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
   };
+  
   return this->readCodeTable( initial_game_code_table );
 }
 
@@ -101,19 +105,12 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   PRook   white_rook( new Rook() );
   PPawn   white_pawn( new Pawn() );
 
-  PKing   black_king( new King() );
-  PQueen  black_queen( new Queen() );
-  PBishop black_bishop( new Bishop() );
-  PKnight black_knight( new Knight() );
-  PRook   black_rook( new Rook() );
-  PPawn   black_pawn( new Pawn() );
-
-  black_king->setBlack();
-  black_queen->setBlack();
-  black_bishop->setBlack();
-  black_knight->setBlack();
-  black_rook->setBlack();
-  black_pawn->setBlack();
+  PKing   black_king( new King( false ) );
+  PQueen  black_queen( new Queen( false ) );
+  PBishop black_bishop( new Bishop( false ) );
+  PKnight black_knight( new Knight( false ) );
+  PRook   black_rook( new Rook( false ) );
+  PPawn   black_pawn( new Pawn( false ) );
 
   switch( code_symbol )
       {
