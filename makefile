@@ -13,10 +13,10 @@ LIBS	=-lm
 _DEPS	= Salvar.hpp board.hpp square.hpp catch.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_TOBJ = Salvar.o board.o square.o tests_square.o tests_main.o
+_TOBJ = Salvar.o board.o square.o tests_square.o
 TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
 
-_OBJ = Salvar.o board.o square.o main.o
+_OBJ = Salvar.o board.o square.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)

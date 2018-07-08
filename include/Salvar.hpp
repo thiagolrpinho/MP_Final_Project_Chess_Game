@@ -1,13 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
-#include <memory>
-#include <board.hpp>
+#include "Salvar.cpp"
 
-using namespace std;
-
-
-void removepeca(char tabuleiro[][8], char peca);
-void carregaTab(char tabuleiro[][8]);
+void carregaTab();
 void salvarTab();
-int main();
+void removepeca(char peca);
