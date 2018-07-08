@@ -186,7 +186,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
       {
         if( Board::getBoard()->getSquareAt( i, j )->isOccupied() )
         {
-         code_table[i][j] = Board::getBoard()->getPieceAt( i, j )->getCodeSymbol();
+         code_table[j][i] = Board::getBoard()->getPieceAt( i, j )->getCodeSymbol();
         }
       } // for( uint8_t j = 0; j < 8; j++ )
     } // for( uint8_t i = 0; i < 8; i++ )

@@ -20,9 +20,9 @@ char  King::getCodeSymbol() const
 {
   if ( isWhite )
   {
-    return 'k';
+    return 'z';
 
   } else {
-    return 'K';
+    return 'Z';
   }
 }
