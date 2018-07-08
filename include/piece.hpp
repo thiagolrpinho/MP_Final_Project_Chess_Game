@@ -1,5 +1,11 @@
+#ifndef CATCH_H
+#define CATCH_H
+#include "catch.hpp"
+#endif
+
 #ifndef PIECE_HPP
 #define PIECE_HPP
+
 class Piece 
 { 
 
