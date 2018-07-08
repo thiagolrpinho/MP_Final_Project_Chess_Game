@@ -255,9 +255,11 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
   SECTION( "An engine can be return a code table" ) 
   {
+      char** returned_code_table = nullptr;
       Board::getBoard()->cleanBoard();
       REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
-      REQUIRE( typeid( valid_engine->returnCodeTable() ).name() == typeid( initial_game_code_table ).name()  );
+      returned_code_table = valid_engine->returnCodeTable();
+      REQUIRE_FALSE( returned_code_table == nullptr ); 
 
   } // SECTION( "An engine can be return a code table" )
  

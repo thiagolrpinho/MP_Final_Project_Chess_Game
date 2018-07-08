@@ -157,7 +157,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   return Success;
 }
 
- char** returnCodeTable()
+ char** Engine::returnCodeTable()
  { 
     char **codeTable = new char*;
 
