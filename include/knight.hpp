@@ -5,6 +5,7 @@ class Knight: public Piece
 {
   public:
   bool isKnight = true;
+  void setCodeSymbol();
 };
 
 #endif

@@ -5,6 +5,7 @@ class Queen: public Piece
 {
   public:
   bool isQueen = true;
+  void setCodeSymbol();
 };
 
 #endif

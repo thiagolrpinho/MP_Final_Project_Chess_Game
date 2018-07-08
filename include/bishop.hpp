@@ -5,6 +5,7 @@ class Bishop: public Piece
 {
   public:
   bool isBishop = true;
+  void setCodeSymbol();
 };
 
 #endif
