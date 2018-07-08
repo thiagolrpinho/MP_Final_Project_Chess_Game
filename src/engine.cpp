@@ -9,7 +9,6 @@
   */
 uint8_t Engine::readCodeTable( char (&array)[8][8] )
 {   
-  PPiece a_piece( new Piece() );
   PKing white_king( new King() );
   PQueen  white_queen( new Queen() );
   PBishop white_bishop( new Bishop() );
@@ -87,9 +86,19 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   PRook   white_rook( new Rook() );
   PPawn   white_pawn( new Pawn() );
 
+  PKing   black_king( new King() );
+  PQueen  black_queen( new Queen() );
+  PBishop black_bishop( new Bishop() );
+  PKnight black_knight( new Knight() );
+  PRook   black_rook( new Rook() );
   PPawn   black_pawn( new Pawn() );
 
-  black_pawn->setColor( false );
+  black_king->setBlack();
+  black_queen->setBlack();
+  black_bishop->setBlack();
+  black_knight->setBlack();
+  black_rook->setBlack();
+  black_pawn->setBlack();
 
   switch( code_symbol )
       {
@@ -108,7 +117,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
           return Error;
         break;
         case 'T':
-          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_rook ) == Error )
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  black_rook ) == Error )
           return Error;
         break;
         case 'c':
@@ -116,7 +125,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
           return Error;
         break;
         case 'C':
-          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_knight ) == Error )
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  black_knight ) == Error )
           return Error;
         break;
         case 'b':
@@ -124,7 +133,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
           return Error;
         break;
         case 'B':
-          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_bishop ) == Error )
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  black_bishop ) == Error )
           return Error;
         break;
         case 'r':
@@ -132,7 +141,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
           return Error;
         break;
         case 'R':
-          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_queen ) == Error )
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  black_queen ) == Error )
           return Error;
         break;
         case 'z':
@@ -140,7 +149,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
           return Error;
         break;
         case 'Z':
-          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_king ) == Error )
+          if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  black_king ) == Error )
           return Error;
         break;
       }

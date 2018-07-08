@@ -179,7 +179,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
       Board::getBoard()->cleanBoard();
       REQUIRE( valid_engine->readCodeTable( game_with_one_kind_of_piece_code_table ) == Success );
-      REQUIRE( Board::getBoard()->getSquareAt(7,4)->isOccupied() == true );
+      REQUIRE( Board::getBoard()->getSquareAt( 7, 4 )->isOccupied() == true );
 
       /*
           { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' },
@@ -220,12 +220,12 @@ TEST_CASE( "Read Engine", "[Engine]" )
       REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 5 ).get()))->isWhite == true );
 
       //Now we assure that the piece set on G1 was specific a Black King
-      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 6 ).get()))->isWhite == true );
+      REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 6 ).get()))->isKing == true );
       REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 0, 6 ).get()))->isWhite == false );
 
       //Now we assure that the piece set on H1 was specific a Black Knight
       REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 7 ).get()))->isKnight == true );
-      REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 7 ).get()))->isKnight == false );
+      REQUIRE( ((Knight*)(Board::getBoard()->getPieceAt( 0, 7 ).get()))->isWhite == false );
       
       
   } // SECTION( "An engine can be read one char code table and add a specific piece to it" )

@@ -10,7 +10,7 @@ Piece::Piece()
   isWhite = true;
 }
 
-void Piece::setColor( char isWhite )
+void Piece::setBlack()
 {
-  isWhite = true;
+  isWhite = false;
 }

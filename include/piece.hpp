@@ -8,7 +8,7 @@ class Piece
   Piece();
   Piece( char is_being_created_white );
   
-  void setColor( char isWhite );
+  void setBlack();
 
 };
 
