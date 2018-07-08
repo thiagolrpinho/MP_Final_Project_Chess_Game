@@ -2,12 +2,14 @@
 
 Queen::Queen(bool isWhite) : Piece(isWhite)
 {
+   this->setCodeSymbol();
 }
 
 
 
 Queen::~Queen()
 {
+   this->setCodeSymbol();
 }
 
 

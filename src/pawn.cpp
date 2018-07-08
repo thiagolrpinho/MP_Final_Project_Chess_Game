@@ -4,10 +4,12 @@
 
 Pawn::Pawn(bool isWhite) : Piece(isWhite)
 {
+   this->setCodeSymbol();
 }
 
 Pawn::~Pawn()
 {
+   this->setCodeSymbol();
 }
 
 void Pawn::setCodeSymbol()

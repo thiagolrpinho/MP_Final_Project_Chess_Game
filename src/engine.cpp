@@ -177,7 +177,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
     {
       for( uint8_t j = 0; j < 8; j++ )
       {
-        code_table[i][j] = 0;
+        code_table[i][j] = Board::getBoard()->getPieceAt( i, j )->getCodeSymbol();
       }
     }
 

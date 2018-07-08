@@ -2,12 +2,14 @@
 
 King::King(bool isWhite) : Piece(isWhite)
 {
+   this->setCodeSymbol();
 }
 
 
 
 King::~King()
 {
+   this->setCodeSymbol();
 }
 
 void King::setCodeSymbol()
