@@ -33,6 +33,20 @@ class Player
      */
     ~Player();
 
+     /**
+     * Determines if this is the white player
+     *
+     * @return if is white
+     */
+    bool isWhite() const;
+    
+    /**
+     * Get the total score for captured pieces
+     *
+     * @return score
+     */
+    int score() const; 
+
     /**
      * Get the set of this player's pieces
      *

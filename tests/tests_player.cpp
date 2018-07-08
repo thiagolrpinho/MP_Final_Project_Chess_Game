@@ -39,6 +39,7 @@ TEST_CASE( "Read Player", "[Player]" )
 
    REQUIRE( valid_player->myKing() == valid_king );
    REQUIRE( valid_player->myPieces() == &set_of_pieces );
+   REQUIRE( valid_player->isWhite() == true );
 
   }
 

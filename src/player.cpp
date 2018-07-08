@@ -9,6 +9,12 @@ Player::~Player()
 {
 }
 
+
+bool Player::isWhite() const
+{
+    return _isWhite;
+}
+
 set<Piece*>* Player::myPieces() const
 {
     return &_myPieces;
