@@ -32,6 +32,21 @@ class Player
      * Default destructor
      */
     ~Player();
+
+    /**
+     * Get the set of this player's pieces
+     *
+     * @return the set of pieces
+     */
+    set<Piece*>* myPieces() const;
+
+    /**
+     * Get this player's king
+     *
+     * @return the king
+     */
+    King* myKing() const;
+
     
   private:
     
