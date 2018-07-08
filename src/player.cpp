@@ -24,3 +24,4 @@ King* Player::myKing() const
 {
     return &_myKing;
 }
+
