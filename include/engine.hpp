@@ -23,8 +23,8 @@ class Engine
   uint8_t table_row_size_;
   
   public:
-  uint8_t readCodeTable( char (&array)[8][8] );
-  void printCodeTable( char (&array)[8][8] );
+  uint8_t readCodeTable( const char (&array)[8][8] );
+  void printCodeTable( const char (&array)[8][8] );
   char** returnCodeTable();
 
   // Auxiliary functions

@@ -115,7 +115,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
   //! reads objects within Engine class
   // These tests will focus on:./
   PEngine valid_engine( new Engine());
-  char initial_game_code_table[8][8] = 
+  const char initial_game_code_table[8][8] = 
   {
     { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
     { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
@@ -127,7 +127,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
     { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
   };
 
-  char wrong_game_code_table[8][8] = 
+  const char wrong_game_code_table[8][8] = 
   {
     { 'T', 'C', 'B', 'R', 'Y', 'B', 'C', 'T'},
     { 'P', 'X', 'P', 'P', 'P', 'P', 'P', 'P'},
@@ -139,7 +139,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
     { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
   };
 
-  char game_with_one_kind_of_piece_code_table[8][8] = 
+  const char game_with_one_kind_of_piece_code_table[8][8] = 
   {
     { 'p', 'c', 'r', 't', 'b', 'z', 'Z', 'C' }, 
     { },
@@ -165,7 +165,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
   {
       Board::getBoard()->cleanBoard();
       REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
-      REQUIRE( Board::getBoard()->getSquareAt(1,0)->isOccupied() == true );
+      REQUIRE( Board::getBoard()->getSquareAt( 1, 0 )->isOccupied() == true );
   } // SECTION( "An engine can be read one char code table and add pieces to it" )
 
   SECTION( "An engine can be read one char code table and add a specific piece to it" ) 

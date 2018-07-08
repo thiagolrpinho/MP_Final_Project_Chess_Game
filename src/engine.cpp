@@ -7,7 +7,7 @@
     \return Return a Success(Integer 1) if valid
     or Error(Integer 0) if invalid and no changes are made.
   */
-uint8_t Engine::readCodeTable( char (&array)[8][8] )
+uint8_t Engine::readCodeTable( const char (&array)[8][8] )
 {   
   PKing white_king( new King() );
   PQueen  white_queen( new Queen() );
@@ -157,15 +157,15 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   return Success;
 }
 
- const char** returnCodeTable()
+ char** returnCodeTable()
  { 
-    const char **codeTable = new const char*[8];
+    char **codeTable = new char*;
 
    return codeTable;
  }
 
 
-void Engine::printCodeTable( char (&array)[8][8] )
+void Engine::printCodeTable( const char (&array)[8][8] )
 {
     std::cout << __func__ << std::endl;
   for (size_t i = 0; i < 8; ++i)
