@@ -14,7 +14,7 @@ class Queen : public Piece
     /**
     * Cria uma Rainha
     *
-    * @param cor a cor da peça
+    * @param cor a cor da peï¿½a
     */
     Queen(bool isWhite);
     
@@ -28,7 +28,7 @@ class Queen : public Piece
     
 	
 	/**
-    * Pega o valor da peça
+    * Pega o valor da peï¿½a
     *
     * @return o valor
     */
@@ -37,25 +37,25 @@ class Queen : public Piece
     
 	
 	/**
-    * Determina se a peça pode se mover para um dado quadrado
+    * Determina se a peï¿½a pode se mover para um dado quadrado
     *
     * @param quadrado o quadrado destino
-    * @return se o movimento é válido
+    * @return se o movimento ï¿½ vï¿½lido
     */
     
 	
 	bool canMoveTo(Square& location) const;
     
     /**
-     * Mostra a peça
+     * Mostra a peï¿½a
      */
     void display() const;
     
     
     /**
-     * Define o código da peça
+     * Define o cï¿½digo da peï¿½a
      */
-    void setCodeSymbol();
+    char setCodeSymbol();
 
 }; // Rainha
 

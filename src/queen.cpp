@@ -2,23 +2,23 @@
 
 Queen::Queen(bool isWhite) : Piece(isWhite)
 {
-   this->setCodeSymbol();
+   ;
 }
 
 
 
 Queen::~Queen()
 {
-   this->setCodeSymbol();
+   ;
 }
 
 
-void Queen::setCodeSymbol()
+char Queen::setCodeSymbol()
 {
   if ( isWhite )
   {
-    code_symbol_= 'r';
+    return 'r';
 
   } else {
-    code_symbol = 'R';
+    return 'R';
   }

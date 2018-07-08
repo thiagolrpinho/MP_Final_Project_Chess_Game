@@ -161,6 +161,7 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
  { 
   unique_ptr<unique_ptr<char[]>[]>  code_table;
   uint8_t size = 8;
+  PPiece piece_to_code_table;
 
   code_table = make_unique< unique_ptr<char[]>[] >(size);
     {
@@ -177,12 +178,17 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
     {
       for( uint8_t j = 0; j < 8; j++ )
       {
-        code_table[i][j] = Board::getBoard()->getPieceAt( i, j )->getCodeSymbol();
-      }
-    }
+        try {
+          piece_to_code_table = Board::getBoard()->getPieceAt( i, j );
+          code_table[i][j] = piece_to_code_table->getCodeSymbol();
+        } catch (int throwned_error ){
+          
+        }
+      } // for( uint8_t j = 0; j < 8; j++ )
+    } // for( uint8_t i = 0; i < 8; i++ )
 
    return code_table;
- }
+ } // unique_ptr<unique_ptr<char[]>[]> Engine::returnCodeTable()
 
 
 void Engine::printCodeTable( const char (&array)[8][8] )

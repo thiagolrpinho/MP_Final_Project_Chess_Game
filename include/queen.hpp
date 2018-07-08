@@ -5,7 +5,7 @@ class Queen: public Piece
 {
   public:
   bool isQueen = true;
-  void setCodeSymbol();
+  char setCodeSymbol();
 };
 
 #endif

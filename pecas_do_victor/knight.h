@@ -14,7 +14,7 @@ class Knight : public Piece
     /**
     * Cria um cavalo
     *
-    * @param cor a cor da peça
+    * @param cor a cor da peï¿½a
     */
     Knight(bool isWhite);
     
@@ -28,7 +28,7 @@ class Knight : public Piece
    
    
     /**
-    * Pega valor da peça
+    * Pega valor da peï¿½a
     *
     * @return the value
     */
@@ -37,31 +37,31 @@ class Knight : public Piece
     
 	
 	/**
-    * Determina se é possível a peça se mover para determinado quadrado
+    * Determina se ï¿½ possï¿½vel a peï¿½a se mover para determinado quadrado
     *
     * @param quadrado o quadrado destino
-    * @return se o movimento é válido
+    * @return se o movimento ï¿½ vï¿½lido
     */
     bool canMoveTo(Square& location) const;
     
    
    
     /**
-     * Mostra a peça
+     * Mostra a peï¿½a
      */
     void display() const;
     
 	
 	/**
-     * Define o código da peça
+     * Define o cï¿½digo da peï¿½a
      */
-    void setCodeSymbol();
+    char setCodeSymbol();
     
     
     /**
-     * Define o código da peça
+     * Define o cï¿½digo da peï¿½a
      */
-    void setCodeSymbol();
+    char setCodeSymbol();
 
 }; // Cavalo
 

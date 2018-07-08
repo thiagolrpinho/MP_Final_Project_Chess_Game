@@ -13,7 +13,7 @@ class King : public RestrictedPiece
    /**
     * Cria um Rei
     *
-    * @param cor a cor da peça
+    * @param cor a cor da peï¿½a
     */
     King(bool isWhite);
     
@@ -27,7 +27,7 @@ class King : public RestrictedPiece
     
 	
 	/**
-    * Pega o valor da peça
+    * Pega o valor da peï¿½a
     *
     * @return o valor
     */
@@ -39,22 +39,22 @@ class King : public RestrictedPiece
     * Determina se o rei pode se mover para um dado quadrado
     *
     * @param quadrado o quadrado destino
-    * @return se o movimento é válido
+    * @return se o movimento ï¿½ vï¿½lido
     */
     bool canMoveTo(Square& location) const;
     
    
    
     /**
-     * Mostra a peça
+     * Mostra a peï¿½a
      */
     void display() const;
     
     
     /**
-     * Define o código da peça
+     * Define o cï¿½digo da peï¿½a
      */
-    void setCodeSymbol();
+    char setCodeSymbol();
 
 }; // Rei
 

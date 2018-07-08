@@ -14,7 +14,7 @@ class Bishop : public Piece
     /**
     * Cria um bispo
     *
-    * @param cor a cor da peça
+    * @param cor a cor da peï¿½a
     */
     Bishop(bool isWhite);
     
@@ -28,7 +28,7 @@ class Bishop : public Piece
     
 	
 	/**
-    * Recebe o valor da peça
+    * Recebe o valor da peï¿½a
     *
     * @retorna o valor
     */
@@ -37,25 +37,25 @@ class Bishop : public Piece
     
 	
 	/**
-    * Checa se a peça pode se mover para um dado quadrado(square).
+    * Checa se a peï¿½a pode se mover para um dado quadrado(square).
     *
-    * @param o quadrado q peça esta querendo ir
-    * @return se o movimento é válido
+    * @param o quadrado q peï¿½a esta querendo ir
+    * @return se o movimento ï¿½ vï¿½lido
     */
     bool canMoveTo(Square& location) const;
     
    
    
     /**
-     * Mostra a peça
+     * Mostra a peï¿½a
      */
     void display() const;
     
 	
 	/**
-     * Define o código da peça
+     * Define o cï¿½digo da peï¿½a
      */
-    void setCodeSymbol();
+    char setCodeSymbol();
 
 }; // Bispo
 

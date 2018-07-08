@@ -6,7 +6,7 @@ class Pawn: public Piece
 {
   public:
   bool isPawn = true;
-  void setCodeSymbol();
+  char setCodeSymbol();
 
 };
 

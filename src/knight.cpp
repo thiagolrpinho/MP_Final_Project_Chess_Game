@@ -2,22 +2,22 @@
 
 Knight::Knight(bool isWhite) : Piece(isWhite)
 {
-   this->setCodeSymbol();
+   ;
 }
 
 Knight::~Knight()
 {
-  this->setCodeSymbol();
+  ;
 }
 
 void Knight::setCodeSymbol()
 {
   if ( isWhite )
   {
-    code_symbol_= 'c';
+    return 'c';
 
   } else {
-    code_symbol = 'C';
+    return 'C';
   }
   
 }

@@ -14,7 +14,7 @@ class Rook : public RestrictedPiece
     /**
     * Cria uma torre
     *
-    * @param cor a cor da peça
+    * @param cor a cor da peï¿½a
     */
     Rook(bool isWhite);
     
@@ -28,7 +28,7 @@ class Rook : public RestrictedPiece
     
 	
 	/**
-    * Pega o valor da peça
+    * Pega o valor da peï¿½a
     *
     * @return o valor
     */
@@ -37,25 +37,25 @@ class Rook : public RestrictedPiece
     
 	
 	/**
-    * Determina se peça pode se mover pra um dado quadrado
+    * Determina se peï¿½a pode se mover pra um dado quadrado
     *
     * @param quadrado o quadrado destino
-    * @return se o movimento é legal
+    * @return se o movimento ï¿½ legal
     */
     bool canMoveTo(Square& location) const;
     
    
    
     /**
-     * Mostra a peça
+     * Mostra a peï¿½a
      */
     void display() const;
     
     
     /**
-     * Define o código da peça
+     * Define o cï¿½digo da peï¿½a
      */
-    void setCodeSymbol();
+    char setCodeSymbol();
 
 }; // Torre
 
