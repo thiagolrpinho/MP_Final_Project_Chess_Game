@@ -77,7 +77,18 @@ uint8_t Engine::isValidCodeSymbol( char code_symbol )
 
 uint8_t Engine::new_game()
 {
-  return Error;
+  const char initial_game_code_table[8][8] = 
+  {
+    { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+    { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+    { }, //These will be filled with 0
+    { },
+    { },
+    { },
+    { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+    { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+  };
+  return this->readCodeTable( initial_game_code_table );
 }
 
 uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate, 
