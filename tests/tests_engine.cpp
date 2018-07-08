@@ -300,6 +300,14 @@ TEST_CASE( "Update Engine", "[Engine]" )
   //! These test case will focus on methods that
   //! updates Engine
   // These tests will focus on:
+  PEngine valid_engine( new Engine());
+
+
+  SECTION( "An engine can start a new game" ) 
+  {
+      REQUIRE( valid_engine->new_game() == Success );
+
+  } // SECTION( "An engine can be return a code table" )
   
 } // TEST_CASE( "Update", "[Engine]" ) 
 

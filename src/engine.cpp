@@ -75,6 +75,10 @@ uint8_t Engine::isValidCodeSymbol( char code_symbol )
   return Success;
 }
 
+uint8_t Engine::new_game()
+{
+  return Error;
+}
 
 uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , char code_symbol )

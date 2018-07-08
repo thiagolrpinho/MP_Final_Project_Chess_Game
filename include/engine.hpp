@@ -30,6 +30,8 @@ class Engine
   void printCodeTable( const char (&array)[8][8] );
   PCodeTable returnCodeTable();
 
+  uint8_t new_game();
+
   // Auxiliary functions
   uint8_t isValidCodeSymbol( char code_symbol );
 
