@@ -79,6 +79,7 @@ uint8_t Engine::new_game()
 {
   this->player1.reset( new Player( true ) );
   this->player2.reset( new Player( false ) );
+  this->nextPlayer = player2;
 
   const char initial_game_code_table[8][8] = 
   {
@@ -217,4 +218,26 @@ void Engine::printCodeTable( const char (&array)[8][8] )
         cout << array[i][j] << '\t';
     cout << endl;
   }
+}
+
+PPlayer Engine::getNextPlayer()
+{
+    nextPlayer = opponentOf( nextPlayer );
+    return nextPlayer;
+}
+    
+PPlayer Engine::opponentOf( PPlayer player)
+{
+    PPlayer opponent;
+    
+    if( player->isWhite() == player1->isWhite() )
+    {
+        opponent = player2;
+    }
+    else 
+    {
+        opponent = player1;
+    }
+
+    return opponent;
 }

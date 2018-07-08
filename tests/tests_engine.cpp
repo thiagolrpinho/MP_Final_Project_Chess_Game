@@ -285,7 +285,6 @@ TEST_CASE( "Read Engine", "[Engine]" )
           REQUIRE( returned_code_table[i][j] == initial_game_code_table[i][j] );
         }
       }
-
   } // SECTION( "An engine can be return a code table" )
 
   SECTION( "An engine can receive and return the same code table" ) 
@@ -307,6 +306,9 @@ TEST_CASE( "Update Engine", "[Engine]" )
   {
       REQUIRE( valid_engine->new_game() == Success );
 
+      REQUIRE_FALSE( valid_engine->getNextPlayer() == nullptr );
+      REQUIRE_FALSE( valid_engine->getNextPlayer()->isWhite() );
+      REQUIRE_FALSE( valid_engine->opponentOf(valid_engine->getNextPlayer() )->isWhite() );
   } // SECTION( "An engine can be return a code table" )
   
 } // TEST_CASE( "Update", "[Engine]" ) 

@@ -45,5 +45,8 @@ class Engine
   uint8_t createPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , char code_symbol );
 
+  PPlayer getNextPlayer();
+  PPlayer opponentOf( PPlayer player);                
+
 };
 #endif
