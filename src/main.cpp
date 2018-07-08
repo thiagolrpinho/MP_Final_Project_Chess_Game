@@ -4,6 +4,8 @@
 
 using namespace std;
 
+bool quit = false, muted = true, start = false;
+
 int main( int argc, char* args[] )
 {   
     bool quit = false, muted = true, start = false;
@@ -12,8 +14,8 @@ int main( int argc, char* args[] )
     char initial_game_code_table[8][8] =
         {
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
-        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-        { }, //These will be filled with 0
+        { 0, 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+        { 'P'}, //These will be filled with 0
         { },
         { },
         { },

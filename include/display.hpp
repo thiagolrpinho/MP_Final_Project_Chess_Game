@@ -7,6 +7,11 @@
 #include <SDL_ttf.h>
 #include "LTexture.hpp"
 
+
+
+//GAME CONTROL
+extern bool quit, muted, start;
+
 enum PieceSprite {
 	noPiece = -1,
 	wRook = 0, wKnight, wBishop, wQueen, wKing, wPawn,

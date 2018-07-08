@@ -5,10 +5,11 @@
 Display::Display(){
     textColor = { 0, 0, 0 };
     window = NULL;
-	renderer = NULL;
+		renderer = NULL;
     init_SDL();
-	loadMedia();
-	frameCounter = FRAME_REFRESH_RATE;
+		loadMedia();
+		setSpriteClips();
+		frameCounter = FRAME_REFRESH_RATE;
 }
 
 bool Display::init_SDL() {
@@ -123,10 +124,11 @@ void Display::drawBorder() {
 
 bool Display::loadMedia() {
 	bool success = true;
-	spriteSheetTexture.loadFromFile(renderer, "../resources/spritesheet2.bmp");
-	if (spriteSheetTexture.texture == NULL)
+	spriteSheetTexture.loadFromFile(renderer, "spritesheet2.bmp");
+	if (spriteSheetTexture.texture == NULL){
 		success = false;
-	SDL_Surface* icon = IMG_Load("../resources/icon.png");	
+	}
+	SDL_Surface* icon = IMG_Load("icon.png");	
 	SDL_SetWindowIcon(window, icon);
 	return success;
 }
@@ -180,8 +182,23 @@ void Display::drawPieces(char matriz[8][8]) {
 		    else if ( matriz[r-1][f-1] == 'p')
 				clipSq = spriteClips[bPawn];	
 
-			spriteSheetTexture.render(renderer, sqPos.x, sqPos.y, &clipSq);
+			if ( matriz[r-1][f-1] != 0){
+				//Save piece being dragged, to rerender on top
+					spriteSheetTexture.render(renderer, sqPos.x, sqPos.y, &clipSq);
+			}
 
+			if (putOnTop != -1) { //Rerender piece being dragged
+				SDL_GetMouseState(&x, &y);
+				if (x < BXSTART + SQ_SIZE/2) 
+					x = BXSTART + SQ_SIZE/2;
+				if (x > BXSTART + B_SIZE - SQ_SIZE/2) 
+					x = BXSTART + B_SIZE - SQ_SIZE/2;
+				if (y < BYSTART + SQ_SIZE/2) 
+					y = BYSTART + SQ_SIZE/2;
+				if (y > BYSTART + B_SIZE - SQ_SIZE/2) 
+					y = BYSTART + B_SIZE - SQ_SIZE/2;
+				spriteSheetTexture.render(renderer, x-SQ_SIZE/2, y-SQ_SIZE/2, &pOTClipSq);
+	}
 			
 		}
 	}

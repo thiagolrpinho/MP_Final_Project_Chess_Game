@@ -20,13 +20,13 @@ bool LTexture::loadFromFile(SDL_Renderer* renderer, std::string path) {
 	SDL_Texture* newTexture = NULL;
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 	if (loadedSurface == NULL) {
-		std::cout << "Unable to load image!\n";
+		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 	}
 	else {
 		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 128, 128));
 		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if (newTexture == NULL) {
-			std::cout << "Unable to create texture.\n";
+			printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
 		}
 		else {
 			width = loadedSurface->w;
