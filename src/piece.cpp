@@ -1,6 +1,6 @@
 #include <string>
-#include "piece.h"
-#include "player.h"
+#include "piece.hpp"
+#include "player.hpp"
 
 /// Assertiva de entrada da função: if(isWhite)
 Piece::Piece(bool isWhite) : _isWhite(isWhite), _square(NULL)
@@ -109,9 +109,9 @@ bool Piece::moveTo(Player& byPlayer, Square& toSquare)
     return validMove;
 }
 
-void Piece::setLocation(Square* location)
+void Piece::setLocation(uint8_t horizontal_coordinate, uint8_t vertical_coordinate)
 {
-    _square = location;
+    _square = Board::getBoard()->getSquareAt( horizontal_coordinate, vertical_coordinate ).get();
 }
 
 bool Piece::isWhite() const
