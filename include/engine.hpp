@@ -32,6 +32,9 @@ class Engine
   PPlayer nextPlayer;
 
  public:
+  Engine();
+  ~Engine();
+  
   uint8_t readCodeTable( const char (&array)[8][8] );
   void printCodeTable( const char (&array)[8][8] );
   PCodeTable returnCodeTable();

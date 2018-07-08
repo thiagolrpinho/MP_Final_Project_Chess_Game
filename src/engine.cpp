@@ -1,5 +1,13 @@
 #include "engine.hpp"
 
+
+Engine::Engine()
+{
+}
+
+Engine::~Engine()
+{
+}
 //! Receives a code table and changes Board according to it if it's valid
   /*!
     \param A valid already allocated char matrix 
