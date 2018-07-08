@@ -165,7 +165,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
   {
       Board::getBoard()->cleanBoard();
       REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
-      REQUIRE( Board::getBoard()->getSquareAt(1,0)->isOccupied() == true );
+      REQUIRE( Board::getBoard()->getSquareAt( 1, 0 )->isOccupied() == true );
   } // SECTION( "An engine can be read one char code table and add pieces to it" )
 
   SECTION( "An engine can be read one char code table and add a specific piece to it" ) 

@@ -1,2 +1,32 @@
 
 chess-master/
+
+src/bishop\.cpp
+
+src/king\.cpp
+
+src/knight\.cpp
+
+src/pawn\.cpp
+
+src/piece \(1\)\.cpp
+
+src/queen\.cpp
+
+src/restrictedPiece\.cpp
+
+src/rook\.cpp
+
+include/bishop\.h
+
+include/king\.h
+
+include/pawn\.h
+
+include/piece\.h
+
+include/queen\.h
+
+include/restrictedPiece\.h
+
+include/rook\.h
