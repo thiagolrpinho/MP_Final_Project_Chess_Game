@@ -9,6 +9,7 @@ typedef shared_ptr<Bishop>  PBishop;
 typedef shared_ptr<Knight>  PKnight;
 typedef shared_ptr<Rook>    PRook;
 typedef shared_ptr<Pawn>    PPawn;
+typedef unique_ptr<unique_ptr<char[]>[]> PCodeTable;
 
 //! These tests will be focused on engine class
 //! They'll be considered fully functional if they pass in
@@ -193,7 +194,6 @@ TEST_CASE( "Read Engine", "[Engine]" )
       */
       //Now we assure that the piece set was specific a king
       REQUIRE( ((King*)(Board::getBoard()->getPieceAt( 4, 7 ).get()))->isKing == true );
-      valid_engine->printCodeTable( game_with_one_kind_of_piece_code_table );
 
       //Now we assure that the piece on A1 set was specific a White Pawn
       REQUIRE( ((Pawn*)(Board::getBoard()->getPieceAt( 0, 0 ).get()))->isPawn == true );
@@ -255,7 +255,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
   SECTION( "An engine can be return a code table" ) 
   {
-      std::unique_ptr<std::unique_ptr<char[]>[]> returned_code_table = nullptr;
+      PCodeTable returned_code_table = nullptr;
 
       Board::getBoard()->cleanBoard();
 
@@ -265,15 +265,6 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
       REQUIRE_FALSE( returned_code_table == nullptr ); 
 
-      char test_code_table[8][8];
-      for( uint8_t i = 0; i < 8; i++ )
-      {
-        for( uint8_t j = 0; j < 8; j++ )
-        {
-          test_code_table[i][j] = returned_code_table[i][j];
-        }
-      }
-      valid_engine->printCodeTable( test_code_table );
       /*
        {
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
