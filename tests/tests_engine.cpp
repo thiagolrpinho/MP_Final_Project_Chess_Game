@@ -256,13 +256,41 @@ TEST_CASE( "Read Engine", "[Engine]" )
   SECTION( "An engine can be return a code table" ) 
   {
       char** returned_code_table = nullptr;
+
       Board::getBoard()->cleanBoard();
+
       REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
+
       returned_code_table = valid_engine->returnCodeTable();
+
       REQUIRE_FALSE( returned_code_table == nullptr ); 
+      /*
+       {
+        { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+        { }, //These will be filled with 0
+        { },
+        { },
+        { },
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+        { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+      };
+      */
+      //Now let's check if it's returning the same code table
+      for( uint8_t i = 0; i < 8; i++ )
+      {
+        for( uint8_t j = 0; j < 8; j++ )
+        {
+          REQUIRE( returned_code_table[i][j] == initial_game_code_table[i][j] );
+        }
+      }
 
   } // SECTION( "An engine can be return a code table" )
- 
+
+  SECTION( "An engine can receive and return the same code table" ) 
+  {
+  
+  } // SECTION( "An engine can receive and return the same code table" )
 
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
