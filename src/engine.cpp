@@ -20,7 +20,7 @@ uint8_t Engine::readCodeTable( char (&array)[8][8] )
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
-      if ( isValidCodeSymbol( array[horizontal][vertical] ) == Error )
+      if ( isValidCodeSymbol( array[vertical][horizontal] ) == Error )
         return Error;
     }
   }
@@ -29,7 +29,7 @@ uint8_t Engine::readCodeTable( char (&array)[8][8] )
   {
     for( size_t vertical = 0; vertical < 8; vertical++ )
     {
-      if( createPieceAt( horizontal, vertical, array[horizontal][vertical] ) == Error )
+      if( createPieceAt( horizontal, vertical, array[vertical][horizontal] ) == Error )
         return Error;
     }
   }
