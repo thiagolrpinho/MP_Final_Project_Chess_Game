@@ -253,6 +253,13 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
   } // SECTION( "An engine can be read one table code and know if its code is valid " )
 
+  SECTION( "An engine can be return a code table" ) 
+  {
+      Board::getBoard()->cleanBoard();
+      REQUIRE( valid_engine->readCodeTable(initial_game_code_table) == Success );
+      REQUIRE( typeid( valid_engine->returnCodeTable() ).name() == typeid( initial_game_code_table ).name()  );
+
+  } // SECTION( "An engine can be return a code table" )
  
 
 } //TEST_CASE( "Read Engine", "[Engine]" ) 

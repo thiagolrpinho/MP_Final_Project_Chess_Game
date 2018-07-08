@@ -157,6 +157,10 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   return Success;
 }
 
+ char** returnCodeTable()
+ {
+   return nullptr;
+ }
 
 
 void Engine::printCodeTable( char (&array)[8][8] )
