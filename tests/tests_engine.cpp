@@ -264,6 +264,16 @@ TEST_CASE( "Read Engine", "[Engine]" )
       returned_code_table = valid_engine->returnCodeTable();
 
       REQUIRE_FALSE( returned_code_table == nullptr ); 
+
+      char test_code_table[8][8];
+      for( uint8_t i = 0; i < 8; i++ )
+      {
+        for( uint8_t j = 0; j < 8; j++ )
+        {
+          test_code_table[i][j] = returned_code_table[i][j];
+        }
+      }
+      valid_engine->printCodeTable( test_code_table );
       /*
        {
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
