@@ -161,7 +161,13 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
  { 
   unique_ptr<unique_ptr<char[]>[]>  code_table;
   uint8_t size = 8;
-  PPiece piece_to_code_table;
+  Piece*  unidentified_piece;
+  PKing   piece_king;
+  PQueen  piece_queen;
+  PBishop piece_bishop;
+  PKnight piece_knight;
+  PRook   piece_rook;
+  PPawn   piece_pawn;
 
   code_table = make_unique< unique_ptr<char[]>[] >(size);
     {
@@ -179,10 +185,18 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
       for( uint8_t j = 0; j < 8; j++ )
       {
         try {
-          piece_to_code_table = Board::getBoard()->getPieceAt( i, j );
-          code_table[i][j] = piece_to_code_table->getCodeSymbol();
+          unidentified_piece = Board::getBoard()->getPieceAt( i, j ).get();
+          cout << unidentified_piece->isWhite << endl;
+          cout << ((Rook*)( unidentified_piece ))->isRook  << endl;
+          if( piece_rook.reset( (Rook*)( unidentified_piece ) ) )
+          {
+            code_table[i][j] = piece_rook->getCodeSymbol();
+          } else {
+            code_table[i][j] = unidentified_piece->getCodeSymbol();
+          }
+
         } catch (int throwned_error ){
-          
+
         }
       } // for( uint8_t j = 0; j < 8; j++ )
     } // for( uint8_t i = 0; i < 8; i++ )

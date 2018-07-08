@@ -6,7 +6,7 @@ class Rook: public Piece
 {
   public:
   bool isRook = true;
-      char setCodeSymbol();
+  char getCodeSymbol() const;
 };
 
 #endif

@@ -10,7 +10,10 @@ class Piece
   Piece( char is_being_created_white );
   
   void setBlack();
-  char getCodeSymbol();
+  char getCodeSymbol()
+  {
+    return 0;
+  };
 };
 
 #endif

@@ -10,7 +10,7 @@ Knight::~Knight()
   ;
 }
 
-void Knight::setCodeSymbol()
+char  Knight::getCodeSymbol() const
 {
   if ( isWhite )
   {

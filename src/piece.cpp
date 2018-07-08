@@ -15,8 +15,3 @@ void Piece::setBlack()
 {
   isWhite = false;
 }
-
-char Piece::getCodeSymbol()
-{
-  return 0;
-}

@@ -10,7 +10,7 @@ Bishop::~Bishop()
    ;
 }
 
-void Bishop::setCodeSymbol()
+char  Bishop::getCodeSymbol() const
 {
   if ( isWhite )
   {

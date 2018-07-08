@@ -12,7 +12,7 @@ King::~King()
    ;
 }
 
-void King::setCodeSymbol()
+char  King::getCodeSymbol() const
 {
   if ( isWhite )
   {

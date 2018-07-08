@@ -12,7 +12,7 @@ Pawn::~Pawn()
    ;
 }
 
-void Pawn::setCodeSymbol()
+char  Pawn::getCodeSymbol() const
 {
   if ( isWhite )
   {

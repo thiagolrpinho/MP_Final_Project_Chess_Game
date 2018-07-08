@@ -5,7 +5,7 @@ class Bishop: public Piece
 {
   public:
   bool isBishop = true;
-  char setCodeSymbol();
+  char getCodeSymbol() const;
 };
 
 #endif

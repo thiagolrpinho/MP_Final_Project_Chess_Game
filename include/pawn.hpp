@@ -6,7 +6,7 @@ class Pawn: public Piece
 {
   public:
   bool isPawn = true;
-  char setCodeSymbol();
+  char getCodeSymbol() const;
 
 };
 

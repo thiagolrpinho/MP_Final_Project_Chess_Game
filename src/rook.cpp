@@ -11,7 +11,7 @@ Rook::~Rook()
    ;
 }
 
-void Rook::setCodeSymbol()
+char Rook::getCodeSymbol() const
 {
   if ( isWhite )
   {

@@ -13,7 +13,7 @@ Queen::~Queen()
 }
 
 
-char Queen::setCodeSymbol()
+char Queen::getCodeSymbol() const
 {
   if ( isWhite )
   {
