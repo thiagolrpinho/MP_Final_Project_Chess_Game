@@ -3,7 +3,7 @@ using std::unique_ptr;
 typedef unique_ptr<char*> Matrix;
 
 
-//calls game engine and receive new board
+//calls game engine and receives new board
 Matrix movepiece(Matrix board){
 
 
@@ -30,7 +30,7 @@ bool  savegame(Matrix board){
 }
 //calls function to load board
 Matrix loadboard(){
-    
+
 
     return board;
 
