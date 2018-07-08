@@ -30,3 +30,19 @@ include/queen\.h
 include/restrictedPiece\.h
 
 include/rook\.h
+
+include/bishop\.hpp
+
+include/king\.hpp
+
+include/knight\.hpp
+
+include/pawn\.hpp
+
+include/piece\.hpp
+
+include/queen\.hpp
+
+include/restrictedPiece\.hpp
+
+include/rook\.hpp
