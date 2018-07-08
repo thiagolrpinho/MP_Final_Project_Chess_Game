@@ -1,7 +1,7 @@
 #include "board.hpp"
 
 typedef shared_ptr<Board> PBoard;
-typedef shared_ptr<Piece> PPiece;
+typedef shared_ptr<Bishop> PBishop;
 
 //! These tests will be focused on board class
 //! They'll be considered fully functional if they pass in
@@ -28,6 +28,21 @@ TEST_CASE( "Create Board", "[board]" )
 
 TEST_CASE( "Read Board", "[board]" ) 
 { 
+  //! These test case will focus on methods that
+  //! reads objects within board class
+  // These tests will focus on:
+  // static shared_ptr<Board> getBoard();
+  // PSquare getSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
+  // bool isClearHorizontal(uint8_t actual_horizontal_coordinate, 
+  //           uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate) const;
+  //bool isClearVertical(uint8_t actual_horizontal_coordinate,
+  //           uint8_t actual_vertical_coordinate, uint8_t future_vertical_coordinate) const;
+  //bool isClearDiagonal(uint8_t actual_horizontal_coordinate,
+  //           uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+  //           uint8_t future_vertical_coordinate ) const;
+  //bool isEndRow(uint8_t actual_horizontal_coordinate,
+  //           uint8_t actual_vertical_coordinate) const;
+
   SECTION( "A board can have it's address returned" ) 
   {
     REQUIRE_FALSE( Board::getBoard() == nullptr );
@@ -37,11 +52,11 @@ TEST_CASE( "Read Board", "[board]" )
   {
     try {
       //Board can read a valid square
-      REQUIRE_FALSE( Board::getBoard()->getBoardSquareAt( 2, 3 ) == nullptr );
+      REQUIRE_FALSE( Board::getBoard()->getSquareAt( 2, 3 ) == nullptr );
 
       //Board read a square with given coordinates
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 3 , 2 )->getHorizontal() == 3 );
-      REQUIRE( Board::getBoard()->getBoardSquareAt( 2 , 2 )->getHorizontal() == 2 );
+      REQUIRE( Board::getBoard()->getSquareAt( 3 , 2 )->getHorizontal() == 3 );
+      REQUIRE( Board::getBoard()->getSquareAt( 2 , 2 )->getHorizontal() == 2 );
 
     } catch (int throwned_error )
     {
@@ -52,16 +67,14 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( "A board throws an error if wrong coordinates passed to read one of it's squares " ) 
   {
     try {
-      PBoardSquare wrong_board_square( Board::getBoard()->getBoardSquareAt( 9, 2 ) );
-      REQUIRE_FALSE( "No error on reading wrong square" );
+      PSquare wrong_square( Board::getBoard()->getSquareAt( 9, 2 ) );
     } catch (int throwned_error )
     {
       REQUIRE( "Error on reading wrong square" );
     }
 
     try {
-      PBoardSquare wrong_board_square( Board::getBoard()->getBoardSquareAt( -1, 2 ) );
-      REQUIRE_FALSE( "No error on reading wrong square" );
+      PSquare wrong_square( Board::getBoard()->getSquareAt( -1, 2 ) );
     } catch (int throwned_error )
     {
       REQUIRE( "Error on reading wrong square" );
@@ -71,7 +84,7 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( "The board returns true if a given horizontal path right is free " ) 
   {
     try {
-      PPiece piece_on_A5( new Piece() );
+      PBishop piece_on_A5( new Bishop() );
       //A5 on a matrix 0 to 7 is [0][4]
       REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
 
@@ -87,9 +100,9 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( " The board returns false if a given horizontal path right is not free " ) 
   {
     try {
-      PPiece piece_on_A6( new Piece() );
+      PBishop piece_on_A6( new Bishop() );
       //A6 on a matrix 0 to 7 is [0][5]
-      PPiece piece_on_E6( new Piece() );
+      PBishop piece_on_E6( new Bishop() );
       //E6 on a matrix 0 to 7 is [4][5]
 
       REQUIRE( Board::getBoard()->setPieceAt( 0, 5 , piece_on_A6 ) == Success );
@@ -107,9 +120,9 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( " The board returns true or false if a given horizontal path left is free or not respectively " ) 
   {
     try {
-      PPiece piece_on_A5( new Piece() );
+      PBishop piece_on_A5( new Bishop() );
       //A5 on a matrix 0 to 7 is [0][4]
-      PPiece piece_on_F5( new Piece() );
+      PBishop piece_on_F5( new Bishop() );
       //E5 on a matrix 0 to 7 is [4][4]
 
       REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
@@ -133,7 +146,7 @@ TEST_CASE( "Read Board", "[board]" )
     try {
 
       PBoard valid_board = Board::getBoard();
-      PPiece piece_on_A5( new Piece() );
+      PBishop piece_on_A5( new Bishop() );
       //A5 on a matrix 0 to 7 is [0][4]
       
       REQUIRE( valid_board->cleanBoard() == Success );
@@ -154,9 +167,9 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( " The board returns true or false if a given vertical path down is free or not respectively " ) 
   {
     try {
-      PPiece piece_on_A5( new Piece() );
+      PBishop piece_on_A5( new Bishop() );
       //A5 on a matrix 0 to 7 is [0][4]
-      PPiece piece_on_A0( new Piece() );
+      PBishop piece_on_A0( new Bishop() );
       //A0 on a matrix 0 to 7 is [0][0]
 
       REQUIRE( Board::getBoard()->setPieceAt( 0, 4 , piece_on_A5 ) == Success );
@@ -179,7 +192,7 @@ TEST_CASE( "Read Board", "[board]" )
   {
     PBoard valid_board = Board::getBoard();
 
-    PPiece piece_on_F7( new Piece() );
+    PBishop piece_on_F7( new Bishop() );
       //F7 on a matrix 0 to 7 is [5][6]
     try {
       // First we make sure the board is clean
@@ -202,7 +215,7 @@ TEST_CASE( "Read Board", "[board]" )
   {
     PBoard valid_board = Board::getBoard();
 
-    PPiece piece_on_F7( new Piece() );
+    PBishop piece_on_F7( new Bishop() );
       //F7 on a matrix 0 to 7 is [5][6]
 
     try {
@@ -227,9 +240,9 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( " The board returns true or false if a given diagonal path right up is free or not respectively " ) 
   {
     try {
-      PPiece piece_on_A6( new Piece() );
+      PBishop piece_on_A6( new Bishop() );
       //A6 on a matrix 0 to 7 is [0][5]
-      PPiece piece_on_B7( new Piece() );
+      PBishop piece_on_B7( new Bishop() );
       //B7 on a matrix 0 to 7 is [1][6]
 
       PBoard clean_board = Board::getBoard();
@@ -243,7 +256,7 @@ TEST_CASE( "Read Board", "[board]" )
 
       REQUIRE( clean_board->setPieceAt( 1, 6 , piece_on_B7 ) == Success );
 
-      REQUIRE( clean_board->getBoardSquareAt( 1, 6 )->isOccupied() == true );
+      REQUIRE( clean_board->getSquareAt( 1, 6 )->isOccupied() == true );
 
       //Verifying if is clear the path A6 to B8
       REQUIRE( clean_board->isClearDiagonal( 0, 5, 1, 6 ) == false );
@@ -274,7 +287,7 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( " The board return true or false if a given diagonal path left down is free or not respectively " ) 
   {
     try {
-      PPiece piece_on_D3( new Piece() );
+      PBishop piece_on_D3( new Bishop() );
       //D3 on a matrix 0 to 7 is [3][2]
 
       PBoard clean_board = Board::getBoard();
@@ -298,7 +311,7 @@ TEST_CASE( "Read Board", "[board]" )
   SECTION( " The board return true or false if a given diagonal path left up or right down is free or not respectively " ) 
   {
     try {
-      PPiece piece_on_D6( new Piece() );
+      PBishop piece_on_D6( new Bishop() );
       //D6 on a matrix 0 to 7 is [3][5]
 
       PBoard clean_board = Board::getBoard();
@@ -367,10 +380,13 @@ TEST_CASE( "Update Board", "[board]" )
   //! These test case will focus on methods that
   //! updates board
   // These tests will focus on:
-  SECTION( "A board can change of it's board squares pieces " ) 
+  //    uint8_t setPieceAt( uint8_t horizontal_coordinate, 
+  //            uint8_t vertical_coordinate , PBishop piece_to_be_set );
+
+  SECTION( "A board can change of it's squares pieces " ) 
   {
     try {
-      PPiece piece_to_be_set_on_square( new Piece() );
+      PBishop piece_to_be_set_on_square( new Bishop() );
 
       REQUIRE( Board::getBoard()->setPieceAt( 2, 3 , piece_to_be_set_on_square ) == Success );
       
@@ -378,11 +394,11 @@ TEST_CASE( "Update Board", "[board]" )
     {
       REQUIRE_FALSE( "Error on changing one of it's squares" );
     }
-  } // SECTION( "A board can change of it's board squares pieces " )
+  } // SECTION( "A board can change of it's squares pieces " )
 
   SECTION( "A board return an Error if wrong square is given " ) 
   {
-      PPiece piece_to_be_set_on_square( new Piece() );
+      PBishop piece_to_be_set_on_square( new Bishop() );
 
       REQUIRE( Board::getBoard()->setPieceAt( 9, 3 , piece_to_be_set_on_square ) == Error );
   } // SECTION( "A board return an Error if wrong square is given " )
@@ -394,14 +410,17 @@ TEST_CASE( "Destroy Board", "[board]" )
   //! These test case will focus on methods that
   //! updates board
   // These tests will focus on:
+  //   ~Board();
+  // uint8_t cleanBoard();
+  // uint8_t cleanSquareAt(uint8_t horizontal_coordinate, uint8_t vertical_coordinate );
 
-  SECTION( "A board can be deleted and no board squares will be left floating" ) 
+  SECTION( "A board can be deleted and no squares will be left floating" ) 
   { 
     try {
       Board::getBoard().reset();
       REQUIRE_FALSE( Board::getBoard() == nullptr );
       Board::getBoard().reset();
-      // Using smart shared pointer I can only guarantee that the reference on board square
+      // Using smart shared pointer I can only guarantee that the reference on square
       // was erased and if there were no other reference to it it'll be succesfully
       // deallocated.
     } catch (int e) {
@@ -412,33 +431,33 @@ TEST_CASE( "Destroy Board", "[board]" )
   SECTION( "The board can be clean of one of it's pieces" ) 
   {
     PBoard board_to_be_clean = Board::getBoard();
-    PPiece piece_on_F4( new Piece );
+    PBishop piece_on_F4( new Bishop );
 
     board_to_be_clean->setPieceAt( 5, 3, piece_on_F4 );
 
-    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE_FALSE( board_to_be_clean->getSquareAt( 5, 3 )->getPiece() == nullptr );
 
-    board_to_be_clean->cleanBoardSquareAt( 5, 3 );
+    board_to_be_clean->cleanSquareAt( 5, 3 );
 
-    REQUIRE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE( board_to_be_clean->getSquareAt( 5, 3 )->getPiece() == nullptr );
   } // SECTION( "The board can be clean of one of it's pieces" ) 
     
   SECTION( "The board can be clean of all it's pieces" ) 
   {
     PBoard board_to_be_clean = Board::getBoard();
-    PPiece piece_on_F4( new Piece );
-    PPiece piece_on_B7(new Piece );
+    PBishop piece_on_F4( new Bishop );
+    PBishop piece_on_B7(new Bishop );
 
     board_to_be_clean->setPieceAt( 5, 3, piece_on_F4 );
     board_to_be_clean->setPieceAt( 1, 6, piece_on_B7 );
 
-    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
-    REQUIRE_FALSE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+    REQUIRE_FALSE( board_to_be_clean->getSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE_FALSE( board_to_be_clean->getSquareAt( 1, 6 )->getPiece() == nullptr );
 
     board_to_be_clean->cleanBoard();
 
-    REQUIRE( board_to_be_clean->getBoardSquareAt( 5, 3 )->getPiece() == nullptr );
-    REQUIRE( board_to_be_clean->getBoardSquareAt( 1, 6 )->getPiece() == nullptr );
+    REQUIRE( board_to_be_clean->getSquareAt( 5, 3 )->getPiece() == nullptr );
+    REQUIRE( board_to_be_clean->getSquareAt( 1, 6 )->getPiece() == nullptr );
   } // SECTION( "The board can be clean of all it's pieces" ) 
 
 } // TEST_CASE( "Destroy", "[board]" ) 
