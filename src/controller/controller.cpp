@@ -1,13 +1,7 @@
-#include <memory>
-#include "../Salvar.cpp"
-#include "../engine.cpp"
-#include "../Editar.cpp"
-using std::unique_ptr;
-typedef unique_ptr<char*> Matrix;
-
+#include "../../include/Controller.hpp"
 
 //calls game engine and receives new board
-Matrix movepiece(char board[8][8]){
+char movepiece(char board[8][8]){
     Matrix newboard = &board[8][8];
 
 
@@ -16,7 +10,7 @@ Matrix movepiece(char board[8][8]){
 }
 
 //returns true or false if the board is valid
-bool validateboard(char board[8][8]){
+char validateboard(char board[8][8]){
 
     return validation;
 }
@@ -53,7 +47,7 @@ char loadboard(){
 }
 
 //calls function to show options for moves
-Matrix showoptions(char board[8][8]){
+char showoptions(char board[8][8]){
 
     return board;
 }
