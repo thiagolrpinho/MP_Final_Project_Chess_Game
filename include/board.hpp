@@ -57,6 +57,10 @@ class Board
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
                uint8_t future_vertical_coordinate ) const;
                
+  bool isClearPath(uint8_t actual_horizontal_coordinate,
+            uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+            uint8_t future_vertical_coordinate ) const;
+
   bool isEndRow(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate) const;
 };

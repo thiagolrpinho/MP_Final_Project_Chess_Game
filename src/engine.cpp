@@ -224,7 +224,7 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   uint8_t second_difference_horizontal_coordinate;
   uint8_t second_difference_vertical_coordinate;
   bool first_difference_is_origin, first_is_occupied, second_is_occupied;
-  bool vertical_is_clear, horizontal_is_clear, diagonal_is_clear;
+
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
@@ -282,28 +282,14 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   }
   if( first_difference_is_origin )
   {
-  vertical_is_clear = Board::getBoard()->isClearVertical(first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate, second_difference_vertical_coordinate );
-  
-  horizontal_is_clear = Board::getBoard()->isClearHorizontal(first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate, second_difference_horizontal_coordinate );
-
-  diagonal_is_clear = Board::getBoard()->isClearDiagonal(first_difference_horizontal_coordinate,
+    if( Board::getBoard()->isClearPath(first_difference_horizontal_coordinate,
              first_difference_vertical_coordinate, second_difference_horizontal_coordinate,
-             second_difference_vertical_coordinate );
+             second_difference_vertical_coordinate ) == false ) return false;
   } else {
-    vertical_is_clear = Board::getBoard()->isClearVertical(second_difference_horizontal_coordinate,
-             second_difference_vertical_coordinate, first_difference_vertical_coordinate );
-  
-  horizontal_is_clear = Board::getBoard()->isClearHorizontal(second_difference_horizontal_coordinate,
-             second_difference_vertical_coordinate, first_difference_horizontal_coordinate );
-
-  diagonal_is_clear = Board::getBoard()->isClearDiagonal(second_difference_horizontal_coordinate,
+    if( Board::getBoard()->isClearPath(second_difference_horizontal_coordinate,
              second_difference_vertical_coordinate, first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate );
+             first_difference_vertical_coordinate ) == false ) return false;
   }
-  
-  if( !(vertical_is_clear | horizontal_is_clear | diagonal_is_clear) ) return false;
 
   return true;
 } // bool Engine::isValidMove( const char (&array)[8][8]  )
