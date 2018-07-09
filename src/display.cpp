@@ -183,8 +183,14 @@ void Display::drawPieces(char matriz[8][8]) {
 				clipSq = spriteClips[bPawn];	
 
 			if ( matriz[r-1][f-1] != 0){
-				//Save piece being dragged, to rerender on top
-					spriteSheetTexture.render(renderer, sqPos.x, sqPos.y, &clipSq);
+					if ((r-1 == pieceCoordinatex) && (f-1 == pieceCoordinatey) && getDragging()== true) {
+						putOnTop = sq;
+						pOTClipSq = clipSq;
+					}
+					else{
+						//Save piece being dragged, to rerender on top
+						spriteSheetTexture.render(renderer, sqPos.x, sqPos.y, &clipSq);
+					}
 			}
 
 			if (putOnTop != -1) { //Rerender piece being dragged

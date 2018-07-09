@@ -30,11 +30,15 @@ class Display{
 		const static int FRAME_REFRESH_RATE = 8;
         SDL_Rect spriteClips[12];
         LTexture spriteSheetTexture;
+        bool dragging = false;
     public:
         Display();
         ~Display();
-
-        
+        char pieceType;
+        int pieceCoordinatex,pieceCoordinatey=0;
+        int MouseCoordinatex,MouseCoordinatey=0;
+        void setDragging(bool x) { dragging = x; };
+        bool getDragging() const { return dragging; };
 		void drawPieces(char matriz[8][8]);
 		void drawBorder();
         bool init_SDL();
