@@ -22,7 +22,9 @@ int King::value() const
 /// if(abs(translationY) == 1 && translationX == 0),
 /// if(abs(translationX) == 1 && translationY == 0),
 /// if(abs(translationX) == 1 && abs(translationY) == 1)
-bool King::canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const
+bool King::canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const
 {
     bool validMove = false;
     int translationX = location.getX() - this->location()->getX();

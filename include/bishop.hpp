@@ -41,7 +41,9 @@ class Bishop : public Piece
     * @param o quadrado q peça esta querendo ir
     * @return se o movimento é válido
     */
-    bool canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const;
+    bool canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const;
     
    
    

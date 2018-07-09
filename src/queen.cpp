@@ -22,7 +22,9 @@ int Queen::value() const
 ///if(Board::getBoard()->isClearVertical(*(this->location()), location)), 
 ///if(Board::getBoard()->isClearVertical(*(this->location()), location)), 
 ///else if(Board::getBoard()->isClearDiagonal(*(this->location()), location))
-bool Queen::canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const
+bool Queen::canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const
 {
     bool validMove = false;
     

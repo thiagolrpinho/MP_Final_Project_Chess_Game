@@ -20,7 +20,9 @@ int Rook::value() const
 /// if(Board::getBoard()->isClearVertical(*(this->location()), location))
 /// if(Board::getBoard()->isClearHorizontal(*(this->location()), location))
  
-bool Rook::canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const
+bool Rook::canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const
 {
     bool validMove = false;
     

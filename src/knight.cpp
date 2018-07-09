@@ -16,7 +16,9 @@ int Knight::value() const
 /// Assertivas de entrada da função: 
 ///if(abs(translationY) == 1 && abs(translationX) == 2), 
 ///if(abs(translationX) == 1 && abs(translationY) == 2)
-bool Knight::canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const
+bool Knight::canMoveTouint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const
 {
     bool validMove = false;
     int translationX = location.getX() - this->location()->getX();
@@ -55,5 +57,6 @@ char Knight::getCodeSymbol()
   } else {
     return 'C';
   }
+  
   
 }

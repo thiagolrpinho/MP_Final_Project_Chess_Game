@@ -50,7 +50,9 @@ class Pawn : public RestrictedPiece
     * @param quadrado o quadrado destino
     * @return se o movimento é válido
     */
-    bool canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const;
+    bool canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const;
 
     /**
     * Mostra a peça
