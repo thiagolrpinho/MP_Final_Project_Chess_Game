@@ -285,12 +285,27 @@ TEST_CASE( "Read Engine", "[Engine]" )
           REQUIRE( returned_code_table[i][j] == initial_game_code_table[i][j] );
         }
       }
+      
   } // SECTION( "An engine can be return a code table" )
 
-  SECTION( "An engine can receive and return the same code table" ) 
+  SECTION( "An engine can receive a table and return if it's a valid movement" ) 
   {
-  
-  } // SECTION( "An engine can receive and return the same code table" )
+    Board::getBoard()->cleanBoard();
+    const char next_valid_code_table[8][8] = 
+  {
+    { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+    { 'P', 'P',  0, 'P', 'P', 'P', 'P', 'P'},
+    { 0, 0, 'P' }, //These will be filled with 0
+    { },
+    { },
+    { },
+    { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+    { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+  };
+    valid_engine->readCodeTable( initial_game_code_table);
+    REQUIRE( valid_engine->isValidMove( next_valid_code_table ) == true );
+
+  } // "An engine can receive a table and return if it's a valid movement"
 
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 

@@ -44,7 +44,7 @@ class Engine
 
   // Auxiliary functions
   uint8_t isValidCodeSymbol( char code_symbol );
-
+  bool isValidMove( const char (&array)[8][8]  );
   uint8_t createPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , char code_symbol );
 

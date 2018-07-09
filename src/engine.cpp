@@ -215,6 +215,10 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
    return code_table;
  } // PCodeTable Engine::returnCodeTable()
 
+bool Engine::isValidMove( const char (&array)[8][8]  )
+{
+  return Error;
+} // bool Engine::isValidMove( const char (&array)[8][8]  )
 
 void Engine::printCodeTable( const char (&array)[8][8] )
 {
