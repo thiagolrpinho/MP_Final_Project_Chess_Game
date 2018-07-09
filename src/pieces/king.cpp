@@ -59,19 +59,13 @@ bool King::canMoveTo(uint8_t actual_horizontal_coordinate,
 }
 
 
-
-void King::display() const
-{
-    cout << _color + "K";
-}
-
-
-char King::getCodeSymbol()
+char King::getCodeSymbol() const 
 {
   if ( isWhite )
   {
-    return'z';
+    return 'z';
 
   } else {
-    return = 'Z';
+    return 'Z';
   }
+}
