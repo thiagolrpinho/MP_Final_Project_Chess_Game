@@ -147,7 +147,7 @@ void salvarTab(char (*tabuleiro)[8][8]){
     strtok(resultado, "\n");
 
     ofstream arquivo;
-    arquivo.open("jogo.pgn");
+    arquivo.open("../saved_games/jogoS.pgn");
     arquivo << "[" << "Event " << '"' << Event << '"' << "]" << endl;
     arquivo << "[" << "Local " << '"' << Local << '"' << "]" << endl;
     arquivo << "[" << "Date " << '"' << Data << '"' << "]" << endl;
