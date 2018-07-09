@@ -1,0 +1,39 @@
+Rafael Neiva da Cunha
+
+Sábado 30 de junho
+Tipo: Estudar aulas e laboratórios relacionados.
+Utilizei o dia para entender como o SDL funcionava e fazer alguns testes.
+
+Total de horas trabalhadas: 1 hora e 30 minutos
+
+Domingo 1 de julho
+Tipo: Estudar aulas e laboratórios relacionados.
+Utilizei o tempo para fazer o Setup do SDL no Windows, tentei no Linux mas deu um erro,
+talvez por estar usando VM, ai fui pro Windows e fiz o Setup utilizando o site
+http://lazyfoo.net/tutorials/SDL/01_hello_SDL/windows/mingw/index.php
+
+Total de horas trabalhadas: 1 hora
+
+Segunda 2 de julho	
+Tipo: codificar módulo e rodar o verificador estático e retirar warnings e redigir casos
+ de teste
+Iniciei o projeto da interface gráfica fazendo a classe display, para gerar o tabuleiro.
+
+Total de horas trabalhadas: 1 hora
+
+Sexta 6 de julho
+Tipo: codificar módulo e rodar o verificador estático e retirar warnings
+e revisar o código do módulo
+Projeto da interface gráfica mostra o tabuleiro e as peças de acordo com a matriz de entrada,
+utilizai a classe LTexture para fazer o load das imagens utilizadas no tabuleiro.
+
+Total de horas: 4 horas e 15 minutos
+
+Domingo 8 de julho
+Tipo: codificar módulo e rodar o verificador estático e retirar warnings
+e revisar o código do módulo
+Projeto da interface gráfica deixa o usuário fazer jogadas no tabuleiro utilizando o mouse,
+e atualiza o tabuleiro após a jogada, faltou utilizar a validação da engine para validar a 
+jogada.
+
+Total de horas: 6 horas e 5 minutos

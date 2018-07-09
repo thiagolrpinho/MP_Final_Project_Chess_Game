@@ -1,1 +1,17 @@
+Marcelo Axel Chiapinotto de Nazaré
 
+Segunda, 2 de Julho
+Tipo: Estudar sobre arquivo .pgn e começar o desenvolvimento do carregamento do tabuleiro
+Total de Horas: 2 horas
+
+Terça, 3 de Julho
+Tipo: Implementação da função carregar e pesquisa sobre linguagem C++ e testes
+Total de Horas: 2 horas
+
+Sabado, 7 de Julho
+Tipo: Continuar a implementação da função carregar corrigir bugs
+Total de Horas: 1 hora e 50 minutos
+
+Domingo, 8 de Julho
+Tipo: Auxiliar na junção de todos os módulos
+Total de Horas: 1 hora
