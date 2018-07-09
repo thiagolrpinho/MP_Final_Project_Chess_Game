@@ -1,63 +1,83 @@
 #include <memory>
+#include "../Salvar.cpp"
+#include "../engine.cpp"
+#include "../Editar.cpp"
 using std::unique_ptr;
 typedef unique_ptr<char*> Matrix;
 
 
 //calls game engine and receives new board
-Matrix movepiece(Matrix board){
+Matrix movepiece(char board[8][8]){
+    Matrix newboard = &board[8][8];
+
 
 
     return board;
 }
 
 //returns true or false if the board is valid
-bool validateboard(board){
+bool validateboard(char board[8][8]){
 
     return validation;
 }
 
 //calls ai and receives and new board with it's move
-Matrix aimove(Matrix board){
+char  aimove(char board[8][8]){
 
     return board;
 }
 
 //calls savegame function
-bool  savegame(Matrix board){
+void  savegame(char board[8][8]){
+    salvarTab(&board);
 
 
-    return validation;
 }
 //calls function to load board
-Matrix loadboard(){
-
+char loadboard(){
+    char board[8][8] =
+    {
+        { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+        { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    char board[8][8]=carregaTab(&board);
 
     return board;
 
 }
 
 //calls function to show options for moves
-Matrix showoptions(Matrix board){
+Matrix showoptions(char board[8][8]){
 
     return board;
 }
 
-//calls function to create new standard board
-Matrix newstandardgame(){
-
+//returns new standard board
+char newstandardgame(){
+    char board[8][8] =
+    {
+        { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+        { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
 
     return board;
 }
 
-//calls function to create empty loadboard
-Matrix newemptyboard(){
-
+//calls funtion that creates a new empty board and asks for the right pieces
+char  newemptyboard(){
+    char board[8][8]=editar();
 
     return board;
-}
-
-//calls function to create new board with the old one
-Matrix movepiecelocation(Matrix board){
-    return board;
-
 }
