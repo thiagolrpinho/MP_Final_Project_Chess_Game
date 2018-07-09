@@ -16,29 +16,31 @@ int Rook::value() const
 }
 
 
-/// Assertivas de entrada da função: 
+/// Assertivas de entrada da funï¿½ï¿½o: 
 /// if(Board::getBoard()->isClearVertical(*(this->location()), location))
 /// if(Board::getBoard()->isClearHorizontal(*(this->location()), location))
  
-bool Rook::canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const
+bool Rook::canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate ) const
 {
     bool validMove = false;
     
-    /// Assertiva de entrada que checa se o movimento da torre é válido
-    /// o movimento é válido se a torre tiver se movendo em uma reta vertical
+    /// Assertiva de entrada que checa se o movimento da torre ï¿½ vï¿½lido
+    /// o movimento ï¿½ vï¿½lido se a torre tiver se movendo em uma reta vertical
     if(Board::getBoard()->isClearVertical(*(this->location()), location))
     {
         validMove = true;
     }
     
-    /// Assertiva de entrada que checa se o movimento da torre é válido
-    /// o movimento é válido se a torre tiver se movendo em uma reta horizontal
+    /// Assertiva de entrada que checa se o movimento da torre ï¿½ vï¿½lido
+    /// o movimento ï¿½ vï¿½lido se a torre tiver se movendo em uma reta horizontal
     else if(Board::getBoard()->isClearHorizontal(*(this->location()), location))
     {
         validMove = true;
     }
     
-    /// Assertiva de saída: é garantido que o movimento da torre é válido
+    /// Assertiva de saï¿½da: ï¿½ garantido que o movimento da torre ï¿½ vï¿½lido
     return validMove;
 }
 
