@@ -38,8 +38,6 @@ class Engine
   uint8_t readCodeTable( const char (&array)[8][8] );
   void printCodeTable( const char (&array)[8][8] );
   PCodeTable returnCodeTable();
-
-
   uint8_t new_game();
 
   // Auxiliary functions
