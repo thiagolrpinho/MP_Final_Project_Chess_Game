@@ -27,7 +27,7 @@ void  savegame(char board[8][8]){
 
 
 }
-//calls function to load board
+//calls function to load board returns loaded board
 char loadboard(){
     char board[8][8] =
     {
