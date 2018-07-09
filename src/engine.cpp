@@ -264,14 +264,13 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   vertical_is_clear = Board::getBoard()->isClearVertical(first_difference_horizontal_coordinate,
              first_difference_vertical_coordinate, second_difference_vertical_coordinate );
   
-
   horizontal_is_clear = Board::getBoard()->isClearHorizontal(first_difference_horizontal_coordinate,
              first_difference_vertical_coordinate, second_difference_horizontal_coordinate );
 
   diagonal_is_clear = Board::getBoard()->isClearDiagonal(first_difference_horizontal_coordinate,
              first_difference_vertical_coordinate, second_difference_horizontal_coordinate,
              second_difference_vertical_coordinate );
-             
+
   if( !(vertical_is_clear | horizontal_is_clear | diagonal_is_clear) ) return false;
 
   return true;
