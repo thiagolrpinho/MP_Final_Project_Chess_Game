@@ -1,7 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string.h>
-#include <memory>
+#include "Salvar.hpp"
 
 using namespace std;
 
@@ -46,7 +43,7 @@ void removepeca(char peca) {
  * If it receives a valid .pgn file it returns a valid board
  * else it return a error message.
  * */
-void carregaTab(){		//ALTERAR NA HORA DE JUNTAR TUDO PARA RETORNAR O TIPO ADEQUADO
+void carregaTab(const char (&array)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA RETORNAR O TIPO ADEQUADO
     char Carregar[100000];
     char letra, peca, x, y;
     int coordx, coordy;
