@@ -108,7 +108,7 @@ void carregaTab(char (*tabuleiro)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA
  * If it receives all the informations in the correct formact it returns a .pgn file
  * else it returns a error message
  * */
-void salvarTab(){
+void salvarTab(char (*tabuleiro)[8][8]){
     char Event[100];
     char Local[100];
     char Data[20];
