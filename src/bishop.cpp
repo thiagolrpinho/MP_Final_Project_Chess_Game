@@ -14,7 +14,9 @@ int Bishop::value() const
 }
 
 ///Assertivas de entrada: if(Board::getBoard()->isClearDiagonal(*(this->location()), location))
-bool Bishop::canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const
+bool Bishop::canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const
 {
     bool validMove = false;
     

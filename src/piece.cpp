@@ -109,7 +109,9 @@ bool Piece::moveTo(Player& byPlayer, Square& toSquare)
     return validMove;
 }
 
-void Piece::setLocation(uint8_t horizontal_coordinate, uint8_t vertical_coordinate)
+void Piece::setLocation(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate)
 {
     _square = Board::getBoard()->getSquareAt( horizontal_coordinate, vertical_coordinate ).get();
 }

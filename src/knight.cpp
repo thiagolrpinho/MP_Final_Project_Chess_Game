@@ -63,4 +63,5 @@ char Knight::getCodeSymbol()
     return 'C';
   }
   
+  
 }

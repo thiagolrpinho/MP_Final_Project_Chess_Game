@@ -76,7 +76,9 @@ bool Pawn::moveTo(Player& byPlayer, Square& to)
 
 
 ///Assertiva de entrada da função: if(!hasMoved() && translationY == 2 && translationX == 0 && Board::getBoard()->isClearVertical(*(this->location()), location))
-bool Pawn::canMoveTo(uint8_t horizontal_coordinate, uint8_t vertical_coordinate) const
+bool Pawn::canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const
 {
     bool validMove = false;
     int translationX = location.getX() - this->location()->getX();
