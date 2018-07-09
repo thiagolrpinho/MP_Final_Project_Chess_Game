@@ -46,7 +46,7 @@ char loadboard(){
         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
         { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
-    char board[8][8]=carregaTab(&board);
+    carregaTab(&board);
 
     return board;
 
