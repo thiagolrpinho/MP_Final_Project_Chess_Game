@@ -291,8 +291,9 @@ bool Board::isClearPath( uint8_t actual_horizontal_coordinate,
              actual_vertical_coordinate, future_horizontal_coordinate,
              future_vertical_coordinate );
 
-  return !(vertical_is_clear | horizontal_is_clear | diagonal_is_clear);
+  return ( vertical_is_clear | horizontal_is_clear | diagonal_is_clear );
 }
+
 bool Board::isEndRow(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate) const
 {
