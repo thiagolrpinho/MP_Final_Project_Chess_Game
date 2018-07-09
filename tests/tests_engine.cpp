@@ -291,11 +291,20 @@ TEST_CASE( "Read Engine", "[Engine]" )
   SECTION( "An engine can say if a same code table is a valid state change" ) 
   {
     Board::getBoard()->cleanBoard();
+    valid_engine->readCodeTable( initial_game_code_table);
+    // As it is the same valid code table, it should return true
+    REQUIRE( valid_engine->isValidMove( initial_game_code_table ) == true );
+
+  } // An engine can say if a same code table is a valid state change"
+
+  SECTION( "An engine can say if a new valid move table is a valid state change" ) 
+  {
+    Board::getBoard()->cleanBoard();
     const char next_valid_code_table[8][8] = 
   {
     { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
     { 'P', 'P',  0, 'P', 'P', 'P', 'P', 'P'},
-    { 0, 0, 'P' }, //These will be filled with 0
+    { 0, 0, 'P' },  // Pawn move one square
     { },
     { },
     { },
@@ -304,9 +313,9 @@ TEST_CASE( "Read Engine", "[Engine]" )
   };
     valid_engine->readCodeTable( initial_game_code_table);
     // As it is the same valid code table, it should return true
-    REQUIRE( valid_engine->isValidMove( initial_game_code_table ) == true );
+    REQUIRE( valid_engine->isValidMove( next_valid_code_table ) == true );
 
-  } // "An engine can receive a table and return if it's a valid movement"
+  } // An engine can say if a same code table is a valid state change"
 
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
