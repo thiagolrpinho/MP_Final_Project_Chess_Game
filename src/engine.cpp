@@ -243,7 +243,7 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   if( number_of_different_symbols == 0 ) return true;
   if( number_of_different_symbols != 2 ) return false;
 
-  return false;
+  return true;
 } // bool Engine::isValidMove( const char (&array)[8][8]  )
 
 void Engine::printCodeTable( const char (&array)[8][8] )
