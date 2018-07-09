@@ -28,14 +28,14 @@ bool Rook::canMoveTo(uint8_t actual_horizontal_coordinate,
     
     /// Assertiva de entrada que checa se o movimento da torre � v�lido
     /// o movimento � v�lido se a torre tiver se movendo em uma reta vertical
-    if(Board::getBoard()->isClearVertical(*(this->location()), location))
+    if( ::getBoard()->isClearVertical(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_vertical_coordinate))
     {
         validMove = true;
-    }
-    
     /// Assertiva de entrada que checa se o movimento da torre � v�lido
     /// o movimento � v�lido se a torre tiver se movendo em uma reta horizontal
-    else if(Board::getBoard()->isClearHorizontal(*(this->location()), location))
+    } else if( Board::getBoard()->isClearHorizontal(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate )
     {
         validMove = true;
     }

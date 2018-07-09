@@ -14,17 +14,15 @@ int Bishop::value() const
 }
 
 ///Assertivas de entrada: if(Board::getBoard()->isClearDiagonal(*(this->location()), location))
-bool Bishop::canMoveTo(uint8_t actual_horizontal_coordinate,
+bool Bishop::canMoveTo( uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
-               uint8_t future_vertical_coordinate) const
+               uint8_t future_vertical_coordinate ) const
 {
     bool validMove = false;
     
-    if(Board::getBoard()->isClearDiagonal(*(this->location()), location))///Assertivas de entrada que checa se o movimento está sendo na diagonal
-    {
-        validMove = true;
-   /// Assertiva de saída:Se a assertiva de entrada (Board::getBoard()->isClearDiagonal(*(this->location()), location)) for verdadeira, o programa irá garantir que a peça está se movimentando na diagonal
-    }
+    move_is_valid = Board::getBoard()->isClearDiagonal( uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate );
     
     return validMove;
 }
