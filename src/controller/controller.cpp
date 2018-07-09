@@ -46,6 +46,24 @@ char loadboard(){
 
 }
 
+//calls function to edit empty board returns edited board
+char editboard() {
+    char board[8][8] =
+    {
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'}
+    };
+    editar(&board);
+
+    return board;
+}
+
 //calls function to show options for moves
 char showoptions(char board[8][8]){
 
