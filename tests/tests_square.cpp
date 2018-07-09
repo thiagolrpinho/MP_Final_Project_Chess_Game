@@ -1,6 +1,6 @@
 #include "square.hpp"
 
-typedef shared_ptr<Piece> PPiece;
+typedef shared_ptr<Pawn> PPawn;
 typedef shared_ptr<Square> PSquare;
 
 //! These tests will be focused on squares
@@ -76,12 +76,12 @@ TEST_CASE( "Read", "[square]" )
   //! These test case will focus on methods that
   //! reads squares
   // These tests will focus on:
-  // unsigned short int Square::setPiece(Piece *)
-  // Piece * Square::getPiece()
+  // unsigned short int Square::setPiece(Pawn *)
+  // Pawn * Square::getPiece()
 
   PSquare non_occupied_square(  new Square( 1, 1 ) );
   PSquare occupied_square(  new Square( 1, 2 ) );
-  PPiece empty_piece( new Piece() );
+  PPawn empty_piece( new Pawn() );
 
   occupied_square->setPiece( empty_piece );
 
@@ -109,14 +109,14 @@ TEST_CASE( "Update", "[square]" )
   //! These test case will focus on methods that
   //! updates squares
   // These tests will focus on:
-  // unsigned short int Square::setPiece(Piece *)
+  // unsigned short int Square::setPiece(Pawn *)
 
   PSquare non_occupied_square(  new Square( 1, 2 ) );
 
   SECTION( "A square can be set a new piece" ) 
   { 
-    PPiece first_piece( new Piece() );
-    PPiece second_piece( new Piece() );
+    PPawn first_piece( new Pawn() );
+    PPawn second_piece( new Pawn() );
     // First we test if a non occupied square receive a piece.
     REQUIRE( non_occupied_square->setPiece(first_piece) == Success);
 
@@ -137,7 +137,7 @@ TEST_CASE( "Destroy", "[square]" )
   // Square::~Square()
 
   PSquare occupied_square(  new Square( 5, 5 ) );
-  PPiece piece_to_be_destroyed( new Piece() );
+  PPawn piece_to_be_destroyed( new Pawn() );
   occupied_square->setPiece(piece_to_be_destroyed);
 
   SECTION( "A square can be deleted and no piece will be left floating" ) 

@@ -1,7 +1,4 @@
-#ifndef CATCH_H
-#define CATCH_H
-#include "catch.hpp"
-#endif
+
 
 #ifndef SQUARE_HPP
 #define SQUARE_HPP
@@ -18,6 +15,8 @@ using std::uint8_t;
 
 #include <memory>
 using std::shared_ptr; 
+using std::unique_ptr;
+using std::make_unique;
 // Smart pointer that deallocates when no references to it exists
 
 typedef shared_ptr<Piece>   PPiece;
@@ -27,6 +26,7 @@ typedef shared_ptr<Bishop>  PBishop;
 typedef shared_ptr<Knight>  PKnight;
 typedef shared_ptr<Rook>    PRook;
 typedef shared_ptr<Pawn>    PPawn;
+typedef unique_ptr<unique_ptr<char[]>[]> PCodeTable;
 
 
 //Operations can be Successful or not, every

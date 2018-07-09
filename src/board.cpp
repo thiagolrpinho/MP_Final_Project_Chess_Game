@@ -275,6 +275,26 @@ bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
   return true;
 }  // Board::isClearDiagonal()
 
+bool Board::isClearPath( uint8_t actual_horizontal_coordinate,
+            uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+            uint8_t future_vertical_coordinate ) const
+{
+  bool vertical_is_clear, horizontal_is_clear, diagonal_is_clear;
+
+  vertical_is_clear = Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_vertical_coordinate );
+  
+  horizontal_is_clear = Board::getBoard()->isClearHorizontal( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_horizontal_coordinate );
+
+  diagonal_is_clear = Board::getBoard()->isClearDiagonal( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_horizontal_coordinate,
+             future_vertical_coordinate );
+
+  if( vertical_is_clear && horizontal_is_clear ) return diagonal_is_clear;
+  return ( vertical_is_clear | horizontal_is_clear | diagonal_is_clear );
+}
+
 bool Board::isEndRow(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate) const
 {

@@ -1,5 +1,13 @@
 #include "engine.hpp"
 
+
+Engine::Engine()
+{
+}
+
+Engine::~Engine()
+{
+}
 //! Receives a code table and changes Board according to it if it's valid
   /*!
     \param A valid already allocated char matrix 
@@ -7,7 +15,7 @@
     \return Return a Success(Integer 1) if valid
     or Error(Integer 0) if invalid and no changes are made.
   */
-uint8_t Engine::readCodeTable( char (&array)[8][8] )
+uint8_t Engine::readCodeTable( const char (&array)[8][8] )
 {   
   PKing white_king( new King() );
   PQueen  white_queen( new Queen() );
@@ -75,6 +83,26 @@ uint8_t Engine::isValidCodeSymbol( char code_symbol )
   return Success;
 }
 
+uint8_t Engine::new_game()
+{
+  this->player1.reset( new Player( true ) );
+  this->player2.reset( new Player( false ) );
+  this->nextPlayer = player2;
+
+  const char initial_game_code_table[8][8] = 
+  {
+    { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+    { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+    { }, //These will be filled with 0
+    { },
+    { },
+    { },
+    { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+    { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+  };
+  
+  return this->readCodeTable( initial_game_code_table );
+}
 
 uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , char code_symbol )
@@ -86,19 +114,12 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   PRook   white_rook( new Rook() );
   PPawn   white_pawn( new Pawn() );
 
-  PKing   black_king( new King() );
-  PQueen  black_queen( new Queen() );
-  PBishop black_bishop( new Bishop() );
-  PKnight black_knight( new Knight() );
-  PRook   black_rook( new Rook() );
-  PPawn   black_pawn( new Pawn() );
-
-  black_king->setBlack();
-  black_queen->setBlack();
-  black_bishop->setBlack();
-  black_knight->setBlack();
-  black_rook->setBlack();
-  black_pawn->setBlack();
+  PKing   black_king( new King( false ) );
+  PQueen  black_queen( new Queen( false ) );
+  PBishop black_bishop( new Bishop( false ) );
+  PKnight black_knight( new Knight( false ) );
+  PRook   black_rook( new Rook( false ) );
+  PPawn   black_pawn( new Pawn( false ) );
 
   switch( code_symbol )
       {
@@ -157,16 +178,152 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   return Success;
 }
 
+ PCodeTable Engine::returnCodeTable()
+ { 
+  PCodeTable  code_table;
+  uint8_t size = 8;
 
+  PKing   piece_king;
+  PQueen  piece_queen;
+  PBishop piece_bishop;
+  PKnight piece_knight;
+  PRook   piece_rook;
+  PPawn   piece_pawn;
 
-void Engine::printCodeTable( char (&array)[8][8] )
+  code_table = make_unique< unique_ptr<char[]>[] >(size);
+    {
+      for ( int i = 0; i < size; ++i)
+       {
+         code_table[i] = make_unique< char[] >(size);
+
+         for (int j = 0; j < size; ++j)
+            code_table[i][j] = 0;
+       }
+    }
+
+  for( uint8_t i = 0; i < 8; i++ )
+    {
+      for( uint8_t j = 0; j < 8; j++ )
+      {
+        if( Board::getBoard()->getSquareAt( i, j )->isOccupied() )
+        {
+         code_table[j][i] = Board::getBoard()->getPieceAt( i, j )->getCodeSymbol();
+        }
+      } // for( uint8_t j = 0; j < 8; j++ )
+    } // for( uint8_t i = 0; i < 8; i++ )
+
+   return code_table;
+ } // PCodeTable Engine::returnCodeTable()
+
+bool Engine::isValidMove( const char (&array)[8][8]  )
 {
-    std::cout << __func__ << std::endl;
+  PCodeTable actual_game_code_table;
+  uint8_t number_of_different_symbols = 0; //If there are no differences, then it's the same board.
+  uint8_t first_difference_horizontal_coordinate;
+  uint8_t first_difference_vertical_coordinate;
+  uint8_t second_difference_horizontal_coordinate;
+  uint8_t second_difference_vertical_coordinate;
+  bool first_difference_is_origin, first_is_occupied, second_is_occupied;
+
+
+  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  {
+    for( size_t vertical = 0; vertical < 8; ++vertical )
+    {
+      if ( isValidCodeSymbol( array[vertical][horizontal] ) == Error )
+        return false;
+    }
+  }
+  actual_game_code_table = returnCodeTable();
+
+  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  {
+    for( size_t vertical = 0; vertical < 8; ++vertical )
+    {
+      if ( array[vertical][horizontal]  != actual_game_code_table[vertical][horizontal] )
+      {
+        switch( ++number_of_different_symbols )
+        {
+          case 1:
+            first_difference_horizontal_coordinate = (uint8_t)horizontal;
+            first_difference_vertical_coordinate = (uint8_t)vertical;
+          break;
+          case 2:
+            second_difference_horizontal_coordinate = (uint8_t)horizontal;
+            second_difference_vertical_coordinate = (uint8_t)vertical;
+          break;
+          default:
+          break;
+        }
+      }
+    }
+  }
+
+  if( number_of_different_symbols == 0 ) return true;
+  if( number_of_different_symbols != 2 ) return false;
+  first_is_occupied = Board::getBoard()->getSquareAt( first_difference_horizontal_coordinate,
+                                 first_difference_vertical_coordinate)->isOccupied();
+
+  second_is_occupied = Board::getBoard()->getSquareAt( second_difference_horizontal_coordinate, 
+                                second_difference_vertical_coordinate)->isOccupied(); 
+  
+  if (first_is_occupied && second_is_occupied )
+  {
+    return false;
+
+  } else if( first_is_occupied ) {
+    first_difference_is_origin = true;
+
+  } else if( second_is_occupied ) {
+    first_difference_is_origin = false;
+
+  } else {
+    return false; //If no pieces were on the given differences, there can not be two new pieces.
+  }
+  if( first_difference_is_origin )
+  {
+    if( Board::getBoard()->isClearPath(first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, second_difference_horizontal_coordinate,
+             second_difference_vertical_coordinate ) == false ) return false;
+  } else {
+    if( Board::getBoard()->isClearPath(second_difference_horizontal_coordinate,
+             second_difference_vertical_coordinate, first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate ) == false ) return false;
+  }
+
+  return true;
+} // bool Engine::isValidMove( const char (&array)[8][8]  )
+
+void Engine::printCodeTable( const char (&array)[8][8] )
+{
+    cout << __func__ << endl;
   for (size_t i = 0; i < 8; ++i)
   {
-    std::cout << i << ": ";
+    cout << i << ": ";
     for (size_t j = 0; j < 8; ++j)
-        std::cout << array[i][j] << '\t';
-    std::cout << std::endl;
+        cout << array[i][j] << '\t';
+    cout << endl;
   }
+}
+
+PPlayer Engine::getNextPlayer()
+{
+    nextPlayer = opponentOf( nextPlayer );
+    return nextPlayer;
+}
+    
+PPlayer Engine::opponentOf( PPlayer player)
+{
+    PPlayer opponent;
+    
+    if( player->isWhite() == player1->isWhite() )
+    {
+        opponent = player2;
+    }
+    else 
+    {
+        opponent = player1;
+    }
+
+    return opponent;
 }
