@@ -1,7 +1,7 @@
 #ifndef KING_HPP
 #define KING_HPP
-#include "piece.hpp"
-class King: public Piece
+#include "restricted_piece.hpp"
+class King: public RestrictedPiece
 {
   public:
   bool isKing = true;
@@ -24,7 +24,6 @@ class King: public Piece
     * Determina se o rei pode se mover para um dado quadrado
     * @param quadrado o quadrado destino
     */
-    * @return se o movimento � v�lido
     bool canMoveTo(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
                uint8_t future_vertical_coordinate) const;

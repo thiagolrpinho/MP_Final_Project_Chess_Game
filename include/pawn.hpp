@@ -1,8 +1,8 @@
 #ifndef PAWN_HPP
 #define PAWN_HPP
-#include "piece.hpp"
+#include "restricted_piece.hpp"
 
-class Pawn: public Piece
+class Pawn: public RestrictedPiece
 {
   public:
   bool isPawn = true;
@@ -32,7 +32,7 @@ class Pawn: public Piece
  private:
 
     // Private attributes
-    Piece* _delegate;
+    PPiece _delegate;
 
 };
  // Pe�o

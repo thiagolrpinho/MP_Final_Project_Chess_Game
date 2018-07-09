@@ -5,6 +5,8 @@
 
 #ifndef PIECE_HPP
 #define PIECE_HPP
+#include <string>
+#include "player.hpp"
 
 class Piece 
 { 
@@ -17,7 +19,6 @@ class Piece
   
   void setBlack();
   virtual char  getCodeSymbol() const = 0;
-};
     /**
      * Default destructor
     virtual ~Piece();
@@ -40,9 +41,6 @@ class Piece
     virtual bool canMoveTo(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
                uint8_t future_vertical_coordinate) const = 0;
-
- protected:
-    bool _isWhite;
 
 }; // Pe�a
 
