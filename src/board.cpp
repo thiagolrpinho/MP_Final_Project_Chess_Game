@@ -47,7 +47,8 @@ Board::~Board()
         \return A shared pointer to the singleton board.
         \throw Error if couldn't created board
     */
-shared_ptr<Board> Board::getBoard(){
+shared_ptr<Board> Board::getBoard()
+{
     //If there's no board, then create one.
     if( board_table_ == nullptr )
     {  
