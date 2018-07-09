@@ -5,6 +5,9 @@ Rook::Rook(bool isWhite) : RestrictedPiece(isWhite)
 {
 }
 
+Rook::Rook()
+{
+}
 
 Rook::~Rook()
 {

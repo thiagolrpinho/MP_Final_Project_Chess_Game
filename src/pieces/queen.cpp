@@ -5,6 +5,9 @@ Queen::Queen(bool isWhite) : Piece(isWhite)
 {
 }
 
+Queen::Queen()
+{
+}
 
 
 Queen::~Queen()

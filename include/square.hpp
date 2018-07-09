@@ -13,11 +13,7 @@
 using std::uint8_t;
   //Unsigned int with range [0 to 255]
 
-#include <memory>
-using std::shared_ptr; 
-using std::unique_ptr;
-using std::make_unique;
-// Smart pointer that deallocates when no references to it exists
+
 
 typedef shared_ptr<Piece>   PPiece;
 typedef shared_ptr<King>    PKing;

@@ -8,6 +8,12 @@
 #include <string>
 #include "player.hpp"
 
+#include <memory>
+using std::shared_ptr; 
+using std::unique_ptr;
+using std::make_unique;
+// Smart pointer that deallocates when no references to it exists
+
 class Piece 
 { 
 
@@ -15,7 +21,8 @@ class Piece
   bool isWhite = true;
 
   Piece();
-  Piece( char is_being_created_white );
+  Piece( bool is_being_created_white );
+  ~Piece();
   
   void setBlack();
   virtual char  getCodeSymbol() const = 0;

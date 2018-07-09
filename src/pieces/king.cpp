@@ -4,6 +4,9 @@ King::King(bool isWhite) : RestrictedPiece(isWhite)
 {
 }
 
+King::King() : RestrictedPiece()
+{
+}
 
 
 King::~King()

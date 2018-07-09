@@ -2,7 +2,9 @@
 #define PAWN_HPP
 #include "restricted_piece.hpp"
 
-class Pawn: public RestrictedPiece
+typedef shared_ptr<Piece>  PPiece;
+
+class Pawn : public RestrictedPiece
 {
   public:
   bool isPawn = true;

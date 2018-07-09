@@ -5,6 +5,10 @@ Bishop::Bishop(bool isWhite) : Piece(isWhite)
 {
 }
 
+Bishop::Bishop()
+{
+}
+
 Bishop::~Bishop()
 {
 }

@@ -7,6 +7,10 @@ Pawn::Pawn(bool isWhite) : RestrictedPiece(isWhite), _delegate(NULL)
 {
 }
 
+Pawn::Pawn()
+{
+}
+
 Pawn::~Pawn()
 {
 }

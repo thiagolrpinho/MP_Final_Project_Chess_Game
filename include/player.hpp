@@ -9,15 +9,6 @@
 #define PLAYER_HPP
 #include "piece.hpp"
 
-#include "king.hpp"
-
-#include <string>
-using std::string; 
-
-#include <set>
-using std::set;
-
-
 class Player 
 {
   public:
@@ -47,20 +38,6 @@ class Player
      * @return score
      */
     int score() const; 
-
-    /**
-     * Get the set of this player's pieces
-     *
-     * @return the set of pieces
-     */
-    set<Piece*>* myPieces() const;
-
-    /**
-     * Get this player's king
-     *
-     * @return the king
-     */
-    King* myKing() const;
 
     
   private:

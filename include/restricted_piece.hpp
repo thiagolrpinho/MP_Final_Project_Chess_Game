@@ -3,7 +3,7 @@
 
 #include "piece.hpp"
 
-class RestrictedPiece : public Piece
+class RestrictedPiece: public Piece 
 {
  public:
     
@@ -14,7 +14,7 @@ class RestrictedPiece : public Piece
     */
     RestrictedPiece(bool isWhite);
     
-    
+    RestrictedPiece();
     
     /**
      * Default destructor
@@ -23,12 +23,9 @@ class RestrictedPiece : public Piece
 
     
 	
-	/**
-    * Move a pe�a para outro quadrado
-    *
-    * @return movimento feito
-    */
-    
+    virtual bool canMoveTo(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate) const = 0;
     /**
     * Recebe se a pe�a j� se moveu
     *

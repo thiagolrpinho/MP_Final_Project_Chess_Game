@@ -1,6 +1,7 @@
 #ifndef KING_HPP
 #define KING_HPP
 #include "restricted_piece.hpp"
+
 class King: public RestrictedPiece
 {
   public:
