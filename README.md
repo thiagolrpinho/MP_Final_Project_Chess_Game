@@ -60,10 +60,10 @@ Or just run it using
 To run other tests just go to the main folder of the project:
 To test only the Binary Tree used on the game.
 ```
-make board_square_tester
+make square_tester
 ```
 
-Beside the previous tests, if you want to test too the game statements of the game:
+Beside the previous tests, if you want to test too the game board:
 ```
 make board_tester
 ```
@@ -71,6 +71,11 @@ make board_tester
 If you want to test too the game engine:
 ```
 make engine_tester
+```
+
+If you want to test too the player class:
+```
+make player_tester
 ```
 
 ### Gcov Test
