@@ -217,7 +217,32 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
 
 bool Engine::isValidMove( const char (&array)[8][8]  )
 {
-  return Error;
+  PCodeTable actual_game_code_table;
+  uint8_t number_of_different_symbols = 0; //If there are no differences, then it's the same board.
+                                            
+
+  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  {
+    for( size_t vertical = 0; vertical < 8; ++vertical )
+    {
+      if ( isValidCodeSymbol( array[vertical][horizontal] ) == Error )
+        return false;
+    }
+  }
+  actual_game_code_table = returnCodeTable();
+
+  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  {
+    for( size_t vertical = 0; vertical < 8; ++vertical )
+    {
+      if ( array[vertical][horizontal]  != actual_game_code_table[vertical][horizontal] )
+        number_of_different_symbols++;
+    }
+  }
+
+  if( number_of_different_symbols == 0 ) return true;
+
+  return false;
 } // bool Engine::isValidMove( const char (&array)[8][8]  )
 
 void Engine::printCodeTable( const char (&array)[8][8] )

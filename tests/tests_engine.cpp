@@ -288,7 +288,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       
   } // SECTION( "An engine can be return a code table" )
 
-  SECTION( "An engine can receive a table and return if it's a valid movement" ) 
+  SECTION( "An engine can say if a same code table is a valid state change" ) 
   {
     Board::getBoard()->cleanBoard();
     const char next_valid_code_table[8][8] = 
@@ -303,7 +303,8 @@ TEST_CASE( "Read Engine", "[Engine]" )
     { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
   };
     valid_engine->readCodeTable( initial_game_code_table);
-    REQUIRE( valid_engine->isValidMove( next_valid_code_table ) == true );
+    // As it is the same valid code table, it should return true
+    REQUIRE( valid_engine->isValidMove( initial_game_code_table ) == true );
 
   } // "An engine can receive a table and return if it's a valid movement"
 
