@@ -373,6 +373,35 @@ TEST_CASE( "Read Board", "[board]" )
       REQUIRE( board->isEndRow( 5, 6) == false );
 
   } // SECTION( " The board return true or false if a given coordinate is on End Row or not respectively ) 
+
+  SECTION( " The board return true or false if a given path is free or not respectively " ) 
+  {
+    try {
+      PBishop piece_on_D6( new Bishop() );
+      //D6 on a matrix 0 to 7 is [3][5]
+
+      PBoard clean_board = Board::getBoard();
+
+      clean_board->cleanBoard();
+
+      //Verifying if is clear the path H2 to C7
+      REQUIRE( clean_board->isClearPath( 7, 1, 2, 6 ) == true );
+
+      //Verifying if is clear the path B8 to G3
+      REQUIRE( clean_board->isClearPath( 1, 7, 6, 2 ) == true );
+
+      REQUIRE( clean_board->setPieceAt( 3, 5 , piece_on_D6 ) == Success );
+
+      //Verifying if is clear the path H2 to C7
+      REQUIRE( clean_board->isClearPath( 7, 1, 2, 6 ) == false );
+
+      //Verifying if is clear the path B8 to G3
+      REQUIRE( clean_board->isClearPath( 1, 7, 6, 2 ) == false );
+    } catch (int throwned_error )
+    {
+      REQUIRE_FALSE( "The board doesn't return true or false if a given diagonal path left up or right down is free or not respectively " );
+    }
+  } //SECTION( " The board return true or false if a given diagonal path left up or right down is free or not respectively )
 } // TEST_CASE( "Read", "[board]" )
 
 TEST_CASE( "Update Board", "[board]" ) 
