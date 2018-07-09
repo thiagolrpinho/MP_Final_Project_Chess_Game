@@ -219,7 +219,10 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
 {
   PCodeTable actual_game_code_table;
   uint8_t number_of_different_symbols = 0; //If there are no differences, then it's the same board.
-                                            
+  uint8_t first_difference_horizontal_coordinate;
+  uint8_t first_difference_vertical_coordinate;
+  uint8_t second_difference_horizontal_coordinate;
+  uint8_t second_difference_vertical_coordinate;
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
@@ -236,13 +239,40 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
       if ( array[vertical][horizontal]  != actual_game_code_table[vertical][horizontal] )
-        number_of_different_symbols++;
+      {
+        switch( ++number_of_different_symbols )
+        {
+          case 1:
+            first_difference_horizontal_coordinate = (uint8_t)horizontal;
+            first_difference_vertical_coordinate = (uint8_t)vertical;
+          break;
+          case 2:
+            second_difference_horizontal_coordinate = (uint8_t)horizontal;
+            second_difference_vertical_coordinate = (uint8_t)vertical;
+          break;
+          default:
+          break;
+        }
+      }
     }
   }
 
   if( number_of_different_symbols == 0 ) return true;
   if( number_of_different_symbols != 2 ) return false;
 
+  if( Board::getBoard()->isClearVertical(first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, second_difference_vertical_coordinate ) == false )
+  return false;
+
+  if( Board::getBoard()->isClearHorizontal(first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, second_difference_horizontal_coordinate ) == false )
+  return false;
+
+  if( Board::getBoard()->isClearDiagonal(first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, second_difference_horizontal_coordinate,
+             second_difference_vertical_coordinate ) == false )
+  return false;
+  
   return true;
 } // bool Engine::isValidMove( const char (&array)[8][8]  )
 
