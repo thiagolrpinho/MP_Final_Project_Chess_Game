@@ -9,7 +9,7 @@ char movepiece(char board[8][8]){
     return board;
 }
 
-//returns true or false if the board is valid
+//returns new board if it's valid or old one if it's not
 char validateboard(char board[8][8]){
 
     return validation;
