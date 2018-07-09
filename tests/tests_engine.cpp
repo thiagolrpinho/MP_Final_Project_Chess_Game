@@ -285,13 +285,111 @@ TEST_CASE( "Read Engine", "[Engine]" )
           REQUIRE( returned_code_table[i][j] == initial_game_code_table[i][j] );
         }
       }
-
+      
   } // SECTION( "An engine can be return a code table" )
 
-  SECTION( "An engine can receive and return the same code table" ) 
+  SECTION( "An engine can say if a same code table is a valid state change" ) 
   {
-  
-  } // SECTION( "An engine can receive and return the same code table" )
+    Board::getBoard()->cleanBoard();
+    valid_engine->readCodeTable( initial_game_code_table);
+    // As it is the same valid code table, it should return true
+    REQUIRE( valid_engine->isValidMove( initial_game_code_table ) == true );
+
+  } // An engine can say if a same code table is a valid state change"
+
+  SECTION( "An engine can say if a new invalid move table is a valid state change" ) 
+  {
+    Board::getBoard()->cleanBoard();
+    const char next_invalid_missing_one_piece_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  0, 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      { },
+      { },
+      { },
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    const char next_invalid_wrong_pieces_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  0, 'X', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      { },
+      { },
+      { },
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    const char next_invalid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  0, 0, 'P', 'P', 'P', 'P'},
+      { 'P'},  // Pawn move one square
+      { },
+      { },
+      { },
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    valid_engine->readCodeTable( initial_game_code_table);
+    // As it is the same valid code table, it should return true
+    REQUIRE( valid_engine->isValidMove( next_invalid_missing_one_piece_code_table ) == false );
+    REQUIRE( valid_engine->isValidMove( next_invalid_wrong_pieces_code_table ) == false );
+    REQUIRE( valid_engine->isValidMove( next_invalid_code_table ) == false );
+
+  } // "An engine can say if a new invalid move table is a valid state change"
+
+  SECTION( "An engine can say if a new valid move table is a valid state change" ) 
+  {
+    Board::getBoard()->cleanBoard();
+    const char next_valid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 0, 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { 'P' },  // Pawn move one square
+      { },
+      { },
+      { },
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    valid_engine->readCodeTable( initial_game_code_table);
+    // As it is the same valid code table, it should return true
+    REQUIRE( valid_engine->isValidMove( next_valid_code_table ) == true );
+
+    const char another_next_valid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      { },
+      { },
+      { 'p' },
+      { 0, 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    REQUIRE( valid_engine->isValidMove( another_next_valid_code_table ) == true );
+
+    const char pawn_jump_next_valid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      { },
+      { 'p' },
+      { },
+      { 0, 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    REQUIRE( valid_engine->isValidMove( pawn_jump_next_valid_code_table ) == true );
+
+  } // "An engine can say if a new invalid move table is a valid state change"
 
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
@@ -300,6 +398,17 @@ TEST_CASE( "Update Engine", "[Engine]" )
   //! These test case will focus on methods that
   //! updates Engine
   // These tests will focus on:
+  PEngine valid_engine( new Engine());
+
+
+  SECTION( "An engine can start a new game" ) 
+  {
+      REQUIRE( valid_engine->new_game() == Success );
+
+      REQUIRE_FALSE( valid_engine->getNextPlayer() == nullptr );
+      REQUIRE_FALSE( valid_engine->getNextPlayer()->isWhite() );
+      REQUIRE_FALSE( valid_engine->opponentOf(valid_engine->getNextPlayer() )->isWhite() );
+  } // SECTION( "An engine can be return a code table" )
   
 } // TEST_CASE( "Update", "[Engine]" ) 
 

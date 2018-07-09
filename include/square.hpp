@@ -2,7 +2,6 @@
 
 #ifndef SQUARE_HPP
 #define SQUARE_HPP
-#include "piece.hpp"
 #include "king.hpp"
 #include "queen.hpp"
 #include "bishop.hpp"

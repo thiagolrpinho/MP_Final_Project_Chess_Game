@@ -1,4 +1,5 @@
 #include "player.hpp"
+#include "engine.hpp"
 
 
 //! These tests will be focused on engine class
@@ -13,11 +14,8 @@ TEST_CASE( "Create Player", "[Player]" )
   SECTION( "A valid player can be created ")
   {
     Player * valid_player = nullptr;
-    King* valid_king = new King();
-    set<Piece*> set_of_pieces = *(new set<Piece*>);
-    set_of_pieces.insert(valid_king);
 
-    valid_player = new Player( true, *valid_king, set_of_pieces );
+    valid_player = new Player( true );
 
     REQUIRE_FALSE( valid_player == nullptr );
   }
@@ -31,17 +29,11 @@ TEST_CASE( "Read Player", "[Player]" )
   SECTION( "A player can get it's attributes ")
   {
     Player * valid_player = nullptr;
-    King* valid_king = new King();
-    set<Piece*> set_of_pieces = *(new set<Piece*>);
-    set_of_pieces.insert(valid_king);
+    valid_player = new Player( false );
 
-    valid_player = new Player( true, *valid_king, set_of_pieces );
+   REQUIRE( valid_player->isWhite() == false );
 
-   REQUIRE( valid_player->myKing() == valid_king );
-   REQUIRE( valid_player->myPieces() == &set_of_pieces );
-   REQUIRE( valid_player->isWhite() == true );
-
-  }
+  } // SECTION( "A player can get it's attributes ")
 
 
 } //TEST_CASE( "Read Player", "[Player]" ) 

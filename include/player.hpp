@@ -8,6 +8,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 #include "piece.hpp"
+
 #include "king.hpp"
 
 #include <string>
@@ -26,7 +27,7 @@ class Player
      *
      * @params x, y the location of the square on the board
      */
-    Player( bool isWhite, King& myKing, set<Piece*>& myPieces);
+    Player( bool isWhite );
     
     /**
      * Default destructor
@@ -66,9 +67,6 @@ class Player
     
     // Private attributes
     bool _isWhite;
-    set<Piece*>& _myPieces;
-    set<Piece*> _capturedPieces;
-    King& _myKing;
     
 }; // Player
 

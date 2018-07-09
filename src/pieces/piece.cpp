@@ -1,14 +1,23 @@
 #include "piece.hpp"
 
-Piece::Piece( char is_being_created_white )
+/// Assertiva de entrada da fun��o: if(isWhite)
+Piece::Piece(bool isWhite) : _isWhite(isWhite)
 {
-    isWhite = is_being_created_white;
-   
 }
 
 Piece::Piece()
 {
   isWhite = true;
+}
+
+Piece::~Piece()
+{
+}
+
+bool Piece::isWhite() const
+{
+    return _isWhite;
+}
 }
 
 void Piece::setBlack()
