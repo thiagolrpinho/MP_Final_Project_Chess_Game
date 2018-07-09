@@ -223,6 +223,7 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   uint8_t first_difference_vertical_coordinate;
   uint8_t second_difference_horizontal_coordinate;
   uint8_t second_difference_vertical_coordinate;
+  bool vertical_is_clear, horizontal_is_clear, diagonal_is_clear;
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
@@ -260,19 +261,19 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   if( number_of_different_symbols == 0 ) return true;
   if( number_of_different_symbols != 2 ) return false;
 
-  if( Board::getBoard()->isClearVertical(first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate, second_difference_vertical_coordinate ) == false )
-  return false;
-
-  if( Board::getBoard()->isClearHorizontal(first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate, second_difference_horizontal_coordinate ) == false )
-  return false;
-
-  if( Board::getBoard()->isClearDiagonal(first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate, second_difference_horizontal_coordinate,
-             second_difference_vertical_coordinate ) == false )
-  return false;
+  vertical_is_clear = Board::getBoard()->isClearVertical(first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, second_difference_vertical_coordinate );
   
+
+  horizontal_is_clear = Board::getBoard()->isClearHorizontal(first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, second_difference_horizontal_coordinate );
+
+  diagonal_is_clear = Board::getBoard()->isClearDiagonal(first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, second_difference_horizontal_coordinate,
+             second_difference_vertical_coordinate );
+             
+  if( !(vertical_is_clear | horizontal_is_clear | diagonal_is_clear) ) return false;
+
   return true;
 } // bool Engine::isValidMove( const char (&array)[8][8]  )
 
