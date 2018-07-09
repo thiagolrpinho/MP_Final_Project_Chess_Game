@@ -1,7 +1,4 @@
-//#include "Salvar.hpp"
-#include <iostream>
-#include <fstream>
-#include <string.h>
+#include "Salvar.hpp"
 
 using namespace std;
 
@@ -31,11 +28,11 @@ tabuleiro[8][8] ={
  *  else it wont do any move;
  * */
  
-void removepeca(char peca) {
+void removepeca(char (*tabuleiro)[8][8], char peca) {
 	for(int i = 0; i < 8; i++)
     	for(int j = 0; j < 8; j++)
-    		if(tabuleiro[i][j] == peca) {
-    			tabuleiro[i][j] = '0';
+    		if((*tabuleiro)[i][j] == peca) {
+    			(*tabuleiro)[i][j] = '0';
     			return;
     		}
 }
@@ -86,7 +83,7 @@ void carregaTab(char (*tabuleiro)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA
     	if (Carregar[i] == 'T' || Carregar[i] == 'C' || Carregar[i] == 'B' || Carregar[i] == 'R' || Carregar[i] == 'Z' || Carregar[i] == 'P' ||  
     	Carregar[i] == 't' || Carregar[i] == 'c' || Carregar[i] == 'b' || Carregar[i] == 'r' || Carregar[i] == 'z' || Carregar[i] == 'p') {
     		peca = Carregar[i];
-    		removepeca(peca);
+    		removepeca(tabuleiro, peca);
     		i++;
     		x = Carregar[i];
     		i++;
@@ -102,7 +99,6 @@ void carregaTab(char (*tabuleiro)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA
     		i++;
     	}
     }
-    cout << "ola";
 }
 /** The function salvarTab saves the statement of the game.
  * This function is used to save all the information as the event, the location, the names of the players,

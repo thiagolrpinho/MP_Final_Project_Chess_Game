@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
-#include "Salvar.cpp"
+#include "../src/Salvar.cpp"
 
-void removepeca(char peca);
+void removepeca(char (*tabuleiro)[8][8], char peca);
 void carregaTab(char (*tabuleiro)[8][8]);
 void salvarTab();
