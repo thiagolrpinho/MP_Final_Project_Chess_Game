@@ -3,6 +3,6 @@
 #include <string.h>
 #include "Salvar.cpp"
 
-void carregaTab();
-void salvarTab();
 void removepeca(char peca);
+void carregaTab(char (*tabuleiro)[8][8]);
+void salvarTab();

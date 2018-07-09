@@ -1,4 +1,7 @@
-#include "Salvar.hpp"
+//#include "Salvar.hpp"
+#include <iostream>
+#include <fstream>
+#include <string.h>
 
 using namespace std;
 
@@ -7,8 +10,8 @@ using namespace std;
  * will be modified by the informations of all movements made in a game conteined in a .pgn file.
  * 
  * Any board will be allways inte same formact;
- * */  
-char tabuleiro[8][8] ={
+ *  
+tabuleiro[8][8] ={
                         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
                         { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
                         { '0', '0', '0', '0', '0', '0', '0', '0'},
@@ -18,6 +21,7 @@ char tabuleiro[8][8] ={
                         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
                         { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
                     };
+*/
 
 /** The function removepeca removes the piece to make the move registered in .pgn file
  * This function receives what piece need to be removed from its place to be possible to
@@ -43,7 +47,7 @@ void removepeca(char peca) {
  * If it receives a valid .pgn file it returns a valid board
  * else it return a error message.
  * */
-void carregaTab(const char (&array)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA RETORNAR O TIPO ADEQUADO
+void carregaTab(char (*tabuleiro)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA RETORNAR O TIPO ADEQUADO
     char Carregar[100000];
     char letra, peca, x, y;
     int coordx, coordy;
@@ -56,8 +60,9 @@ void carregaTab(const char (&array)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PA
     if(!carrega.is_open( )){
         cout << "Não foi possível abrir arquivo! Programa será terminado!\n";
         carrega.clear( );
-        break;
+        return;
     }
+
 
     while(carrega.get(letra)){
         if(letra != ']'){
@@ -90,21 +95,14 @@ void carregaTab(const char (&array)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PA
     		coordx = x - 'a';
     		coordy = y - '1';
 
-    		tabuleiro[coordy][coordx] = peca;
+    		(*tabuleiro)[coordy][coordx] = peca;
 
     		i++;
     	} else {
     		i++;
     	}
     }
-
-
-    // mostrando tabuleiro 											-----------	REMOVER DEPOIS
-    for(int a = 0; a < 8; a++) {
-    	cout << endl;
-    	for(int b = 0; b < 8; b++)
-    		cout << tabuleiro[a][b];
-    }
+    cout << "ola";
 }
 /** The function salvarTab saves the statement of the game.
  * This function is used to save all the information as the event, the location, the names of the players,
