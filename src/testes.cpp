@@ -11,7 +11,7 @@ int main(){
         cout << "Xadrez 123 de oliveira 4\nBrasilia - DF - Brasil\n20/02/2000\n45\nCaio C. F. Alves\nMarcelo A. C. Nazare\n1/2-1/2\n";
 
         ofstream arquivo;
-        arquivo.open("jogo.pgn");
+        arquivo.open("../saved_games/jogo.pgn");
         
         if(!arquivo.is_open( )){
             throw 'a';
@@ -24,7 +24,7 @@ int main(){
         carregaTab();
     
         ofstream arquivo;
-        arquivo.open("jogo.pgn");
+        arquivo.open("../saved_games/jogo.pgn");
         
         if(!arquivo.is_open( )){
             throw 'a';
@@ -32,5 +32,7 @@ int main(){
     }catch(char e){
         cout << "Cannot open the .pgn file.\n";
     }
+
+
     return 0;
 }
