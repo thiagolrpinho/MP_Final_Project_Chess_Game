@@ -1,30 +1,27 @@
-#include "../../include/Controller.hpp"
+#include "controller.hpp"
 
 //calls game engine and receives new board
-char movepiece(char board[8][8]){
-    Matrix newboard = &board[8][8];
+char movepiece( const char (&board)[8][8] ){
 
 
-
-    return board;
+    return 'c';
 }
 
 //returns new board if it's valid or old one if it's not
-char validateboard(char board[8][8]){
+char validateboard( const char (&board)[8][8]  ){
 
-    return validation;
+    return 'c';
 }
-
+/* 
 //calls ai and receives and new board with it's move
-char  aimove(char board[8][8]){
+char  aimove( const char (&board)[8][8]  ){
 
-    return board;
+    return 0
 }
 
 //calls savegame function
-void  savegame(char board[8][8]){
+void  savegame( const char (&board)[8][8]  ){
     salvarTab(&board);
-
 
 }
 //calls function to load board returns loaded board
@@ -45,7 +42,6 @@ char loadboard(){
     return board;
 
 }
-
 //calls function to edit empty board returns edited board
 char editboard() {
     char board[8][8] =
@@ -64,8 +60,9 @@ char editboard() {
     return board;
 }
 
+
 //calls function to show options for moves
-char showoptions(char board[8][8]){
+char showoptions( const char (&board)[8][8]  ){
 
     return board;
 }
@@ -89,7 +86,7 @@ char newstandardgame(){
 
 //calls funtion that creates a new empty board and asks for the right pieces
 char  newemptyboard(){
-    char board[8][8]=editar();
+    //char board[8][8]=editar();
 
     return board;
-}
+} */
