@@ -39,6 +39,11 @@ uint8_t Engine::readCodeTable( const char (&array)[8][8] )
   return Success;
 }
 
+uint8_t Engine::isValidEditedTable( const char (&array)[8][8] )
+{
+  return Error;
+}
+
 uint8_t Engine::isValidCodeSymbol( char code_symbol )
 {
   switch( code_symbol )
@@ -328,3 +333,23 @@ PPlayer Engine::opponentOf( PPlayer player)
 
     return opponent;
 }
+
+
+shared_ptr<Engine> Engine::getEngine()
+{
+//If there's no board, then create one.
+    if( an_engine_ == nullptr )
+    {  
+        try {
+            an_engine_.reset( new Engine() );
+            //Reset board table to new board
+        } catch ( int throwned_error) {
+            // If there was a failure creating board
+            throw Error;
+        }
+    }
+
+    return an_engine_;
+}
+
+shared_ptr<Engine> Engine::an_engine_ = nullptr;

@@ -20,7 +20,7 @@ TEST_CASE( "Create Engine", "[Engine]" )
   //! These test case will focus on methods that
   //! creates objects within Engine class
   // These tests will focus on:./
-  PEngine valid_engine( new Engine());
+  PEngine valid_engine = Engine::getEngine();
 
   SECTION( "An engine can be successfully created" ) 
   {
@@ -115,7 +115,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
   //! These test case will focus on methods that
   //! reads objects within Engine class
   // These tests will focus on:./
-  PEngine valid_engine( new Engine());
+  PEngine valid_engine = Engine::getEngine();
   const char initial_game_code_table[8][8] = 
   {
     { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
@@ -457,6 +457,22 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
   } // "An engine can say if a new invalid move table is a valid state change"
 
+  SECTION( "An engine can be read one edited table code and know if its code is valid " ) 
+  {
+    const char valid_edited_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      { },
+      { },
+      { 0, 0, 'c',},
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    REQUIRE( valid_engine->isValidEditedTable( valid_edited_code_table ) == true );
+  } // "An engine can be read one edited table code and know if its code is valid "
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
 TEST_CASE( "Update Engine", "[Engine]" ) 
@@ -464,7 +480,7 @@ TEST_CASE( "Update Engine", "[Engine]" )
   //! These test case will focus on methods that
   //! updates Engine
   // These tests will focus on:
-  PEngine valid_engine( new Engine());
+  PEngine valid_engine = Engine::getEngine();
 
 
   SECTION( "An engine can start a new game" ) 

@@ -31,9 +31,13 @@ class Engine
   PPlayer player2;
   PPlayer nextPlayer;
 
+  static shared_ptr<Engine> an_engine_;
+
  public:
   Engine();
   ~Engine();
+
+  static shared_ptr<Engine> getEngine();
   
   uint8_t readCodeTable( const char (&array)[8][8] );
   void printCodeTable( const char (&array)[8][8] );
@@ -42,6 +46,7 @@ class Engine
 
   // Auxiliary functions
   uint8_t isValidCodeSymbol( char code_symbol );
+  uint8_t isValidEditedTable( const char (&array)[8][8] );
   bool isValidMove( const char (&array)[8][8]  );
   uint8_t createPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , char code_symbol );

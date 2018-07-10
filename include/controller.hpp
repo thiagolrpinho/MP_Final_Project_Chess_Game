@@ -8,7 +8,7 @@ class Controller
   
  public:
   char movepiece( const char (&board)[8][8] );
-  bool validateboard( const char (&board)[8][8] );
+  PCodeTable validateboard( const char (&board)[8][8] );
   char  aimove( const char (&board)[8][8] );
   void  savegame( const char (&board)[8][8] );
   char loadboard();
