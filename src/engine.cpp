@@ -41,7 +41,71 @@ uint8_t Engine::readCodeTable( const char (&array)[8][8] )
 
 uint8_t Engine::isValidEditedTable( const char (&array)[8][8] )
 {
-  return Error;
+  uint8_t white_pawn = 0;
+  uint8_t black_pawn = 0;
+  uint8_t white_rook = 0;
+  uint8_t black_rook = 0;
+  uint8_t white_knight = 0;
+  uint8_t black_knight = 0;
+  uint8_t white_bishop = 0;
+  uint8_t black_bishop = 0;
+  uint8_t white_queen = 0;
+  uint8_t black_queen = 0;
+  uint8_t white_king = 0;
+  uint8_t black_king = 0;
+
+  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  {
+    for( size_t vertical = 0; vertical < 8; ++vertical )
+    {
+      if ( isValidCodeSymbol( array[vertical][horizontal] ) == Error )
+        return Error;
+      switch( array[vertical][horizontal] )
+      {
+        case 'p':
+          white_pawn++;
+        break;
+        case 'P':
+          black_pawn++;
+        break;
+        case 't':
+          white_rook++;
+        break;
+        case 'T':
+          black_rook++;
+        break;
+        case 'c':
+          white_knight++;
+        break;
+        case 'C':
+          black_knight++;
+        break;
+        case 'b':
+          white_bishop++;
+        break;
+        case 'B':
+          black_bishop++;
+        break;
+        case 'r':
+          white_queen++;
+        break;
+        case 'R':
+          black_queen++;
+        break;
+        case 'z':
+          white_king++;
+        break;
+        case 'Z':
+          black_king++;
+        break;
+
+        default:
+        break;
+      }
+    }
+  }
+
+  return true;
 }
 
 uint8_t Engine::isValidCodeSymbol( char code_symbol )
