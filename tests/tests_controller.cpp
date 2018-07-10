@@ -30,6 +30,23 @@ TEST_CASE( "Read Controller", "[Controller]" )
     REQUIRE_FALSE( Controller::getController() == nullptr );
   } // SECTION( "A Controller can have it's address returned" )
 
+  SECTION( "A Controller can see if an edited board is valid " ) 
+  {
+    const char invalid_two_queen_edited_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      { 'R'},
+      { },
+      { 0, 0, 'r'},
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    REQUIRE_FALSE( Controller::getController()->validateBoard( invalid_two_queen_edited_code_table ) == true );
+  } // SECTION( "A Controller can see if an edited board is valid "  )
+
 } //TEST_CASE( "Read Controller", "[Controller]" ) 
 
 TEST_CASE( "Update Controller", "[Controller]" ) 

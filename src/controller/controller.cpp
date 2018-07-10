@@ -25,28 +25,9 @@ char Controller::movepiece( const char (&board)[8][8] )
 }
 
 //returns new controller if it's valid or old one if it's not
-PCodeTable Controller::validateboard( const char (&code_table_to_be_avalied)[8][8]  ){
-    PCodeTable valid_code_table;
-    uint8_t size = 8;
-
-    if ( Engine::getEngine()->isValidMove( code_table_to_be_avalied ) )
-    {
-        valid_code_table = make_unique< unique_ptr<char[]>[] >(size);
-        {
-            for ( int i = 0; i < size; ++i)
-            {
-                valid_code_table[i] = make_unique< char[] >(size);
-
-                for (int j = 0; j < size; ++j)
-                    valid_code_table[i][j] = code_table_to_be_avalied[8][8];
-            }
-        }
-        
-    } else {
-        valid_code_table = Engine::getEngine()->returnCodeTable();
-    }   
-
-    return valid_code_table;
+bool Controller::validateBoard( const char (&board_to_be_avalied)[8][8]  )
+{
+    return Engine::getEngine()->isValidEditedTable( board_to_be_avalied );
 }
 /* 
 //calls ai and receives and new controller with it's move
