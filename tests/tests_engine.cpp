@@ -361,7 +361,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
 
     valid_engine->readCodeTable( initial_game_code_table);
     // As it is the same valid code table, it should return true
-    REQUIRE( valid_engine->isValidMove( next_valid_code_table ) == true );
+    CHECK( valid_engine->isValidMove( next_valid_code_table ) == true );
 
     const char another_next_valid_code_table[8][8] = 
     {
@@ -374,7 +374,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 0, 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
-    REQUIRE( valid_engine->isValidMove( another_next_valid_code_table ) == true );
+    CHECK( valid_engine->isValidMove( another_next_valid_code_table ) == true );
 
     const char pawn_jump_next_valid_code_table[8][8] = 
     {
@@ -387,7 +387,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 0, 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
-    REQUIRE( valid_engine->isValidMove( pawn_jump_next_valid_code_table ) == true );
+    CHECK( valid_engine->isValidMove( pawn_jump_next_valid_code_table ) == true );
 
   } // "An engine can say if a new invalid move table is a valid state change"
 

@@ -24,7 +24,7 @@ int Pawn::value() const
 
 
 
-///Assertiva de entrada da fun��o: if(!hasMoved() && translationY == 2 && horizontal_absolute_translation == 0 && Board::getBoard()->isClearVertical(*(this->location()), location))
+///Assertiva de entrada da fun��o: if(!hasMoved() && vertical_absolute_translantion == 2 && horizontal_absolute_translation == 0 && Board::getBoard()->isClearVertical(*(this->location()), location))
 bool Pawn::canMoveTo( uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
                uint8_t future_vertical_coordinate ) const
@@ -55,7 +55,13 @@ bool Pawn::canMoveTo( uint8_t actual_horizontal_coordinate,
     
     ///  se o pe�o n tiver se movido no jogo e os dois quadrados a sua frente estiverem livres, o pe�o poder� fazer seu movimento especial de se mover 2 quadrados para frente
     /// Assertiva de entrada que checa se o pe�o j� se moveu no jogo
-    
+    else if( !hasMoved() && vertical_absolute_translation == 2 && horizontal_absolute_translation == 0 &&
+            Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_vertical_coordinate ) )
+    {
+        validMove = true;
+    }
+
     /// o movimento tamb�m � v�lido se o pe�o for comer uma pe�a na diagonal
     else if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied()
              && vertical_direction == 1 && ( horizontal_direction == 1

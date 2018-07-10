@@ -21,6 +21,8 @@ class Pawn : public RestrictedPiece
     */
     int value() const;
 
+    
+
     /**
     * Determina se a pe�a pode se mover para o quadrado recebido baseado na geometria do movimento
     * @param quadrado o quadrado destino
