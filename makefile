@@ -1,5 +1,3 @@
-
-
 IDIR	=./include
 CC      = g++ -std=c++14
 CFLAGS  = -Wall -g -I$(IDIR) --coverage 
@@ -10,6 +8,29 @@ LDIR	=./lib
 SDIR	=./src
 TDIR	=./tests
 PIECESDIR = ./src/pieces
+
+#OBJS specifies which files to compile as part of the project
+OBJSIG = ./src/main.cpp ./src/display.cpp ./src/LTexture.cpp
+
+#CC specifies which compiler we're using
+CCIG = g++
+
+#INCLUDE_PATHS specifies the additional include paths we'll need
+INCLUDE_PATHS = -I"D:/UnB/MP/TrabalhoFinal/MP_Final_Project_Chess_Game/i686-w64-mingw32/include/SDL2"
+
+#LIBRARY_PATHS specifies the additional library paths we'll need
+LIBRARY_PATHS = -L"D:/UnB/MP/TrabalhoFinal/MP_Final_Project_Chess_Game/i686-w64-mingw32/lib"
+
+#COMPILER_FLAGS specifies the additional compilation options we're using
+# -w suppresses all warnings
+# -Wl,-subsystem,windows gets rid of the console window
+COMPILER_FLAGS = -w -Wl,-subsystem,windows
+
+#LINKER_FLAGS specifies the libraries we're linking against
+LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image -lSDL2_ttf
+
+#OBJ_NAME specifies the name of our exectuable
+OBJ_NAME = game
 
 LIBS	=-lm
 	
@@ -64,10 +85,13 @@ play_game: $(OBJ)
 gcovr_html:
 	gcovr -r . --html --html-details -o ./tests/gcov/tests-detailts.html
 
+#This is the target that compiles our executable
+gameig : $(OBJS)
+	$(CCIG) $(OBJSIG) $(CFLAGS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+  
 .PHONY: clean
 
 clean:
 	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
 	rm -f $(ODIR)/*.gcno *~ core $(INCDIR)/*~
 	rm -f $(ODIR)/*.gcda *~ core $(INCDIR)/*~
-
