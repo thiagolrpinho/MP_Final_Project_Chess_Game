@@ -1,3 +1,5 @@
+
+
 IDIR	=./include
 CC      = g++ -std=c++14
 CFLAGS  = -Wall -g -I$(IDIR) --coverage 
@@ -87,3 +89,4 @@ clean:
 	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
 	rm -f $(ODIR)/*.gcno *~ core $(INCDIR)/*~
 	rm -f $(ODIR)/*.gcda *~ core $(INCDIR)/*~
+
