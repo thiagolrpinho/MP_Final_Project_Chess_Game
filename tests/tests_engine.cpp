@@ -389,6 +389,20 @@ TEST_CASE( "Read Engine", "[Engine]" )
     };
     CHECK( valid_engine->isValidMove( pawn_jump_next_valid_code_table ) == true );
 
+
+    const char knight_jump_next_valid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      { },
+      { },
+      { 0, 0, 'c',},
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    CHECK( valid_engine->isValidMove( knight_jump_next_valid_code_table ) == true );
+
   } // "An engine can say if a new invalid move table is a valid state change"
 
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
