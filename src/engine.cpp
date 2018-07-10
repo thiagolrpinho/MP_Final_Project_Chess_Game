@@ -104,8 +104,9 @@ uint8_t Engine::isValidEditedTable( const char (&array)[8][8] )
       }
     }
   }
+  if( white_king + black_king != 2 ) return Error;
 
-  return true;
+  return Success;
 }
 
 uint8_t Engine::isValidCodeSymbol( char code_symbol )

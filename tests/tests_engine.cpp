@@ -471,7 +471,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
     };
 
-    REQUIRE( valid_engine->isValidEditedTable( valid_edited_code_table ) == Error );
+    REQUIRE( valid_engine->isValidEditedTable( valid_edited_code_table ) == Success );
 
     const char invalid_edited_code_table[8][8] = 
     {
@@ -485,7 +485,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 't', 0, 'b', 'r', 0, 'b', 'c', 't'}
     };
 
-    REQUIRE( valid_engine->isValidEditedTable( invalid_edited_code_table ) == Success );
+    REQUIRE( valid_engine->isValidEditedTable( invalid_edited_code_table ) == Error );
   } // "An engine can be read one edited table code and know if its code is valid "
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
