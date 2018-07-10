@@ -60,6 +60,7 @@ bool Pawn::canMoveTo( uint8_t actual_horizontal_coordinate,
              actual_vertical_coordinate, future_vertical_coordinate ) )
     {
         validMove = true;
+        setMoved();
     }
 
     /// o movimento tamb�m � v�lido se o pe�o for comer uma pe�a na diagonal
@@ -77,7 +78,7 @@ char Pawn::getCodeSymbol() const
 {
   if ( isWhite )
   {
-    return'p';
+    return 'p';
 
   } else {
     return 'P';

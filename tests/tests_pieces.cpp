@@ -62,6 +62,9 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       */
     REQUIRE( pawn_to_be_moved->canMoveTo( 0, 1, 0, 3) == true );
 
+    Board::getBoard()->cleanBoard();
+    pawn_to_be_moved.reset( new Pawn() );
+    Board::getBoard()->setPieceAt( 0, 1 , pawn_to_be_moved );
         /*
       {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},

@@ -17,12 +17,7 @@ Engine::~Engine()
   */
 uint8_t Engine::readCodeTable( const char (&array)[8][8] )
 {   
-  PKing white_king( new King() );
-  PQueen  white_queen( new Queen() );
-  PBishop white_bishop( new Bishop() );
-  PKnight white_knight( new Knight() );
-  PRook   white_rook( new Rook() );
-  PPawn   white_pawn( new Pawn() );
+  Board::getBoard()->cleanBoard();
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
@@ -121,11 +116,14 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
   PRook   black_rook( new Rook( false ) );
   PPawn   black_pawn( new Pawn( false ) );
 
+  
+
   switch( code_symbol )
       {
         case 0:
         break;
         case 'p':
+          if ( vertical_coordinate != 1 && vertical_coordinate != (8 - 2) ) white_pawn->setMoved();
           if( Board::getBoard()->setPieceAt( horizontal_coordinate,  vertical_coordinate,  white_pawn ) == Error )
           return Error;
         break;
