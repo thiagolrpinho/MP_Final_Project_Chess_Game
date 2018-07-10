@@ -122,13 +122,27 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
      REQUIRE_FALSE( king_not_in_check->canMoveTo( 1, 6, 0, 5 ) == true );
   } // An Piece can say if a same code table is a valid state change"
 
-  SECTION( "A King can say if it's in check " ) 
+  SECTION( "A King can say if it's in check when alone" ) 
   {
     Board::getBoard()->cleanBoard();
     PKing king_not_in_check( new King() );
     Board::getBoard()->setPieceAt( 0, 1 , king_not_in_check );
 
     REQUIRE_FALSE( king_not_in_check->inCheck() == true );
+  }
+
+  SECTION( "A King can say if it's in check with allied pieces" ) 
+  {
+    Board::getBoard()->cleanBoard();
+    PKing white_king_not_in_check( new King() );
+    PRook white_rook( new Rook() );
+    PBishop white_bishop( new Bishop() );
+
+    Board::getBoard()->setPieceAt( 4, 4 , white_king_not_in_check );
+    Board::getBoard()->setPieceAt( 3, 4 , white_rook );
+    Board::getBoard()->setPieceAt( 3, 3 , white_bishop );
+
+    REQUIRE_FALSE( white_king_not_in_check->inCheck() == true );
   }
 
 } //TEST_CASE( "Read Pieces", "[Pieces]" ) 
