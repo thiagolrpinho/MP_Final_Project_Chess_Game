@@ -280,16 +280,6 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   } else {
     return false; //If no pieces were on the given differences, there can not be two new pieces.
   }
-  if( first_difference_is_origin )
-  {
-    if( Board::getBoard()->isClearPath(first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate, second_difference_horizontal_coordinate,
-             second_difference_vertical_coordinate ) == false ) return false;
-  } else {
-    if( Board::getBoard()->isClearPath(second_difference_horizontal_coordinate,
-             second_difference_vertical_coordinate, first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate ) == false ) return false;
-  }
 
   if( first_difference_is_origin )
   {
@@ -299,8 +289,8 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
              second_difference_vertical_coordinate ) == false ) return false;
   } else {
     if( Board::getBoard()->getPieceAt( second_difference_horizontal_coordinate,
-             second_difference_vertical_coordinate )->canMoveTo( first_difference_horizontal_coordinate,
-             first_difference_vertical_coordinate, first_difference_horizontal_coordinate,
+             second_difference_vertical_coordinate )->canMoveTo( second_difference_horizontal_coordinate,
+             second_difference_vertical_coordinate, first_difference_horizontal_coordinate,
              first_difference_vertical_coordinate ) == false ) return false;
   }
 
