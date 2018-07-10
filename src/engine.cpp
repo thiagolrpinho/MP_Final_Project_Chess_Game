@@ -105,6 +105,11 @@ uint8_t Engine::isValidEditedTable( const char (&array)[8][8] )
     }
   }
   if( white_king + black_king != 2 ) return Error;
+  if( white_queen > 1 || black_queen > 1 ) return Error;
+  if( white_rook > 2 || black_rook > 2 ) return Error;
+  if( white_bishop > 2 || black_bishop > 2 ) return Error;
+  if( white_knight > 2 || black_knight > 2 ) return Error;
+  if( white_pawn > 8 || black_pawn > 8 ) return Error;
 
   return Success;
 }
