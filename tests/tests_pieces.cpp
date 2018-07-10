@@ -145,6 +145,20 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     REQUIRE_FALSE( white_king_not_in_check->inCheck() == true );
   }
 
+    SECTION( "A King can say if it's in check with enemy pieces" ) 
+  {
+    Board::getBoard()->cleanBoard();
+    PKing white_king_in_check( new King() );
+    PRook black_rook( new Rook( false ) );
+    PBishop black_bishop( new Bishop( false ) );
+
+    Board::getBoard()->setPieceAt( 4, 4 , white_king_in_check );
+    Board::getBoard()->setPieceAt( 3, 4 , black_rook );
+    Board::getBoard()->setPieceAt( 3, 3 , black_bishop );
+
+    REQUIRE( white_king_in_check->inCheck() == true );
+  }
+
 } //TEST_CASE( "Read Pieces", "[Pieces]" ) 
 
 TEST_CASE( "Update Pieces", "[Pieces]" ) 
