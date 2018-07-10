@@ -33,11 +33,15 @@ class RestrictedPiece: public Piece
     */
     bool hasMoved() const;
 
+    void setMoved() const
+    {
+        _moved = true;
+    };
  
  private:
    
+    mutable bool _moved;
     // private attributes
-    bool _moved;
 
 }; // RestrictedPiece
 

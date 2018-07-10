@@ -65,6 +65,16 @@ gcov_player: $(TOBJ)
 	$(CC) -o $@ $^ $(GCOVFLAGS) $(LIBS)
 
 
+_TOBJ += tests_pieces.o
+TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
+
+pieces_tester:$(TOBJ)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+gcov_pieces: $(TOBJ)
+	$(CC) -o $@ $^ $(GCOVFLAGS) $(LIBS)
+
+
 play_game: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
