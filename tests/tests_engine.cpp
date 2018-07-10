@@ -471,7 +471,21 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
     };
 
-    REQUIRE( valid_engine->isValidEditedTable( valid_edited_code_table ) == true );
+    REQUIRE( valid_engine->isValidEditedTable( valid_edited_code_table ) == Error );
+
+    const char invalid_edited_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      { },
+      { },
+      { 0, 0, 'c',},
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 0, 'b', 'c', 't'}
+    };
+
+    REQUIRE( valid_engine->isValidEditedTable( invalid_edited_code_table ) == Success );
   } // "An engine can be read one edited table code and know if its code is valid "
 } //TEST_CASE( "Read Engine", "[Engine]" ) 
 
