@@ -72,3 +72,8 @@ char King::getCodeSymbol() const
     return 'Z';
   }
 }
+
+bool King::inCheck() 
+{
+ return false;
+}

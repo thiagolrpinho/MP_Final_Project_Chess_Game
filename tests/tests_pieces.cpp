@@ -31,8 +31,8 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
   SECTION( "An Piece can say if a valid coordinate is a valid move" ) 
   {
     Board::getBoard()->cleanBoard();
-    PPawn pawn_to_be_moved( new Pawn() );
-    Board::getBoard()->setPieceAt( 0, 1 , pawn_to_be_moved );
+    PPawn king_not_in_check( new Pawn() );
+    Board::getBoard()->setPieceAt( 0, 1 , king_not_in_check );
   
     /*
       {
@@ -46,7 +46,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE( pawn_to_be_moved->canMoveTo( 0, 1, 0, 2) == true );
+    REQUIRE( king_not_in_check->canMoveTo( 0, 1, 0, 2) == true );
     
     /*
       {
@@ -60,11 +60,11 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE( pawn_to_be_moved->canMoveTo( 0, 1, 0, 3) == true );
+    REQUIRE( king_not_in_check->canMoveTo( 0, 1, 0, 3) == true );
 
     Board::getBoard()->cleanBoard();
-    pawn_to_be_moved.reset( new Pawn() );
-    Board::getBoard()->setPieceAt( 0, 1 , pawn_to_be_moved );
+    king_not_in_check.reset( new Pawn() );
+    Board::getBoard()->setPieceAt( 0, 1 , king_not_in_check );
         /*
       {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
@@ -77,7 +77,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE_FALSE( pawn_to_be_moved->canMoveTo( 1, 1, 0, 2) == true );
+    REQUIRE_FALSE( king_not_in_check->canMoveTo( 1, 1, 0, 2) == true );
 
       /*
       {
@@ -91,7 +91,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE( pawn_to_be_moved->canMoveTo( 0, 6, 0, 5 ) == true );
+    REQUIRE( king_not_in_check->canMoveTo( 0, 6, 0, 5 ) == true );
 
           /*
       {
@@ -105,7 +105,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE( pawn_to_be_moved->canMoveTo( 0, 6, 0, 4 ) == true );
+    REQUIRE( king_not_in_check->canMoveTo( 0, 6, 0, 4 ) == true );
 
       /*
       {
@@ -119,9 +119,17 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-     REQUIRE_FALSE( pawn_to_be_moved->canMoveTo( 1, 6, 0, 5 ) == true );
+     REQUIRE_FALSE( king_not_in_check->canMoveTo( 1, 6, 0, 5 ) == true );
   } // An Piece can say if a same code table is a valid state change"
 
+  SECTION( "A King can say if it's in check " ) 
+  {
+    Board::getBoard()->cleanBoard();
+    PKing king_not_in_check( new King() );
+    Board::getBoard()->setPieceAt( 0, 1 , king_not_in_check );
+
+    REQUIRE_FALSE( king_not_in_check->inCheck() == true );
+  }
 
 } //TEST_CASE( "Read Pieces", "[Pieces]" ) 
 

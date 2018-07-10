@@ -18,7 +18,7 @@ class King: public RestrictedPiece
     */
     int value() const;
 
-
+    bool inCheck();
 
     /**
     *
