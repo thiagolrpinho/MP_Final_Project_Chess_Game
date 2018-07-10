@@ -300,6 +300,8 @@ TEST_CASE( "Read Engine", "[Engine]" )
   SECTION( "An engine can say if a new invalid move table is a valid state change" ) 
   {
     Board::getBoard()->cleanBoard();
+    valid_engine->readCodeTable( initial_game_code_table);
+
     const char next_invalid_missing_one_piece_code_table[8][8] = 
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
@@ -311,6 +313,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
+    REQUIRE( valid_engine->isValidMove( next_invalid_missing_one_piece_code_table ) == false );
 
     const char next_invalid_wrong_pieces_code_table[8][8] = 
     {
@@ -323,6 +326,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
+    REQUIRE( valid_engine->isValidMove( next_invalid_wrong_pieces_code_table ) == false );
 
     const char diagonal_move_invalid_code_table[8][8] = 
     {
@@ -335,12 +339,46 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
-
-    valid_engine->readCodeTable( initial_game_code_table);
-    // As it is the same valid code table, it should return true
-    REQUIRE( valid_engine->isValidMove( next_invalid_missing_one_piece_code_table ) == false );
-    REQUIRE( valid_engine->isValidMove( next_invalid_wrong_pieces_code_table ) == false );
     REQUIRE( valid_engine->isValidMove( diagonal_move_invalid_code_table ) == false );
+
+    const char horse_wrong_jump_invalid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn jump to the diagonal
+      { },
+      { },
+      { 0, 'c'},
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    REQUIRE( valid_engine->isValidMove( horse_wrong_jump_invalid_code_table ) == false );
+
+    const char another_horse_wrong_jump_invalid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn jump to the diagonal
+      { },
+      { },
+      { 0, 0, 0, 'c'},
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    REQUIRE( valid_engine->isValidMove( another_horse_wrong_jump_invalid_code_table ) == false );
+/* 
+    const char pawn_invalid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 0,  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { },
+      { },
+      { },
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'p', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    REQUIRE( valid_engine->isValidMove( another_horse_wrong_jump_invalid_code_table ) == false ); */
 
   } // "An engine can say if a new invalid move table is a valid state change"
 
