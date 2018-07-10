@@ -45,9 +45,9 @@ class Piece
     * @param quadrado o quadrado destino
     * @return se o movimento � v�lido
     */
-    virtual bool canMoveTo(uint8_t actual_horizontal_coordinate,
+    virtual bool canMoveTo( uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
-               uint8_t future_vertical_coordinate) const = 0;
+               uint8_t future_vertical_coordinate ) const = 0;
 
 }; // Pe�a
 

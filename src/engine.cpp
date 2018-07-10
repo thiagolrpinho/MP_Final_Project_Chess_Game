@@ -291,6 +291,19 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
              first_difference_vertical_coordinate ) == false ) return false;
   }
 
+  if( first_difference_is_origin )
+  {
+    if( Board::getBoard()->getPieceAt( first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate )->canMoveTo( first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, second_difference_horizontal_coordinate,
+             second_difference_vertical_coordinate ) == false ) return false;
+  } else {
+    if( Board::getBoard()->getPieceAt( second_difference_horizontal_coordinate,
+             second_difference_vertical_coordinate )->canMoveTo( first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate, first_difference_horizontal_coordinate,
+             first_difference_vertical_coordinate ) == false ) return false;
+  }
+
   return true;
 } // bool Engine::isValidMove( const char (&array)[8][8]  )
 

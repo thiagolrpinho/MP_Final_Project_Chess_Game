@@ -25,9 +25,9 @@ int Pawn::value() const
 
 
 ///Assertiva de entrada da fun��o: if(!hasMoved() && translationY == 2 && horizontal_absolute_translation == 0 && Board::getBoard()->isClearVertical(*(this->location()), location))
-bool Pawn::canMoveTo(uint8_t actual_horizontal_coordinate,
+bool Pawn::canMoveTo( uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
-               uint8_t future_vertical_coordinate) const
+               uint8_t future_vertical_coordinate ) const
 {
     uint8_t horizontal_absolute_translation, vertical_absolute_translation;
     int8_t vertical_direction, horizontal_direction;
