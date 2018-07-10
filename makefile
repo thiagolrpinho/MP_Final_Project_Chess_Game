@@ -81,6 +81,16 @@ gcov_pieces: $(TOBJ)
 	$(CC) -o $@ $^ $(GCOVFLAGS) $(LIBS)
 
 
+_TOBJ += tests_controller.o
+TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
+
+controller_tester:$(TOBJ)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+gcov_controller: $(TOBJ)
+	$(CC) -o $@ $^ $(GCOVFLAGS) $(LIBS)
+
+
 play_game: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
