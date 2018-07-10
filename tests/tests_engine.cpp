@@ -324,11 +324,11 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
 
-    const char next_invalid_code_table[8][8] = 
+    const char diagonal_move_invalid_code_table[8][8] = 
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
-      { 'P', 'P',  0, 0, 'P', 'P', 'P', 'P'},
-      { 'P'},  // Pawn move one square
+      { 'P', 0,  'P', 'P', 'P', 'P', 'P', 'P'},
+      { 'P'},  // Pawn jump to the diagonal
       { },
       { },
       { },
@@ -340,7 +340,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
     // As it is the same valid code table, it should return true
     REQUIRE( valid_engine->isValidMove( next_invalid_missing_one_piece_code_table ) == false );
     REQUIRE( valid_engine->isValidMove( next_invalid_wrong_pieces_code_table ) == false );
-    REQUIRE( valid_engine->isValidMove( next_invalid_code_table ) == false );
+    REQUIRE( valid_engine->isValidMove( diagonal_move_invalid_code_table ) == false );
 
   } // "An engine can say if a new invalid move table is a valid state change"
 
