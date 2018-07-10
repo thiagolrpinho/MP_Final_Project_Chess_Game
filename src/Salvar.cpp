@@ -1,4 +1,7 @@
-#include "../include/Salvar.hpp"
+//#include "../include/Salvar.hpp"
+#include <iostream>
+#include <fstream>
+#include <string.h>
 
 using namespace std;
 
@@ -83,6 +86,7 @@ void carregaTab(char (*tabuleiro)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA
     	if (Carregar[i] == 'T' || Carregar[i] == 'C' || Carregar[i] == 'B' || Carregar[i] == 'R' || Carregar[i] == 'Z' || Carregar[i] == 'P' ||  
     	Carregar[i] == 't' || Carregar[i] == 'c' || Carregar[i] == 'b' || Carregar[i] == 'r' || Carregar[i] == 'z' || Carregar[i] == 'p') {
     		peca = Carregar[i];
+
     		removepeca(tabuleiro, peca);
     		i++;
     		x = Carregar[i];
@@ -160,6 +164,25 @@ void salvarTab(char (*tabuleiro)[8][8]){
     arquivo.close();
 
 }
+/** The function verificar checks the inserted piece
+ * This function is used to check if the inserted piece can be inserted without pass the limit of numbers of piece type
+*/
+bool verificar(char (*tabuleiro)[8][8], char peca) {
+	int contador = 0;
+
+	for(int i = 0; i < 8; i++)
+		for(int j = 0; j < 8; j++)
+			if((*tabuleiro)[i][j] == peca)
+				contador++;
+
+	if ((peca == 'z' || peca == 'Z' || peca == 'R' || peca == 'r') && contador == 1)
+		return false;
+	if ((peca == 'b' || peca == 'B' || peca == 't' || peca == 'T' || peca == 'c' || peca == 'C') && contador == 2)
+		return false;
+	if ((peca == 'p' || peca == 'P') && contador == 8)
+		return false;
+	return true;
+}
 
 /** This function receives a empty board and makes a custom chess board.
  * This function will receive informations of a board created by the user and one by one will put
@@ -170,27 +193,33 @@ void salvarTab(char (*tabuleiro)[8][8]){
  * */
 void editar(char (*tabuleiro)[8][8]){
     char coord[4];
-    char confirmacao;
+    char confirmacao = 's';
     int x = 0;
     int y = 0;
     
-    cout << "Informe as posições das peças em coordenadas\n LETRA seguidos de NUMERO, INICIAL DO NOME DA PECA B OU P para pecas brancas ou pretas respectivamente :\n";
+    cout << "Informe as posições das peças em coordenadas\n LETRA seguidos de NUMERO, INICIAL DO NOME DA PECA  e B OU P para pecas brancas ou pretas respectivamente :\n";
 
-    while(confirmacao == 's'){
+    while(confirmacao == 's') {
         cout << "Informe o que será adicionado: ";
-        fgets(coord, 4, stdin);
+        fgets(coord, 5, stdin);
         
         if((coord[0] >= 'a'  && coord[0] <= 'h')  &&  (coord[1] >= '1'  && coord[1] <= '8')){
             x = coord[0] - 'a'; 
             y = coord[1] - '1';
+            if(coord[3] == 'P' || coord[3] == 'p')
+            	coord[2] = toupper(coord[2]);
+            if(coord[3] == 'B' || coord[3] == 'b')
+            	coord[2] = tolower(coord[2]);
+            if(verificar(tabuleiro, coord[2]) == false)
+            	cout << "Ja possui o limite de '" << coord[2] << "'" << endl;
+            else {
+            	(*tabuleiro)[x][y] = coord[2];
+            }
+        } else
+            cout << "Posiçao invalida\n";
 
-            if(coord[3] <= 'Z' && coord[3] >= 'A')
-                (*tabuleiro)[x][y] = toupper(coord[2]);
-            if(coord[3] <= 'z' && coord[3] >= 'a')
-                (*tabuleiro)[x][y] = tolower(coord[2]);
-        }else
-            cout << "Peça invalida \n";
         cout << "Deseja inserir mais uma peça? (s/n)\n";
         cin >> confirmacao;
+        cin.ignore(1, '\n');
     }
 }
