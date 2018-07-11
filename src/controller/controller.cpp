@@ -4,7 +4,7 @@ shared_ptr<Controller>  Controller::getController()
 {
     //If there's no controller, then create one.
     if( the_controller == nullptr )
-    {  
+    {
         try {
             the_controller.reset( new Controller() );
             //Reset controller table to new controller
@@ -21,7 +21,7 @@ PCodeTable Controller::movePiece( const char (&board)[8][8] )
 {
     if( Engine::getEngine()->isValidMove(board) )
     {
-        if ( Engine::getEngine()->readCodeTable(board) == Error ) 
+        if ( Engine::getEngine()->readCodeTable(board) == Error )
             throw (int) Error;
     }
 
@@ -33,7 +33,7 @@ bool Controller::validateBoard( const char (&board_to_be_avalied)[8][8]  )
 {
     return Engine::getEngine()->isValidEditedTable( board_to_be_avalied );
 }
-/* 
+
 //calls ai and receives and new controller with it's move
 char  aimove( const char (&controller)[8][8]  ){
 
@@ -110,6 +110,6 @@ char  newemptyboard(){
     //char controller[8][8]=editar();
 
     return controller;
-} */
+}
 
 shared_ptr<Controller> Controller::the_controller = nullptr;
