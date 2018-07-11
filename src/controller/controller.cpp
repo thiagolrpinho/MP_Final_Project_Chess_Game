@@ -58,7 +58,7 @@ char loadboard(){
         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
         { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
-    carregaTab(&controller);
+    controller = carregaTab(&controller);
 
     return controller;
 
@@ -76,7 +76,7 @@ char editboard() {
         { '0', '0', '0', '0', '0', '0', '0', '0'},
         { '0', '0', '0', '0', '0', '0', '0', '0'}
     };
-    editar(&controller);
+    controller= editar(&controller);
 
     return controller;
 }
