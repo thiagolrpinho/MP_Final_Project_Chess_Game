@@ -86,7 +86,8 @@ bool King::inCheck()
   }
 
   PCodeTable actual_board = Engine::getEngine()->returnCodeTable();
-  char code_table[8][8];
+  
+/*   char code_table[8][8];
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
@@ -96,7 +97,7 @@ bool King::inCheck()
     }
   }
 
-  Engine::getEngine()->printCodeTable( code_table );
+  Engine::getEngine()->printCodeTable( code_table ); */
 
   
  for( size_t horizontal = 0; horizontal < 8; ++horizontal )

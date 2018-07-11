@@ -149,7 +149,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
   {
     Board::getBoard()->cleanBoard();
     PKing white_king_in_check( new King() );
-    PRook black_rook( new Rook( ) );
+    PRook black_rook( new Rook( false ) );
     PBishop black_bishop( new Bishop( false ) );
 
     Board::getBoard()->setPieceAt( 4, 4 , white_king_in_check );
