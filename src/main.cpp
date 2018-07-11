@@ -241,7 +241,7 @@ int main( int argc, char* args[] )
                     //        }
                     playerplays=0;
                 }
-                if(ai ==0){//two player game
+                if(ai == 0){//two player game
 
                     //deve chamar a engine para fazer o validate e atualiza
                     // char valida_matriz[8][8];
