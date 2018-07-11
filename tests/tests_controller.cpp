@@ -54,6 +54,45 @@ TEST_CASE( "Update Controller", "[Controller]" )
   //! These test case will focus on methods that
   //! updates Controller
   // These tests will focus on:
+   SECTION( "A Controller can see if an edited board is valid " ) 
+  { 
+    const char actual_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { },
+      { },
+      { },
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    const char new_move_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { },
+      { },
+      { 0, 0, 'c'}, // Horse can jump
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    Engine::getEngine()->readCodeTable( actual_code_table );
+
+    Controller::getController()->movePiece( new_move_code_table );
+    
+    PCodeTable returned_code_table = Engine::getEngine()->returnCodeTable();
+    
+    for( uint8_t i = 0; i < 8; i++ )
+      {
+        for( uint8_t j = 0; j < 8; j++ )
+        {
+          REQUIRE( returned_code_table[i][j] == actual_code_table[i][j] );
+        }
+      }
+  } // SECTION( "A Controller can see if an edited board is valid "  )
   
 } // TEST_CASE( "Update", "[Controller]" ) 
 

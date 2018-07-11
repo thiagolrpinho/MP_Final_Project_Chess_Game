@@ -321,10 +321,12 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
           case 1:
             first_difference_horizontal_coordinate = (uint8_t)horizontal;
             first_difference_vertical_coordinate = (uint8_t)vertical;
+            first_is_occupied = array[vertical][horizontal] == 0;
           break;
           case 2:
             second_difference_horizontal_coordinate = (uint8_t)horizontal;
             second_difference_vertical_coordinate = (uint8_t)vertical;
+            second_is_occupied = array[vertical][horizontal] == 0;
           break;
           default:
           break;
@@ -340,7 +342,7 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
 
   second_was_occupied = Board::getBoard()->getSquareAt( second_difference_horizontal_coordinate, 
                                 second_difference_vertical_coordinate)->isOccupied(); 
-  
+ 
   if ( first_was_occupied && second_was_occupied )
   {
     if ( first_is_occupied )

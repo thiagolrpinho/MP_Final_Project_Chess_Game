@@ -7,7 +7,7 @@ class Controller
 {
   
  public:
-  char movepiece( const char (&board)[8][8] );
+  char movePiece( const char (&board)[8][8] );
   bool validateBoard( const char (&board_to_be_avalied)[8][8]  );
   char  aimove( const char (&board)[8][8] );
   void  savegame( const char (&board)[8][8] );
