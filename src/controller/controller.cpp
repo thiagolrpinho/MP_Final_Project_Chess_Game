@@ -41,7 +41,7 @@ char  aimove( const char (&controller)[8][8]  ){
 }
 
 //calls savegame function
-void  savegame( const char (&controller)[8][8]  ){
+void  savegame( char (&controller)[8][8]  ){
     salvarTab(&controller);
 
 }
