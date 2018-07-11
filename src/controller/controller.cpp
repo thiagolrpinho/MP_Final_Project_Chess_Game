@@ -63,8 +63,11 @@ char loadboard(){
     return controller;
 
 }
+
+
+
 //calls function to edit empty controller returns edited controller
-char editboard() {
+void edit() {
     char controller[8][8] =
     {
         { '0', '0', '0', '0', '0', '0', '0', '0'},
@@ -76,9 +79,9 @@ char editboard() {
         { '0', '0', '0', '0', '0', '0', '0', '0'},
         { '0', '0', '0', '0', '0', '0', '0', '0'}
     };
-    controller= editar(&controller);
+    edit(&controller);
 
-    return controller;
+
 }
 
 
@@ -105,11 +108,5 @@ char newstandardgame(){
     return controller;
 }
 
-//calls funtion that creates a new empty controller and asks for the right pieces
-char  newemptyboard(){
-    //char controller[8][8]=editar();
-
-    return controller;
-}
 
 shared_ptr<Controller> Controller::the_controller = nullptr;

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <display.hpp>
-#include <controller.hpp>
+#include "controller.hpp"
 
 #ifndef SDL_INCLUDES
 #define SDL_INCLUDES
@@ -71,13 +71,12 @@ int main( int argc, char* args[] )
 							display.displayBoard(initial_game_code_table);
                             break;
                     case SDLK_s:
-
-                            //chama a função salvar para salvar a matriz do tabuleiro
+                            savegame(initial_game_code_table);
                             break;
 
                     case SDLK_e:
 
-                            //chama a função editar para salvar a matriz do tabuleiro
+                            edit();
                             break;
                     case SDLK_a:
                             ai=1; //AI will start playing
