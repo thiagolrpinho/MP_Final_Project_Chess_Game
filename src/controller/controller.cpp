@@ -1,41 +1,53 @@
-#include <memory>
-#include "../Salvar.cpp"
-#include "../engine.cpp"
-#include "../Editar.cpp"
-using std::unique_ptr;
-typedef unique_ptr<char*> Matrix;
+#include "controller.hpp"
 
+shared_ptr<Controller>  Controller::getController()
+{
+    //If there's no controller, then create one.
+    if( the_controller == nullptr )
+    {  
+        try {
+            the_controller.reset( new Controller() );
+            //Reset controller table to new controller
+        } catch ( int throwned_error) {
+            // If there was a failure creating controller
+            throw Error;
+        }
+    }
 
+    return the_controller;
+}
 //calls game engine and receives new board
-Matrix movepiece(char board[8][8]){
-    Matrix newboard = &board[8][8];
+PCodeTable Controller::movePiece( const char (&board)[8][8] )
+{
+    if( Engine::getEngine()->isValidMove(board) )
+    {
+        if ( Engine::getEngine()->readCodeTable(board) == Error ) 
+            throw (int) Error;
+    }
 
-
-
-    return board;
+    return Engine::getEngine()->returnCodeTable();
 }
 
-//returns true or false if the board is valid
-bool validateboard(char board[8][8]){
-
-    return validation;
+//returns new controller if it's valid or old one if it's not
+bool Controller::validateBoard( const char (&board_to_be_avalied)[8][8]  )
+{
+    return Engine::getEngine()->isValidEditedTable( board_to_be_avalied );
 }
+/* 
+//calls ai and receives and new controller with it's move
+char  aimove( const char (&controller)[8][8]  ){
 
-//calls ai and receives and new board with it's move
-char  aimove(char board[8][8]){
-
-    return board;
+    return 0
 }
 
 //calls savegame function
-void  savegame(char board[8][8]){
-    salvarTab(&board);
-
+void  savegame( const char (&controller)[8][8]  ){
+    salvarTab(&controller);
 
 }
-//calls function to load board
+//calls function to load controller returns loaded controller
 char loadboard(){
-    char board[8][8] =
+    char controller[8][8] =
     {
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
         { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
@@ -46,21 +58,39 @@ char loadboard(){
         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
         { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
-    char board[8][8]=carregaTab(&board);
+    carregaTab(&controller);
 
-    return board;
+    return controller;
 
 }
+//calls function to edit empty controller returns edited controller
+char editboard() {
+    char controller[8][8] =
+    {
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'}
+    };
+    editar(&controller);
+
+    return controller;
+}
+
 
 //calls function to show options for moves
-Matrix showoptions(char board[8][8]){
+char showoptions( const char (&controller)[8][8]  ){
 
-    return board;
+    return controller;
 }
 
-//returns new standard board
+//returns new standard controller
 char newstandardgame(){
-    char board[8][8] =
+    char controller[8][8] =
     {
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
         { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
@@ -72,12 +102,14 @@ char newstandardgame(){
         { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
 
-    return board;
+    return controller;
 }
 
-//calls funtion that creates a new empty board and asks for the right pieces
+//calls funtion that creates a new empty controller and asks for the right pieces
 char  newemptyboard(){
-    char board[8][8]=editar();
+    //char controller[8][8]=editar();
 
-    return board;
-}
+    return controller;
+} */
+
+shared_ptr<Controller> Controller::the_controller = nullptr;

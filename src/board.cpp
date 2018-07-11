@@ -47,7 +47,8 @@ Board::~Board()
         \return A shared pointer to the singleton board.
         \throw Error if couldn't created board
     */
-shared_ptr<Board> Board::getBoard(){
+shared_ptr<Board> Board::getBoard()
+{
     //If there's no board, then create one.
     if( board_table_ == nullptr )
     {  
@@ -198,7 +199,7 @@ bool Board::isClearVertical(uint8_t actual_horizontal_coordinate,
     lower_coordinate = future_vertical_coordinate;
   }
   
-  for( vertical_iterator= lower_coordinate; vertical_iterator< upper_coordinate; vertical_iterator++ )
+  for( vertical_iterator = lower_coordinate; vertical_iterator < upper_coordinate; vertical_iterator++ )
   {
     if( the_actual_board->getSquareAt(actual_horizontal_coordinate, vertical_iterator)->isOccupied() == true ) return false;
   }
@@ -274,6 +275,26 @@ bool Board::isClearDiagonal(uint8_t actual_horizontal_coordinate,
 
   return true;
 }  // Board::isClearDiagonal()
+
+bool Board::isClearPath( uint8_t actual_horizontal_coordinate,
+            uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+            uint8_t future_vertical_coordinate ) const
+{
+  bool vertical_is_clear, horizontal_is_clear, diagonal_is_clear;
+
+  vertical_is_clear = Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_vertical_coordinate );
+  
+  horizontal_is_clear = Board::getBoard()->isClearHorizontal( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_horizontal_coordinate );
+
+  diagonal_is_clear = Board::getBoard()->isClearDiagonal( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_horizontal_coordinate,
+             future_vertical_coordinate );
+
+  if( vertical_is_clear && horizontal_is_clear ) return diagonal_is_clear;
+  return ( vertical_is_clear | horizontal_is_clear | diagonal_is_clear );
+}
 
 bool Board::isEndRow(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate) const

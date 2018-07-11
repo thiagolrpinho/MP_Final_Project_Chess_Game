@@ -1,6 +1,24 @@
-#include "../include/salvar.hpp"
+#include "salvar.hpp"
 
 using namespace std;
+
+/** This is the main board. 
+ * This board contains all the pieces of a chess game in the initial positions, this positions
+ * will be modified by the informations of all movements made in a game conteined in a .pgn file.
+ * 
+ * Any board will be allways inte same formact;
+ *  
+tabuleiro[8][8] ={
+                        { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+                        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+                        { '0', '0', '0', '0', '0', '0', '0', '0'},
+                        { '0', '0', '0', '0', '0', '0', '0', '0'},
+                        { '0', '0', '0', '0', '0', '0', '0', '0'},
+                        { '0', '0', '0', '0', '0', '0', '0', '0'},
+                        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+                        { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+                    };
+*/
 
 /** The function removepeca removes the piece to make the move registered in .pgn file
  * This function receives what piece need to be removed from its place to be possible to
@@ -12,42 +30,45 @@ using namespace std;
  
 void removepeca(char (*tabuleiro)[8][8], char peca, int x, int y) {
 
+
+	cout << "peca: " << peca << " x: " << x << " y: " << y << endl;
+
 	int i, j;
 
 	switch(peca) {
 		case 'p':
-			if((*tabuleiro)[x][y+1] == peca && y < 7) {
+			if((*tabuleiro)[x][y+1] == peca) {
 				(*tabuleiro)[x][y+1] = '0'; 
 				return;
 			}
-			if((*tabuleiro)[x+1][y+1] == peca && x < 7 && y < 7) {
+			if((*tabuleiro)[x+1][y+1] == peca) {
 				(*tabuleiro)[x+1][y+1] = '0';
 				return;
 			}
-			if((*tabuleiro)[x-1][y+1] == peca && x > 0 && y < 7) {
+			if((*tabuleiro)[x-1][y+1] == peca) {
 				(*tabuleiro)[x-1][y+1] = '0';
 				return;
 			}
-			if((*tabuleiro)[x+2][y] == peca && x < 6) {
+			if((*tabuleiro)[x+2][y] == peca) {
 				(*tabuleiro)[x+2][y] = '0';
 				return; 
 			}
 		case 'P':
-			if((*tabuleiro)[x-1][y] == peca && x > 0) {
+			if((*tabuleiro)[x-1][y] == peca) {
 				(*tabuleiro)[x-1][y] = '0';
-				return;
+				cout << "a";
 			}
-			if((*tabuleiro)[x-1][y-1] == peca && x > 0 && y > 0) {
+			if((*tabuleiro)[x-1][y-1] == peca && x != 0 && y != 0) {
 				(*tabuleiro)[x-1][y-1] = '0';
-				return;
+				cout << "b";
 			}
-			if((*tabuleiro)[x-1][y+1] == peca && x > 0 && y < 7) {
+			if((*tabuleiro)[x-1][y+1] == peca) {
 				(*tabuleiro)[x-1][y+1] = '0';
-				return;
+				cout << "c";
 			}
-			if((*tabuleiro)[x-2][y] == peca && x > 1) {
+			if((*tabuleiro)[x-2][y] == peca) {
 				(*tabuleiro)[x-2][y] = '0';
-				return;
+				cout << "d";
 			}
 			return;
 		case 't':
@@ -95,7 +116,7 @@ void removepeca(char (*tabuleiro)[8][8], char peca, int x, int y) {
  * else it return a error message.
  * */
 void carregaTab(char (*tabuleiro)[8][8]){
-    char Carregar[1000];
+    char Carregar[100000];
     char letra, peca, x, y;
     int coordx, coordy;
     int index = 0, i = 0;
@@ -121,6 +142,7 @@ void carregaTab(char (*tabuleiro)[8][8]){
         }
     }
     carrega.close();
+    cout << Carregar << endl;
 
 
     while(Carregar[i] != '1' || Carregar[i+1] != '.') {
@@ -138,18 +160,18 @@ void carregaTab(char (*tabuleiro)[8][8]){
     		y = Carregar[i];
 
     		coordx = x - 'a';
-    		coordy = y - '0';
+    		coordy = y - '1';
+    		cout << "peca1: " << peca << " x: " << x << " y: " << y << endl;
 
-    		//removepeca(tabuleiro, peca, coordy, coordx);
+    		removepeca(tabuleiro, peca, coordy, coordx);
 
-            (*tabuleiro)[coordx][coordy] = peca;
-            
+    		(*tabuleiro)[coordy][coordx] = peca;
+
     		i++;
     	} else {
     		i++;
     	}
     }
-    return;
 }
 /** The function salvarTab saves the statement of the game.
  * This function is used to save all the information as the event, the location, the names of the players,
@@ -163,12 +185,11 @@ void salvarTab(char (*tabuleiro)[8][8]){
     char Event[100];
     char Local[100];
     char Data[20];
-    int cont = 1, round, tamMaxStr = 100;
+    int round, tamMaxStr = 100;
     char player1[100];
     char player2[100];
     char resultado[10];
     char jogadas[100][3];
-    char letra;
 
     cout << "Digite o nome do evento: \n";
     fgets(Event, tamMaxStr, stdin);
@@ -199,7 +220,7 @@ void salvarTab(char (*tabuleiro)[8][8]){
     strtok(resultado, "\n");
 
     ofstream arquivo;
-    arquivo.open("../saved_games/jogo.pgn");
+    arquivo.open("../saved_games/jogoS.pgn");
     arquivo << "[" << "Event " << '"' << Event << '"' << "]" << endl;
     arquivo << "[" << "Local " << '"' << Local << '"' << "]" << endl;
     arquivo << "[" << "Date " << '"' << Data << '"' << "]" << endl;
@@ -209,15 +230,6 @@ void salvarTab(char (*tabuleiro)[8][8]){
     arquivo << "[" << "Result " << '"' << resultado << '"' << "]*" << endl;
 
     //Receber as jogadas para montar o .pgn.
-    for(int i = 0; i < 8; i++) {
-        letra = i + 'a';
-        arquivo << cont << ".";
-        cont++;
-        for(int j = 0; j < 8; j++)
-            arquivo << " " << (*tabuleiro)[i][j] << letra << j; 
-        arquivo << endl;
-    }
-
     arquivo.close();
 
 }

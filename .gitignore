@@ -1,2 +1,54 @@
 
 chess-master/
+
+<<<<<<< HEAD
+src/bishop\.cpp
+
+src/king\.cpp
+
+src/knight\.cpp
+
+src/pawn\.cpp
+
+src/piece \(1\)\.cpp
+
+src/queen\.cpp
+
+src/restrictedPiece\.cpp
+
+src/rook\.cpp
+
+include/bishop\.h
+
+include/king\.h
+
+include/pawn\.h
+
+include/piece\.h
+
+include/queen\.h
+
+include/restrictedPiece\.h
+
+include/rook\.h
+
+include/bishop\.hpp
+
+include/king\.hpp
+
+include/knight\.hpp
+
+include/pawn\.hpp
+
+include/piece\.hpp
+
+include/queen\.hpp
+
+include/restrictedPiece\.hpp
+
+include/rook\.hpp
+=======
+pecas_do_victor/
+
+src/obj/
+>>>>>>> (8)Game_Engine_without_pieces
