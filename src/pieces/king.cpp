@@ -30,7 +30,7 @@ bool King::canMoveTo(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
                uint8_t future_vertical_coordinate) const
 {
-    bool validMove = false;
+    bool move_is_valid = false;
     uint8_t horizontal_absolute_translation, vertical_absolute_translation;
 
     horizontal_absolute_translation = abs( actual_horizontal_coordinate - future_horizontal_coordinate );
@@ -40,26 +40,64 @@ bool King::canMoveTo(uint8_t actual_horizontal_coordinate,
     /// Assertiva de entrada que checa se o movimento � v�lido
     /// movimento � v�lido se o rei tiver se movendo um quadrado para frente/atr�s
     if( abs(vertical_absolute_translation) == 1 && horizontal_absolute_translation == 0 )
-    {
-        validMove = true;
+    {   
+      if( !Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
+              actual_vertical_coordinate,  future_vertical_coordinate ) )
+      {   
+        if( Board::getBoard()->getPieceAt( actual_horizontal_coordinate,
+                              future_vertical_coordinate )->isWhite == this->isWhite )
+        {
+            return false;
+        } else {
+            return true;
+        }
+      } else {
+          return true;
+      }
     }
     
     /// Assertiva de entrada que checa se o movimento � v�lido
     /// movimento � v�lido se o rei tiver se movendo um quadrado para direita/esquerda
     else if( abs(horizontal_absolute_translation) == 1 && vertical_absolute_translation == 0 )
     {
-        validMove = true;
+      if( !Board::getBoard()->isClearHorizontal( actual_horizontal_coordinate,
+              actual_vertical_coordinate,  future_horizontal_coordinate ) )
+      {
+          if( Board::getBoard()->getPieceAt(future_horizontal_coordinate,
+                            actual_vertical_coordinate )->isWhite == this->isWhite )
+          {
+              return false;
+          } else {
+              return true;
+          }
+
+      } else {
+        move_is_valid = true;
+      }
     }
     
     /// Assertiva de entrada que checa se o movimento � v�lido
     /// movimento � v�lido se o rei tiver se movendo um quadrado em uma diagonal
     else if( abs(horizontal_absolute_translation) == 1 && abs(vertical_absolute_translation) == 1 )
     {
-        validMove = true;
+    if( !Board::getBoard()->isClearDiagonal(  actual_horizontal_coordinate,
+                actual_vertical_coordinate,  future_horizontal_coordinate,
+                future_vertical_coordinate ) )
+      { 
+        if( Board::getBoard()->getPieceAt( future_horizontal_coordinate,
+                              future_vertical_coordinate )->isWhite == this->isWhite )
+        {
+          return false;
+        } else {
+          return true;
+        }
+      } else {
+        return true;
+      }
     }
     
     /// Assertiva de sa�da: � garantido que o movimento do rei ser� v�lido
-    return validMove;
+    return move_is_valid;
 }
 
 
@@ -86,7 +124,7 @@ bool King::inCheck()
   }
 
   PCodeTable actual_board = Engine::getEngine()->returnCodeTable();
-  
+
 /*   char code_table[8][8];
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
