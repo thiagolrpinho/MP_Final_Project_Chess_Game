@@ -78,6 +78,12 @@ bool King::inCheck()
 {
   bool check = false;
   uint8_t king_horizontal_coordinate, king_vertical_coordinate;
+  uint8_t king_code;
+  if( isWhite ){
+    king_code = 'z';
+  } else {
+    king_code = 'Z';
+  }
 
   PCodeTable actual_board = Engine::getEngine()->returnCodeTable();
 
@@ -85,7 +91,7 @@ bool King::inCheck()
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
-      if ( actual_board[vertical][horizontal] == 'z' )
+      if ( actual_board[vertical][horizontal] == king_code )
       {
         king_horizontal_coordinate = horizontal;
         king_vertical_coordinate = vertical;
@@ -98,13 +104,18 @@ bool King::inCheck()
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
-      if ( actual_board[vertical][horizontal] != 0 && actual_board[vertical][horizontal] != 'z' )
+      if ( actual_board[vertical][horizontal] != 0 && actual_board[vertical][horizontal] != king_code )
       {
-        if( Board::getBoard()->getPieceAt( horizontal,
+        if( actual_board[vertical][horizontal] <= 'Z' && isWhite ) {
+          if( Board::getBoard()->getPieceAt( horizontal,
             vertical )->canMoveTo( horizontal,
             vertical, king_horizontal_coordinate,
             king_vertical_coordinate ) == false ) return true;
-        
+        } else if ( actual_board[vertical][horizontal] > 'Z' && !isWhite )
+          if( Board::getBoard()->getPieceAt( horizontal,
+              vertical )->canMoveTo( horizontal,
+              vertical, king_horizontal_coordinate,
+              king_vertical_coordinate ) == false ) return true;
       }
     }
   }
