@@ -175,6 +175,22 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     REQUIRE( white_rook->canMoveTo( 0, 1, 0, 2 ) == true );
   }
 
+    SECTION( "A Rook can eat a bishop" ) 
+  {
+    Board::getBoard()->cleanBoard();
+    PRook white_rook( new Rook() );
+    PBishop black_bishop( new Bishop( false ) );
+
+    Board::getBoard()->setPieceAt( 0, 1 , white_rook );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 5, 1 ) == true );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 0, 6 ) == true );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 0, 2 ) == true );
+
+    Board::getBoard()->setPieceAt( 5, 1 , black_bishop );
+
+    REQUIRE( white_rook->canMoveTo( 0, 1, 1, 5 ) == true );
+  }
+
 } //TEST_CASE( "Read Pieces", "[Pieces]" ) 
 
 TEST_CASE( "Update Pieces", "[Pieces]" ) 
