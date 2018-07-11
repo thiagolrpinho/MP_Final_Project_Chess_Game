@@ -1,7 +1,7 @@
 IDIR	=./include
 CC      = g++ -std=c++14
-CFLAGS  = -Wall -g -I$(IDIR) --coverage 
-GCOVFLAGS = $(CFLAGS) --coverage -fPIC  -O0 
+CFLAGS  = -Wall -g -I$(IDIR) --coverage -no-pie
+GCOVFLAGS = $(CFLAGS) --coverage -fPIC  -O0
 
 ODIR	= ./src/obj
 LDIR	=./lib
@@ -33,7 +33,7 @@ LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image -lSDL2_ttf
 OBJ_NAME = game
 
 LIBS	=-lm
-	
+
 _DEPS	= engine.hpp board.hpp square.hpp king.hpp queen.hpp bishop.hpp rook.hpp knight.hpp pawn.hpp piece.hpp catch.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
@@ -50,7 +50,7 @@ $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)
 	$(CC)	-c	-o 	$@	$<	$(CFLAGS)
 
 $(ODIR)/%.o: $(TDIR)/%.cpp $(DEPS)
-	$(CC)	-c	-o 	$@	$<	$(CFLAGS) 
+	$(CC)	-c	-o 	$@	$<	$(CFLAGS)
 
 square_tester:$(TOBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
@@ -88,7 +88,7 @@ gcovr_html:
 #This is the target that compiles our executable
 gameig : $(OBJS)
 	$(CCIG) $(OBJSIG) $(CFLAGS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
-  
+
 .PHONY: clean
 
 clean:
