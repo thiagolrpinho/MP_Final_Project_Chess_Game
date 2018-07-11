@@ -37,18 +37,18 @@ bool Rook::canMoveTo(uint8_t actual_horizontal_coordinate,
     // andar para frente significa andar para atras do ponto de vista das pe�as pretas
     if( actual_horizontal_coordinate - future_horizontal_coordinate > 0)
     {
-        horizontal_direction = -1;
-    } else if( actual_horizontal_coordinate - future_horizontal_coordinate < 0) {
         horizontal_direction = 1;
+    } else if( actual_horizontal_coordinate - future_horizontal_coordinate < 0) {
+        horizontal_direction = -1;
     } else {
         horizontal_direction = 0;
     }
 
     if( actual_vertical_coordinate - future_vertical_coordinate > 0)
     {
-        vertical_direction = -1;
-    } else if( actual_vertical_coordinate - future_vertical_coordinate > 0) {
         vertical_direction = 1;
+    } else if( actual_vertical_coordinate - future_vertical_coordinate < 0) {
+        vertical_direction = -1;
     } else {
         vertical_direction = 0;
     }
