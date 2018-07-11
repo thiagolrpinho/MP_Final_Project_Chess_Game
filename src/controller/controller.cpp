@@ -17,11 +17,15 @@ shared_ptr<Controller>  Controller::getController()
     return the_controller;
 }
 //calls game engine and receives new board
-char Controller::movePiece( const char (&board)[8][8] )
+PCodeTable Controller::movePiece( const char (&board)[8][8] )
 {
+    if( Engine::getEngine()->isValidMove(board) )
+    {
+        if ( Engine::getEngine()->readCodeTable(board) == Error ) 
+            throw (int) Error;
+    }
 
-
-    return 0;
+    return Engine::getEngine()->returnCodeTable();
 }
 
 //returns new controller if it's valid or old one if it's not
