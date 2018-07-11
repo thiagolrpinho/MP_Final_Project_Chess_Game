@@ -198,10 +198,10 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     PBishop black_bishop( new Bishop( false ) );
 
     Board::getBoard()->setPieceAt( 5, 1 , black_bishop );
-    REQUIRE( black_bishop->canMoveTo( 5, 1, 6, 0 ) == true );
+    REQUIRE( black_bishop->canMoveTo( 5, 1, 3, 3 ) == true );
 
-    Board::getBoard()->setPieceAt( 6, 0, white_rook );
-    REQUIRE( black_bishop->canMoveTo( 5, 1, 6, 0 ) == true );
+    Board::getBoard()->setPieceAt( 3, 3, white_rook );
+    REQUIRE( black_bishop->canMoveTo( 5, 1, 3, 3 ) == true );
   }
 
 } //TEST_CASE( "Read Pieces", "[Pieces]" ) 
