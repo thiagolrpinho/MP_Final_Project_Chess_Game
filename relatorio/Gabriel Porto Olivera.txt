@@ -1,0 +1,56 @@
+﻿Gabriel Porto Oliveira
+
+
+
+24 de Junho
+
+Desenvolver historietas
+
+1 hora e 30 minutos
+
+
+
+27 de junho 
+
+Desenvolver diagrama de caso de uso
+
+1 hora
+
+
+
+29 de junho
+
+Desenvolver diagrama de atividade
+
+2 horas
+
+
+
+30 de junho
+
+Esquematizar contrução do módulo controller utilizando os diagramas
+
+1 hora
+
+
+
+2 de julho
+
+Desenvolver esqueleto do módulo controller
+
+1 hora
+
+
+
+3 de julho
+
+Desenvolver testes para o módulo controller
+
+2 horas
+
+
+
+8 de julho
+finalizar controller
+
+2 horas

@@ -1,0 +1,112 @@
+Thiago Luis Rodrigues Pinho
+Fiquei responsável por fazer o módulo da Engine. 
+Reunimos uma vez por semana presencialmente e duas à distância.
+Dividimos as tarefas pelo trello e registramos nosso horário de trabalho no Toggl
+Para maior detalhes do tempo que gastei em cada funcionalidade, deixarei abaixo o
+relatório do Toggl.
+
+Entradas do Toggl de Thiago Luis:	
+Design de Projeto	0:59:29	
+Engine_CRUD	13:57:20	
+Engine_CRUD_Board	14:35:30	
+Engine_CRUD_Player	1:55:50	
+Game Engine - Board Square	0:36:03	
+Organizando - Gerência	0:40:47	
+Reunião 1 - Design de projeto	1:14:00	
+Reunião 2 - Dividindo Tarefas	0:21:00
+
+User	    Email             	Client	Project	Task	            Description                             Billable	Start date	Start time	End date	End time	Duration
+Thiago Luis	thiagopinho@cjr.org.br		Organizando - Gerência		Criando grupo no whatsapp, trello, github	No	2018-06-11	19:10:25	2018-06-11	19:35:25	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Organizando - Gerência		Criando grupo no whatsapp, trello, github	No	2018-06-11	19:35:41	2018-06-11	19:35:59	00:00:18
+Thiago Luis	thiagopinho@cjr.org.br		Reunião 1 - Design de projeto		Modularização, comunicação entre módulos e o que cada módulo deveria fazer	No	2018-06-13	17:23:00	2018-06-13	18:37:00	01:14:00
+Thiago Luis	thiagopinho@cjr.org.br		Design de Projeto		Pesquisando boas formas de representar o código de comunicação entre módulos.	No	2018-06-14	13:58:51	2018-06-14	14:26:05	00:27:14
+Thiago Luis	thiagopinho@cjr.org.br		Design de Projeto		Estudando padrão de projeto visitor e formas de construir a engine	No	2018-06-14	20:39:42	2018-06-14	21:11:57	00:32:15
+Thiago Luis	thiagopinho@cjr.org.br		Game Engine - Board Square		Researching ways to implement it	No	2018-06-15	12:25:26	2018-06-15	12:37:06	00:11:40
+Thiago Luis	thiagopinho@cjr.org.br		Game Engine - Board Square		Creating test module, header and source files	No	2018-06-15	12:39:26	2018-06-15	13:03:49	00:24:23
+Thiago Luis	thiagopinho@cjr.org.br		Organizando - Gerência		Added a power-up to simulate scrum sprints on trello and added some cards with weighted values	No	2018-06-15	14:42:18	2018-06-15	14:53:07	00:10:49
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Adding behaviors to board square	No	2018-06-15	14:53:48	2018-06-15	14:54:05	00:00:17
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Creating board square and testing it	No	2018-06-15	14:54:05	2018-06-15	15:14:57	00:20:52
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Adding behaviors to board square	No	2018-06-15	18:21:29	2018-06-15	18:46:29	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Adding behaviors to board square	No	2018-06-15	18:46:32	2018-06-15	18:57:28	00:10:56
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Adding behaviors to board square	No	2018-06-15	18:59:47	2018-06-15	19:24:47	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Adding behaviors to board square	No	2018-06-15	19:32:43	2018-06-15	20:01:43	00:29:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Adding behaviors to board square	No	2018-06-15	20:00:55	2018-06-15	20:01:15	00:00:20
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Adding behaviors to board square	No	2018-06-15	20:06:02	2018-06-15	20:31:02	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Created test cases for Update and Delete Square boards	No	2018-06-18	10:39:55	2018-06-18	11:07:04	00:27:09
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Refactoring tests raw pointers to smart shared pointers	No	2018-06-18	11:08:58	2018-06-18	11:42:14	00:33:16
+Thiago Luis	thiagopinho@cjr.org.br		Reunião 2 - Dividindo Tarefas		Defining who'll do what	No	2018-06-18	17:27:00	2018-06-18	17:48:00	00:21:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Creating Tests class	No	2018-06-19	19:00:00	2018-06-19	19:25:00	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Making tests for constructor	No	2018-06-19	19:25:04	2018-06-19	19:33:36	00:08:32
+Thiago Luis	thiagopinho@cjr.org.br		Organizando - Gerência		Talking to PEO	No	2018-06-20	09:05:16	2018-06-20	09:09:56	00:04:40
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Creating board as a singleton	No	2018-06-29	12:52:49	2018-06-29	12:53:54	00:01:05
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Creating board as a singleton	No	2018-06-29	19:08:45	2018-06-29	19:33:45	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Creating board as a singleton	No	2018-06-29	19:33:46	2018-06-29	19:58:46	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Creating board as a singleton	No	2018-06-29	20:01:53	2018-06-29	20:26:53	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Creating board as a singleton	No	2018-06-29	20:26:56	2018-06-29	21:06:56	00:40:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Creating board as a singleton	No	2018-06-29	21:02:00	2018-06-29	21:12:28	00:10:28
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board have many board squares, read them and board can change it's piece.	No	2018-07-01	12:10:59	2018-07-01	12:37:26	00:26:27
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board have many board squares, read them and board can change it's piece.	No	2018-07-01	12:47:43	2018-07-01	13:12:43	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board have many board squares, read them and board can change it's piece.	No	2018-07-01	13:12:47	2018-07-01	13:25:34	00:12:47
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board have many board squares, read them and board can change it's piece.	No	2018-07-01	13:34:54	2018-07-01	13:59:54	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board have many board squares, read them and board can change it's piece.	No	2018-07-01	14:07:52	2018-07-01	14:16:46	00:08:54
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board have many board squares, read them and board can change it's piece.	No	2018-07-01	14:20:52	2018-07-01	14:28:47	00:07:55
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board have many board squares, read them and board can change it's piece.	No	2018-07-01	14:31:49	2018-07-01	14:56:49	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board have many board squares, read them and board can change it's piece.	No	2018-07-01	14:56:52	2018-07-01	15:19:37	00:22:45
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board can check if a vertical or horizontal path is clear	No	2018-07-01	16:01:22	2018-07-01	16:26:22	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board can check if a vertical or horizontal path is clear	No	2018-07-01	16:26:27	2018-07-01	17:01:27	00:35:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board can check if a vertical or horizontal path is clear	No	2018-07-01	17:01:31	2018-07-01	17:26:31	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board can check if a vertical or horizontal path is clear	No	2018-07-01	17:26:40	2018-07-01	17:51:40	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board can check if a vertical or horizontal path is clear	No	2018-07-01	17:51:44	2018-07-01	17:54:27	00:02:43
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	09:21:43	2018-07-03	09:48:43	00:27:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	09:48:05	2018-07-03	09:50:20	00:02:15
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	09:54:18	2018-07-03	10:22:18	00:28:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	10:22:24	2018-07-03	10:41:13	00:18:49
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	10:51:21	2018-07-03	11:17:21	00:26:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	11:26:24	2018-07-03	11:51:24	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	12:01:32	2018-07-03	12:26:32	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	16:02:12	2018-07-03	16:27:12	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	16:27:16	2018-07-03	16:52:16	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	16:52:26	2018-07-03	17:17:26	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Board		Board fully functional or	No	2018-07-03	17:17:39	2018-07-03	17:42:39	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Creating and testing readCodeTable()	No	2018-07-06	11:14:29	2018-07-06	11:39:29	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Creating and testing readCodeTable()	No	2018-07-06	11:46:06	2018-07-06	12:03:42	00:17:36
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Creating and testing readCodeTable()	No	2018-07-06	12:05:06	2018-07-06	12:22:47	00:17:41
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Creating and testing readCodeTable()	No	2018-07-06	12:30:29	2018-07-06	12:55:29	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Creating and testing readCodeTable()	No	2018-07-06	12:55:31	2018-07-06	13:19:04	00:23:33
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	17:03:35	2018-07-07	17:28:35	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	17:28:39	2018-07-07	17:53:39	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	17:53:42	2018-07-07	18:28:42	00:35:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	18:28:47	2018-07-07	18:54:47	00:26:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	18:54:42	2018-07-07	18:54:55	00:00:13
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	20:04:32	2018-07-07	20:29:32	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	20:29:42	2018-07-07	20:46:34	00:16:52
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	21:46:41	2018-07-07	22:11:42	00:25:01
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	22:12:33	2018-07-07	22:37:33	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Engine can create pieces	No	2018-07-07	22:37:36	2018-07-07	23:02:36	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	10:58:36	2018-07-08	11:52:10	00:53:34
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	11:52:12	2018-07-08	12:12:13	00:20:01
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	12:14:55	2018-07-08	12:39:55	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	12:40:03	2018-07-08	12:45:12	00:05:09
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	12:47:53	2018-07-08	13:12:54	00:25:01
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	13:12:56	2018-07-08	13:37:56	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	13:37:59	2018-07-08	14:02:59	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	14:02:54	2018-07-08	14:11:55	00:09:01
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	14:31:34	2018-07-08	14:56:34	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	14:56:36	2018-07-08	15:21:36	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	15:21:41	2018-07-08	15:36:06	00:14:25
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	15:36:15	2018-07-08	15:45:46	00:09:31
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	18:10:57	2018-07-08	18:43:57	00:33:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	18:43:16	2018-07-08	19:08:16	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	19:18:26	2018-07-08	19:22:40	00:04:14
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	19:29:10	2018-07-08	19:39:47	00:10:37
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	19:54:18	2018-07-08	20:19:18	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	20:19:36	2018-07-08	20:50:39	00:31:03
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	22:21:24	2018-07-08	22:56:24	00:35:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	22:56:29	2018-07-08	23:21:29	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	23:21:32	2018-07-08	23:46:33	00:25:01
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD		Reading and returning code table	No	2018-07-08	23:46:53	2018-07-09	00:11:40	00:24:47
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Player		Merging player with game engine	No	2018-07-09	00:11:53	2018-07-09	00:36:53	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Player		Merging player with game engine	No	2018-07-09	00:36:56	2018-07-09	01:01:56	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Player		Merging player with game engine	No	2018-07-09	01:02:02	2018-07-09	01:27:02	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Player		Merging player with game engine	No	2018-07-09	01:27:06	2018-07-09	01:52:06	00:25:00
+Thiago Luis	thiagopinho@cjr.org.br		Engine_CRUD_Player		Merging player with game engine	No	2018-07-09	01:52:10	2018-07-09	02:08:00	00:15:50
