@@ -1,6 +1,6 @@
 IDIR	=./include
 CC      = g++ -std=c++14
-CFLAGS  = -Wall -g -I$(IDIR) --coverage -no-pie -lsdl
+CFLAGS  = -Wall -g -I$(IDIR) --coverage -no-pie -lSDL2
 GCOVFLAGS = $(CFLAGS) --coverage -fPIC  -O0
 
 ODIR	= ./src/obj
@@ -24,7 +24,7 @@ CCIG = g++
 COMPILER_FLAGS = -w -Wl,-subsystem,windows
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image -lSDL2_ttf
+LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = game
