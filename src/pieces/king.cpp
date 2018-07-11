@@ -1,4 +1,5 @@
 #include "king.hpp"
+#include "engine.hpp"
 
 King::King(bool isWhite) : RestrictedPiece(isWhite)
 {
@@ -75,5 +76,38 @@ char King::getCodeSymbol() const
 
 bool King::inCheck() 
 {
- return false;
+  bool check = false;
+  uint8_t king_horizontal_coordinate, king_vertical_coordinate;
+
+  PCodeTable actual_board = Engine::getEngine()->returnCodeTable();
+
+ for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  {
+    for( size_t vertical = 0; vertical < 8; ++vertical )
+    {
+      if ( actual_board[vertical][horizontal] == 'z' )
+      {
+        king_horizontal_coordinate = horizontal;
+        king_vertical_coordinate = vertical;
+        break;
+      }
+    }
+  }
+
+  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  {
+    for( size_t vertical = 0; vertical < 8; ++vertical )
+    {
+      if ( actual_board[vertical][horizontal] != 0 && actual_board[vertical][horizontal] != 'z' )
+      {
+        if( Board::getBoard()->getPieceAt( horizontal,
+            vertical )->canMoveTo( horizontal,
+            vertical, king_horizontal_coordinate,
+            king_vertical_coordinate ) == false ) return true;
+        
+      }
+    }
+  }
+
+  return check; 
 }

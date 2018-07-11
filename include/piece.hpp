@@ -13,6 +13,7 @@ using std::shared_ptr;
 using std::unique_ptr;
 using std::make_unique;
 // Smart pointer that deallocates when no references to it exists
+typedef unique_ptr<unique_ptr<char[]>[]> PCodeTable;
 
 class Piece 
 { 

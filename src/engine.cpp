@@ -296,7 +296,8 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   uint8_t first_difference_vertical_coordinate;
   uint8_t second_difference_horizontal_coordinate;
   uint8_t second_difference_vertical_coordinate;
-  bool first_difference_is_origin, first_is_occupied, second_is_occupied;
+  bool first_difference_is_origin, first_was_occupied, second_was_occupied;
+  bool first_is_occupied, second_is_occupied;
 
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
@@ -334,20 +335,26 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
 
   if( number_of_different_symbols == 0 ) return true;
   if( number_of_different_symbols != 2 ) return false;
-  first_is_occupied = Board::getBoard()->getSquareAt( first_difference_horizontal_coordinate,
+  first_was_occupied = Board::getBoard()->getSquareAt( first_difference_horizontal_coordinate,
                                  first_difference_vertical_coordinate)->isOccupied();
 
-  second_is_occupied = Board::getBoard()->getSquareAt( second_difference_horizontal_coordinate, 
+  second_was_occupied = Board::getBoard()->getSquareAt( second_difference_horizontal_coordinate, 
                                 second_difference_vertical_coordinate)->isOccupied(); 
   
-  if (first_is_occupied && second_is_occupied )
+  if ( first_was_occupied && second_was_occupied )
   {
-    return false;
-
-  } else if( first_is_occupied ) {
+    if ( first_is_occupied )
+    {
+      first_difference_is_origin = false;
+    } else if ( second_is_occupied ) {
+      first_difference_is_origin = true;
+    } else {
+      return false;
+    }
+  } else if( first_was_occupied ) {
     first_difference_is_origin = true;
 
-  } else if( second_is_occupied ) {
+  } else if( second_was_occupied ) {
     first_difference_is_origin = false;
 
   } else {
