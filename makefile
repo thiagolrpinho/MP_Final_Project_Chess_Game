@@ -1,6 +1,6 @@
 IDIR	=./include
 CC      = g++ -std=c++14
-CFLAGS  = -Wall -g -I$(IDIR) --coverage 
+CFLAGS  = -Wall -g -I$(IDIR) --coverage -lsdl
 GCOVFLAGS = $(CFLAGS) --coverage -fPIC  -O0 
 
 ODIR	= ./src/obj
@@ -17,10 +17,10 @@ OBJSIG = ./src/main.cpp ./src/display.cpp ./src/LTexture.cpp
 CCIG = g++
 
 #INCLUDE_PATHS specifies the additional include paths we'll need
-INCLUDE_PATHS = -I"D:/UnB/MP/TrabalhoFinal/MP_Final_Project_Chess_Game/i686-w64-mingw32/include/SDL2"
+INCLUDE_PATHS = -I"i686-w64-mingw32/include/SDL2"
 
 #LIBRARY_PATHS specifies the additional library paths we'll need
-LIBRARY_PATHS = -L"D:/UnB/MP/TrabalhoFinal/MP_Final_Project_Chess_Game/i686-w64-mingw32/lib"
+LIBRARY_PATHS = -L"i686-w64-mingw32/lib"
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings

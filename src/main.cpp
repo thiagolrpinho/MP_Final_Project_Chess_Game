@@ -5,8 +5,8 @@
 
 #ifndef SDL_INCLUDES
 #define SDL_INCLUDES
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL.h>
+#include <SDL_image.h>
+#include <SDL.h>
 #endif
 
 
@@ -19,7 +19,7 @@ int main( int argc, char* args[] )
     int xMouse, yMouse;
     bool quit = false, muted = true, start = false;
     Display display;
-    TCodeTable returned_code_table;
+    CodeTable returned_code_table;
     SDL_Event e; //Event handler
     char initial_game_code_table[8][8] = {
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
