@@ -82,16 +82,11 @@ TEST_CASE( "Update Controller", "[Controller]" )
     Engine::getEngine()->readCodeTable( actual_code_table );
 
     Controller::getController()->movePiece( new_move_code_table );
-    
+
     PCodeTable returned_code_table = Engine::getEngine()->returnCodeTable();
     
-    for( uint8_t i = 0; i < 8; i++ )
-      {
-        for( uint8_t j = 0; j < 8; j++ )
-        {
-          REQUIRE( returned_code_table[i][j] == actual_code_table[i][j] );
-        }
-      }
+    REQUIRE( returned_code_table[2][2] != actual_code_table[2][2] );
+    REQUIRE( returned_code_table[0][1] != actual_code_table[0][1] );
   } // SECTION( "A Controller can see if an edited board is valid "  )
   
 } // TEST_CASE( "Update", "[Controller]" ) 
