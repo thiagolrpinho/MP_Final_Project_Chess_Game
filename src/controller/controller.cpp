@@ -54,33 +54,24 @@ void loadboard( char (*controller)[8][8]){
 
 
 //calls function to edit empty controller returns edited controller
-void edit(char (*controller)[8][8]) {
+void edit(char (&controller)[8][8]) {
     editar(&controller);
 
 }
 
 
 //calls function to show options for moves
+/*
 char showoptions( const char (&controller)[8][8]  ){
 
     return controller;
 }
-
+*/
 //returns new standard controller
-char newstandardgame(){
-    char controller[8][8] =
-    {
-        { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
-        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-        { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
-    };
+PCodeTable newStandardGame(){
+    Engine::getEngine()->returnCodeTable();
 
-    return controller;
+    return Engine::getEngine()->returnCodeTable();;
 }
 
 

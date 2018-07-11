@@ -2,17 +2,9 @@
 #define DISPLAY_H
 
 #include <string>
-//#include <SDL.h>
-//#include <SDL_image.h>
-//#include <SDL_ttf.h>
+#include <iostream>
+
 #include "LTexture.hpp"
-
-#ifndef SDL_INCLUDES                                                       
-#define SDL_INCLUDES                                                       
-#include <SDL2/SDL_image.h>                                                
-#include <SDL2/SDL.h>                                                      
-#endif 
-
 
 
 //GAME CONTROL
@@ -24,7 +16,7 @@ enum PieceSprite {
 	bRook, bKnight, bBishop, bQueen, bKing, bPawn
 };
 
-class Display{
+class Display {
     private:
         SDL_Window* window;
 		SDL_Renderer* renderer;

@@ -2,12 +2,7 @@
 #include <string.h>
 #include <display.hpp>
 #include "controller.hpp"
-
-#ifndef SDL_INCLUDES
-#define SDL_INCLUDES
-#include <SDL_image.h>
-#include <SDL.h>
-#endif
+#include "salvar.hpp"
 
 
 using namespace std;
@@ -71,12 +66,12 @@ int main( int argc, char* args[] )
 							display.displayBoard(initial_game_code_table);
                             break;
                     case SDLK_s:
-                            savegame(initial_game_code_table);
+                            //savegame(initial_game_code_table);
                             break;
 
                     case SDLK_e:
 
-                            edit();
+                            //edit();
                             break;
                     case SDLK_a:
                             ai=1; //AI will start playing

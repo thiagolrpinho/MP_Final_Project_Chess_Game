@@ -1,12 +1,5 @@
-//#include <SDL.h>
 #include "display.hpp"
-#include <iostream>
 
-#ifndef SDL_INCLUDES                                                       
-#define SDL_INCLUDES                                                       
-#include <SDL2/SDL_image.h>                                                
-#include <SDL2/SDL.h>                                                      
-#endif 
 
 Display::Display(){
     textColor = { 0, 0, 0 };

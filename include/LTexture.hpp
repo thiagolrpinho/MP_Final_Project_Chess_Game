@@ -1,8 +1,14 @@
-//#include <SDL2/SDL_ttf.h>
-#include <string>
+
+#ifndef SDL_INCLUDES                                                       
+#define SDL_INCLUDES                                                       
+#include <SDL2/SDL_image.h>                                                
+#include <SDL2/SDL.h> 
+#include <SDL2/SDL_ttf.h>                                                     
+#endif 
 
 #ifndef LTEXTURE_H
 #define LTEXTURE_H
+#include <string>
 
 class LTexture {
 	friend class Display;

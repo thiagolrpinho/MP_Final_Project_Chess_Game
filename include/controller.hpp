@@ -13,7 +13,7 @@ class Controller
   void  savegame(  char (&board)[8][8] );
   char loadboard();
   char showoptions( const char (&board)[8][8] );
-  char newstandardgame();
+  PCodeTable newStandardGame();
   char  newemptyboard();
   static shared_ptr<Controller>  getController();
   void edit();
