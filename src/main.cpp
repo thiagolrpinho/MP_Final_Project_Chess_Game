@@ -224,7 +224,7 @@ int main( int argc, char* args[] )
 
                 if(ai == 1 && playerplays=0){
                     //deve chamar a engine para fazer o validate e atualiza
-                    returned_code_table = movepiece(initial_game_code_table);
+                    returned_code_table = Controller::getController()->movepiece(initial_game_code_table);
                     for(int i=0;i<8;i++){
                                for(int j=0;j<8;j++){
                                 initial_game_code_table[i][j] = returned_code_table[i][j];
@@ -243,7 +243,7 @@ int main( int argc, char* args[] )
                     playerplays=0;
                 }
                 if(ai == 0){//two player game
-                    returned_code_table = movepiece(initial_game_code_table);
+                    returned_code_table = Controller::getController()->movepiece(initial_game_code_table);
                     for(int i=0;i<8;i++){
                                for(int j=0;j<8;j++){
                                 initial_game_code_table[i][j = returned_code_table[i][j];
