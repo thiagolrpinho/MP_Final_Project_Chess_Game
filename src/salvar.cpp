@@ -1,4 +1,4 @@
-#include "salvar.hpp"
+#include "../include/salvar.hpp"
 
 using namespace std;
 
@@ -28,23 +28,94 @@ tabuleiro[8][8] ={
  *  else it wont do any move;
  * */
  
-void removepeca(char (*tabuleiro)[8][8], char peca) {
-	for(int i = 0; i < 8; i++)
-    	for(int j = 0; j < 8; j++)
-    		if((*tabuleiro)[i][j] == peca) {
-    			(*tabuleiro)[i][j] = '0';
-    			return;
-    		}
+void removepeca(char (*tabuleiro)[8][8], char peca, int x, int y) {
+
+
+	cout << "peca: " << peca << " x: " << x << " y: " << y << endl;
+
+	int i, j;
+
+	switch(peca) {
+		case 'p':
+			if((*tabuleiro)[x][y+1] == peca) {
+				(*tabuleiro)[x][y+1] = '0'; 
+				return;
+			}
+			if((*tabuleiro)[x+1][y+1] == peca) {
+				(*tabuleiro)[x+1][y+1] = '0';
+				return;
+			}
+			if((*tabuleiro)[x-1][y+1] == peca) {
+				(*tabuleiro)[x-1][y+1] = '0';
+				return;
+			}
+			if((*tabuleiro)[x+2][y] == peca) {
+				(*tabuleiro)[x+2][y] = '0';
+				return; 
+			}
+		case 'P':
+			if((*tabuleiro)[x-1][y] == peca) {
+				(*tabuleiro)[x-1][y] = '0';
+				cout << "a";
+			}
+			if((*tabuleiro)[x-1][y-1] == peca && x != 0 && y != 0) {
+				(*tabuleiro)[x-1][y-1] = '0';
+				cout << "b";
+			}
+			if((*tabuleiro)[x-1][y+1] == peca) {
+				(*tabuleiro)[x-1][y+1] = '0';
+				cout << "c";
+			}
+			if((*tabuleiro)[x-2][y] == peca) {
+				(*tabuleiro)[x-2][y] = '0';
+				cout << "d";
+			}
+			return;
+		case 't':
+			for(i = 0; i < 8; i++)
+				if((*tabuleiro)[i][y] == peca) {
+					(*tabuleiro)[i][y] = '0';
+					return;
+				}
+			for(i = 0; i < 8; i++)
+				if((*tabuleiro)[x][i] == peca) {
+					(*tabuleiro)[x][i] = '0';
+					return;
+				}
+
+		case 'T':
+			for(i = 0; i < 8; i++)
+				if((*tabuleiro)[i][y] == peca) {
+					(*tabuleiro)[i][y] = '0';
+					return;
+				}
+			for(i = 0; i < 8; i++)
+				if((*tabuleiro)[x][i] == peca) {
+					(*tabuleiro)[x][i] = '0';
+					return;
+				}
+
+		default:
+			for(i = 0; i < 8; i++)
+    			for(
+    				j = 0; j < 8; j++)
+    				if((*tabuleiro)[i][j] == peca) {
+    					(*tabuleiro)[i][j] = '0';
+    					return;
+					}
+	}
+
+	return;
 }
 
-/** The function carregarTab loads all the information contained in the .pgn file.
+/** The function carregaTab loads all the information contained in the .pgn file.
  * This funtion loads all the information in the .pgn file, this information tells what needed to be 
  * moved or removed in the board to simulate movements made in a game.
  * 
  * If it receives a valid .pgn file it returns a valid board
  * else it return a error message.
  * */
-void carregaTab(char (*tabuleiro)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA RETORNAR O TIPO ADEQUADO
+void carregaTab(char (*tabuleiro)[8][8]){
     char Carregar[100000];
     char letra, peca, x, y;
     int coordx, coordy;
@@ -83,7 +154,6 @@ void carregaTab(char (*tabuleiro)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA
     	if (Carregar[i] == 'T' || Carregar[i] == 'C' || Carregar[i] == 'B' || Carregar[i] == 'R' || Carregar[i] == 'Z' || Carregar[i] == 'P' ||  
     	Carregar[i] == 't' || Carregar[i] == 'c' || Carregar[i] == 'b' || Carregar[i] == 'r' || Carregar[i] == 'z' || Carregar[i] == 'p') {
     		peca = Carregar[i];
-    		removepeca(tabuleiro, peca);
     		i++;
     		x = Carregar[i];
     		i++;
@@ -91,6 +161,9 @@ void carregaTab(char (*tabuleiro)[8][8]){		//ALTERAR NA HORA DE JUNTAR TUDO PARA
 
     		coordx = x - 'a';
     		coordy = y - '1';
+    		cout << "peca1: " << peca << " x: " << x << " y: " << y << endl;
+
+    		removepeca(tabuleiro, peca, coordy, coordx);
 
     		(*tabuleiro)[coordy][coordx] = peca;
 
@@ -115,7 +188,7 @@ void salvarTab(char (*tabuleiro)[8][8]){
     int round, tamMaxStr = 100;
     char player1[100];
     char player2[100];
-    char resultado[2];
+    char resultado[10];
     char jogadas[100][3];
 
     cout << "Digite o nome do evento: \n";
@@ -160,6 +233,27 @@ void salvarTab(char (*tabuleiro)[8][8]){
     arquivo.close();
 
 }
+/** The function verificar checks the inserted piece
+ * This function is used to check if the inserted piece can be inserted without pass the limit of numbers of piece type
+*/
+bool verificar(char (*tabuleiro)[8][8], char peca) {
+	int contador = 0;
+
+	for(int i = 0; i < 8; i++)
+		for(int j = 0; j < 8; j++)
+			if((*tabuleiro)[i][j] == peca)
+				contador++;
+
+	if ((peca == 'z' || peca == 'Z') && contador == 1)
+		return false;
+	if ((peca == 'b' || peca == 'B' || peca == 't' || peca == 'T' || peca == 'c' || peca == 'C') && contador == 2)
+		return false;
+	if ((peca == 'p' || peca == 'P') && contador == 8)
+		return false;
+	if ((peca == 'R' || peca == 'r')  && contador == 9)
+		return false;
+	return true;
+}
 
 /** This function receives a empty board and makes a custom chess board.
  * This function will receive informations of a board created by the user and one by one will put
@@ -169,28 +263,34 @@ void salvarTab(char (*tabuleiro)[8][8]){
  * else will give a error message.
  * */
 void editar(char (*tabuleiro)[8][8]){
-    char coord[4];
-    char confirmacao;
+    char coord[5];
+    char confirmacao = 's';
     int x = 0;
     int y = 0;
     
-    cout << "Informe as posições das peças em coordenadas\n LETRA seguidos de NUMERO, INICIAL DO NOME DA PECA B OU P para pecas brancas ou pretas respectivamente :\n";
+    cout << "Informe as posições das peças em coordenadas\n LETRA seguidos de NUMERO, INICIAL DO NOME DA PECA  e B OU P para pecas brancas ou pretas respectivamente :\n";
 
-    while(confirmacao == 's'){
+    while(confirmacao == 's') {
         cout << "Informe o que será adicionado: ";
-        fgets(coord, 4, stdin);
+        fgets(coord, 5, stdin);
         
         if((coord[0] >= 'a'  && coord[0] <= 'h')  &&  (coord[1] >= '1'  && coord[1] <= '8')){
             x = coord[0] - 'a'; 
             y = coord[1] - '1';
+            if(coord[3] == 'P' || coord[3] == 'p')
+            	coord[2] = toupper(coord[2]);
+            if(coord[3] == 'B' || coord[3] == 'b')
+            	coord[2] = tolower(coord[2]);
+            if(verificar(tabuleiro, coord[2]) == false)
+            	cout << "Ja possui o limite de '" << coord[2] << "'" << endl;
+            else {
+            	(*tabuleiro)[x][y] = coord[2];
+            }
+        } else
+            cout << "Posiçao invalida\n";
 
-            if(coord[3] <= 'Z' && coord[3] >= 'A')
-                (*tabuleiro)[x][y] = toupper(coord[2]);
-            if(coord[3] <= 'z' && coord[3] >= 'a')
-                (*tabuleiro)[x][y] = tolower(coord[2]);
-        }else
-            cout << "Peça invalida \n";
         cout << "Deseja inserir mais uma peça? (s/n)\n";
         cin >> confirmacao;
+        cin.ignore(1, '\n');
     }
 }
