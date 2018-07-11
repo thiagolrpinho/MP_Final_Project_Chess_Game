@@ -1,4 +1,5 @@
 #include "knight.hpp"
+#include "board.hpp"
 
 Knight::Knight(bool isWhite) : Piece(isWhite)
 {
@@ -33,15 +34,38 @@ bool Knight::canMoveTo(uint8_t actual_horizontal_coordinate,
     /// Assertiva de entrada que checa se o movimento do cavalo � v�lido
     /// movimento � v�lido se o cavalo se mover 1 quadrado pra frente/atr�s e dois para direita/esquerda
     if(abs( vertical_absolute_translation ) == 1 && abs( horizontal_absolute_translation ) == 2)
-    {
-        move_is_valid = true;
+    {   
+        if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied() )
+        {
+            if( Board::getBoard()->getPieceAt( future_horizontal_coordinate,  future_vertical_coordinate )->isWhite == isWhite )
+            {
+                return false;
+            } else {
+                return true;
+            }
+
+        } else {
+        return true;
+      }
     }
     
     /// Assertiva de entrada que checa se o movimento do cavalo � v�lido
     /// movimento � v�lido se o cavalo se mover 1 quadrado pra direita/esquerdas e dois para frente/atr�s
     else if(abs( horizontal_absolute_translation ) == 1 && abs( vertical_absolute_translation ) == 2)
     {
-        move_is_valid = true;
+      if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied() )
+      {
+        if( Board::getBoard()->getPieceAt( future_horizontal_coordinate,  future_vertical_coordinate )->isWhite == isWhite )
+        {
+            return false;
+        } else {
+            return true;
+        }
+
+      } else {
+        return true;
+      }
+      move_is_valid = true;
     }
     ///Assertiva de sa�da: � garantido que o movimento do cavalo � v�lido
     
