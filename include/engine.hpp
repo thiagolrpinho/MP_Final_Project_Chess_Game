@@ -8,6 +8,8 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 #include "board.hpp"
+#include "player.hpp"
+
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -18,23 +20,39 @@ using std::vector;
 
 
 typedef shared_ptr<Piece> PPiece;
+typedef shared_ptr<Player> PPlayer;
     // Smart pointer to Piece
 
 class Engine
 {
-  private:
+ private:
   uint8_t table_row_size_;
+  PPlayer player1;
+  PPlayer player2;
+  PPlayer nextPlayer;
+
+  static shared_ptr<Engine> an_engine_;
+
+ public:
+  Engine();
+  ~Engine();
+
+  static shared_ptr<Engine> getEngine();
   
-  public:
   uint8_t readCodeTable( const char (&array)[8][8] );
   void printCodeTable( const char (&array)[8][8] );
   PCodeTable returnCodeTable();
+  uint8_t new_game();
 
   // Auxiliary functions
   uint8_t isValidCodeSymbol( char code_symbol );
-
+  uint8_t isValidEditedTable( const char (&array)[8][8] );
+  bool isValidMove( const char (&array)[8][8]  );
   uint8_t createPieceAt( uint8_t horizontal_coordinate, 
                 uint8_t vertical_coordinate , char code_symbol );
+
+  PPlayer getNextPlayer();
+  PPlayer opponentOf( PPlayer player);                
 
 };
 #endif
