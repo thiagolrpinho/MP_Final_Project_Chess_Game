@@ -48,7 +48,6 @@ bool Rook::canMoveTo(uint8_t actual_horizontal_coordinate,
   } else {
       horizontal_direction = 0;
   }
-  if( horizontal_absolute_translation == 1 ) horizontal_direction = 0;
 
   if( actual_vertical_coordinate > future_vertical_coordinate )
   {
@@ -58,31 +57,60 @@ bool Rook::canMoveTo(uint8_t actual_horizontal_coordinate,
   } else {
       vertical_direction = 0;
   }
-  if( vertical_absolute_translation == 1 ) vertical_direction = 0;
 
   horizontal_capture_piece_coordinate = future_horizontal_coordinate + horizontal_direction;
   vertical_capture_piece_coordinate = future_vertical_coordinate + vertical_direction;
-  
-  /// Assertiva de entrada que checa se o movimento da torre � v�lido
-  /// o movimento � v�lido se a torre tiver se movendo em uma reta vertical
-  if( Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
-              actual_vertical_coordinate,  vertical_capture_piece_coordinate ) )
+
+  if( vertical_absolute_translation == 1 )
   {
     if( !Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
             actual_vertical_coordinate,  future_vertical_coordinate ) )
     {   
       if( Board::getBoard()->getPieceAt( actual_horizontal_coordinate,
-                            future_vertical_coordinate )->isWhite == isWhite )
+                            future_vertical_coordinate )->isWhite == this->isWhite )
       {
           return false;
       } else {
           return true;
       }
     } else {
-        move_is_valid = true;
+        return true;
+      }
+
+  } else if( Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
+              actual_vertical_coordinate,  vertical_capture_piece_coordinate ) )
+  {
+    if( !Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
+            actual_vertical_coordinate,  future_vertical_coordinate ) )
+    {   
+      if( Board::getBoard()->getPieceAt( actual_horizontal_coordinate,
+                            future_vertical_coordinate )->isWhite == this->isWhite )
+      {
+          return false;
+      } else {
+          return true;
+      }
+    } else {
+        return true;
       }
   /// Assertiva de entrada que checa se o movimento da torre � v�lido
   /// o movimento � v�lido se a torre tiver se movendo em uma reta horizontal
+  } else if( horizontal_absolute_translation == 1 ) 
+  {
+    if( !Board::getBoard()->isClearHorizontal( actual_horizontal_coordinate,
+              actual_vertical_coordinate,  future_horizontal_coordinate ) )
+      {
+          if( Board::getBoard()->getPieceAt(future_horizontal_coordinate,
+                            actual_vertical_coordinate )->isWhite == this->isWhite )
+          {
+              return false;
+          } else {
+              return true;
+          }
+
+      } else {
+        move_is_valid = true;
+      }
   } else if( Board::getBoard()->isClearHorizontal( actual_horizontal_coordinate,
               actual_vertical_coordinate,  horizontal_capture_piece_coordinate ))
   {
@@ -90,7 +118,7 @@ bool Rook::canMoveTo(uint8_t actual_horizontal_coordinate,
               actual_vertical_coordinate,  future_horizontal_coordinate ) )
       {
           if( Board::getBoard()->getPieceAt(future_horizontal_coordinate,
-                            actual_vertical_coordinate )->isWhite == isWhite )
+                            actual_vertical_coordinate )->isWhite == this->isWhite )
           {
               return false;
           } else {
