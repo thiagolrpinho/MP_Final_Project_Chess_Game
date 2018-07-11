@@ -19,7 +19,7 @@ int main( int argc, char* args[] )
     int xMouse, yMouse;
     bool quit = false, muted = true, start = false;
     Display display;
-    TCodeTable returned_code_table;
+    PCodeTable returned_code_table;
     SDL_Event e; //Event handler
     char initial_game_code_table[8][8] = {
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
@@ -222,9 +222,9 @@ int main( int argc, char* args[] )
                 }
                 initial_game_code_table[display.MouseCoordinatex][display.MouseCoordinatey] = display.pieceType;
 
-                if(ai == 1 && playerplays=0){
+                if(ai == 1 && playerplays==0){
                     //deve chamar a engine para fazer o validate e atualiza
-                    returned_code_table = Controller::getController()->movepiece(initial_game_code_table);
+                    returned_code_table = Controller::getController()->movePiece(initial_game_code_table);
                     for(int i=0;i<8;i++){
                                for(int j=0;j<8;j++){
                                 initial_game_code_table[i][j] = returned_code_table[i][j];
@@ -243,10 +243,10 @@ int main( int argc, char* args[] )
                     playerplays=0;
                 }
                 if(ai == 0){//two player game
-                    returned_code_table = Controller::getController()->movepiece(initial_game_code_table);
+                    returned_code_table = Controller::getController()->movePiece(initial_game_code_table);
                     for(int i=0;i<8;i++){
                                for(int j=0;j<8;j++){
-                                initial_game_code_table[i][j = returned_code_table[i][j];
+                                initial_game_code_table[i][j] = returned_code_table[i][j];
                                 }
                     }
                     playerplays=1;

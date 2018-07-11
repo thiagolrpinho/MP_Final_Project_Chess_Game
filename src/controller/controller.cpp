@@ -37,7 +37,7 @@ bool Controller::validateBoard( const char (&board_to_be_avalied)[8][8]  )
 //calls ai and receives and new controller with it's move
 char  aimove( const char (&controller)[8][8]  ){
 
-    return 0
+    return 0;
 }
 
 //calls savegame function
@@ -52,7 +52,7 @@ char loadboard(){
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
         { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
         { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
+        { '0', '0', '0', '0', '0', '0', '0', '0'},D:/UnB/MP/TrabalhoFinal/MP_Final_Project_Chess_Game/
         { '0', '0', '0', '0', '0', '0', '0', '0'},
         { '0', '0', '0', '0', '0', '0', '0', '0'},
         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
