@@ -86,7 +86,19 @@ bool King::inCheck()
   }
 
   PCodeTable actual_board = Engine::getEngine()->returnCodeTable();
+  char code_table[8][8];
 
+  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
+  {
+    for( size_t vertical = 0; vertical < 8; ++vertical )
+    {
+      code_table[vertical][horizontal] = actual_board[vertical][horizontal];
+    }
+  }
+
+  Engine::getEngine()->printCodeTable( code_table );
+
+  
  for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
@@ -104,18 +116,28 @@ bool King::inCheck()
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
-      if ( actual_board[vertical][horizontal] != 0 && actual_board[vertical][horizontal] != king_code )
+      if ( actual_board[vertical][horizontal] != 0 || actual_board[vertical][horizontal] != king_code )
       {
-        if( actual_board[vertical][horizontal] <= 'Z' && isWhite ) {
-          if( Board::getBoard()->getPieceAt( horizontal,
-            vertical )->canMoveTo( horizontal,
-            vertical, king_horizontal_coordinate,
-            king_vertical_coordinate ) == false ) return true;
-        } else if ( actual_board[vertical][horizontal] > 'Z' && !isWhite )
-          if( Board::getBoard()->getPieceAt( horizontal,
-              vertical )->canMoveTo( horizontal,
-              vertical, king_horizontal_coordinate,
-              king_vertical_coordinate ) == false ) return true;
+        if( actual_board[vertical][horizontal] < 'Z' && isWhite ) {
+          if( Board::getBoard()->getSquareAt( horizontal,
+            vertical )->isOccupied() ) 
+            {
+              if( Board::getBoard()->getPieceAt( horizontal,
+                    vertical )->canMoveTo( horizontal,
+                    vertical, king_horizontal_coordinate,
+                    king_vertical_coordinate ) == true ) return true;
+            }
+        } else if ( actual_board[vertical][horizontal] >= 'a' && !isWhite ) 
+        {
+          if( Board::getBoard()->getSquareAt( horizontal,
+              vertical )->isOccupied() ) 
+          {
+            if( Board::getBoard()->getPieceAt( horizontal,
+                vertical )->canMoveTo( horizontal,
+                vertical, king_horizontal_coordinate,
+                king_vertical_coordinate ) == true ) return true;
+          }
+        }
       }
     }
   }

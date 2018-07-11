@@ -389,6 +389,7 @@ void Engine::printCodeTable( const char (&array)[8][8] )
   }
 }
 
+
 PPlayer Engine::getNextPlayer()
 {
     nextPlayer = opponentOf( nextPlayer );
