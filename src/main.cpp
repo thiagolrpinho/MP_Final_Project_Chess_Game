@@ -1,12 +1,13 @@
 #include <iostream>
+#include <string.h>
 #include <display.hpp>
-
 
 #ifndef SDL_INCLUDES                                                       
 #define SDL_INCLUDES                                                       
 #include <SDL2/SDL_image.h>                                                
 #include <SDL2/SDL.h>                                                      
 #endif 
+
 
 using namespace std;
 
@@ -18,11 +19,21 @@ int main( int argc, char* args[] )
     bool quit = false, muted = true, start = false;
     Display display;
     SDL_Event e; //Event handler
-    char initial_game_code_table[8][8] =
+    char initial_game_code_table[8][8] = {
+        { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+        { }, //These will be filled with 0
+        { },
+        { },
+        { },
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+        { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+        }; 
+    char game_code_table[8][8] =
         {
         { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
-        { 0, 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-        { 'P'}, //These will be filled with 0
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+        { }, //These will be filled with 0
         { },
         { },
         { },
@@ -30,18 +41,40 @@ int main( int argc, char* args[] )
         { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
         };
 
-    display.displayBoard(initial_game_code_table);    
+    char matrizzeros[8][8] =
+        {
+        { },
+        { },
+        { }, //These will be filled with 0
+        { },
+        { },
+        { },
+        { },
+        { }
+        }; 
+ 
     while (!quit) {
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_QUIT)
 				quit = true;
 			else if (e.type == SDL_KEYDOWN) {
 				switch (e.key.keysym.sym) {
-					case SDLK_SPACE:
-						if (start) {
+					case SDLK_p:
+                            for(int i=0;i<8;i++){
+                                for(int j=0;j<8;j++){
+                                    initial_game_code_table[i][j]= game_code_table[i][j];
+                                }
+                            }
 							display.displayBoard(initial_game_code_table);
+                            break;
+                    case SDLK_z:  
+                        for(int i=0;i<8;i++){
+                            for(int j=0;j<8;j++){
+                                initial_game_code_table[i][j]= 0;
+                            }
                         }
-						else start = true;
+                         display.displayBoard(initial_game_code_table);
+                        break;
                     case SDL_MOUSEBUTTONDOWN:
                         display.setDragging(true);
 					break;
@@ -73,9 +106,13 @@ int main( int argc, char* args[] )
                 else if (xMouse-50 >= 450 && xMouse-50 < 525){
                     display.pieceCoordinatex = 6;
                 }
-                else{
+                else if (xMouse-50 >= 525 && xMouse-50 < 600){
                     display.pieceCoordinatex = 7;
                 }
+                else{
+                    break;
+                }
+                
                 if(yMouse-25 >= 0 && yMouse-25 < 75){
                     display.pieceCoordinatey = 0;
                 }
@@ -97,9 +134,12 @@ int main( int argc, char* args[] )
                 else if (yMouse-25 >= 450 && yMouse-25 < 525){
                     display.pieceCoordinatey = 6;
                 }
-                else{
+                else if (yMouse-25 >= 525 && yMouse-25 < 600){
                     display.pieceCoordinatey = 7;
 
+                }
+                else{
+                    break;
                 }
                 //Call engine to Validate
                 display.pieceType = initial_game_code_table[display.pieceCoordinatex][display.pieceCoordinatey];
@@ -130,9 +170,13 @@ int main( int argc, char* args[] )
                 else if (xMouse-50 >= 450 && xMouse-50 < 525){
                     display.MouseCoordinatex = 6;
                 }
-                else{
+                else if (xMouse-50 >= 525 && xMouse-50 < 600){
                     display.MouseCoordinatex = 7;
                 }
+                else{
+                    break;
+                }
+
                 if(yMouse-25 >= 0 && yMouse-25 < 75){
                     display.MouseCoordinatey = 0;
                 }
@@ -154,9 +198,12 @@ int main( int argc, char* args[] )
                 else if (yMouse-25 >= 450 && yMouse-25 < 525){
                     display.MouseCoordinatey = 6;
                 }
-                else{
+                 else if (yMouse-25 >= 525 && yMouse-25 < 600){
                     display.MouseCoordinatey = 7;
 
+                }
+                else{
+                    break;
                 }
                 initial_game_code_table[display.MouseCoordinatex][display.MouseCoordinatey] = display.pieceType;
             }
