@@ -41,46 +41,21 @@ char  aimove( const char (&controller)[8][8]  ){
 }
 
 //calls savegame function
-void  savegame( char (&controller)[8][8]  ){
-    salvarTab(&controller);
+void  savegame( char (*controller)[8][8]  ){
+    salvarTab(controller);
 
 }
 //calls function to load controller returns loaded controller
-char loadboard(){
-    char controller[8][8] =
-    {
-        { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
-        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-        { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
-    };
-    controller = carregaTab(&controller);
-
-    return controller;
+void loadboard( char (*controller)[8][8]){
+    carregaTab(controller);
 
 }
 
 
 
 //calls function to edit empty controller returns edited controller
-void edit() {
-    char controller[8][8] =
-    {
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'}
-    };
-    edit(&controller);
-
+void edit(char (*controller)[8][8]) {
+    editar(&controller);
 
 }
 
