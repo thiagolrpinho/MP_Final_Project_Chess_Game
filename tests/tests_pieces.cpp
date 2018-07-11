@@ -226,10 +226,13 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     Board::getBoard()->setPieceAt( 5, 1 , black_queen );
     REQUIRE( black_queen->canMoveTo( 5, 1, 6, 0 ) == true );
     REQUIRE( white_rook->canMoveTo( 0, 1, 5, 1 ) == true );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 0, 2 ) == true );
 
     Board::getBoard()->setPieceAt( 6, 0, white_rook );
     REQUIRE( black_queen->canMoveTo( 5, 1, 6, 0 ) == true );
 
+    Board::getBoard()->setPieceAt( 0, 2 , white_rook );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 1, 1 ) == true );
 
     Board::getBoard()->setPieceAt( 0, 1 , white_rook );
     REQUIRE( white_rook->canMoveTo( 0, 1, 5, 1 ) == true );
