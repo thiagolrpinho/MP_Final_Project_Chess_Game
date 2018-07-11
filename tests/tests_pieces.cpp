@@ -204,6 +204,19 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     REQUIRE( black_bishop->canMoveTo( 5, 1, 3, 3 ) == true );
   }
 
+    SECTION( "A Bishop can eat a pawn" ) 
+  {
+    Board::getBoard()->cleanBoard();
+    PPawn white_pawn( new Pawn() );
+    PBishop black_bishop( new Bishop( false ) );
+
+    Board::getBoard()->setPieceAt( 5, 1 , black_bishop );
+    REQUIRE( black_bishop->canMoveTo( 5, 1, 6, 0 ) == true );
+
+    Board::getBoard()->setPieceAt( 6, 0, white_pawn );
+    REQUIRE( black_bishop->canMoveTo( 5, 1, 6, 0 ) == true );
+  }
+
 } //TEST_CASE( "Read Pieces", "[Pieces]" ) 
 
 TEST_CASE( "Update Pieces", "[Pieces]" ) 
