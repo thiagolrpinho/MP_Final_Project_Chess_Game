@@ -83,9 +83,9 @@ TEST_CASE( "Update Controller", "[Controller]" )
 
     
     PCodeTable returned_code_table = Controller::getController()->movePiece( new_move_code_table );
-    
-    REQUIRE( returned_code_table[2][2] != actual_code_table[2][2] );
-    REQUIRE( returned_code_table[0][1] != actual_code_table[0][1] );
+
+    REQUIRE( returned_code_table[5][2] != actual_code_table[5][2] );
+    REQUIRE( returned_code_table[7][1] != actual_code_table[7][1] );
     
   } // SECTION( "A Controller can see if an edited board is valid "  )
   
