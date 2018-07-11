@@ -67,6 +67,15 @@ int main( int argc, char* args[] )
                             }
 							display.displayBoard(initial_game_code_table);
                             break;
+                    case SDLK_s:
+                            
+                            //chama a função salvar para salvar a matriz do tabuleiro
+                            break;
+                    
+                    case SDLK_e:
+                            
+                            //chama a função editar para salvar a matriz do tabuleiro
+                            break;
                     case SDLK_z:  
                         for(int i=0;i<8;i++){
                             for(int j=0;j<8;j++){
@@ -141,7 +150,7 @@ int main( int argc, char* args[] )
                 else{
                     break;
                 }
-                //Call engine to Validate
+                
                 display.pieceType = initial_game_code_table[display.pieceCoordinatex][display.pieceCoordinatey];
             }
             
@@ -206,6 +215,14 @@ int main( int argc, char* args[] )
                     break;
                 }
                 initial_game_code_table[display.MouseCoordinatex][display.MouseCoordinatey] = display.pieceType;
+                //deve chamar a engine para fazer o validate e atualiza 
+                // char valida_matriz[8][8];
+                //valida_matriz = movepiece(initial_game_code_table);
+                //for(int i=0;i<8;i++){
+                //            for(int j=0;j<8;j++){
+                //                initial_game_code_table[i][j]= valida_matriz[i][j];
+               //             }
+                //        }
             }
 			display.displayBoard(initial_game_code_table);
 		}
