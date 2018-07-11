@@ -4,7 +4,7 @@ shared_ptr<Controller>  Controller::getController()
 {
     //If there's no controller, then create one.
     if( the_controller == nullptr )
-    {  
+    {
         try {
             the_controller.reset( new Controller() );
             //Reset controller table to new controller
@@ -21,7 +21,7 @@ PCodeTable Controller::movePiece( const char (&board)[8][8] )
 {
     if( Engine::getEngine()->isValidMove(board) )
     {
-        if ( Engine::getEngine()->readCodeTable(board) == Error ) 
+        if ( Engine::getEngine()->readCodeTable(board) == Error )
             throw (int) Error;
     }
 
@@ -33,52 +33,30 @@ bool Controller::validateBoard( const char (&board_to_be_avalied)[8][8]  )
 {
     return Engine::getEngine()->isValidEditedTable( board_to_be_avalied );
 }
-/* 
+
 //calls ai and receives and new controller with it's move
 char  aimove( const char (&controller)[8][8]  ){
 
-    return 0
+    return 0;
 }
 
 //calls savegame function
-void  savegame( const char (&controller)[8][8]  ){
-    salvarTab(&controller);
+void  savegame( char (*controller)[8][8]  ){
+    salvarTab(controller);
 
 }
 //calls function to load controller returns loaded controller
-char loadboard(){
-    char controller[8][8] =
-    {
-        { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
-        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-        { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
-    };
-    carregaTab(&controller);
-
-    return controller;
+void loadboard( char (*controller)[8][8]){
+    carregaTab(controller);
 
 }
+
+
+
 //calls function to edit empty controller returns edited controller
-char editboard() {
-    char controller[8][8] =
-    {
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'},
-        { '0', '0', '0', '0', '0', '0', '0', '0'}
-    };
+void edit(char (*controller)[8][8]) {
     editar(&controller);
 
-    return controller;
 }
 
 
@@ -105,11 +83,5 @@ char newstandardgame(){
     return controller;
 }
 
-//calls funtion that creates a new empty controller and asks for the right pieces
-char  newemptyboard(){
-    //char controller[8][8]=editar();
-
-    return controller;
-} */
 
 shared_ptr<Controller> Controller::the_controller = nullptr;

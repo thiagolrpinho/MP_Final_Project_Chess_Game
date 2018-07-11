@@ -28,13 +28,14 @@ LIBRARY_PATHS = -L"i686-w64-mingw32/lib"
 COMPILER_FLAGS = -w -Wl,-subsystem,windows
 
 #LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image -lSDL2_ttf
+LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = game
 
 LIBS	=-lm
-	
+
+
 _DEPS	= controller.hpp salvar.hpp player.hpp engine.hpp board.hpp square.hpp king.hpp queen.hpp bishop.hpp rook.hpp knight.hpp pawn.hpp restricted_piece.hpp piece.hpp catch.hpp
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
@@ -42,6 +43,8 @@ _TOBJ = controller.o salvar.o player.o engine.o board.o square.o king.o queen.o 
 TOBJ = $(patsubst %,$(ODIR)/%,$(_TOBJ))
 
 _OBJ = controller.o salvar.o player.o engine.o board.o square.o king.o queen.o bishop.o rook.o knight.o pawn.o restricted_piece.o piece.o main.o
+
+
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: $(CONTROLLERDIR)/%.cpp $(DEPS)
@@ -54,7 +57,7 @@ $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS)
 	$(CC)	-c	-o 	$@	$<	$(CFLAGS)
 
 $(ODIR)/%.o: $(TDIR)/%.cpp $(DEPS)
-	$(CC)	-c	-o 	$@	$<	$(CFLAGS) 
+	$(CC)	-c	-o 	$@	$<	$(CFLAGS)
 
 square_tester:$(TOBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
@@ -121,7 +124,7 @@ gcovr_html:
 #This is the target that compiles our executable
 gameig : $(OBJS)
 	$(CCIG) $(OBJSIG) $(CFLAGS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
-  
+
 .PHONY: clean
 
 clean:
