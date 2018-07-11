@@ -18,40 +18,43 @@ int King::value() const
 }
 
 
-/// Assertivas de entrada da função:
-/// if(abs(translationY) == 1 && translationX == 0),
-/// if(abs(translationX) == 1 && translationY == 0),
-/// if(abs(translationX) == 1 && abs(translationY) == 1)
+/// Assertivas de entrada da funï¿½ï¿½o:
+/// if(abs(vertical_absolute_translation) == 1 && horizontal_absolute_translation == 0),
+/// if(abs(horizontal_absolute_translation) == 1 && vertical_absolute_translation == 0),
+/// if(abs(horizontal_absolute_translation) == 1 && abs(vertical_absolute_translation) == 1)
 bool King::canMoveTo(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
                uint8_t future_vertical_coordinate) const
 {
     bool validMove = false;
-    int translationX = location.getX() - this->location()->getX();
-    int translationY = location.getY() - this->location()->getY();
+    uint8_t horizontal_absolute_translation, vertical_absolute_translation;
+
+    horizontal_absolute_translation = abs( actual_horizontal_coordinate - future_horizontal_coordinate );
+    vertical_absolute_translation = abs( actual_vertical_coordinate - future_vertical_coordinate );
     
-    /// Assertiva de entrada que checa se o movimento é válido
-    /// movimento é válido se o rei tiver se movendo um quadrado para frente/atrás
-    if(abs(translationY) == 1 && translationX == 0)
+
+    /// Assertiva de entrada que checa se o movimento ï¿½ vï¿½lido
+    /// movimento ï¿½ vï¿½lido se o rei tiver se movendo um quadrado para frente/atrï¿½s
+    if( abs(vertical_absolute_translation) == 1 && horizontal_absolute_translation == 0 )
     {
         validMove = true;
     }
     
-    /// Assertiva de entrada que checa se o movimento é válido
-    /// movimento é válido se o rei tiver se movendo um quadrado para direita/esquerda
-    else if(abs(translationX) == 1 && translationY == 0)
+    /// Assertiva de entrada que checa se o movimento ï¿½ vï¿½lido
+    /// movimento ï¿½ vï¿½lido se o rei tiver se movendo um quadrado para direita/esquerda
+    else if( abs(horizontal_absolute_translation) == 1 && vertical_absolute_translation == 0 )
     {
         validMove = true;
     }
     
-    /// Assertiva de entrada que checa se o movimento é válido
-    /// movimento é válido se o rei tiver se movendo um quadrado em uma diagonal
-    else if(abs(translationX) == 1 && abs(translationY) == 1)
+    /// Assertiva de entrada que checa se o movimento ï¿½ vï¿½lido
+    /// movimento ï¿½ vï¿½lido se o rei tiver se movendo um quadrado em uma diagonal
+    else if( abs(horizontal_absolute_translation) == 1 && abs(vertical_absolute_translation) == 1 )
     {
         validMove = true;
     }
     
-    /// Assertiva de saída: é garantido que o movimento do rei será válido
+    /// Assertiva de saï¿½da: ï¿½ garantido que o movimento do rei serï¿½ vï¿½lido
     return validMove;
 }
 

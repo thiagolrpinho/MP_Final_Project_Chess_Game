@@ -18,7 +18,7 @@ int Queen::value() const
 }
 
 
-/// Assertivas de entrada da função: 
+/// Assertivas de entrada da funï¿½ï¿½o: 
 ///if(Board::getBoard()->isClearVertical(*(this->location()), location)), 
 ///if(Board::getBoard()->isClearVertical(*(this->location()), location)), 
 ///else if(Board::getBoard()->isClearDiagonal(*(this->location()), location))
@@ -26,31 +26,16 @@ bool Queen::canMoveTo(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
                uint8_t future_vertical_coordinate) const
 {
-    bool validMove = false;
+    bool move_is_valid = false;
     
-    /// Assertiva de entrada que checa se o movimento é válido
-    /// movimento é válido se a rainha tiver se movendo uma reta vertical
-    if(Board::getBoard()->isClearVertical(*(this->location()), location))
-    {
-        validMove = true;
-    }
-    
-    /// Assertiva de entrada que checa se o movimento é válido
-    /// movimento é válido se a rainha tiver se movendo uma reta horizontal
-    else if(Board::getBoard()->isClearVertical(*(this->location()), location))
-    {
-        validMove = true;
-    }
-    
-    /// Assertiva de entrada que checa se o movimento é válido
-    /// movimento é válido se a rainha tiver se movendo uma reta diagonal
-    else if(Board::getBoard()->isClearDiagonal(*(this->location()), location))
-    {
-        validMove = true;
-    }
-    
-    /// Assertiva de saída: garante que o movimento da rainha é válido
-    return validMove;
+    /// Assertiva de entrada que checa se o movimento ï¿½ vï¿½lido
+    /// movimento ï¿½ vï¿½lido se a rainha tiver se movendo uma reta vertica
+    /// Assertiva de saï¿½da: garante que o movimento da rainha ï¿½ vï¿½lido
+    move_is_valid = Board::getBoard()->isClearPath(uint8_t actual_horizontal_coordinate,
+               uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
+               uint8_t future_vertical_coordinate);
+
+    return move_is_valid;
 }
 
 void Queen::display() const

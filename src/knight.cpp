@@ -1,4 +1,4 @@
-#include "knight.hpp""
+#include "knight.hpp"
 
 Knight::Knight(bool isWhite) : Piece(isWhite)
 {
@@ -13,33 +13,38 @@ int Knight::value() const
     return 3;
 }
 
-/// Assertivas de entrada da função: 
-///if(abs(translationY) == 1 && abs(translationX) == 2), 
-///if(abs(translationX) == 1 && abs(translationY) == 2)
-bool Knight::canMoveTouint8_t actual_horizontal_coordinate,
+/// Assertivas de entrada da funï¿½ï¿½o: 
+///if(abs( vertical_absolute_translation ) == 1 && abs( horizontal_absolute_translation ) == 2), 
+///if(abs( horizontal_absolute_translation ) == 1 && abs( vertical_absolute_translation ) == 2)
+bool Knight::canMoveTo(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
-               uint8_t future_vertical_coordinate) const
+               uint8_t future_vertical_coordinate ) const
 {
-    bool validMove = false;
-    int translationX = location.getX() - this->location()->getX();
-    int translationY = location.getY() - this->location()->getY();
+    bool move_is_valid = false;
+
+    // Moving outside the board is not valid.
+    if( future_horizontal_coordinate >= size_of_table_ ) return move_is_valid;
+    if( future_vertical_coordinate >= size_of_table_ ) return move_is_valid;
+
+    horizontal_absolute_translation = abs( actual_horizontal_coordinate - future_horizontal_coordinate );
+    vertical_absolute_translation = abs( actual_vertical_coordinate - future_vertical_coordinate );
     
-    /// Assertiva de entrada que checa se o movimento do cavalo é válido
-    /// movimento é válido se o cavalo se mover 1 quadrado pra frente/atrás e dois para direita/esquerda
-    if(abs(translationY) == 1 && abs(translationX) == 2)
+    /// Assertiva de entrada que checa se o movimento do cavalo ï¿½ vï¿½lido
+    /// movimento ï¿½ vï¿½lido se o cavalo se mover 1 quadrado pra frente/atrï¿½s e dois para direita/esquerda
+    if(abs( vertical_absolute_translation ) == 1 && abs( horizontal_absolute_translation ) == 2)
     {
-        validMove = true;
+        move_is_valid = true;
     }
     
-    /// Assertiva de entrada que checa se o movimento do cavalo é válido
-    /// movimento é válido se o cavalo se mover 1 quadrado pra direita/esquerdas e dois para frente/atrás
-    else if(abs(translationX) == 1 && abs(translationY) == 2)
+    /// Assertiva de entrada que checa se o movimento do cavalo ï¿½ vï¿½lido
+    /// movimento ï¿½ vï¿½lido se o cavalo se mover 1 quadrado pra direita/esquerdas e dois para frente/atrï¿½s
+    else if(abs( horizontal_absolute_translation ) == 1 && abs( vertical_absolute_translation ) == 2)
     {
-        validMove = true;
+        move_is_valid = true;
     }
-    ///Assertiva de saída: é garantido que o movimento do cavalo é válido
+    ///Assertiva de saï¿½da: ï¿½ garantido que o movimento do cavalo ï¿½ vï¿½lido
     
-    return validMove;
+    return move_is_valid;
 }
 
 void Knight::display() const

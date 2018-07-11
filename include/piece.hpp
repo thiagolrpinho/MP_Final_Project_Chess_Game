@@ -13,9 +13,9 @@ class Piece
  public:
    
     /**
-    * Cria uma peça
+    * Cria uma peï¿½a
     *
-    * @param isWhite se a cor da peça for branca
+    * @param isWhite se a cor da peï¿½a for branca
     */
     Piece(bool isWhite);
     
@@ -29,17 +29,17 @@ class Piece
 
 
     /**
-    * Move a peça para um quadrado tendo certeza que o movimento da peça é válido.
+    * Move a peï¿½a para um quadrado tendo certeza que o movimento da peï¿½a ï¿½ vï¿½lido.
     *
-    * @param peça a peça no quadrado
-    * @return se o movimento for válido, retorna esse movimento
+    * @param peï¿½a a peï¿½a no quadrado
+    * @return se o movimento for vï¿½lido, retorna esse movimento
     */
     virtual bool moveTo(Player& byPlayer, Square& toSquare);
 
    
    
     /**
-    * Da um "set" no quadrado onde a peça estiver
+    * Da um "set" no quadrado onde a peï¿½a estiver
     *
     * @param local do quadrado
     */
@@ -48,7 +48,7 @@ class Piece
    
    
     /**
-    * Pega o valor da peça
+    * Pega o valor da peï¿½a
     *
     * @return o valor
     */
@@ -57,18 +57,18 @@ class Piece
    
    
     /**
-    * Determina se e peça é branca
+    * Determina se e peï¿½a ï¿½ branca
     *
-    * @return se é branca
+    * @return se ï¿½ branca
     */
     bool isWhite() const;
 
     
 	
 	/**
-     * Pega a cor da peça
+     * Pega a cor da peï¿½a
      *
-     * @return a cor da peça
+     * @return a cor da peï¿½a
      */
     string color() const;    
     
@@ -79,10 +79,10 @@ class Piece
    
    
     /**
-    * Determina se a peça pode se mover para um dado quadrado baseado na geometria do movimento
+    * Determina se a peï¿½a pode se mover para um dado quadrado baseado na geometria do movimento
     *
     * @param quadrado o quadrado destino
-    * @return se o movimento é válido
+    * @return se o movimento ï¿½ vï¿½lido
     */
     virtual bool canMoveTo(uint8_t actual_horizontal_coordinate,
                uint8_t actual_vertical_coordinate, uint8_t future_horizontal_coordinate,
@@ -91,18 +91,18 @@ class Piece
    
    
     /**
-    * Determina se a peça está em um quadrado
+    * Determina se a peï¿½a estï¿½ em um quadrado
     *
-    * @return Se está no quadrado
+    * @return Se estï¿½ no quadrado
     */
     bool isOnSquare() const;
 
    
    
     /**
-    * Pega o local da peça
+    * Pega o local da peï¿½a
     *
-    * @return o quadrado onde a peça estiver
+    * @return o quadrado onde a peï¿½a estiver
     */
     Square* location() const;
     
@@ -117,6 +117,6 @@ class Piece
     // Private attributes
     Square* _square;
 
-}; // Peça
+}; // Peï¿½a
 
 #endif
