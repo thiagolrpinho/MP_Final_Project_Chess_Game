@@ -31,8 +31,8 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
   SECTION( "An Piece can say if a valid coordinate is a valid move" ) 
   {
     Board::getBoard()->cleanBoard();
-    PPawn white_rook( new Pawn() );
-    Board::getBoard()->setPieceAt( 0, 1 , white_rook );
+    PPawn white_pawn( new Pawn() );
+    Board::getBoard()->setPieceAt( 0, 1 , white_pawn );
   
     /*
       {
@@ -46,7 +46,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE( white_rook->canMoveTo( 0, 1, 0, 2) == true );
+    REQUIRE( white_pawn->canMoveTo( 0, 1, 0, 2) == true );
     
     /*
       {
@@ -60,11 +60,11 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE( white_rook->canMoveTo( 0, 1, 0, 3) == true );
+    REQUIRE( white_pawn->canMoveTo( 0, 1, 0, 3) == true );
 
     Board::getBoard()->cleanBoard();
-    white_rook.reset( new Pawn() );
-    Board::getBoard()->setPieceAt( 0, 1 , white_rook );
+    white_pawn.reset( new Pawn() );
+    Board::getBoard()->setPieceAt( 0, 1 , white_pawn );
         /*
       {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
@@ -77,7 +77,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE_FALSE( white_rook->canMoveTo( 1, 1, 0, 2) == true );
+    REQUIRE_FALSE( white_pawn->canMoveTo( 1, 1, 0, 2) == true );
 
       /*
       {
@@ -91,7 +91,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE( white_rook->canMoveTo( 0, 6, 0, 5 ) == true );
+    REQUIRE( white_pawn->canMoveTo( 0, 6, 0, 5 ) == true );
 
           /*
       {
@@ -105,7 +105,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-    REQUIRE( white_rook->canMoveTo( 0, 6, 0, 4 ) == true );
+    REQUIRE( white_pawn->canMoveTo( 0, 6, 0, 4 ) == true );
 
       /*
       {
@@ -119,27 +119,27 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
       };
       */
-     REQUIRE_FALSE( white_rook->canMoveTo( 1, 6, 0, 5 ) == true );
+     REQUIRE_FALSE( white_pawn->canMoveTo( 1, 6, 0, 5 ) == true );
   } // An Piece can say if a same code table is a valid state change"
 
   SECTION( "A King can say if it's in check when alone" ) 
   {
     Board::getBoard()->cleanBoard();
-    PKing white_rook( new King() );
-    Board::getBoard()->setPieceAt( 0, 1 , white_rook );
+    PKing white_king( new King() );
+    Board::getBoard()->setPieceAt( 0, 1 , white_king );
 
-    REQUIRE_FALSE( white_rook->inCheck() == true );
+    REQUIRE_FALSE( white_king->inCheck() == true );
   }
 
   SECTION( "A King can say if it's in check with allied pieces" ) 
   {
     Board::getBoard()->cleanBoard();
     PKing white_king_not_in_check( new King() );
-    PRook white_rook( new Rook() );
+    PRook white_king( new Rook() );
     PBishop white_bishop( new Bishop() );
 
     Board::getBoard()->setPieceAt( 4, 4 , white_king_not_in_check );
-    Board::getBoard()->setPieceAt( 3, 4 , white_rook );
+    Board::getBoard()->setPieceAt( 3, 4 , white_king );
     Board::getBoard()->setPieceAt( 3, 3 , white_bishop );
 
     REQUIRE_FALSE( white_king_not_in_check->inCheck() == true );
@@ -149,7 +149,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
   {
     Board::getBoard()->cleanBoard();
     PKing white_king_in_check( new King() );
-    PRook black_rook( new Rook( false ) );
+    PRook black_rook( new Rook( ) );
     PBishop black_bishop( new Bishop( false ) );
 
     Board::getBoard()->setPieceAt( 4, 4 , white_king_in_check );
@@ -166,6 +166,10 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     PPawn black_pawn( new Pawn( false ) );
 
     Board::getBoard()->setPieceAt( 0, 1 , white_rook );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 5, 1 ) == true );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 0, 6 ) == true );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 0, 2 ) == true );
+
     Board::getBoard()->setPieceAt( 0, 2 , black_pawn );
 
     REQUIRE( white_rook->canMoveTo( 0, 1, 0, 2 ) == true );

@@ -199,7 +199,7 @@ bool Board::isClearVertical(uint8_t actual_horizontal_coordinate,
     lower_coordinate = future_vertical_coordinate;
   }
   
-  for( vertical_iterator= lower_coordinate; vertical_iterator< upper_coordinate; vertical_iterator++ )
+  for( vertical_iterator = lower_coordinate; vertical_iterator < upper_coordinate; vertical_iterator++ )
   {
     if( the_actual_board->getSquareAt(actual_horizontal_coordinate, vertical_iterator)->isOccupied() == true ) return false;
   }
