@@ -188,7 +188,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
 
     Board::getBoard()->setPieceAt( 5, 1 , black_bishop );
 
-    REQUIRE( white_rook->canMoveTo( 0, 1, 1, 5 ) == true );
+    REQUIRE( white_rook->canMoveTo( 0, 1, 5, 1 ) == true );
   }
 
 } //TEST_CASE( "Read Pieces", "[Pieces]" ) 
