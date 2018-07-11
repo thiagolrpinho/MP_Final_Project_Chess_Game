@@ -1,0 +1,29 @@
+Caio Calixto Fasolak Alves
+
+Sexta, 22 de junho
+Tipo: Entendendo e estudando a extenção .pgn
+Total de horas: 26 minutos
+
+Sabado, 30 de junho
+Tipo: Estudando e entendendo o modulo para Criar/Salvar/Editar
+Total de horas: 39 minutos
+
+Segunda, 2 de Julho
+Tipo: Começando o desenvolvimento do carregamento do tabuleiro
+Total de Horas: 1 hora e 17 minutos
+
+Terça, 3 de julho
+Tipo: Continuando o desenvolvimento do modulo Criar/Salvar/Editar.
+Total de horas: 1 hora e 6 minutos
+
+Sexta, 6 de julho
+Tipo: Continuando o desenvolvimento do modulo Criar/Salvar/Editar
+Total de horas: 2 horas e 30 minutos
+
+Sabado, 7 de julho
+Tipo: Continuando o desenvolvimento do modulo Criar/Salvar/Editar
+Total de horas: 2 horas e 10 minutos
+
+Domingo, 8 de julho
+Tipo: Finalizando o desenvolvimento do modulo Criar/Salvar/Editar
+Total de horas: 2 horas e 5 minutos

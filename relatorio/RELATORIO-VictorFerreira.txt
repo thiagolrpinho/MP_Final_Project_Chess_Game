@@ -1,0 +1,67 @@
+Victor Ferreira Gonçalves
+
+Data:Sábado 21 de junho
+horas trabalhadas:2 horas
+Tipo Tarefa:- estudar aulas e laboratórios relacionados -projetar  
+
+Descrição da Tarefa Realizada: Foi combinado em dividir a engine do jogo em duas parte para 2 membros do grupo(eu e o Thiago) fazerem separadamente cada parte.Foi combinado também os módulos e as funções necessárias para o jogo funcionar.Eu fiquei com os módulos:peça,peão,bispo,cavalo,torre,rei,rainha e o restricted_piece(módulo que checa se uma peça já foi movimentada no jogo). O Thiago ficou com os módulos:main,player,square e board. 
+
+
+
+
+Data:Domingo 22 de junho
+horas trabalhadas:4 horas
+Tipo Tarefa:- codificar módulo 
+
+Descrição da Tarefa Realizada: Foi iniciado a codificação do módulo "peça" que é a superclasse de todas a peças individuais que serão criadas.Foi criado as principais funções do módulo(função que define a cor da peça e a função que movimenta a peça)
+
+
+
+
+Data:Sábado 28 de junho
+horas trabalhadas:6 horas
+Tipo Tarefa:- codificar módulo - especificar os módulos - especificar as funções 
+
+Descrição da Tarefa Realizada: Foi finalizado a codificação do módulo peça.Foi planejado como seria feito a função que checa se o movimento de determinada peça está seguindo as regras de xadrez.Foram criadas as assertivas do módulo peça.Foi iniciado a codificação das peças individuais
+
+
+
+
+Data:Domingo 29 de junho
+horas trabalhadas:6 horas
+Tipo Tarefa:- codificar módulo - especificar os módulos - especificar as funções 
+
+Descrição da Tarefa Realizada: Foi finalizada a codificação de todas as peças individuais e o restricted_piece.
+
+
+
+
+Data:Quarta 1 de julho
+horas trabalhadas:3 horas
+Tipo Tarefa:-especificar os módulos - especificar as funções  
+
+Descrição da Tarefa Realizada: Foi finalizada a criação das assertivas de entrada e saída de todos os módulos.
+
+
+
+
+Data:Quinta 5 de julho
+horas trabalhadas:3 horas
+Tipo Tarefa:-codificar módulo  -revisar projetos
+
+Descrição da Tarefa Realizada: Os módulos foram revisados e adaptados para fazerem conexão com os módulos "square" e "board" que estavam sendo criadas pelo Thiago.
+
+
+
+
+Data:Domingo 9 de julho
+horas trabalhadas:6 horas
+Tipo Tarefa:-revisar projetos
+
+Descrição da Tarefa Realizada: Foram feitas as adaptações finais e a correção de alguns erros nos módulos. Foi feito o push final no github de todos os módulos criados. 
+obs: Não foi possível fazer os testes das peças, pois todas as peças dependiam dos módulos "square" e "board" para serem testadas, e esses módulos só foram finalizados posteriormente.
+
+
+
+
+
