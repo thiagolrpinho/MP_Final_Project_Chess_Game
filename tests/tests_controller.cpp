@@ -71,6 +71,8 @@ TEST_CASE( "Update Controller", "[Controller]" )
   // These tests will focus on:
    SECTION( "A Controller will change the board if the code table is valid" ) 
   { 
+
+    //Testing horse move
     const char actual_code_table[8][8] = 
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
@@ -83,7 +85,7 @@ TEST_CASE( "Update Controller", "[Controller]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
 
-    const char new_valid_horse_code_table[8][8] = 
+    const char new_valid_horse_move_code_table[8][8] = 
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
       { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
@@ -97,10 +99,30 @@ TEST_CASE( "Update Controller", "[Controller]" )
     Engine::getEngine()->readCodeTable( actual_code_table );
 
     
-    PCodeTable returned_code_table = Controller::getController()->movePiece( new_valid_horse_code_table );
+    PCodeTable returned_code_table = Controller::getController()->movePiece( new_valid_horse_move_code_table );
 
     REQUIRE( returned_code_table[5][2] != actual_code_table[5][2] );
     REQUIRE( returned_code_table[7][1] != actual_code_table[7][1] );
+
+    //Testing pawn move
+    const char new_valid_pawn_move_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { },
+      { 'p'},
+      { }, //  Pawn jump move
+      { 0, 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    Engine::getEngine()->readCodeTable( actual_code_table );
+
+
+    returned_code_table = Controller::getController()->movePiece( new_valid_pawn_move_code_table );
+
+    REQUIRE( returned_code_table[4][0] != actual_code_table[4][0] );
+    REQUIRE( returned_code_table[6][0] != actual_code_table[6][0] );
     
   } // SECTION( " A Controller will change the board if the code table is valid "  )
 
