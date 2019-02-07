@@ -69,7 +69,7 @@ TEST_CASE( "Update Controller", "[Controller]" )
   //! These test case will focus on methods that
   //! updates Controller
   // These tests will focus on:
-   SECTION( "A Controller can see if an edited board is valid " ) 
+   SECTION( "A Controller will change the board if the code table is valid" ) 
   { 
     const char actual_code_table[8][8] = 
     {
@@ -83,7 +83,7 @@ TEST_CASE( "Update Controller", "[Controller]" )
       { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
     };
 
-    const char new_move_code_table[8][8] = 
+    const char new_valid_horse_code_table[8][8] = 
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
       { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
@@ -97,15 +97,15 @@ TEST_CASE( "Update Controller", "[Controller]" )
     Engine::getEngine()->readCodeTable( actual_code_table );
 
     
-    PCodeTable returned_code_table = Controller::getController()->movePiece( new_move_code_table );
+    PCodeTable returned_code_table = Controller::getController()->movePiece( new_valid_horse_code_table );
 
     REQUIRE( returned_code_table[5][2] != actual_code_table[5][2] );
     REQUIRE( returned_code_table[7][1] != actual_code_table[7][1] );
     
-  } // SECTION( "A Controller can see if an edited board is valid "  )
+  } // SECTION( " A Controller will change the board if the code table is valid "  )
 
 
-  SECTION( "A Controller can see if an edited board is not valid " ) 
+  SECTION( "A Controller won't change the board if the code table is not valid" ) 
   { 
     const char actual_code_table[8][8] = 
     {
@@ -135,10 +135,10 @@ TEST_CASE( "Update Controller", "[Controller]" )
     
     PCodeTable returned_code_table = Controller::getController()->movePiece( new_invalid_move_code_table );
 
-    REQUIRE( returned_code_table[5][2] == actual_code_table[5][2] );
+    REQUIRE( returned_code_table[5][1] == actual_code_table[5][1] );
     REQUIRE( returned_code_table[7][1] == actual_code_table[7][1] );
     
-  } // SECTION( "A Controller can see if an edited board is not valid "  )
+  } // SECTION( "A Controller won't change the board if the code table is not valid"  )
   
 } // TEST_CASE( "Update", "[Controller]" ) 
 
