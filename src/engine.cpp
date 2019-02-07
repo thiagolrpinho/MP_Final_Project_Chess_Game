@@ -41,23 +41,32 @@ uint8_t Engine::readCodeTable( const char (&array)[8][8] )
 
 uint8_t Engine::isValidEditedTable( const char (&array)[8][8] )
 {
+  // function receiveis an array of chars that represents a chess board
+  // and returns Success if it's a valid chess board or
+  // Error if not
+  
+  // White pieces counters
   uint8_t white_pawn = 0;
-  uint8_t black_pawn = 0;
   uint8_t white_rook = 0;
-  uint8_t black_rook = 0;
   uint8_t white_knight = 0;
-  uint8_t black_knight = 0;
   uint8_t white_bishop = 0;
-  uint8_t black_bishop = 0;
   uint8_t white_queen = 0;
-  uint8_t black_queen = 0;
   uint8_t white_king = 0;
+
+  // Black pieces counters
+  uint8_t black_pawn = 0;
+  uint8_t black_rook = 0;
+  uint8_t black_knight = 0;
+  uint8_t black_bishop = 0;
+  uint8_t black_queen = 0;
   uint8_t black_king = 0;
 
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
+      // If any symbol read is not a valid board chess code
+      // then it returns an Error
       if ( isValidCodeSymbol( array[vertical][horizontal] ) == Error )
         return Error;
       switch( array[vertical][horizontal] )
@@ -104,12 +113,22 @@ uint8_t Engine::isValidEditedTable( const char (&array)[8][8] )
       }
     }
   }
-  if( white_king + black_king != 2 ) return Error;
-  if( white_queen > 1 || black_queen > 1 ) return Error;
-  if( white_rook > 2 || black_rook > 2 ) return Error;
-  if( white_bishop > 2 || black_bishop > 2 ) return Error;
-  if( white_knight > 2 || black_knight > 2 ) return Error;
-  if( white_pawn > 8 || black_pawn > 8 ) return Error;
+
+  // White pieces check
+  if( white_king != 1 )   return Error;
+  if( white_queen > 1 )   return Error;
+  if( white_rook > 2 )    return Error;
+  if( white_bishop > 2 )  return Error;
+  if( white_knight > 2 )  return Error;
+  if( white_pawn > 8)     return Error;
+  
+  // Black pieces check
+  if( black_king != 1 )   return Error;
+  if( black_queen > 1 )   return Error;
+  if( black_rook > 2 )    return Error;
+  if( black_bishop > 2 )  return Error;
+  if( black_knight > 2 )  return Error;
+  if( black_pawn > 8 )    return Error;
 
   return Success;
 }
