@@ -306,7 +306,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
       { 'P', 'P',  0, 'P', 'P', 'P', 'P', 'P'},
-      { },  // Pawn move one square
+      { },  // Pawn missing without a reason
       { },
       { },
       { },
@@ -318,8 +318,8 @@ TEST_CASE( "Read Engine", "[Engine]" )
     const char next_invalid_wrong_pieces_code_table[8][8] = 
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
-      { 'P', 'P',  0, 'X', 'P', 'P', 'P', 'P'},
-      { },  // Pawn move one square
+      { 'P', 'P',  'P', 'X', 'P', 'P', 'P', 'P'},
+      { },  // Invalid symbol
       { },
       { },
       { },
@@ -345,7 +345,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
       { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
-      { },  // Pawn jump to the diagonal
+      { },  // Horse jump invalid
       { },
       { },
       { 0, 'c'},
@@ -358,7 +358,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
       { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
-      { },  // Pawn jump to the diagonal
+      { },  // Horse jump invalid
       { },
       { },
       { 0, 0, 0, 'c'},
@@ -454,6 +454,34 @@ TEST_CASE( "Read Engine", "[Engine]" )
       { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
     };
     CHECK( valid_engine->isValidMove( knight_jump_next_valid_code_table ) == true );
+
+    Board::getBoard()->cleanBoard();
+    const char valid_pawn_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 0, 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Pawn move one square
+      {'P'},
+      { 0, 'p'},
+      { },
+      { 'p', 0, 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    valid_engine->readCodeTable( valid_pawn_code_table);
+
+    const char black_pawn_eats_black_pawn_next_valid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // Black pawn
+      { },
+      { 0, 'P' },
+      { },
+      { 'p', 0, 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    REQUIRE( valid_engine->isValidMove( black_pawn_eats_black_pawn_next_valid_code_table ) == true );
 
   } // "An engine can say if a new invalid move table is a valid state change"
 
