@@ -36,16 +36,31 @@ TEST_CASE( "Read Controller", "[Controller]" )
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
       { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
-      { },  // Pawn move one square
+      { },  // Two queens
       { 'R'},
       { },
-      { 0, 0, 'r'},
+      { },
       { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
       { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
     };
 
-    REQUIRE_FALSE( Controller::getController()->validateBoard( invalid_two_queen_edited_code_table ) == true );
+    const char invalid_without_king_edited_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 0, 0, 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  // One less king
+      { },
+      { },
+      { },
+      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+
+    REQUIRE_FALSE( Controller::getController()->validateBoard( invalid_without_king_edited_code_table ) );
+    REQUIRE_FALSE( Controller::getController()->validateBoard( invalid_two_queen_edited_code_table ) );
   } // SECTION( "A Controller can see if an edited board is valid "  )
+  
 
 } //TEST_CASE( "Read Controller", "[Controller]" ) 
 

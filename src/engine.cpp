@@ -135,6 +135,13 @@ uint8_t Engine::isValidEditedTable( const char (&array)[8][8] )
 
 uint8_t Engine::isValidCodeSymbol( char code_symbol )
 {
+  // Valid code symbols used are
+  // p for pawn
+  // t for rook
+  // c for knight
+  // r for queen
+  // z for king
+  // High case pieces are black and low cases are white
   switch( code_symbol )
       {
         case 0:
