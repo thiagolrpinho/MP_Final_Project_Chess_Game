@@ -181,13 +181,14 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     PPawn white_pawn( new Pawn() );
     PPawn black_pawn( new Pawn( false ) );
 
-    Board::getBoard()->setPieceAt( 1, 1 , white_pawn );
-    REQUIRE( white_pawn->canMoveTo( 1, 1, 2, 1 ) == true );
-    REQUIRE( white_pawn->canMoveTo( 1, 1, 3, 1 ) == true );
+    Board::getBoard()->setPieceAt( 1, 1 , black_pawn );
+    REQUIRE( black_pawn->hasMoved() == false );
+    REQUIRE( black_pawn->canMoveTo( 1, 1, 1, 3 ) == true );
+    REQUIRE( black_pawn->canMoveTo( 1, 1, 1, 2 ) == true );
 
-    Board::getBoard()->setPieceAt( 2, 2 , black_pawn );
+    Board::getBoard()->setPieceAt( 2, 2 , white_pawn );
 
-    REQUIRE( white_pawn->canMoveTo( 1, 1, 2, 2 ) == true );
+    REQUIRE( black_pawn->canMoveTo( 1, 1, 2, 2 ) == true );
   }
 
   SECTION( "A Rook can eat a bishop" ) 
