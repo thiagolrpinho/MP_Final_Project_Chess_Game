@@ -37,11 +37,11 @@ bool Pawn::canMoveTo( uint8_t actual_horizontal_coordinate,
     vertical_absolute_translation = abs( actual_vertical_coordinate - future_vertical_coordinate );
     
     // andar para frente significa andar para atras do ponto de vista das pe�as pretas
-    if(!isWhite )
+    if( isWhite )
     {
-        vertical_direction = -1;
-    } else {
         vertical_direction = 1;
+    } else {
+        vertical_direction = -1;
     }
     
     if( horizontal_absolute_translation == 0) //If it's only a vertical movement
@@ -64,15 +64,13 @@ bool Pawn::canMoveTo( uint8_t actual_horizontal_coordinate,
     // When eating another piece, pawn can move diagonaly
     } else if ( horizontal_absolute_translation == 1 && vertical_absolute_translation == 1 )
     {
-        if(isWhite) { 
-            if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied()
-                && vertical_direction == 1  )
+        if( isWhite ) { 
+            if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied() )
             {
                 return true;
             }
         } else {
-            if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied()
-             && vertical_direction == -1 )
+            if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied() )
             {
                 return true;
             }

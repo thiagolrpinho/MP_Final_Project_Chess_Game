@@ -473,7 +473,7 @@ TEST_CASE( "Read Engine", "[Engine]" )
     const char black_pawn_eats_black_pawn_next_valid_code_table[8][8] = 
     {
       { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
-      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { 0, 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
       { },  // Black pawn
       { },
       { 0, 'P' },
