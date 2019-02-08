@@ -159,7 +159,7 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     REQUIRE( white_king_in_check->inCheck() == true );
   }
 
-    SECTION( "A Rook can eat a pawn" ) 
+  SECTION( "A Rook can eat a pawn" ) 
   {
     Board::getBoard()->cleanBoard();
     PRook white_rook( new Rook() );
@@ -173,6 +173,21 @@ TEST_CASE( "Read Pieces", "[Pieces]" )
     Board::getBoard()->setPieceAt( 0, 2 , black_pawn );
 
     REQUIRE( white_rook->canMoveTo( 0, 1, 0, 2 ) == true );
+  }
+
+    SECTION( "A pawn can eat a pawn" ) 
+  {
+    Board::getBoard()->cleanBoard();
+    PPawn white_pawn( new Pawn() );
+    PPawn black_pawn( new Pawn( false ) );
+
+    Board::getBoard()->setPieceAt( 1, 1 , white_pawn );
+    REQUIRE( white_pawn->canMoveTo( 1, 1, 2, 1 ) == true );
+    REQUIRE( white_pawn->canMoveTo( 1, 1, 3, 1 ) == true );
+
+    Board::getBoard()->setPieceAt( 2, 2 , black_pawn );
+
+    REQUIRE( white_pawn->canMoveTo( 1, 1, 2, 2 ) == true );
   }
 
   SECTION( "A Rook can eat a bishop" ) 

@@ -314,7 +314,10 @@ uint8_t Engine::createPieceAt( uint8_t horizontal_coordinate,
    return code_table;
  } // PCodeTable Engine::returnCodeTable()
 
-bool Engine::isValidMove( const char (&array)[8][8]  )
+  /* Method receives a code table array[8][8]
+      and returns true if the moviment is valid or false if not
+  */
+bool Engine::isValidMove( const char (&new_code_table)[8][8]  )
 {
   PCodeTable actual_game_code_table;
   uint8_t number_of_different_symbols = 0; //If there are no differences, then it's the same board.
@@ -325,34 +328,36 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   bool first_difference_is_origin, first_was_occupied, second_was_occupied;
   bool first_is_occupied, second_is_occupied;
 
-
+  // Validates if the codes are valid symbols
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
-      if ( isValidCodeSymbol( array[vertical][horizontal] ) == Error )
+      if ( isValidCodeSymbol( new_code_table[vertical][horizontal] ) == Error )
         return false;
     }
   }
   actual_game_code_table = returnCodeTable();
 
+  // Verifies the number of pieces different from the last game state
+  // then stores the coordinates of the different changes
   for( size_t horizontal = 0; horizontal < 8; ++horizontal )
   {
     for( size_t vertical = 0; vertical < 8; ++vertical )
     {
-      if ( array[vertical][horizontal]  != actual_game_code_table[vertical][horizontal] )
+      if ( new_code_table[vertical][horizontal]  != actual_game_code_table[vertical][horizontal] )
       {
         switch( ++number_of_different_symbols )
         {
           case 1:
             first_difference_horizontal_coordinate = (uint8_t)horizontal;
             first_difference_vertical_coordinate = (uint8_t)vertical;
-            first_is_occupied = array[vertical][horizontal] == 0;
+            first_is_occupied = new_code_table[vertical][horizontal] == 0;
           break;
           case 2:
             second_difference_horizontal_coordinate = (uint8_t)horizontal;
             second_difference_vertical_coordinate = (uint8_t)vertical;
-            second_is_occupied = array[vertical][horizontal] == 0;
+            second_is_occupied = new_code_table[vertical][horizontal] == 0;
           break;
           default:
           break;
@@ -361,8 +366,9 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
     }
   }
 
-  if( number_of_different_symbols == 0 ) return true;
-  if( number_of_different_symbols != 2 ) return false;
+  if( number_of_different_symbols == 0 ) return true; // If nothing change, then it's valid
+  if( number_of_different_symbols != 2 ) return false; // If the movement changed more than two symbols, it's invalid
+
   first_was_occupied = Board::getBoard()->getSquareAt( first_difference_horizontal_coordinate,
                                  first_difference_vertical_coordinate)->isOccupied();
 
@@ -389,6 +395,7 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
     return false; //If no pieces were on the given differences, there can not be two new pieces.
   }
 
+  // Then search the origin of the movement and validates if that was a valid move
   if( first_difference_is_origin )
   {
     if( Board::getBoard()->getPieceAt( first_difference_horizontal_coordinate,
@@ -403,7 +410,7 @@ bool Engine::isValidMove( const char (&array)[8][8]  )
   }
 
   return true;
-} // bool Engine::isValidMove( const char (&array)[8][8]  )
+} // bool Engine::isValidMove( const char (&new_code_table)[8][8]  )
 
 void Engine::printCodeTable( const char (&array)[8][8] )
 {
