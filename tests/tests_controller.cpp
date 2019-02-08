@@ -193,8 +193,8 @@ TEST_CASE( "Update Controller", "[Controller]" )
     
     PCodeTable returned_code_table = Controller::getController()->movePiece( new_valid_eating_code_table );
 
-    REQUIRE( returned_code_table[3][0] == actual_code_table[3][0] );
-    REQUIRE( returned_code_table[4][1] == actual_code_table[4][1] );
+    REQUIRE( returned_code_table[3][0] != actual_code_table[3][0] );
+    REQUIRE( returned_code_table[4][1] != actual_code_table[4][1] );
     
   } // SECTION( "A Controller will change the board if the code table changed more than one piece at a time while eating a piece"  )
   
