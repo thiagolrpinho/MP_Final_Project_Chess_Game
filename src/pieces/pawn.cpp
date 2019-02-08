@@ -44,43 +44,43 @@ bool Pawn::canMoveTo( uint8_t actual_horizontal_coordinate,
         vertical_direction = 1;
     }
     
-    /// o movimento � v�lido se ele for um movimento de um quadrado pra frente(se n�o tiver nenhuma pe�a na frente)
-    if( !( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied() )
-                                 && vertical_absolute_translation == 1 && horizontal_absolute_translation == 0 )
+    if( horizontal_absolute_translation == 0) //If it's only a vertical movement
     {
-        validMove = true;
-        if(!hasMoved()) setMoved();
-
-    }
-    
-    ///  se o pe�o n tiver se movido no jogo e os dois quadrados a sua frente estiverem livres, o pe�o poder� fazer seu movimento especial de se mover 2 quadrados para frente
-    /// Assertiva de entrada que checa se o pe�o j� se moveu no jogo
-    else if( !hasMoved() && vertical_absolute_translation == 2 && horizontal_absolute_translation == 0 &&
-            Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
-             actual_vertical_coordinate, future_vertical_coordinate ) )
+        // A pawn can move two squares only if it hasn't been moved
+        if( vertical_absolute_translation == 2 ) 
+        {   
+           if( actual_vertical_coordinate == 1 || actual_vertical_coordinate == 6 ) //
+           {
+            // The path has to be clear till that square
+            if( Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_vertical_coordinate ) ) return true;
+           }
+        } else if ( vertical_absolute_translation == 1 )
+        {
+            // The path has to be clear till that square
+            if( Board::getBoard()->isClearVertical( actual_horizontal_coordinate,
+             actual_vertical_coordinate, future_vertical_coordinate ) )  return true;
+        }
+    // When eating another piece, pawn can move diagonaly
+    } else if ( horizontal_absolute_translation == 1 && vertical_absolute_translation == 1 )
     {
-        validMove = true;
-        setMoved();
-    }
-
-    /// o movimento tamb�m � v�lido se o pe�o for comer uma pe�a na diagonal
-    else if( isWhite ) // Se for branca
-    {
-        if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied()
+        if(isWhite) { 
+            if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied()
                 && vertical_direction == 1  )
-        {
-            validMove = true;
-        }
-    } else  // Se a peça for preta
-    {
-        if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied()
+            {
+                return true;
+            }
+        } else {
+            if( Board::getBoard()->getSquareAt( future_horizontal_coordinate, future_vertical_coordinate )->isOccupied()
              && vertical_direction == -1 )
-        {
-            validMove = true;
-        }
-    }       
+            {
+                return true;
+            }
 
-    return validMove;
+        }
+    }
+
+    return false;
 }
 
 char Pawn::getCodeSymbol() const
