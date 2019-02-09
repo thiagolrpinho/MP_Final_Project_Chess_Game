@@ -18,6 +18,7 @@ class Controller
   static shared_ptr<Controller>  getController();
 
   bool tryTurn( const char (&board)[8][8] );
+  bool playGame();
 
 
  private:

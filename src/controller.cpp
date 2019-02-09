@@ -48,6 +48,12 @@ bool Controller::tryTurn( const char (&board)[8][8] )
 
     return false;
 }
+
+
+bool Controller::playGame()
+{
+    return false;
+}
 /* 
 //calls ai and receives and new controller with it's move
 char  aimove( const char (&controller)[8][8]  ){

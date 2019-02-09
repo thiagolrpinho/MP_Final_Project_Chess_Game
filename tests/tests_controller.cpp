@@ -282,7 +282,15 @@ TEST_CASE( "Update Controller", "[Controller]" )
     REQUIRE( Controller::getController()->tryTurn( new_invalid_number_code_table ) == false );
   
   } // SECTION( "A Controller can try to move a piece and verify if it worked"  )
-  
+
+ SECTION( "A Controller can play a game" ) 
+  { 
+    // Then we test using a valid code table
+    REQUIRE( Controller::getController()->playGame( ) == true );
+
+
+  } // SECTION( "A Controller can try to move a piece and verify if it worked"  )
+
 } // TEST_CASE( "Update", "[Controller]" ) 
 
 TEST_CASE( "Destroy Controller", "[Controller]" ) 
