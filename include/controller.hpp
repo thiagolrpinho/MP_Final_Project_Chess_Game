@@ -17,6 +17,8 @@ class Controller
   char  newemptyboard();
   static shared_ptr<Controller>  getController();
 
+  bool tryTurn( const char (&board)[8][8] );
+
 
  private:
   static shared_ptr<Controller> the_controller;

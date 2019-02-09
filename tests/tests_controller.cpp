@@ -234,6 +234,55 @@ TEST_CASE( "Update Controller", "[Controller]" )
     
   } // SECTION( "A Controller won't change the board if the code table changed more than one piece at a time  )
   
+  SECTION( "A Controller can try to move a piece and verify if it worked" ) 
+  { 
+    const char actual_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 0, 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { 'P'},
+      { 0, 'p'},
+      { },
+      { 'p', 0, 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    const char new_valid_eating_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 0, 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { },
+      { 0, 'P'},
+      { }, // Two changed pieces
+      { 'p', 0, 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    const char new_invalid_number_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 'P', 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { },
+      { },
+      { }, // Two changed pieces
+      { 'p', 0, 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 0, 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    
+    //First we set the board state
+    Engine::getEngine()->readCodeTable( actual_code_table );
+
+    // Then we test using a valid code table
+    REQUIRE( Controller::getController()->tryTurn( new_valid_eating_code_table ) == true );
+
+    // And now using an invalid one
+    //REQUIRE( Controller::getController()->tryTurn( new_invalid_number_code_table ) == false );
+  
+  } // SECTION( "A Controller can try to move a piece and verify if it worked"  )
+  
 } // TEST_CASE( "Update", "[Controller]" ) 
 
 TEST_CASE( "Destroy Controller", "[Controller]" ) 

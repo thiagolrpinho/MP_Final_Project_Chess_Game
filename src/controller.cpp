@@ -33,6 +33,14 @@ bool Controller::validateBoard( const char (&board_to_be_avalied)[8][8]  )
 {
     return Engine::getEngine()->isValidEditedTable( board_to_be_avalied );
 }
+
+// Method receives a code table - The next move
+// and return true if it succesfully moved a piece 
+// or false if nothing changes
+bool Controller::tryTurn( const char (&board)[8][8] )
+{
+    return false;
+}
 /* 
 //calls ai and receives and new controller with it's move
 char  aimove( const char (&controller)[8][8]  ){
