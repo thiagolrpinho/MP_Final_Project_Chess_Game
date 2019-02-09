@@ -279,7 +279,7 @@ TEST_CASE( "Update Controller", "[Controller]" )
     REQUIRE( Controller::getController()->tryTurn( new_valid_eating_code_table ) == true );
 
     // And now using an invalid one
-    //REQUIRE( Controller::getController()->tryTurn( new_invalid_number_code_table ) == false );
+    REQUIRE( Controller::getController()->tryTurn( new_invalid_number_code_table ) == false );
   
   } // SECTION( "A Controller can try to move a piece and verify if it worked"  )
   

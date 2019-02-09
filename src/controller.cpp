@@ -39,6 +39,13 @@ bool Controller::validateBoard( const char (&board_to_be_avalied)[8][8]  )
 // or false if nothing changes
 bool Controller::tryTurn( const char (&board)[8][8] )
 {
+    if( Engine::getEngine()->isValidMove(board) )
+    {
+        if ( Engine::getEngine()->readCodeTable(board) == Error ) 
+            throw (int) Error;
+        return true;
+    }
+
     return false;
 }
 /* 
