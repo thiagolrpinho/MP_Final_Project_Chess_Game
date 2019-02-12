@@ -1,5 +1,6 @@
 #include "controller.hpp"
 
+
 shared_ptr<Controller>  Controller::getController()
 {
     //If there's no controller, then create one.
@@ -50,7 +51,7 @@ bool Controller::tryTurn( const char (&board)[8][8] )
 }
 
 
-bool Controller::playGame()
+bool Controller::interfaceToCodeTable( char* first_coordinate, char* second_coordinate )
 {
     return false;
 }

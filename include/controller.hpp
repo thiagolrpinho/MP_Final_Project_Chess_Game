@@ -2,6 +2,7 @@
 #define CONTROLLER_HPP
 #include "salvar.hpp"
 #include "engine.hpp"
+#include <iostream>
 
 class Controller 
 {
@@ -18,7 +19,7 @@ class Controller
   static shared_ptr<Controller>  getController();
 
   bool tryTurn( const char (&board)[8][8] );
-  bool playGame();
+  bool interfaceToCodeTable( char* first_coordinate, char* second_coordinate );
 
 
  private:

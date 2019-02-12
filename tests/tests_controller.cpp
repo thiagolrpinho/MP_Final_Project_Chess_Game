@@ -283,13 +283,15 @@ TEST_CASE( "Update Controller", "[Controller]" )
   
   } // SECTION( "A Controller can try to move a piece and verify if it worked"  )
 
- SECTION( "A Controller can play a game" ) 
+ SECTION( "A Controller can receive two coordinates tuple and transform it on a chess board code table" ) 
   { 
     // Then we test using a valid code table
-    REQUIRE( Controller::getController()->playGame( ) == true );
+    char first_coordinate[2] = {1,1};
+    char second_coordinate[2] = {3,1};
+    REQUIRE( Controller::getController()->interfaceToCodeTable( first_coordinate, second_coordinate ) == true );
 
 
-  } // SECTION( "A Controller can try to move a piece and verify if it worked"  )
+  } // SECTION( "A Controller can receive two coordinates tuple and transform it on a chess board code table"  )
 
 } // TEST_CASE( "Update", "[Controller]" ) 
 

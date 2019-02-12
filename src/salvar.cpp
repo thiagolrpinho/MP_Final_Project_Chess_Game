@@ -124,8 +124,9 @@ void carregaTab(char (*tabuleiro)[8][8]){
 
     ifstream carrega;
     carrega.open("../saved_games/jogo.pgn");
+	cout << carrega.is_open();
 
-    if(!carrega.is_open( )){
+    if( !carrega.is_open( )){
         cout << "Não foi possível abrir arquivo! Programa será terminado!\n";
         carrega.clear( );
         return;
