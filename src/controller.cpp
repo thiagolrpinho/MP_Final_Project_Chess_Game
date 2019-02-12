@@ -51,9 +51,16 @@ bool Controller::tryTurn( const char (&board)[8][8] )
 }
 
 
-bool Controller::interfaceToCodeTable( char* first_coordinate, char* second_coordinate )
-{
-    return false;
+bool Controller::interfaceToCodeTable( char* original_coordinate, char* move_to_coordinate )
+{   
+    // The coordinantes have to be a letter followed by a number range 0 to 7)
+    if( original_coordinate[0] > 'z' || original_coordinate[0] < 'A' ) return false; 
+    if( original_coordinate[1] < '0' || original_coordinate[1] > '7') return false;
+
+    if( move_to_coordinate[0] > 'z' || move_to_coordinate[0] < 'A' ) return false; 
+    if( move_to_coordinate[1] < '0' || move_to_coordinate[1] > '7') return false;
+
+    return true;
 }
 /* 
 //calls ai and receives and new controller with it's move
