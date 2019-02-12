@@ -286,9 +286,39 @@ TEST_CASE( "Update Controller", "[Controller]" )
  SECTION( "A Controller can receive two coordinates tuple and transform it on a chess board code table" ) 
   { 
     // Then we test using a valid code table
-    char first_coordinate[2] = {'h','1'};
-    char second_coordinate[2] = {'c','1'};
-    REQUIRE( Controller::getController()->interfaceToCodeTable( first_coordinate, second_coordinate ) == true );
+    char first_coordinate[2] = {'a','3'};
+    char second_coordinate[2] = {'B','4'};
+    const char actual_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 0, 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { 'P'},
+      { 0, 'p'},
+      { },
+      { 'p', 0, 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+
+    const char new_valid_code_table[8][8] = 
+    {
+      { 'T', 'C', 'B', 'R', 'Z', 'B', 'C', 'T'},
+      { 0, 'P',  'P', 'P', 'P', 'P', 'P', 'P'},
+      { },  
+      { },
+      { 0, 'P'},
+      { }, // Two changed pieces
+      { 'p', 0, 'p', 'p', 'p', 'p', 'p', 'p'},
+      { 't', 'c', 'b', 'r', 'z', 'b', 'c', 't'}
+    };
+    Engine::getEngine()->readCodeTable( actual_code_table );
+    PCodeTable converted_movement = Controller::getController()->interfaceToCodeTable( first_coordinate, second_coordinate );
+
+    for(int i = 0; i < 8; i++)
+      for(int j = 0; j < 8; j++)
+      {
+        REQUIRE( converted_movement[i][j] == new_valid_code_table[i][j] );
+      }
 
 
   } // SECTION( "A Controller can receive two coordinates tuple and transform it on a chess board code table"  )

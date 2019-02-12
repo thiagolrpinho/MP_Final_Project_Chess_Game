@@ -19,7 +19,7 @@ class Controller
   static shared_ptr<Controller>  getController();
 
   bool tryTurn( const char (&board)[8][8] );
-  bool interfaceToCodeTable( char* first_coordinate, char* second_coordinate );
+  PCodeTable interfaceToCodeTable( char* first_coordinate, char* second_coordinate );
 
 
  private:

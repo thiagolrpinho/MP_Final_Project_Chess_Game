@@ -51,16 +51,16 @@ bool Controller::tryTurn( const char (&board)[8][8] )
 }
 
 
-bool Controller::interfaceToCodeTable( char* original_coordinate, char* move_to_coordinate )
+PCodeTable Controller::interfaceToCodeTable( char* original_coordinate, char* move_to_coordinate )
 {   
     uint8_t old_x, old_y;
     uint8_t new_x, new_y;
     // The coordinantes have to be a letter range A-H followed by a number range 0 to 7)
-    if( original_coordinate[0] > 'h' || original_coordinate[0] < 'A' ) return false; 
-    if( original_coordinate[1] < '0' || original_coordinate[1] > '7') return false;
+    if( original_coordinate[0] > 'h' || original_coordinate[0] < 'A' ) return 0; 
+    if( original_coordinate[1] < '0' || original_coordinate[1] > '7') return 0;
 
-    if( move_to_coordinate[0] > 'h' || move_to_coordinate[0] < 'A' ) return false; 
-    if( move_to_coordinate[1] < '0' || move_to_coordinate[1] > '7') return false;
+    if( move_to_coordinate[0] > 'h' || move_to_coordinate[0] < 'A' ) return 0; 
+    if( move_to_coordinate[1] < '0' || move_to_coordinate[1] > '7') return 0;
 
     // Then we convert the letters to numbers
     if( original_coordinate[0] >= 'a')
@@ -81,7 +81,8 @@ bool Controller::interfaceToCodeTable( char* original_coordinate, char* move_to_
     PCodeTable actual_code_table = Engine::getEngine()->returnCodeTable();
     actual_code_table[new_y][new_x] = actual_code_table[old_y][old_x];
     actual_code_table[old_y][old_x] = '0';
-    return true;
+
+    return actual_code_table;
 }
 /* 
 //calls ai and receives and new controller with it's move
