@@ -67,20 +67,20 @@ PCodeTable Controller::interfaceToCodeTable( char* original_coordinate, char* mo
     {
         original_coordinate[0] -= 32; //Make all letters be uppercase
     }
-    old_y = original_coordinate[0] - 'A'; // Now it's a number between 0 and 7
-    old_x = original_coordinate[1];
+    old_x = original_coordinate[0] - 'A'; // Now it's a number between 0 and 7
+    old_y = original_coordinate[1] - '0';
 
     // Then we convert the letters to numbers
     if( move_to_coordinate[0] >= 'a')
     {
         move_to_coordinate[0] -= 32; //Make all letters be uppercase
     }
-    new_y = move_to_coordinate[0] - 'A'; // Now it's a number between 0 and 7
-    new_x = move_to_coordinate[1];
+    new_x = move_to_coordinate[0] - 'A'; // Now it's a number between 0 and 7
+    new_y = move_to_coordinate[1] - '0';
 
     PCodeTable actual_code_table = Engine::getEngine()->returnCodeTable();
     actual_code_table[new_y][new_x] = actual_code_table[old_y][old_x];
-    actual_code_table[old_y][old_x] = '0';
+    actual_code_table[old_y][old_x] = 0;
 
     return actual_code_table;
 }
