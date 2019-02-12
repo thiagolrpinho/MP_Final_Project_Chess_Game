@@ -286,8 +286,8 @@ TEST_CASE( "Update Controller", "[Controller]" )
  SECTION( "A Controller can receive two coordinates tuple and transform it on a chess board code table" ) 
   { 
     // Then we test using a valid code table
-    char first_coordinate[2] = {'k',1};
-    char second_coordinate[2] = {'c',1};
+    char first_coordinate[2] = {'k','1'};
+    char second_coordinate[2] = {'c','1'};
     REQUIRE( Controller::getController()->interfaceToCodeTable( first_coordinate, second_coordinate ) == true );
 
 
