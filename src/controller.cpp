@@ -53,13 +53,34 @@ bool Controller::tryTurn( const char (&board)[8][8] )
 
 bool Controller::interfaceToCodeTable( char* original_coordinate, char* move_to_coordinate )
 {   
-    // The coordinantes have to be a letter followed by a number range 0 to 7)
-    if( original_coordinate[0] > 'z' || original_coordinate[0] < 'A' ) return false; 
+    uint8_t old_x, old_y;
+    uint8_t new_x, new_y;
+    // The coordinantes have to be a letter range A-H followed by a number range 0 to 7)
+    if( original_coordinate[0] > 'h' || original_coordinate[0] < 'A' ) return false; 
     if( original_coordinate[1] < '0' || original_coordinate[1] > '7') return false;
 
-    if( move_to_coordinate[0] > 'z' || move_to_coordinate[0] < 'A' ) return false; 
+    if( move_to_coordinate[0] > 'h' || move_to_coordinate[0] < 'A' ) return false; 
     if( move_to_coordinate[1] < '0' || move_to_coordinate[1] > '7') return false;
 
+    // Then we convert the letters to numbers
+    if( original_coordinate[0] >= 'a')
+    {
+        original_coordinate[0] -= 32; //Make all letters be uppercase
+    }
+    old_y = original_coordinate[0] - 'A'; // Now it's a number between 0 and 7
+    old_x = original_coordinate[1];
+
+    // Then we convert the letters to numbers
+    if( move_to_coordinate[0] >= 'a')
+    {
+        move_to_coordinate[0] -= 32; //Make all letters be uppercase
+    }
+    new_y = move_to_coordinate[0] - 'A'; // Now it's a number between 0 and 7
+    new_x = move_to_coordinate[1];
+
+    PCodeTable actual_code_table = Engine::getEngine()->returnCodeTable();
+    actual_code_table[new_y][new_x] = actual_code_table[old_y][old_x];
+    actual_code_table[old_y][old_x] = '0';
     return true;
 }
 /* 
